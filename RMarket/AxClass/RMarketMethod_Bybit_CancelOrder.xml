@@ -2,16 +2,18 @@
 <AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>RMarketMethod_Bybit_CancelOrder</Name>
 	<SourceCode>
-		<Methods />
-		<UnparsableSource><![CDATA[
-internal final class RMarketMethod_Bybit_CancelOrder
-{
-}
+		<Declaration><![CDATA[
 /// <summary>
 /// Метод отмены ордера для Bybit
 /// </summary>
 public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RMarketMethodInterface_CancelOrder
 {
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>cancelOrder</Name>
+				<Source><![CDATA[
     /// <summary> Отменить ордер на Bybit </summary>
     /// <param name="_symbol"> Торговый символ </param>
     /// <param name="_orderId"> ID ордера </param>
@@ -41,7 +43,9 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
         str response = apiClient.post(url, params);
         return apiClient.deserialize(response, classStr(RMarketJson_Bybit_OrderResponse));
     }
-}
-]]></UnparsableSource>
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

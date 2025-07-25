@@ -5,6 +5,54 @@
 	<IsPublic>true</IsPublic>
 	<Methods>
 		<Method>
+			<Name>setBaseUrl</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>_baseUrl</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>setApiKey</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketApiKey</TypeName>
+					<Name>_apiKey</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>execute</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>initParameters</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
 			<Name>deleteOrder</Name>
 			<Visibility>Public</Visibility>
 			<Parameters>

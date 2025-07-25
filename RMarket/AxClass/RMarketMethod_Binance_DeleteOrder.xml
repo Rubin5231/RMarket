@@ -6,7 +6,7 @@
 /// <summary>
 /// Метод удаления ордера для Binance
 /// </summary>
-public class RMarketMethod_Binance_DeleteOrder extends RMarketMethod implements RMarketMethodInterface_DeleteOrder
+public class RMarketMethod_Binance_DeleteOrder extends RMarketMethod implements RMarketMethodInterface_CancelOrder
 {
 }
 ]]></Declaration>

@@ -12,6 +12,45 @@ interface RMarketMethodInterface_CancelOrder
 ]]></Declaration>
 		<Methods>
 			<Method>
+				<Name>setBaseUrl</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void setBaseUrl(str _baseUrl)
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setApiKey</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void setApiKey(RMarketApiKey _apiKey)
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>execute</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void execute()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
+				<Source><![CDATA[
+    public void initParameters()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>deleteOrder</Name>
 				<Source><![CDATA[
     /// <summary> Удалить существующий ордер </summary>

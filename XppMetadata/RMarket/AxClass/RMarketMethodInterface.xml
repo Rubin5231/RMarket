@@ -9,12 +9,14 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketApiType</TypeName>
 					<Name>_apiType</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_Time</TypeName>
 			</ReturnType>
@@ -25,12 +27,14 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketApiType</TypeName>
 					<Name>_apiType</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_Klines</TypeName>
 			</ReturnType>
@@ -41,12 +45,14 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketApiType</TypeName>
 					<Name>_apiType</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_GetAccountBalance</TypeName>
 			</ReturnType>
@@ -57,14 +63,52 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketApiType</TypeName>
 					<Name>_apiType</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_GetTradeHistory</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>CancelOrder</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketApiType</TypeName>
+					<Name>_apiType</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Class</Type>
+				<TypeName>RMarketMethodInterface_CancelOrder</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>CreateOrder</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketApiType</TypeName>
+					<Name>_apiType</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Class</Type>
+				<TypeName>RMarketMethodInterface_CreateOrder</TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>
