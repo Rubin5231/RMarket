@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Binance_CancelOrder</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Binance_CancelOrder
+{
+    private str symbol;
+    private str origClientOrderId;
+    private int64 orderId;
+    private int64 orderListId;
+    private str clientOrderId;
+    private str price;
+    private str origQty;
+    private str executedQty;
+    private str cummulativeQuoteQty;
+    private str status;
+    private str timeInForce;
+    private str type;
+    private str side;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmSymbol</Name>
+				<Source><![CDATA[
+    /// <summary>Торговая пара</summary>
+    /// <param name="_symbol">Идентификатор торговой пары</param>
+    /// <returns>Торговая пара</returns>
+    [DataMember('symbol')]
+    public str parmSymbol(str _symbol = symbol)
+    {
+        symbol = _symbol;
+        return symbol;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrigClientOrderId</Name>
+				<Source><![CDATA[
+    /// <summary>Оригинальный клиентский ID</summary>
+    /// <param name="_origClientOrderId">ID ордера при создании</param>
+    /// <returns>Оригинальный клиентский ID</returns>
+    [DataMember('origClientOrderId')]
+    public str parmOrigClientOrderId(str _origClientOrderId = origClientOrderId)
+    {
+        origClientOrderId = _origClientOrderId;
+        return origClientOrderId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderId</Name>
+				<Source><![CDATA[
+    /// <summary>Уникальный ID ордера</summary>
+    /// <param name="_orderId">Идентификатор, присвоенный биржей</param>
+    /// <returns>Уникальный ID ордера</returns>
+    [DataMember('orderId')]
+    public int64 parmOrderId(int64 _orderId = orderId)
+    {
+        orderId = _orderId;
+        return orderId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderListId</Name>
+				<Source><![CDATA[
+    /// <summary>ID списка ордеров</summary>
+    /// <param name="_orderListId">Идентификатор для OCO-ордеров</param>
+    /// <returns>ID списка ордеров</returns>
+    [DataMember('orderListId')]
+    public int64 parmOrderListId(int64 _orderListId = orderListId)
+    {
+        orderListId = _orderListId;
+        return orderListId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmClientOrderId</Name>
+				<Source><![CDATA[
+    /// <summary>Новый клиентский ID</summary>
+    /// <param name="_clientOrderId">Идентификатор при отмене</param>
+    /// <returns>Новый клиентский ID</returns>
+    [DataMember('clientOrderId')]
+    public str parmClientOrderId(str _clientOrderId = clientOrderId)
+    {
+        clientOrderId = _clientOrderId;
+        return clientOrderId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPrice</Name>
+				<Source><![CDATA[
+    /// <summary>Цена ордера</summary>
+    /// <param name="_price">Цена, по которой был размещен ордер</param>
+    /// <returns>Цена ордера</returns>
+    [DataMember('price')]
+    public str parmPrice(str _price = price)
+    {
+        price = _price;
+        return price;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrigQty</Name>
+				<Source><![CDATA[
+    /// <summary>Исходное количество</summary>
+    /// <param name="_origQty">Первоначальный объем ордера</param>
+    /// <returns>Исходное количество</returns>
+    [DataMember('origQty')]
+    public str parmOrigQty(str _origQty = origQty)
+    {
+        origQty = _origQty;
+        return origQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmExecutedQty</Name>
+				<Source><![CDATA[
+    /// <summary>Исполненное количество</summary>
+    /// <param name="_executedQty">Объем, исполненный до отмены</param>
+    /// <returns>Исполненное количество</returns>
+    [DataMember('executedQty')]
+    public str parmExecutedQty(str _executedQty = executedQty)
+    {
+        executedQty = _executedQty;
+        return executedQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCummulativeQuoteQty</Name>
+				<Source><![CDATA[
+    /// <summary>Суммарная стоимость</summary>
+    /// <param name="_cummulativeQuoteQty">Накопленная стоимость исполнений</param>
+    /// <returns>Суммарная стоимость</returns>
+    [DataMember('cummulativeQuoteQty')]
+    public str parmCummulativeQuoteQty(str _cummulativeQuoteQty = cummulativeQuoteQty)
+    {
+        cummulativeQuoteQty = _cummulativeQuoteQty;
+        return cummulativeQuoteQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmStatus</Name>
+				<Source><![CDATA[
+    /// <summary>Статус ордера</summary>
+    /// <param name="_status">Статус после отмены (CANCELED)</param>
+    /// <returns>Статус ордера</returns>
+    [DataMember('status')]
+    public str parmStatus(str _status = status)
+    {
+        status = _status;
+        return status;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTimeInForce</Name>
+				<Source><![CDATA[
+    /// <summary>Условие исполнения</summary>
+    /// <param name="_timeInForce">GTC, IOC и т.д.</param>
+    /// <returns>Условие исполнения</returns>
+    [DataMember('timeInForce')]
+    public str parmTimeInForce(str _timeInForce = timeInForce)
+    {
+        timeInForce = _timeInForce;
+        return timeInForce;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmType</Name>
+				<Source><![CDATA[
+    /// <summary>Тип ордера</summary>
+    /// <param name="_type">Тип ордера (LIMIT, MARKET и т.д.)</param>
+    /// <returns>Тип ордера</returns>
+    [DataMember('type')]
+    public str parmType(str _type = type)
+    {
+        type = _type;
+        return type;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSide</Name>
+				<Source><![CDATA[
+    /// <summary>Направление сделки</summary>
+    /// <param name="_side">BUY или SELL</param>
+    /// <returns>Направление сделки</returns>
+    [DataMember('side')]
+    public str parmSide(str _side = side)
+    {
+        side = _side;
+        return side;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

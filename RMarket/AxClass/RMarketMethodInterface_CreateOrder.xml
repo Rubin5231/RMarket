@@ -12,7 +12,34 @@ interface RMarketMethodInterface_CreateOrder
 ]]></Declaration>
 		<Methods>
 			<Method>
-				<Name>createOrder</Name>
+				<Name>setBaseUrl</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void setBaseUrl(str _baseUrl)
+    {}
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setApiKey</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void setApiKey(RMarketApiKey _apiKey)
+    {}
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>execute</Name>
+				<Source><![CDATA[
+    // From RMarketMethod
+    public void execute()
+    {}
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
 				<Source><![CDATA[
     /// <summary> Создать новый ордер </summary>
     /// <param name="_symbol"> Торговый символ (например, BTCUSDT) </param>
@@ -22,13 +49,21 @@ interface RMarketMethodInterface_CreateOrder
     /// <param name="_price"> Цена актива (для лимитных ордеров) </param>
     /// <param name="_clientOrderId"> Клиентский идентификатор ордера </param>
     /// <returns> Результат создания ордера </returns>
-    public RMarketJson_Base createOrder(
+    public void initParameters(
         str _symbol,
         str _side,
         str _orderType,
-        real _quantity,
-        real _price,
+        str _qty,
+        str _price = '',
         str _clientOrderId = '')
+    {}
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getOrderId</Name>
+				<Source><![CDATA[
+    public str getOrderId()
     {}
 
 ]]></Source>

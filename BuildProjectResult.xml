@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2025-07-24T23:00:00.5524965+03:00">
+  GenerationTime="2025-07-26T15:27:09.597338+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -22,18 +22,6 @@
       <Path>dynamics://Reference/Azure.Core</Path>
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketAutoTrade_Test/Method/run</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>TableReferenceBeforeJoin</Moniker>
-      <Line>34</Line>
-      <Column>44</Column>
-      <EndLine>34</EndLine>
-      <EndColumn>51</EndColumn>
-      <Message>The table 'account' is  referenced before being joined. Move this reference after the table has been joined in the statement.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

@@ -47,14 +47,6 @@
 		<Method>
 			<Name>initParameters</Name>
 			<Visibility>Public</Visibility>
-			<ReturnType>
-				<Tags></Tags>
-				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>deleteOrder</Name>
-			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
@@ -66,21 +58,21 @@
 					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
-					<DefaultValue>''</DefaultValue>
 					<Name>_orderId</Name>
-				</AxMethodParameter>
-				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
-					<DefaultValue>''</DefaultValue>
-					<Name>_clientOrderId</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
-				<Type>ExtendedDataType</Type>
-				<TypeName>RMarketJson_Base</TypeName>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>getOrderId</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

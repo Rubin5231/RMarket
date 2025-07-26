@@ -8,50 +8,141 @@
 /// </summary>
 public class RMarketMethod_Binance_CreateOrder extends RMarketMethod implements RMarketMethodInterface_CreateOrder
 {
+    protected RMarketJson_Binance_CreateOrder responseContract;
+    protected str symbol;
+    protected str side;
+    protected str orderType;
+    protected str qty;
+    protected str price;
+    protected str clientOrderId;
+
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
-				<Name>createOrder</Name>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary> Конструктор класса </summary>
+    public void new()
+    {
+        apiClient = new RMarketApiClientBinance();
+        apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
+        apiClient.parmMethodUrl('/api/v3/order');
+
+        // Do this before execute()
+        //apiClient.setBaseUrl(URL _baseUrl);
+        //apiClient.setApiKey(RMarketApiKey _apiKey)
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
 				<Source><![CDATA[
     /// <summary> Создать ордер на Binance </summary>
     /// <param name="_symbol"> Торговый символ </param>
     /// <param name="_side"> Направление (BUY/SELL) </param>
     /// <param name="_orderType"> Тип ордера </param>
-    /// <param name="_quantity"> Количество </param>
+    /// <param name="_qty"> Количество </param>
     /// <param name="_price"> Цена </param>
     /// <param name="_clientOrderId"> Клиентский ID ордера </param>
     /// <returns> Результат создания ордера </returns>
-    public RMarketJson_Base createOrder(
-    str _symbol,
-    str _side,
-    str _orderType,
-    real _quantity,
-    real _price,
-    str _clientOrderId = '')
+    public void initParameters(
+        str _symbol,
+        str _side,
+        str _orderType,
+        str _qty,
+        str _price = '',
+        str _clientOrderId = '')
     {
-        RMarketApiClientBinance apiClient = this.getApiClient();
-        str url = apiClient.parmBaseUrl() + '/api/v3/order';
+        //https://developers.binance.com/docs/binance-spot-api-docs/rest-api/trading-endpoints#new-order-trade
+        //symbol	                STRING	YES
+        //side	                    ENUM	YES	Please see Enums for supported values.
+        //type	                    ENUM	YES	Please see Enums for supported values.
+        //timeInForce	            ENUM	NO	Please see Enums for supported values.
+        //quantity	                DECIMAL	NO
+        //quoteOrderQty	            DECIMAL	NO
+        //price	                    DECIMAL	NO
+        //newClientOrderId	        STRING	NO	A unique id among open orders. Automatically generated if not sent.
+        //                                    Orders with the same newClientOrderID can be accepted only when 
+        //                                    the previous one is filled, otherwise the order will be rejected.
+        //strategyId	            LONG	NO
+        //strategyType	            INT	NO	The value cannot be less than 1000000.
+        //stopPrice	                DECIMAL	NO	Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.
+        //trailingDelta	            LONG	NO	See Trailing Stop order FAQ.
+        //icebergQty	            DECIMAL	NO	Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.
+        //newOrderRespType	        ENUM	NO	Set the response JSON. ACK, RESULT, or FULL; MARKET and LIMIT order types default to FULL, all other orders default to ACK.
+        //selfTradePreventionMode	ENUM	NO	The allowed enums is dependent on what is configured on the symbol. The possible supported values are: STP Modes.
+        //recvWindow	            LONG	NO	The value cannot be greater than 60000
+        //timestamp	                LONG	YES
+
+        //Some additional mandatory parameters based on order type:
+        //Type	            Additional mandatory parameters	
+        //                            Additional Information
+        //LIMIT	            timeInForce, quantity, price
+        //MARKET	            quantity or quoteOrderQty	
+        //                            MARKET orders using the quantity field specifies the amount of the base asset the user wants to buy or sell at the market price.
+        //                            E.g. MARKET order on BTCUSDT will specify how much BTC the user is buying or selling.
+
+        //                            MARKET orders using quoteOrderQty specifies the amount the user wants to spend (when buying) or receive (when selling) the quote asset; the correct quantity will be determined based on the market liquidity and quoteOrderQty.
+        //                            E.g. Using the symbol BTCUSDT:
+        //                            BUY side, the order will buy as many BTC as quoteOrderQty USDT can.
+        //                            SELL side, the order will sell as much BTC needed to receive quoteOrderQty USDT.
+        //STOP_LOSS	        quantity, stopPrice or trailingDelta	
+        //                            This will execute a MARKET order when the conditions are met. (e.g. stopPrice is met or trailingDelta is activated)
+        //STOP_LOSS_LIMIT     timeInForce, quantity, price, stopPrice or trailingDelta
+        //TAKE_PROFIT	        quantity, stopPrice or trailingDelta	
+        //                            This will execute a MARKET order when the conditions are met. (e.g. stopPrice is met or trailingDelta is activated)
+        //TAKE_PROFIT_LIMIT	timeInForce, quantity, price, stopPrice or trailingDelta
+        //LIMIT_MAKER	        quantity, price	
+        //                            This is a LIMIT order that will be rejected if the order immediately matches and trades as a taker.
+        //                            This is also known as a POST-ONLY order.
+        symbol = _symbol;
+        side = _side;
+        orderType = _orderType;
+        qty = _qty;
+        price = _price;
+        clientOrderId = _clientOrderId;
+
+        apiClient.addQueryParam("symbol", symbol);
+        apiClient.addQueryParam("side", side);
+        apiClient.addQueryParam("type", orderType);
+        apiClient.addQueryParam("quantity", qty);
         
-        Map params = new Map(Types::String, Types::String);
-        params.insert('symbol', _symbol);
-        params.insert('side', _side);
-        params.insert('type', _orderType);
-        params.insert('quantity', num2str(_quantity, 0, 8, 0, 0));
-        
-        if (_orderType == 'LIMIT')
-        {
-            params.insert('price', num2str(_price, 0, 8, 0, 0));
-            params.insert('timeInForce', 'GTC');
-        }
-        
+        if (_price)
+            apiClient.addQueryParam("price", price);
+            
         if (_clientOrderId)
-        {
-            params.insert('newClientOrderId', _clientOrderId);
-        }
-        
-        str response = apiClient.post(url, params);
-        return apiClient.deserialize(response, classStr(RMarketJson_Binance_CreateOrder));
+            apiClient.addQueryParam("newClientOrderId", clientOrderId);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processResponse</Name>
+				<Source><![CDATA[
+    public void processResponse()
+    {
+        super();
+
+        str responseStr = apiClient.getResponseBody();
+
+        if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
+            throw Error(strfmt("Request returns error!"));
+    
+        responseContract = RMarketJsonSerializer::deserializeObject(
+            classNum(RMarketJson_Binance_CreateOrder),
+            responseStr) as RMarketJson_Binance_CreateOrder;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getOrderId</Name>
+				<Source><![CDATA[
+    public str getOrderId()
+    {
+        return int642Str(responseContract.parmOrderId());
     }
 
 ]]></Source>

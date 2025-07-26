@@ -11,8 +11,9 @@
 	</Attributes>
 	<Members>
 		<AxClassMemberVariable>
-			<Type>ExtendedDataType</Type>
-			<TypeName>RMarketJson_Bybit_CreateOrder_Result</TypeName>
+			<Tags></Tags>
+			<Type>Class</Type>
+			<TypeName>RMarketJson_Bybit_Order_Result</TypeName>
 			<Name>result</Name>
 			<Attributes />
 			<Visibility>Private</Visibility>
@@ -35,15 +36,17 @@
 			</Attributes>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>ExtendedDataType</Type>
-					<TypeName>RMarketJson_Bybit_CreateOrder_Result</TypeName>
+					<Tags></Tags>
+					<Type>Class</Type>
+					<TypeName>RMarketJson_Bybit_Order_Result</TypeName>
 					<DefaultValue>result</DefaultValue>
 					<Name>_result</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Type>ExtendedDataType</Type>
-				<TypeName>RMarketJson_Bybit_CreateOrder_Result</TypeName>
+				<Tags></Tags>
+				<Type>Class</Type>
+				<TypeName>RMarketJson_Bybit_Order_Result</TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

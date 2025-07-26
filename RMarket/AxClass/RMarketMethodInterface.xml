@@ -96,7 +96,7 @@ public class RMarketMethodInterface
         switch (_apiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_DeleteOrder();
+                return new RMarketMethod_Binance_CancelOrder();
             
             case RMarketApiType::Bybit:
                 return new RMarketMethod_Bybit_CancelOrder();

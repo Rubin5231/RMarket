@@ -6,10 +6,9 @@
 [DataContractAttribute]
 public class RMarketJson_Bybit_Order extends RMarketJson_Bybit_Response
 {
-    private RMarketJson_Bybit_CreateOrder_Result result;
+    private RMarketJson_Bybit_Order_Result result;
 
 }
-
 ]]></Declaration>
 		<Methods>
 			<Method>
@@ -19,8 +18,8 @@ public class RMarketJson_Bybit_Order extends RMarketJson_Bybit_Response
     /// <param name="_result"> Результат создания ордера </param>
     /// <returns> Результат создания ордера </returns>
     [DataMemberAttribute('result')]
-    public RMarketJson_Bybit_CreateOrder_Result parmResult(
-        RMarketJson_Bybit_CreateOrder_Result _result = result
+    public RMarketJson_Bybit_Order_Result parmResult(
+        RMarketJson_Bybit_Order_Result _result = result
         )
     {
         result = _result;

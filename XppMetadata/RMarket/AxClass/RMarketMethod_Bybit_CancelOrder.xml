@@ -6,9 +6,40 @@
 	<Implements xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 		<d2p1:string>RMarketMethodInterface_CancelOrder</d2p1:string>
 	</Implements>
+	<Members>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Class</Type>
+			<TypeName>RMarketJson_Bybit_Order</TypeName>
+			<Name>responseContract</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
+			<Name>symbol</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
+			<Name>orderId</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+	</Members>
 	<Methods>
 		<Method>
-			<Name>cancelOrder</Name>
+			<Name>new</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>initParameters</Name>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
@@ -21,21 +52,37 @@
 					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
-					<DefaultValue>''</DefaultValue>
 					<Name>_orderId</Name>
-				</AxMethodParameter>
-				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
-					<DefaultValue>''</DefaultValue>
-					<Name>_clientOrderId</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
-				<Type>ExtendedDataType</Type>
-				<TypeName>RMarketJson_Base</TypeName>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>prepare</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>processResponse</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>getOrderId</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

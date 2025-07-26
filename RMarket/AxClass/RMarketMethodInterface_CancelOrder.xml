@@ -14,10 +14,9 @@ interface RMarketMethodInterface_CancelOrder
 			<Method>
 				<Name>setBaseUrl</Name>
 				<Source><![CDATA[
-    // From RMarketMethod
+        // From RMarketMethod
     public void setBaseUrl(str _baseUrl)
-    {
-    }
+    {}
 
 ]]></Source>
 			</Method>
@@ -26,8 +25,7 @@ interface RMarketMethodInterface_CancelOrder
 				<Source><![CDATA[
     // From RMarketMethod
     public void setApiKey(RMarketApiKey _apiKey)
-    {
-    }
+    {}
 
 ]]></Source>
 			</Method>
@@ -36,33 +34,31 @@ interface RMarketMethodInterface_CancelOrder
 				<Source><![CDATA[
     // From RMarketMethod
     public void execute()
-    {
-    }
+    {}
 
 ]]></Source>
 			</Method>
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    public void initParameters()
-    {
-    }
-
-]]></Source>
-			</Method>
-			<Method>
-				<Name>deleteOrder</Name>
-				<Source><![CDATA[
     /// <summary> Удалить существующий ордер </summary>
     /// <param name="_symbol"> Торговый символ (например, BTCUSDT) </param>
     /// <param name="_orderId"> Идентификатор ордера на бирже </param>
     /// <param name="_clientOrderId"> Клиентский идентификатор ордера </param>
     /// <returns> Результат удаления ордера </returns>
-    public RMarketJson_Base deleteOrder(
+    public void initParameters(
         str _symbol,
-        str _orderId = '',
-        str _clientOrderId = '')
+        str _orderId)
     {}
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getOrderId</Name>
+				<Source><![CDATA[
+        public str getOrderId()
+    {
+    }
 
 ]]></Source>
 			</Method>
