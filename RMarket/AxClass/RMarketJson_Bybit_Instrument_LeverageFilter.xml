@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_Instrument_LeverageFilter</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_Instrument_LeverageFilter
+{
+    private str minLeverage;
+    private str maxLeverage;
+    private str leverageStep;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmMinLeverage</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальное кредитное плечо </summary>
+    /// <param name="_minLeverage"> Минимально допустимое плечо </param>
+    /// <returns> Минимально допустимое плечо </returns>
+    [DataMember('minLeverage')]
+    public str parmMinLeverage(str _minLeverage = minLeverage)
+    {
+        minLeverage = _minLeverage;
+        return minLeverage;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxLeverage</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальное кредитное плечо </summary>
+    /// <param name="_maxLeverage"> Максимально допустимое плечо </param>
+    /// <returns> Максимально допустимое плечо </returns>
+    [DataMember('maxLeverage')]
+    public str parmMaxLeverage(str _maxLeverage = maxLeverage)
+    {
+        maxLeverage = _maxLeverage;
+        return maxLeverage;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLeverageStep</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает шаг кредитного плеча </summary>
+    /// <param name="_leverageStep"> Шаг изменения плеча </param>
+    /// <returns> Шаг изменения плеча </returns>
+    [DataMember('leverageStep')]
+    public str parmLeverageStep(str _leverageStep = leverageStep)
+    {
+        leverageStep = _leverageStep;
+        return leverageStep;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

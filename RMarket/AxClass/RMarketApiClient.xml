@@ -299,7 +299,7 @@ abstract public class RMarketApiClient
     {
         MapEnumerator enumerator;
         methodQuery = "";
-        if (queryParams && queryParams.elements() > 0)
+        if (httpMethod != RMarketAPIHttpMethod::POST && queryParams && queryParams.elements() > 0)
         {
             enumerator = queryParams.getEnumerator();
             while (enumerator.moveNext())
@@ -383,7 +383,8 @@ abstract public class RMarketApiClient
         this.buildSignature();      // Шаг 3: генерация подписи
         //this.buildMethodQuery();    // Шаг 4: перестроение с учетом подписи только для Binance
 
-        uriBuilder.set_Query(methodQuery);
+        if (httpMethod != RMarketAPIHttpMethod::POST)
+            uriBuilder.set_Query(methodQuery);
         fullUrl = uriBuilder.get_Uri().AbsoluteUri;
         
         // Создание HTTP-запроса

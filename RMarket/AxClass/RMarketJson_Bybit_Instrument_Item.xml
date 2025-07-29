@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_Instrument_Item</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_Instrument_Item
+{
+    private str symbol;
+    private str baseCoin;
+    private str quoteCoin;
+    private str settleCoin;
+    private str innovation;
+    private str status;
+    private str marginTrading;
+    private str contractType;
+    private str launchTime;
+    private str deliveryTime;
+    private str deliveryFeeRate;
+    private str priceScale;
+    private RMarketJson_Bybit_Instrument_LotSizeFilter lotSizeFilter;
+    private RMarketJson_Bybit_Instrument_PriceFilter priceFilter;
+    private RMarketJson_Bybit_Instrument_LeverageFilter leverageFilter;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmSymbol</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает символ инструмента </summary>
+    /// <param name="_symbol"> Торговый символ </param>
+    /// <returns> Торговый символ </returns>
+    [DataMember('symbol')]
+    public str parmSymbol(str _symbol = symbol)
+    {
+        symbol = _symbol;
+        return symbol;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBaseCoin</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает базовый актив </summary>
+    /// <param name="_baseCoin"> Базовый криптоактив </param>
+    /// <returns> Базовый криптоактив </returns>
+    [DataMember('baseCoin')]
+    public str parmBaseCoin(str _baseCoin = baseCoin)
+    {
+        baseCoin = _baseCoin;
+        return baseCoin;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuoteCoin</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает котируемый актив </summary>
+    /// <param name="_quoteCoin"> Котируемый криптоактив </param>
+    /// <returns> Котируемый криптоактив </returns>
+    [DataMember('quoteCoin')]
+    public str parmQuoteCoin(str _quoteCoin = quoteCoin)
+    {
+        quoteCoin = _quoteCoin;
+        return quoteCoin;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSettleCoin</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает актив расчета </summary>
+    /// <param name="_settleCoin"> Актив для расчетов </param>
+    /// <returns> Актив для расчетов </returns>
+    [DataMember('settleCoin')]
+    public str parmSettleCoin(str _settleCoin = settleCoin)
+    {
+        settleCoin = _settleCoin;
+        return settleCoin;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmInnovation</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает инновационный статус ["0", "1"] </summary>
+    /// <param name="_innovation"> Флаг инновационного инструмента </param>
+    /// <returns> Флаг инновационного инструмента </returns>
+    [DataMember('innovation')]
+    public str parmInnovation(str _innovation = innovation)
+    {
+        innovation = _innovation;
+        return innovation;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmStatus</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает статус инструмента ["Trading", "Settling", "Closed"] </summary>
+    /// <param name="_status"> Статус торговли </param>
+    /// <returns> Статус торговли </returns>
+    [DataMember('status')]
+    public str parmStatus(str _status = status)
+    {
+        status = _status;
+        return status;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMarginTrading</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает режим маржинальной торговли ["none", "both", "onlyMargin", "onlyNotional"] </summary>
+    /// <param name="_marginTrading"> Режим маржинальной торговли </param>
+    /// <returns> Режим маржинальной торговли </returns>
+    [DataMember('marginTrading')]
+    public str parmMarginTrading(str _marginTrading = marginTrading)
+    {
+        marginTrading = _marginTrading;
+        return marginTrading;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmContractType</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает тип контракта ["LinearPerpetual", "LinearFutures", "InversePerpetual", "InverseFutures"] </summary>
+    /// <param name="_contractType"> Тип деривативного контракта </param>
+    /// <returns> Тип деривативного контракта </returns>
+    [DataMember('contractType')]
+    public str parmContractType(str _contractType = contractType)
+    {
+        contractType = _contractType;
+        return contractType;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLaunchTime</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает время запуска </summary>
+    /// <param name="_launchTime"> Временная метка запуска инструмента </param>
+    /// <returns> Временная метка запуска инструмента </returns>
+    [DataMember('launchTime')]
+    public str parmLaunchTime(str _launchTime = launchTime)
+    {
+        launchTime = _launchTime;
+        return launchTime;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmDeliveryTime</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает время поставки </summary>
+    /// <param name="_deliveryTime"> Временная метка поставки </param>
+    /// <returns> Временная метка поставки </returns>
+    [DataMember('deliveryTime')]
+    public str parmDeliveryTime(str _deliveryTime = deliveryTime)
+    {
+        deliveryTime = _deliveryTime;
+        return deliveryTime;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmDeliveryFeeRate</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает ставку платы за поставку </summary>
+    /// <param name="_deliveryFeeRate"> Ставка платы за поставку </param>
+    /// <returns> Ставка платы за поставку </returns>
+    [DataMember('deliveryFeeRate')]
+    public str parmDeliveryFeeRate(str _deliveryFeeRate = deliveryFeeRate)
+    {
+        deliveryFeeRate = _deliveryFeeRate;
+        return deliveryFeeRate;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPriceScale</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает масштаб цен </summary>
+    /// <param name="_priceScale"> Количество десятичных знаков цены </param>
+    /// <returns> Количество десятичных знаков цены </returns>
+    [DataMember('priceScale')]
+    public str parmPriceScale(str _priceScale = priceScale)
+    {
+        priceScale = _priceScale;
+        return priceScale;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLotSizeFilter</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает фильтр лота </summary>
+    /// <param name="_lotSizeFilter"> Фильтр размера лота </param>
+    /// <returns> Фильтр размера лота </returns>
+    [DataMember('lotSizeFilter')]
+    public RMarketJson_Bybit_Instrument_LotSizeFilter parmLotSizeFilter(RMarketJson_Bybit_Instrument_LotSizeFilter _lotSizeFilter = lotSizeFilter)
+    {
+        lotSizeFilter = _lotSizeFilter;
+        return lotSizeFilter;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPriceFilter</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает фильтр цены </summary>
+    /// <param name="_priceFilter"> Фильтр ценовых параметров </param>
+    /// <returns> Фильтр ценовых параметров </returns>
+    [DataMember('priceFilter')]
+    public RMarketJson_Bybit_Instrument_PriceFilter parmPriceFilter(RMarketJson_Bybit_Instrument_PriceFilter _priceFilter = priceFilter)
+    {
+        priceFilter = _priceFilter;
+        return priceFilter;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLeverageFilter</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает фильтр кредитного плеча </summary>
+    /// <param name="_leverageFilter"> Фильтр параметров плеча </param>
+    /// <returns> Фильтр параметров плеча </returns>
+    [DataMember('leverageFilter')]
+    public RMarketJson_Bybit_Instrument_LeverageFilter parmLeverageFilter(RMarketJson_Bybit_Instrument_LeverageFilter _leverageFilter = leverageFilter)
+    {
+        leverageFilter = _leverageFilter;
+        return leverageFilter;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

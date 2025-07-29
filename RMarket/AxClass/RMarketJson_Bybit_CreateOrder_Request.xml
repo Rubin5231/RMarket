@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_CreateOrder_Request</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_CreateOrder_Request
+{
+    str category;
+    str symbol;
+    str side;
+    str orderType;
+    str qty;
+    str price;
+    str timeInForce;
+    str orderLinkId;
+    str takeProfit;
+    str stopLoss;
+    str tpTriggerBy;
+    str slTriggerBy;
+    boolean reduceOnly;
+    boolean closeOnTrigger;
+    int positionIdx;
+    str marketUnit;
+    str orderFilter;
+    str triggerPrice;
+    str triggerBy;
+    str iv;
+    str orderIv;
+    boolean marketProtection;
+    int isLeverage;
+    
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmCategory</Name>
+				<Source><![CDATA[
+    /// <summary>Категория продукта (spot, linear, inverse, option)</summary>
+    /// <param name="_category">Тип продукта</param>
+    /// <returns>Категория продукта</returns>
+    [DataMember('category')]
+    public str parmCategory(str _category = category)
+    {
+        category = _category;
+        return category;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSymbol</Name>
+				<Source><![CDATA[
+    /// <summary>Торговый символ</summary>
+    /// <param name="_symbol">Название символа</param>
+    /// <returns>Торговый символ</returns>
+    [DataMember('symbol')]
+    public str parmSymbol(str _symbol = symbol)
+    {
+        symbol = _symbol;
+        return symbol;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSide</Name>
+				<Source><![CDATA[
+    /// <summary>Направление сделки (Buy, Sell)</summary>
+    /// <param name="_side">Направление сделки</param>
+    /// <returns>Направление сделки</returns>
+    [DataMember('side')]
+    public str parmSide(str _side = side)
+    {
+        side = _side;
+        return side;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderType</Name>
+				<Source><![CDATA[
+    /// <summary>Тип ордера (Market, Limit)</summary>
+    /// <param name="_orderType">Тип ордера</param>
+    /// <returns>Тип ордера</returns>
+    [DataMember('orderType')]
+    public str parmOrderType(str _orderType = orderType)
+    {
+        orderType = _orderType;
+        return orderType;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQty</Name>
+				<Source><![CDATA[
+    /// <summary>Количество в строковом формате</summary>
+    /// <param name="_qty">Количество</param>
+    /// <returns>Количество</returns>
+    [DataMember('qty')]
+    public str parmQty(str _qty = qty)
+    {
+        qty = _qty;
+        return qty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPrice</Name>
+				<Source><![CDATA[
+    /// <summary>Цена в строковом формате</summary>
+    /// <param name="_price">Цена ордера</param>
+    /// <returns>Цена ордера</returns>
+    [DataMember('price')]
+    public str parmPrice(str _price = price)
+    {
+        price = _price;
+        return price;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTimeInForce</Name>
+				<Source><![CDATA[
+    /// <summary>Тип временного условия (GTC, IOC, FOK, PostOnly)</summary>
+    /// <param name="_timeInForce">Условие по времени</param>
+    /// <returns>Условие по времени</returns>
+    [DataMember('timeInForce')]
+    public str parmTimeInForce(str _timeInForce = timeInForce)
+    {
+        timeInForce = _timeInForce;
+        return timeInForce;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderLinkId</Name>
+				<Source><![CDATA[
+    /// <summary>Пользовательский идентификатор ордера</summary>
+    /// <param name="_orderLinkId">ID ордера</param>
+    /// <returns>Пользовательский ID ордера</returns>
+    [DataMember('orderLinkId')]
+    public str parmOrderLinkId(str _orderLinkId = orderLinkId)
+    {
+        orderLinkId = _orderLinkId;
+        return orderLinkId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTakeProfit</Name>
+				<Source><![CDATA[
+    /// <summary>Цена тейк-профита в строковом формате</summary>
+    /// <param name="_takeProfit">Цена тейк-профита</param>
+    /// <returns>Цена тейк-профита</returns>
+    [DataMember('takeProfit')]
+    public str parmTakeProfit(str _takeProfit = takeProfit)
+    {
+        takeProfit = _takeProfit;
+        return takeProfit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmStopLoss</Name>
+				<Source><![CDATA[
+    /// <summary>Цена стоп-лосса в строковом формате</summary>
+    /// <param name="_stopLoss">Цена стоп-лосса</param>
+    /// <returns>Цена стоп-лосса</returns>
+    [DataMember('stopLoss')]
+    public str parmStopLoss(str _stopLoss = stopLoss)
+    {
+        stopLoss = _stopLoss;
+        return stopLoss;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTpTriggerBy</Name>
+				<Source><![CDATA[
+    /// <summary>Триггер для тейк-профита (LastPrice, IndexPrice, MarkPrice)</summary>
+    /// <param name="_tpTriggerBy">Триггер тейк-профита</param>
+    /// <returns>Триггер тейк-профита</returns>
+    [DataMember('tpTriggerBy')]
+    public str parmTpTriggerBy(str _tpTriggerBy = tpTriggerBy)
+    {
+        tpTriggerBy = _tpTriggerBy;
+        return tpTriggerBy;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSlTriggerBy</Name>
+				<Source><![CDATA[
+    /// <summary>Триггер для стоп-лосса (LastPrice, IndexPrice, MarkPrice)</summary>
+    /// <param name="_slTriggerBy">Триггер стоп-лосса</param>
+    /// <returns>Триггер стоп-лосса</returns>
+    [DataMember('slTriggerBy')]
+    public str parmSlTriggerBy(str _slTriggerBy = slTriggerBy)
+    {
+        slTriggerBy = _slTriggerBy;
+        return slTriggerBy;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmReduceOnly</Name>
+				<Source><![CDATA[
+    /// <summary>Режим только сокращения позиции</summary>
+    /// <param name="_reduceOnly">Флаг сокращения</param>
+    /// <returns>Режим сокращения</returns>
+    [DataMember('reduceOnly')]
+    public boolean parmReduceOnly(boolean _reduceOnly = reduceOnly)
+    {
+        reduceOnly = _reduceOnly;
+        return reduceOnly;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCloseOnTrigger</Name>
+				<Source><![CDATA[
+    /// <summary>Закрыть при срабатывании триггера</summary>
+    /// <param name="_closeOnTrigger">Флаг закрытия</param>
+    /// <returns>Флаг закрытия</returns>
+    [DataMember('closeOnTrigger')]
+    public boolean parmCloseOnTrigger(boolean _closeOnTrigger = closeOnTrigger)
+    {
+        closeOnTrigger = _closeOnTrigger;
+        return closeOnTrigger;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPositionIdx</Name>
+				<Source><![CDATA[
+    /// <summary>Индекс позиции (0-однонаправленная, 1-двунаправленная покупка, 2-двунаправленная продажа)</summary>
+    /// <param name="_positionIdx">Индекс позиции</param>
+    /// <returns>Индекс позиции</returns>
+    [DataMember('positionIdx')]
+    public int parmPositionIdx(int _positionIdx = positionIdx)
+    {
+        positionIdx = _positionIdx;
+        return positionIdx;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMarketUnit</Name>
+				<Source><![CDATA[
+    /// <summary>Единица расчета для спота (baseCoin, quoteCoin)</summary>
+    /// <param name="_marketUnit">Единица расчета</param>
+    /// <returns>Единица расчета</returns>
+    [DataMember('marketUnit')]
+    public str parmMarketUnit(str _marketUnit = marketUnit)
+    {
+        marketUnit = _marketUnit;
+        return marketUnit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderFilter</Name>
+				<Source><![CDATA[
+    /// <summary>Фильтр ордеров (Order, StopOrder, tpslOrder, OcoOrder)</summary>
+    /// <param name="_orderFilter">Тип фильтра</param>
+    /// <returns>Фильтр ордеров</returns>
+    [DataMember('orderFilter')]
+    public str parmOrderFilter(str _orderFilter = orderFilter)
+    {
+        orderFilter = _orderFilter;
+        return orderFilter;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTriggerPrice</Name>
+				<Source><![CDATA[
+    /// <summary>Триггерная цена в строковом формате</summary>
+    /// <param name="_triggerPrice">Цена триггера</param>
+    /// <returns>Цена триггера</returns>
+    [DataMember('triggerPrice')]
+    public str parmTriggerPrice(str _triggerPrice = triggerPrice)
+    {
+        triggerPrice = _triggerPrice;
+        return triggerPrice;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTriggerBy</Name>
+				<Source><![CDATA[
+    /// <summary>Триггер по (LastPrice, IndexPrice, MarkPrice)</summary>
+    /// <param name="_triggerBy">Тип триггера</param>
+    /// <returns>Тип триггера</returns>
+    [DataMember('triggerBy')]
+    public str parmTriggerBy(str _triggerBy = triggerBy)
+    {
+        triggerBy = _triggerBy;
+        return triggerBy;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIv</Name>
+				<Source><![CDATA[
+    /// <summary>Волатильность (только для опционов)</summary>
+    /// <param name="_iv">Значение волатильности</param>
+    /// <returns>Волатильность</returns>
+    [DataMember('iv')]
+    public str parmIv(str _iv = iv)
+    {
+        iv = _iv;
+        return iv;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderIv</Name>
+				<Source><![CDATA[
+    /// <summary>Волатильность ордера (только для опционов)</summary>
+    /// <param name="_orderIv">Волатильность ордера</param>
+    /// <returns>Волатильность ордера</returns>
+    [DataMember('orderIv')]
+    public str parmOrderIv(str _orderIv = orderIv)
+    {
+        orderIv = _orderIv;
+        return orderIv;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMarketProtection</Name>
+				<Source><![CDATA[
+    /// <summary>Защита рынка (только для Spot)</summary>
+    /// <param name="_marketProtection">Флаг защиты</param>
+    /// <returns>Флаг защиты рынка</returns>
+    [DataMember('marketProtection')]
+    public boolean parmMarketProtection(boolean _marketProtection = marketProtection)
+    {
+        marketProtection = _marketProtection;
+        return marketProtection;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIsLeverage</Name>
+				<Source><![CDATA[
+    /// <summary>Whether to borrow. Unified account Spot trading only.</summary>
+    /// <param name="_isLeverage">Whether to borrow [0,1]</param>
+    /// <returns>Whether to borrow [0,1]</returns>
+    [DataMember('isLeverage')]
+    public int parmIsLeverage(int _isLeverage = isLeverage)
+    {
+        isLeverage = _isLeverage;
+        return isLeverage;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>jsonRequest</Name>
+				<Source><![CDATA[
+    /// <summary>Формирует JSON-тело запроса</summary>
+    /// <returns>Строка с JSON-запросом</returns>
+    public str jsonRequest()
+    {
+        //-->> Complex method
+        System.IO.StringWriter stringWriter;
+        Newtonsoft.Json.JsonTextWriter jsonWriter;
+        str result;
+        
+        new InteropPermission(InteropKind::ClrInterop).assert();
+        
+        stringWriter = new System.IO.StringWriter();
+        jsonWriter = new Newtonsoft.Json.JsonTextWriter(stringWriter);
+        jsonWriter.Formatting = Newtonsoft.Json.Formatting::None;
+        jsonWriter.WriteStartObject();
+        
+        if (true)
+            RMarketUtil::jsonWrite(jsonWriter, 'category', category);
+        if (true)
+            RMarketUtil::jsonWrite(jsonWriter, 'symbol', symbol); //str
+        if (true)
+            RMarketUtil::jsonWrite(jsonWriter, 'side', side); //str
+        if (true)
+            RMarketUtil::jsonWrite(jsonWriter, 'orderType', orderType); //str
+        if (true)
+            RMarketUtil::jsonWrite(jsonWriter, 'qty', qty); //str
+        if (price || orderType == "Limit")
+            RMarketUtil::jsonWrite(jsonWriter, 'price', price); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', timeInForce); //str
+        if (orderLinkId) 
+            RMarketUtil::jsonWrite(jsonWriter, 'orderLinkId', orderLinkId); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', takeProfit); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', stopLoss); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', tpTriggerBy); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', slTriggerBy); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', reduceOnly); //boolean
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', closeOnTrigger); //boolean
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', positionIdx); //int
+        if (marketUnit)
+            RMarketUtil::jsonWrite(jsonWriter, 'marketUnit', marketUnit); //str
+        if (orderFilter) 
+            RMarketUtil::jsonWrite(jsonWriter, 'orderFilter', orderFilter); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', triggerPrice); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', triggerBy); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', iv); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', orderIv); //str
+        //if () RMarketUtil::jsonWrite(jsonWriter, '', marketProtection); //boolean
+            RMarketUtil::jsonWrite(jsonWriter, 'isLeverage', isLeverage); //int
+        
+        jsonWriter.WriteEndObject();
+        jsonWriter.Flush();
+        
+        result = stringWriter.ToString();
+        CodeAccessPermission::revertAssert();
+        
+        return result;
+        //--<<
+        //str ret = FormJsonSerializer::serializeClass(this);
+        //return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

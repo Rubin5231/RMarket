@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_Instrument_PriceFilter</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_Instrument_PriceFilter
+{
+    private str tickSize;
+    private str minPrice;
+    private str maxPrice;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmTickSize</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальный шаг цены </summary>
+    /// <param name="_tickSize"> Минимальный шаг изменения цены </param>
+    /// <returns> Минимальный шаг изменения цены </returns>
+    [DataMember('tickSize')]
+    public str parmTickSize(str _tickSize = tickSize)
+    {
+        tickSize = _tickSize;
+        return tickSize;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinPrice</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальную цену </summary>
+    /// <param name="_minPrice"> Минимально допустимая цена </param>
+    /// <returns> Минимально допустимая цена </returns>
+    [DataMember('minPrice')]
+    public str parmMinPrice(str _minPrice = minPrice)
+    {
+        minPrice = _minPrice;
+        return minPrice;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxPrice</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальную цену </summary>
+    /// <param name="_maxPrice"> Максимально допустимая цена </param>
+    /// <returns> Максимально допустимая цена </returns>
+    [DataMember('maxPrice')]
+    public str parmMaxPrice(str _maxPrice = maxPrice)
+    {
+        maxPrice = _maxPrice;
+        return maxPrice;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

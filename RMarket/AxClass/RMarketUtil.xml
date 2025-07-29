@@ -6,7 +6,7 @@
 public class RMarketUtil
 {
 
-}
+    }
 ]]></Declaration>
 		<Methods>
 			<Method>
@@ -166,6 +166,17 @@ public class RMarketUtil
         _dt = RMarketUtil::calculateCandleDateTime(_dt, _interval, _shift);
         ret = RMarketUtil::dateTime2Timestamp(_dt);
         return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>jsonWrite</Name>
+				<Source><![CDATA[
+    public static void jsonWrite(Newtonsoft.Json.JsonTextWriter _json, str _name, Anytype _value)
+    {
+        _json.WritePropertyName(_name);
+        _json.WriteValue(_value);
     }
 
 ]]></Source>

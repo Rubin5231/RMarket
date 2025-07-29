@@ -34,6 +34,8 @@ public class RMarketMethod_Bybit_Klines extends RMarketMethod implements RMarket
     /// <summary> Конструктор класса </summary>
     public void new()
     {
+        super();
+
         apiClient = new RMarketApiClientBybit();
         apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
         apiClient.parmMethodUrl('/v5/market/kline');

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_Instrument_LotSizeFilter</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_Instrument_LotSizeFilter
+{
+    private str basePrecision;
+    private str quotePrecision;
+    private str minOrderQty;
+    private str maxOrderQty;
+    private str minOrderAmt;
+    private str maxOrderAmt;
+    private str qtyStep;
+    private str minTradingQty;
+    private str maxTradingQty;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmBasePrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность базового актива </summary>
+    /// <param name="_basePrecision"> Точность количества базового актива </param>
+    /// <returns> Точность количества базового актива </returns>
+    [DataMember('basePrecision')]
+    public str parmBasePrecision(str _basePrecision = basePrecision)
+    {
+        basePrecision = _basePrecision;
+        return basePrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuotePrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность котируемого актива </summary>
+    /// <param name="_quotePrecision"> Точность количества котируемого актива </param>
+    /// <returns> Точность количества котируемого актива </returns>
+    [DataMember('quotePrecision')]
+    public str parmQuotePrecision(str _quotePrecision = quotePrecision)
+    {
+        quotePrecision = _quotePrecision;
+        return quotePrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinOrderQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальный размер ордера </summary>
+    /// <param name="_minOrderQty"> Минимальное количество для ордера </param>
+    /// <returns> Минимальное количество для ордера </returns>
+    [DataMember('minOrderQty')]
+    public str parmMinOrderQty(str _minOrderQty = minOrderQty)
+    {
+        minOrderQty = _minOrderQty;
+        return minOrderQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxOrderQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальный размер ордера </summary>
+    /// <param name="_maxOrderQty"> Максимальное количество для ордера </param>
+    /// <returns> Максимальное количество для ордера </returns>
+    [DataMember('maxOrderQty')]
+    public str parmMaxOrderQty(str _maxOrderQty = maxOrderQty)
+    {
+        maxOrderQty = _maxOrderQty;
+        return maxOrderQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinOrderAmt</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальную сумму ордера </summary>
+    /// <param name="_minOrderAmt"> Минимальная сумма ордера </param>
+    /// <returns> Минимальная сумма ордера </returns>
+    [DataMember('minOrderAmt')]
+    public str parmMinOrderAmt(str _minOrderAmt = minOrderAmt)
+    {
+        minOrderAmt = _minOrderAmt;
+        return minOrderAmt;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxOrderAmt</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальную сумму ордера </summary>
+    /// <param name="_maxOrderAmt"> Максимальная сумма ордера </param>
+    /// <returns> Максимальная сумма ордера </returns>
+    [DataMember('maxOrderAmt')]
+    public str parmMaxOrderAmt(str _maxOrderAmt = maxOrderAmt)
+    {
+        maxOrderAmt = _maxOrderAmt;
+        return maxOrderAmt;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQtyStep</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает шаг изменения количества </summary>
+    /// <param name="_qtyStep"> Шаг изменения размера ордера </param>
+    /// <returns> Шаг изменения размера ордера </returns>
+    [DataMember('qtyStep')]
+    public str parmQtyStep(str _qtyStep = qtyStep)
+    {
+        qtyStep = _qtyStep;
+        return qtyStep;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinTradingQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальный размер сделки </summary>
+    /// <param name="_minTradingQty"> Минимальное количество для сделки </param>
+    /// <returns> Минимальное количество для сделки </returns>
+    [DataMember('minTradingQty')]
+    public str parmMinTradingQty(str _minTradingQty = minTradingQty)
+    {
+        minTradingQty = _minTradingQty;
+        return minTradingQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxTradingQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальный размер сделки </summary>
+    /// <param name="_maxTradingQty"> Максимальное количество для сделки </param>
+    /// <returns> Максимальное количество для сделки </returns>
+    [DataMember('maxTradingQty')]
+    public str parmMaxTradingQty(str _maxTradingQty = maxTradingQty)
+    {
+        maxTradingQty = _maxTradingQty;
+        return maxTradingQty;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -59,8 +59,8 @@ public class RMarketMethod_Bybit_AccountCoinsBalance extends RMarketMethod
         {
             //int64 timestamp = DateTimeUtil::getSystemDateTime();
             //apiClient.addHeader('X-BAPI-TIMESTAMP', int642Str(timestamp));
-            apiClient.addHeader('X-BAPI-API-KEY', apiClient.parmApiKey().ApiKey);
-            apiClient.addHeader('X-BAPI-RECV-WINDOW', '5000');
+            //apiClient.addHeader('X-BAPI-API-KEY', apiClient.parmApiKey().ApiKey);
+            //apiClient.addHeader('X-BAPI-RECV-WINDOW', '5000');
             
             // Подпись запроса
             // client.signRequest(timestamp);

@@ -8,6 +8,7 @@
 /// </summary>
 public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RMarketMethodInterface_CreateOrder
 {
+    protected RMarketJson_Bybit_CreateOrder_Request requestContract;
     protected RMarketJson_Bybit_Order responseContract;
     protected str symbol;
     protected str side;
@@ -25,9 +26,13 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
     /// <summary> Конструктор класса </summary>
     public void new()
     {
+        super();
+
         apiClient = new RMarketApiClientBybit();
         apiClient.parmHttpMethod(RMarketAPIHttpMethod::POST);
         apiClient.parmMethodUrl('/v5/order/create');
+
+        requestContract = new RMarketJson_Bybit_CreateOrder_Request();
 
         // Do this before execute()
         //apiClient.setBaseUrl(URL _baseUrl);
@@ -175,16 +180,16 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
         price = _price;
         clientOrderId = _clientOrderId;
 
-        apiClient.addQueryParam("symbol", symbol);
-        apiClient.addQueryParam("side", side);
-        apiClient.addQueryParam("orderType", orderType);
-        apiClient.addQueryParam("qty", qty);
-        
+        requestContract.parmSymbol(symbol);
+        requestContract.parmSide(side);
+        requestContract.parmOrderType(orderType);
+        requestContract.parmQty(qty);
+                
         if (_price)
-            apiClient.addQueryParam("price", price);
+            requestContract.parmPrice(price);
             
         if (_clientOrderId)
-            apiClient.addQueryParam("orderLinkId", clientOrderId);
+            requestContract.parmOrderLinkId(clientOrderId);
     }
 
 ]]></Source>
@@ -194,7 +199,12 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
 				<Source><![CDATA[
     public void prepare()
     {
-        apiClient.addQueryParam("category", "spot");  //Hardcode
+        requestContract.parmCategory("spot");
+        //requestContract.parmCategory("linear");
+        requestContract.parmIsLeverage(1);
+        //requestContract.parmMarketUnit("quoteCoin");
+
+        apiClient.setRequestBody(requestContract.jsonRequest());
     
         super();
     }

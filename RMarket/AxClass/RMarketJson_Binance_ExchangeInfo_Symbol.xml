@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Binance_ExchangeInfo_Symbol</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Binance_ExchangeInfo_Symbol
+{
+    private str symbol;
+    private str status;
+    private str baseAsset;
+    private int baseAssetPrecision;
+    private str quoteAsset;
+    private int quoteAssetPrecision;
+    private int quotePrecision;
+    private int baseCommissionPrecision;
+    private int quoteCommissionPrecision;
+    private List orderTypes;
+    private boolean icebergAllowed;
+    private boolean ocoAllowed;
+    private boolean quoteOrderQtyMarketAllowed;
+    private boolean isSpotTradingAllowed;
+    private boolean isMarginTradingAllowed;
+    private List permissions;
+    private List filters;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmSymbol</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает символ инструмента </summary>
+    /// <param name="_symbol"> Идентификатор торговой пары </param>
+    /// <returns> Идентификатор торговой пары </returns>
+    [DataMember('symbol')]
+    public str parmSymbol(str _symbol = symbol)
+    {
+        symbol = _symbol;
+        return symbol;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmStatus</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает статус торговли ["TRADING", "BREAK"] </summary>
+    /// <param name="_status"> Статус торговли инструмента </param>
+    /// <returns> Статус торговли инструмента </returns>
+    [DataMember('status')]
+    public str parmStatus(str _status = status)
+    {
+        status = _status;
+        return status;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBaseAsset</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает базовый актив </summary>
+    /// <param name="_baseAsset"> Код базового актива </param>
+    /// <returns> Код базового актива </returns>
+    [DataMember('baseAsset')]
+    public str parmBaseAsset(str _baseAsset = baseAsset)
+    {
+        baseAsset = _baseAsset;
+        return baseAsset;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBaseAssetPrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность базового актива </summary>
+    /// <param name="_baseAssetPrecision"> Точность количества базового актива </param>
+    /// <returns> Точность количества базового актива </returns>
+    [DataMember('baseAssetPrecision')]
+    public int parmBaseAssetPrecision(int _baseAssetPrecision = baseAssetPrecision)
+    {
+        baseAssetPrecision = _baseAssetPrecision;
+        return baseAssetPrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuoteAsset</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает котируемый актив </summary>
+    /// <param name="_quoteAsset"> Код котируемого актива </param>
+    /// <returns> Код котируемого актива </returns>
+    [DataMember('quoteAsset')]
+    public str parmQuoteAsset(str _quoteAsset = quoteAsset)
+    {
+        quoteAsset = _quoteAsset;
+        return quoteAsset;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuoteAssetPrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность котируемого актива </summary>
+    /// <param name="_quoteAssetPrecision"> Точность количества котируемого актива </param>
+    /// <returns> Точность количества котируемого актива </returns>
+    [DataMember('quoteAssetPrecision')]
+    public int parmQuoteAssetPrecision(int _quoteAssetPrecision = quoteAssetPrecision)
+    {
+        quoteAssetPrecision = _quoteAssetPrecision;
+        return quoteAssetPrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuotePrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность котировки </summary>
+    /// <param name="_quotePrecision"> Точность цены (знаков после запятой) </param>
+    /// <returns> Точность цены (знаков после запятой) </returns>
+    [DataMember('quotePrecision')]
+    public int parmQuotePrecision(int _quotePrecision = quotePrecision)
+    {
+        quotePrecision = _quotePrecision;
+        return quotePrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBaseCommissionPrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность комиссии базового актива </summary>
+    /// <param name="_baseCommissionPrecision"> Точность расчета комиссии в базовом активе </param>
+    /// <returns> Точность расчета комиссии в базовом активе </returns>
+    [DataMember('baseCommissionPrecision')]
+    public int parmBaseCommissionPrecision(int _baseCommissionPrecision = baseCommissionPrecision)
+    {
+        baseCommissionPrecision = _baseCommissionPrecision;
+        return baseCommissionPrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuoteCommissionPrecision</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает точность комиссии котируемого актива </summary>
+    /// <param name="_quoteCommissionPrecision"> Точность расчета комиссии в котируемом активе </param>
+    /// <returns> Точность расчета комиссии в котируемом активе </returns>
+    [DataMember('quoteCommissionPrecision')]
+    public int parmQuoteCommissionPrecision(int _quoteCommissionPrecision = quoteCommissionPrecision)
+    {
+        quoteCommissionPrecision = _quoteCommissionPrecision;
+        return quoteCommissionPrecision;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOrderTypes</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешенные типы ордеров ["LIMIT", "MARKET", "STOP_LOSS", "STOP_LOSS_LIMIT", "TAKE_PROFIT", "TAKE_PROFIT_LIMIT", "LIMIT_MAKER"] </summary>
+    /// <param name="_orderTypes"> Список поддерживаемых типов ордеров </param>
+    /// <returns> Список поддерживаемых типов ордеров </returns>
+    [DataMember('orderTypes'), DataCollectionAttribute(Types::String)]
+    public List parmOrderTypes(List _orderTypes = orderTypes)
+    {
+        orderTypes = _orderTypes;
+        return orderTypes;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIcebergAllowed</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешение на айсберг-ордера </summary>
+    /// <param name="_icebergAllowed"> Разрешены ли айсберг-ордера </param>
+    /// <returns> Разрешены ли айсберг-ордера </returns>
+    [DataMember('icebergAllowed')]
+    public boolean parmIcebergAllowed(boolean _icebergAllowed = icebergAllowed)
+    {
+        icebergAllowed = _icebergAllowed;
+        return icebergAllowed;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmOcoAllowed</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешение на OCO-ордера </summary>
+    /// <param name="_ocoAllowed"> Разрешены ли OCO-ордера </param>
+    /// <returns> Разрешены ли OCO-ордера </returns>
+    [DataMember('ocoAllowed')]
+    public boolean parmOcoAllowed(boolean _ocoAllowed = ocoAllowed)
+    {
+        ocoAllowed = _ocoAllowed;
+        return ocoAllowed;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmQuoteOrderQtyMarketAllowed</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешение на рыночные ордера по котируемой сумме </summary>
+    /// <param name="_quoteOrderQtyMarketAllowed"> Разрешены ли рыночные ордера по котируемой сумме </param>
+    /// <returns> Разрешены ли рыночные ордера по котируемой сумме </returns>
+    [DataMember('quoteOrderQtyMarketAllowed')]
+    public boolean parmQuoteOrderQtyMarketAllowed(boolean _quoteOrderQtyMarketAllowed = quoteOrderQtyMarketAllowed)
+    {
+        quoteOrderQtyMarketAllowed = _quoteOrderQtyMarketAllowed;
+        return quoteOrderQtyMarketAllowed;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIsSpotTradingAllowed</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешение на спотовую торговлю </summary>
+    /// <param name="_isSpotTradingAllowed"> Доступна ли спотовая торговля </param>
+    /// <returns> Доступна ли спотовая торговля </returns>
+    [DataMember('isSpotTradingAllowed')]
+    public boolean parmIsSpotTradingAllowed(boolean _isSpotTradingAllowed = isSpotTradingAllowed)
+    {
+        isSpotTradingAllowed = _isSpotTradingAllowed;
+        return isSpotTradingAllowed;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIsMarginTradingAllowed</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешение на маржинальную торговлю </summary>
+    /// <param name="_isMarginTradingAllowed"> Доступна ли маржинальная торговля </param>
+    /// <returns> Доступна ли маржинальная торговля </returns>
+    [DataMember('isMarginTradingAllowed')]
+    public boolean parmIsMarginTradingAllowed(boolean _isMarginTradingAllowed = isMarginTradingAllowed)
+    {
+        isMarginTradingAllowed = _isMarginTradingAllowed;
+        return isMarginTradingAllowed;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPermissions</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает разрешения инструмента ["SPOT", "MARGIN", "LEVERAGED"] </summary>
+    /// <param name="_permissions"> Список доступных режимов торговли </param>
+    /// <returns> Список доступных режимов торговли </returns>
+    [DataMember('permissions'), DataCollectionAttribute(Types::String)]
+    public List parmPermissions(List _permissions = permissions)
+    {
+        permissions = _permissions;
+        return permissions;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmFilters</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает фильтры символа </summary>
+    /// <param name="_filters"> Список фильтров для символа </param>
+    /// <returns> Список фильтров для символа </returns>
+    [DataMember('filters'), DataCollectionAttribute(Types::Class, classStr(RMarketJson_Binance_ExchangeInfo_Filter))]
+    public List parmFilters(List _filters = filters)
+    {
+        filters = _filters;
+        return filters;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -147,5 +147,34 @@
 				<TypeName>RMarketTimestamp</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>jsonWrite</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ClrType</Type>
+					<TypeName>Newtonsoft.Json.JsonTextWriter</TypeName>
+					<Name>_json</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>_name</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>AnyType</Type>
+					<TypeName></TypeName>
+					<Name>_value</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

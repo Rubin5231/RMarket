@@ -8,6 +8,7 @@
 /// </summary>
 public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RMarketMethodInterface_CancelOrder
 {
+    protected RMarketJson_Bybit_CancelOrder_Request requestContract;
     protected RMarketJson_Bybit_Order responseContract;
     protected str symbol;
     protected str orderId;
@@ -19,12 +20,16 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
 			<Method>
 				<Name>new</Name>
 				<Source><![CDATA[
-        /// <summary> Конструктор класса </summary>
+    /// <summary> Конструктор класса </summary>
     public void new()
     {
+        super();
+
         apiClient = new RMarketApiClientBybit();
         apiClient.parmHttpMethod(RMarketAPIHttpMethod::POST);
         apiClient.parmMethodUrl('/v5/order/cancel');
+
+        requestContract = new RMarketJson_Bybit_CancelOrder_Request();
 
         // Do this before execute()
         //apiClient.setBaseUrl(URL _baseUrl);
@@ -59,8 +64,8 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
         symbol = _symbol;
         orderId = _orderId;
 
-        apiClient.addQueryParam("symbol", symbol);
-        apiClient.addQueryParam('orderId', orderId);
+        requestContract.parmSymbol(symbol);
+        requestContract.parmOrderId(orderId);
     }
 
 ]]></Source>
@@ -70,8 +75,10 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
 				<Source><![CDATA[
     public void prepare()
     {
-        apiClient.addQueryParam("category", "spot");  //Hardcode
+        requestContract.parmCategory("spot");
     
+        apiClient.setRequestBody(requestContract.jsonRequest());
+
         super();
     }
 

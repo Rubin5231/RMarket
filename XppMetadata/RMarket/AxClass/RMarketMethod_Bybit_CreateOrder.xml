@@ -10,6 +10,13 @@
 		<AxClassMemberVariable>
 			<Tags></Tags>
 			<Type>Class</Type>
+			<TypeName>RMarketJson_Bybit_CreateOrder_Request</TypeName>
+			<Name>requestContract</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Class</Type>
 			<TypeName>RMarketJson_Bybit_Order</TypeName>
 			<Name>responseContract</Name>
 			<Attributes />

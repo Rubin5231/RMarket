@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Binance_ExchangeInfo_RateLimit</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Binance_ExchangeInfo_RateLimit
+{
+    private str rateLimitType;
+    private str interval;
+    private int intervalNum;
+    private int limit;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmRateLimitType</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает тип ограничения ["REQUEST_WEIGHT", "ORDERS", "RAW_REQUESTS"] </summary>
+    /// <param name="_rateLimitType"> Тип лимита запросов </param>
+    /// <returns> Тип лимита запросов </returns>
+    [DataMember('rateLimitType')]
+    public str parmRateLimitType(str _rateLimitType = rateLimitType)
+    {
+        rateLimitType = _rateLimitType;
+        return rateLimitType;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmInterval</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает интервал времени ["SECOND", "MINUTE", "DAY"] </summary>
+    /// <param name="_interval"> Единица измерения интервала </param>
+    /// <returns> Единица измерения интервала </returns>
+    [DataMember('interval')]
+    public str parmInterval(str _interval = interval)
+    {
+        interval = _interval;
+        return interval;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIntervalNum</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает числовое значение интервала </summary>
+    /// <param name="_intervalNum"> Количество интервалов </param>
+    /// <returns> Количество интервалов </returns>
+    [DataMember('intervalNum')]
+    public int parmIntervalNum(int _intervalNum = intervalNum)
+    {
+        intervalNum = _intervalNum;
+        return intervalNum;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLimit</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает лимит запросов </summary>
+    /// <param name="_limit"> Максимальное количество запросов </param>
+    /// <returns> Максимальное количество запросов </returns>
+    [DataMember('limit')]
+    public int parmLimit(int _limit = limit)
+    {
+        limit = _limit;
+        return limit;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

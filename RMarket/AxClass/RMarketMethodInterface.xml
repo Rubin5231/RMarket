@@ -11,7 +11,7 @@ public class RMarketMethodInterface
 			<Method>
 				<Name>create_Time</Name>
 				<Source><![CDATA[
-                public static RMarketMethodInterface_Time create_Time(RMarketApiType _apiType)
+    public static RMarketMethodInterface_Time create_Time(RMarketApiType _apiType)
     {
         switch (_apiType)
         {
@@ -20,6 +20,26 @@ public class RMarketMethodInterface
             
             case RMarketApiType::Bybit:
                 return new RMarketMethod_Bybit_Time();
+            
+            default:
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>Instrument</Name>
+				<Source><![CDATA[
+    public static RMarketMethodInterface_Instrument Instrument(RMarketApiType _apiType)
+    {
+        switch (_apiType)
+        {
+            case RMarketApiType::Binance:
+                return new RMarketMethod_Binance_ExchangeInfo();
+            
+            case RMarketApiType::Bybit:
+                return new RMarketMethod_Bybit_Instrument();
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));

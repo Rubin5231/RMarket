@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Binance_ExchangeInfo_Filter</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Binance_ExchangeInfo_Filter
+{
+    private str filterType;
+    private str minPrice;
+    private str maxPrice;
+    private str tickSize;
+    private str multiplierUp;
+    private str multiplierDown;
+    private int avgPriceMins;
+    private str minQty;
+    private str maxQty;
+    private str stepSize;
+    private str minNotional;
+    private boolean applyToMarket;
+    private int limit;
+    private int maxNumOrders;
+    private int maxNumAlgoOrders;
+    private str maxPosition;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmFilterType</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает тип фильтра ["PRICE_FILTER", "LOT_SIZE", "MIN_NOTIONAL", "MAX_NUM_ORDERS", "MAX_NUM_ALGO_ORDERS", "MAX_POSITION"] </summary>
+    /// <param name="_filterType"> Тип фильтра </param>
+    /// <returns> Тип фильтра </returns>
+    [DataMember('filterType')]
+    public str parmFilterType(str _filterType = filterType)
+    {
+        filterType = _filterType;
+        return filterType;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinPrice</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальную цену </summary>
+    /// <param name="_minPrice"> Минимально допустимая цена </param>
+    /// <returns> Минимально допустимая цена </returns>
+    [DataMember('minPrice')]
+    public str parmMinPrice(str _minPrice = minPrice)
+    {
+        minPrice = _minPrice;
+        return minPrice;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxPrice</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальную цену </summary>
+    /// <param name="_maxPrice"> Максимально допустимая цена </param>
+    /// <returns> Максимально допустимая цена </returns>
+    [DataMember('maxPrice')]
+    public str parmMaxPrice(str _maxPrice = maxPrice)
+    {
+        maxPrice = _maxPrice;
+        return maxPrice;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTickSize</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает шаг цены </summary>
+    /// <param name="_tickSize"> Минимальный шаг цены </param>
+    /// <returns> Минимальный шаг цены </returns>
+    [DataMember('tickSize')]
+    public str parmTickSize(str _tickSize = tickSize)
+    {
+        tickSize = _tickSize;
+        return tickSize;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMultiplierUp</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает верхний множитель цены </summary>
+    /// <param name="_multiplierUp"> Верхний диапазон для ценовых лимитов </param>
+    /// <returns> Верхний диапазон для ценовых лимитов </returns>
+    [DataMember('multiplierUp')]
+    public str parmMultiplierUp(str _multiplierUp = multiplierUp)
+    {
+        multiplierUp = _multiplierUp;
+        return multiplierUp;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMultiplierDown</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает нижний множитель цены </summary>
+    /// <param name="_multiplierDown"> Нижний диапазон для ценовых лимитов </param>
+    /// <returns> Нижний диапазон для ценовых лимитов </returns>
+    [DataMember('multiplierDown')]
+    public str parmMultiplierDown(str _multiplierDown = multiplierDown)
+    {
+        multiplierDown = _multiplierDown;
+        return multiplierDown;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmAvgPriceMins</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает количество минут для средней цены </summary>
+    /// <param name="_avgPriceMins"> Количество минут для расчета средней цены </param>
+    /// <returns> Количество минут для расчета средней цены </returns>
+    [DataMember('avgPriceMins')]
+    public int parmAvgPriceMins(int _avgPriceMins = avgPriceMins)
+    {
+        avgPriceMins = _avgPriceMins;
+        return avgPriceMins;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальное количество </summary>
+    /// <param name="_minQty"> Минимально допустимое количество </param>
+    /// <returns> Минимально допустимое количество </returns>
+    [DataMember('minQty')]
+    public str parmMinQty(str _minQty = minQty)
+    {
+        minQty = _minQty;
+        return minQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxQty</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальное количество </summary>
+    /// <param name="_maxQty"> Максимально допустимое количество </param>
+    /// <returns> Максимально допустимое количество </returns>
+    [DataMember('maxQty')]
+    public str parmMaxQty(str _maxQty = maxQty)
+    {
+        maxQty = _maxQty;
+        return maxQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmStepSize</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает шаг размера лота </summary>
+    /// <param name="_stepSize"> Минимальный шаг изменения количества </param>
+    /// <returns> Минимальный шаг изменения количества </returns>
+    [DataMember('stepSize')]
+    public str parmStepSize(str _stepSize = stepSize)
+    {
+        stepSize = _stepSize;
+        return stepSize;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinNotional</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальную номинальную стоимость </summary>
+    /// <param name="_minNotional"> Минимальная стоимость ордера </param>
+    /// <returns> Минимальная стоимость ордера </returns>
+    [DataMember('minNotional')]
+    public str parmMinNotional(str _minNotional = minNotional)
+    {
+        minNotional = _minNotional;
+        return minNotional;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmApplyToMarket</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает флаг применения к рыночным ордерам </summary>
+    /// <param name="_applyToMarket"> Применять ли к рыночным ордерам </param>
+    /// <returns> Применять ли к рыночным ордерам </returns>
+    [DataMember('applyToMarket')]
+    public boolean parmApplyToMarket(boolean _applyToMarket = applyToMarket)
+    {
+        applyToMarket = _applyToMarket;
+        return applyToMarket;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLimit</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает лимит ордеров </summary>
+    /// <param name="_limit"> Максимальное количество ордеров </param>
+    /// <returns> Максимальное количество ордеров </returns>
+    [DataMember('limit')]
+    public int parmLimit(int _limit = limit)
+    {
+        limit = _limit;
+        return limit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxNumOrders</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальное количество ордеров </summary>
+    /// <param name="_maxNumOrders"> Максимум активных ордеров </param>
+    /// <returns> Максимум активных ордеров </returns>
+    [DataMember('maxNumOrders')]
+    public int parmMaxNumOrders(int _maxNumOrders = maxNumOrders)
+    {
+        maxNumOrders = _maxNumOrders;
+        return maxNumOrders;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxNumAlgoOrders</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальное количество алгоритмических ордеров </summary>
+    /// <param name="_maxNumAlgoOrders"> Максимум алгоритмических ордеров </param>
+    /// <returns> Максимум алгоритмических ордеров </returns>
+    [DataMember('maxNumAlgoOrders')]
+    public int parmMaxNumAlgoOrders(int _maxNumAlgoOrders = maxNumAlgoOrders)
+    {
+        maxNumAlgoOrders = _maxNumAlgoOrders;
+        return maxNumAlgoOrders;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxPosition</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальную позицию </summary>
+    /// <param name="_maxPosition"> Максимально допустимая позиция </param>
+    /// <returns> Максимально допустимая позиция </returns>
+    [DataMember('maxPosition')]
+    public str parmMaxPosition(str _maxPosition = maxPosition)
+    {
+        maxPosition = _maxPosition;
+        return maxPosition;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

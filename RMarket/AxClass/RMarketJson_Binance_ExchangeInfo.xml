@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Binance_ExchangeInfo</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Binance_ExchangeInfo
+{
+    private str timezone;
+    private int64 serverTime;
+    private List rateLimits;
+    private List exchangeFilters;
+    private List symbols;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmTimezone</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает часовой пояс сервера </summary>
+    /// <param name="_timezone"> Часовой пояс сервера UTC </param>
+    /// <returns> Часовой пояс сервера UTC </returns>
+    [DataMember('timezone')]
+    public str parmTimezone(str _timezone = timezone)
+    {
+        timezone = _timezone;
+        return timezone;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmServerTime</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает время сервера </summary>
+    /// <param name="_serverTime"> Время сервера в миллисекундах </param>
+    /// <returns> Время сервера в миллисекундах </returns>
+    [DataMember('serverTime')]
+    public int64 parmServerTime(int64 _serverTime = serverTime)
+    {
+        serverTime = _serverTime;
+        return serverTime;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmRateLimits</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает лимиты запросов </summary>
+    /// <param name="_rateLimits"> Список ограничений скорости </param>
+    /// <returns> Список ограничений скорости </returns>
+    [DataMember('rateLimits'), DataCollectionAttribute(Types::Class, classStr(RMarketJson_Binance_ExchangeInfo_RateLimit))]
+    public List parmRateLimits(List _rateLimits = rateLimits)
+    {
+        rateLimits = _rateLimits;
+        return rateLimits;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmExchangeFilters</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает фильтры биржи </summary>
+    /// <param name="_exchangeFilters"> Фильтры уровня биржи </param>
+    /// <returns> Фильтры уровня биржи </returns>
+    [DataMember('exchangeFilters'), DataCollectionAttribute(Types::Class, classStr(RMarketJson_Binance_ExchangeInfo_Filter))]
+    public List parmExchangeFilters(List _exchangeFilters = exchangeFilters)
+    {
+        exchangeFilters = _exchangeFilters;
+        return exchangeFilters;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSymbols</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает информацию о символах </summary>
+    /// <param name="_symbols"> Список торговых инструментов </param>
+    /// <returns> Список торговых инструментов </returns>
+    [DataMember('symbols'), DataCollectionAttribute(Types::Class, classStr(RMarketJson_Binance_ExchangeInfo_Symbol))]
+    public List parmSymbols(List _symbols = symbols)
+    {
+        symbols = _symbols;
+        return symbols;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
