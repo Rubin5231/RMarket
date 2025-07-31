@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketMethod_Bybit_GetCollateral</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketMethod_Bybit_GetCollateral extends RMarketMethod
+{
+    protected RMarketJson_Bybit_GetCollateral responseContract;
+    protected RMarketCryptoCode currency;
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary> Конструктор класса </summary>
+    public void new()
+    {
+        super();
+
+        apiClient = new RMarketApiClientBybit();
+        apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
+        apiClient.parmMethodUrl('/v5/account/collateral-info');
+
+        // Do this before execute()
+        //apiClient.setBaseUrl('');
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Устанавливает параметры запроса
+    /// </summary>
+    public void initParameters(RMarketCryptoCode _currency)
+    {
+        currency = strUpr(_currency);
+
+        if (currency)
+            apiClient.addQueryParam('currency', currency);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>prepare</Name>
+				<Source><![CDATA[
+    public void prepare()
+    {
+        //apiClient.addQueryParam('category', "spot");
+        //apiClient.addQueryParam('status', "Trading");
+
+        super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processResponse</Name>
+				<Source><![CDATA[
+    public void processResponse()
+    {
+        super();
+
+        str responseStr = apiClient.getResponseBody();
+
+        if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
+            throw Error(strfmt("Request returns error!"));
+    
+        responseContract = RMarketJsonSerializer::deserializeObject(
+            classNum(RMarketJson_Bybit_GetCollateral),
+            responseStr) as RMarketJson_Bybit_GetCollateral;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getInfoCon</Name>
+				<Source><![CDATA[
+    container getInfoCon()
+    {
+        List ls = responseContract.parmResult().parmList();
+        ListEnumerator enum = ls.getEnumerator();
+        enum.moveNext();
+        //RMarketJson_Bybit_Instrument_Item item = enum.current();
+        //container ret = [//item.parmBaseCoin(), item.parmQuoteCoin()];
+        //    str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //BasePrecision
+        //    str2Num(item.parmLotSizeFilter().parmQuotePrecision()), //QuotePrecision
+        //    str2Num(item.parmPriceFilter().parmMinPrice()),         //MinPrice
+        //    str2Num(item.parmPriceFilter().parmMaxPrice()),         //MaxPrice
+        //    str2Num(item.parmPriceFilter().parmTickSize()),         //StepPrice
+        //    str2Num(item.parmLotSizeFilter().parmMinOrderQty()),    //MinMarketQty
+        //    str2Num(item.parmLotSizeFilter().parmMaxOrderQty()),    //MaxMarketQty
+        //    str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //StepMarketQty
+        //    str2Num(item.parmLotSizeFilter().parmMinOrderQty()),    //MinLimitQty
+        //    str2Num(item.parmLotSizeFilter().parmMaxOrderQty()),    //MaxLimitQty
+        //    str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //StepLimitQty
+        //    str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),    //MinLimitAmount
+        //    str2Num(item.parmLotSizeFilter().parmMaxOrderAmt()),    //MaxLimitAmount
+        //    str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),    //MinMarketAmount
+        //    str2Num(item.parmLotSizeFilter().parmMaxOrderAmt())     //MaxMarketAmount
+        //    ];
+        return conNull();//ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2025-07-27T22:44:15.3178719+03:00">
+  GenerationTime="2025-07-31T22:44:00.1012525+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_Instrument</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>TypeNotFound</Moniker>
-      <Line>3</Line>
-      <Column>5</Column>
-      <EndLine>3</EndLine>
-      <EndColumn>63</EndColumn>
-      <Message>The name 'RMarketJson_Binance_Instrument' does not denote a class, a table, or an extended data type.</Message>
+      <Path>dynamics://Class/RMarketJob_Collateral/Method/main</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ParameterMismatch</Moniker>
+      <Line>14</Line>
+      <Column>17</Column>
+      <EndLine>14</EndLine>
+      <EndColumn>84</EndColumn>
+      <Message>Type mismatch in 'RMarketJob_Collateral.getInstrumentInfo' argument 2. The expected type is 'RMarketApiKey', but the actual type is 'str(RMarketCryptoCode)'.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_Instrument</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>1</Line>
-      <Column>1</Column>
-      <EndLine>1</EndLine>
-      <EndColumn>113</EndColumn>
-      <Message>Class 'RMarketMethod_Binance_Instrument' does not implement the method 'initParameters' from the interface 'RMarketMethodInterface_Instrument'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_Instrument</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>1</Line>
-      <Column>1</Column>
-      <EndLine>1</EndLine>
-      <EndColumn>111</EndColumn>
-      <Message>Class 'RMarketMethod_Bybit_Instrument' does not implement the method 'initParameters' from the interface 'RMarketMethodInterface_Instrument'.</Message>
+      <Path>dynamics://Class/RMarketJob_Collateral/Method/main</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ParameterMissing</Moniker>
+      <Line>14</Line>
+      <Column>17</Column>
+      <EndLine>14</EndLine>
+      <EndColumn>84</EndColumn>
+      <Message>'RMarketJob_Collateral.getInstrumentInfo' is missing argument 3 of type 'str(RMarketCryptoCode)'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

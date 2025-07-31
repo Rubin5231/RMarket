@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_GetCollateral</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_GetCollateral extends RMarketJson_Bybit_Response
+{
+    private RMarketJson_Bybit_GetCollateral_Result result;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmResult</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает результат запроса </summary>
+    /// <param name="_result"> Данные о залоге </param>
+    /// <returns> Данные о залоге </returns>
+    [DataMemberAttribute('result')]
+    public RMarketJson_Bybit_GetCollateral_Result parmResult(RMarketJson_Bybit_GetCollateral_Result _result = result)
+    {
+        result = _result;
+        return result;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

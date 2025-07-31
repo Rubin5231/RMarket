@@ -222,8 +222,8 @@ public class RMarketSubAccount extends common
 			</Constraints>
 		</AxTableRelation>
 		<AxTableRelation>
-			<Name>RMarketSymbolTable</Name>
-			<RelatedTable>RMarketSymbolTable</RelatedTable>
+			<Name>RMarketSymbol</Name>
+			<RelatedTable>RMarketSymbol</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">

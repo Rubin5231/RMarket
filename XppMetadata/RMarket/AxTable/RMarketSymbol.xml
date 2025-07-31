@@ -8,11 +8,13 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbolId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -20,16 +22,10 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Record</Type>
-				<TypeName>RMarketSymbolTable</TypeName>
+				<TypeName>RMarketSymbol</TypeName>
 			</ReturnType>
-			<Variables>
-				<AxMethodVariable>
-					<Type>Record</Type>
-					<TypeName>RMarketSymbolTable</TypeName>
-					<Name>marketSymbolTable</Name>
-				</AxMethodVariable>
-			</Variables>
 		</Method>
 	</Methods>
 </z:anyType>

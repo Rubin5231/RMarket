@@ -56,8 +56,16 @@ public class RMarketCrypto extends common
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoLookup</Name>
+			<IsManuallyUpdated>Yes</IsManuallyUpdated>
 			<IsSystemGenerated>Yes</IsSystemGenerated>
-			<Fields />
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>Description</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>CryptoCode</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoIdentification</Name>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_GetCollateral_Item</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_GetCollateral_Item
+{
+    private str currency;
+    private str hourlyRate;
+    private str maxLoan;
+    private str minLoan;
+    private str prevHrRate;
+    private str borrowAmount;
+    private str availableToBorrow;
+    private str borrowLimit;
+    private str freeBorrowingAmount;
+    private str freeBorrowAmount;
+    private str maxBorrowingAmount;
+
+    }
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmCurrency</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает валюту </summary>
+    /// <param name="_currency"> Код валюты (например, USDT) </param>
+    /// <returns> Код валюты </returns>
+    [DataMember('currency')]
+    public str parmCurrency(str _currency = currency)
+    {
+        currency = _currency;
+        return currency;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmHourlyRate</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает часовую ставку </summary>
+    /// <param name="_hourlyRate"> Процентная ставка за час </param>
+    /// <returns> Процентная ставка за час </returns>
+    [DataMember('hourlyRate')]
+    public str parmHourlyRate(str _hourlyRate = hourlyRate)
+    {
+        hourlyRate = _hourlyRate;
+        return hourlyRate;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxLoan</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает максимальный заем </summary>
+    /// <param name="_maxLoan"> Максимально доступная сумма займа </param>
+    /// <returns> Максимально доступная сумма займа </returns>
+    [DataMember('maxLoan')]
+    public str parmMaxLoan(str _maxLoan = maxLoan)
+    {
+        maxLoan = _maxLoan;
+        return maxLoan;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMinLoan</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальный заем </summary>
+    /// <param name="_minLoan"> Минимальная сумма займа </param>
+    /// <returns> Минимальная сумма займа </returns>
+    [DataMember('minLoan')]
+    public str parmMinLoan(str _minLoan = minLoan)
+    {
+        minLoan = _minLoan;
+        return minLoan;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPrevHrRate</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает предыдущую часовую ставку </summary>
+    /// <param name="_prevHrRate"> Процентная ставка за предыдущий час </param>
+    /// <returns> Процентная ставка за предыдущий час </returns>
+    [DataMember('prevHrRate')]
+    public str parmPrevHrRate(str _prevHrRate = prevHrRate)
+    {
+        prevHrRate = _prevHrRate;
+        return prevHrRate;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBorrowAmount</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает сумму текущего займа </summary>
+    /// <param name="_borrowAmount"> Текущая занятая сумма </param>
+    /// <returns> Текущая занятая сумма </returns>
+    [DataMember('borrowAmount')]
+    public str parmBorrowAmount(str _borrowAmount = borrowAmount)
+    {
+        borrowAmount = _borrowAmount;
+        return borrowAmount;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmAvailableToBorrow</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает доступный для займа лимит </summary>
+    /// <param name="_availableToBorrow"> Доступная сумма для займа </param>
+    /// <returns> Доступная сумма для займа </returns>
+    [DataMember('availableToBorrow')]
+    public str parmAvailableToBorrow(str _availableToBorrow = availableToBorrow)
+    {
+        availableToBorrow = _availableToBorrow;
+        return availableToBorrow;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBorrowLimit</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает лимит займа </summary>
+    /// <param name="_borrowLimit"> Общий лимит займа </param>
+    /// <returns> Общий лимит займа </returns>
+    [DataMember('borrowLimit')]
+    public str parmBorrowLimit(str _borrowLimit = borrowLimit)
+    {
+        borrowLimit = _borrowLimit;
+        return borrowLimit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmFreeBorrowingAmount</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает сумму беспроцентного займа </summary>
+    /// <param name="_freeBorrowingAmount"> Беспроцентный лимит займа </param>
+    /// <returns> Беспроцентный лимит займа </returns>
+    [DataMember('freeBorrowingAmount')]
+    public str parmFreeBorrowingAmount(str _freeBorrowingAmount = freeBorrowingAmount)
+    {
+        freeBorrowingAmount = _freeBorrowingAmount;
+        return freeBorrowingAmount;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmFreeBorrowAmount</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает сумму беспроцентного займа </summary>
+    /// <param name="_freeBorrowAmount"> Беспроцентный лимит займа </param>
+    /// <returns> Беспроцентный лимит займа </returns>
+    [DataMember('freeBorrowAmount')]
+    public str parmFreeBorrowAmount(str _freeBorrowAmount = freeBorrowAmount)
+    {
+        freeBorrowAmount = _freeBorrowAmount;
+        return freeBorrowAmount;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxBorrowingAmount</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает сумму беспроцентного займа </summary>
+    /// <param name="_freeBorrowAmount"> Беспроцентный лимит займа </param>
+    /// <returns> Беспроцентный лимит займа </returns>
+    [DataMember('maxBorrowingAmount')]
+    public str parmMaxBorrowingAmount(str _maxBorrowingAmount = maxBorrowingAmount)
+    {
+        maxBorrowingAmount = _maxBorrowingAmount;
+        return maxBorrowingAmount;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

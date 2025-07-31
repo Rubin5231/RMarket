@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxForm xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="Microsoft.Dynamics.AX.Metadata.V6">
-	<Name>RMarketSymbolTable</Name>
+	<Name>RMarketSymbol</Name>
 	<SourceCode>
 		<Methods xmlns="">
 			<Method>
 				<Name>classDeclaration</Name>
 				<Source><![CDATA[
 [Form]
-public class RMarketSymbolTable extends FormRun 
+public class RMarketSymbol extends FormRun 
 {
 }
+
 ]]></Source>
 			</Method>
 		</Methods>
@@ -19,14 +20,17 @@ public class RMarketSymbolTable extends FormRun
 	</SourceCode>
 	<DataSources>
 		<AxFormDataSource xmlns="">
-			<Name>RMarketSymbolTable</Name>
-			<Table>RMarketSymbolTable</Table>
+			<Name>RMarketSymbol</Name>
+			<Table>RMarketSymbol</Table>
 			<Fields>
 				<AxFormDataSourceField>
 					<DataField>CreatedBy</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>CreatedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
 				</AxFormDataSourceField>
 				<AxFormDataSourceField>
 					<DataField>Description</DataField>
@@ -58,11 +62,11 @@ public class RMarketSymbolTable extends FormRun
 	</DataSources>
 	<Design>
 		<Caption xmlns="">Symbols</Caption>
-		<DataSource xmlns="">RMarketSymbolTable</DataSource>
+		<DataSource xmlns="">RMarketSymbol</DataSource>
 		<Pattern xmlns="">SimpleList</Pattern>
 		<PatternVersion xmlns="">1.1</PatternVersion>
 		<Style xmlns="">SimpleList</Style>
-		<TitleDataSource xmlns="">RMarketSymbolTable</TitleDataSource>
+		<TitleDataSource xmlns="">RMarketSymbol</TitleDataSource>
 		<Controls xmlns="">
 			<AxFormControl xmlns=""
 				i:type="AxFormActionPaneControl">
@@ -124,7 +128,7 @@ public class RMarketSymbolTable extends FormRun
 						<FormControlExtension
 							i:nil="true" />
 						<DataField>SymbolId</DataField>
-						<DataSource>RMarketSymbolTable</DataSource>
+						<DataSource>RMarketSymbol</DataSource>
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormStringControl">
@@ -133,11 +137,11 @@ public class RMarketSymbolTable extends FormRun
 						<FormControlExtension
 							i:nil="true" />
 						<DataField>Description</DataField>
-						<DataSource>RMarketSymbolTable</DataSource>
+						<DataSource>RMarketSymbol</DataSource>
 					</AxFormControl>
 				</Controls>
 				<DataGroup>Overview</DataGroup>
-				<DataSource>RMarketSymbolTable</DataSource>
+				<DataSource>RMarketSymbol</DataSource>
 				<Style>Tabular</Style>
 			</AxFormControl>
 		</Controls>

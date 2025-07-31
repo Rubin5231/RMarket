@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketSymbolPropertyUpdate</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketSymbolPropertyUpdate extends RunBaseBatch implements BatchRetryable
+{
+    RMarketId       marketId;
+    RMarketSymbolId symbolId;
+    
+    DialogField  dlgMarketId;
+    DialogField  dlgSymbolId;
+    
+    QueryRun       queryRun;
+    
+    #define.CurrentVersion(1)
+    #localmacro.CurrentList
+        marketId,
+        symbolId
+    #endmacro
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>dialog</Name>
+				<Source><![CDATA[
+    public Object dialog()
+    {
+        DialogRunbase       dialog = super();
+        ;
+        dlgMarketId  = dialog.addFieldValue(extendedtypestr(RMarketId), marketId);
+        //dlgMarketId.mandatory_RU(true);
+        dlgSymbolId  = dialog.addFieldValue(extendedtypestr(RMarketSymbolId), symbolId);
+        //dlgSymbolId.mandatory_RU(true);
+        
+        return dialog;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getFromDialog</Name>
+				<Source><![CDATA[
+    public boolean getFromDialog()
+    {
+        ;
+        marketId   = dlgMarketId.value();
+        symbolId   = dlgSymbolId.value();
+        
+        return super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMarketId</Name>
+				<Source><![CDATA[
+    public RMarketId parmMarketId(RMarketId _marketId = marketId)
+    {
+        marketId = _marketId;
+        return marketId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSymbolId</Name>
+				<Source><![CDATA[
+    public RMarketSymbolId parmSymbolId(RMarketSymbolId _symbolId = symbolId)
+    {
+        symbolId = _symbolId;
+        return symbolId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParmDefault</Name>
+				<Source><![CDATA[
+    public void initParmDefault()
+    {
+        this.initQuery();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initQuery</Name>
+				<Source><![CDATA[
+    public void initQuery()
+    {
+        Query                   query = new Query();
+        QueryBuildDataSource    qbds = query.addDataSource(tablenum(RMarketTable));
+        //QueryBuildRange         qBR;
+        ;
+        //qBR = SysQuery::findOrCreateRange(qbds, fieldnum(RMarketTable, RecId));
+        //qBR.status(RangeStatus::HIDDEN);
+        QueryBuildDataSource qbdsSymbol = qbds.addDataSource(tableNum(RMarketSymbol));
+        
+        queryRun = new QueryRun(query);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>pack</Name>
+				<Source><![CDATA[
+    public container pack()
+    {
+        return [#CurrentVersion, #CurrentList, queryRun.pack()];
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>unpack</Name>
+				<Source><![CDATA[
+    public boolean unpack(container _packedClass)
+    {
+        Version    version = RunBase::getVersion(_packedClass);
+        container  queryCon;
+        switch (version)
+        {
+            case #CurrentVersion:
+                [version, #CurrentList, queryCon] = _packedClass;
+                if (SysQuery::isPackedOk(queryCon))
+                {
+                    queryRun = new QueryRun(queryCon);
+                }
+                else
+                {
+                    this.initQuery();
+                }
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>queryRun</Name>
+				<Source><![CDATA[
+    public QueryRun queryRun()
+    {
+        return queryRun;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    public void run()
+    {
+        info(strFmt("marketId=%1", marketId));
+        info(strFmt("symbolId=%1", symbolId));
+        int                     processedCounter;
+        //QueryBuildDataSource    qBDS;
+        RMarketTable    market;
+        RMarketSymbol   symbol;
+        RMarketMethodInterface_Instrument apiMethod;
+        str s;
+        
+        //qBDS = queryRun.query().dataSourceTable(tableNum(RMarketTable));
+        //SysQuery::findOrCreateRange(qBDS, fieldnum(RMarketTable, RecId)).value(queryValue(""));
+        
+        this.progressInit(RunBase::getDescription(classIdGet(this)),
+                          SysQuery::countTotal(queryRun),
+                          #AviSearch);
+        info(QueryRun.query().toString());
+        while (queryRun.next())
+        {
+            market = queryRun.get(tablenum(RMarketTable));
+            symbol = queryRun.get(tablenum(RMarketSymbol));
+
+            apiMethod = RMarketMethodInterface::Instrument(market.ApiType);
+            apiMethod.setBaseUrl(market.ApiUrl);
+            apiMethod.initParameters(symbol.SymbolId);
+            apiMethod.execute();
+            RMarketSymbolProperty::insertOrUpdate(
+                market.MarketId, 
+                symbol.SymbolId,
+                apiMethod.getInfoCon());
+
+            processedCounter++;
+            progress.incCount();
+        }
+        info(strfmt(" %1 record(s) processed", processedCounter));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>showQueryValues</Name>
+				<Source><![CDATA[
+    public boolean showQueryValues()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>canRunInNewSession</Name>
+				<Source><![CDATA[
+    public boolean canRunInNewSession()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>canGoBatch</Name>
+				<Source><![CDATA[
+    public boolean canGoBatch()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isRetryable</Name>
+				<Source><![CDATA[
+    public boolean isRetryable()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    public static RMarketSymbolPropertyUpdate construct()
+    {
+        return new RMarketSymbolPropertyUpdate();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>description</Name>
+				<Source><![CDATA[
+    static ClassDescription description()
+    {
+        return "Load symbol properties";
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketSymbolPropertyUpdate    runObject = RMarketSymbolPropertyUpdate::construct();
+        ;
+
+        if (_args && _args.dataset() == tableNum(RMarketTable))
+        {
+            RMarketTable market = _args.record();
+            runObject.parmMarketId(market.MarketId);
+        }
+        
+        if (_args && _args.dataset() == tableNum(RMarketSymbol))
+        {
+            RMarketSymbol symbol = _args.record();
+            runObject.parmSymbolId(symbol.SymbolId);
+        }
+        
+        if (runObject.prompt())
+        {
+            runObject.runOperation();
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

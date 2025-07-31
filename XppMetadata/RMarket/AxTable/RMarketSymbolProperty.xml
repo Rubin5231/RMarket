@@ -15,9 +15,9 @@
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>Enum</Type>
-					<TypeName>RMarketAPIMethodEnum</TypeName>
-					<Name>_methodEnum</Name>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
+					<Name>_symbolId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
@@ -30,25 +30,36 @@
 			<ReturnType>
 				<Tags></Tags>
 				<Type>Record</Type>
-				<TypeName>RMarketAPIMethodTable</TypeName>
+				<TypeName>RMarketSymbolProperty</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>RMarketTable</Name>
+			<Name>insertOrUpdate</Name>
+			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketId</TypeName>
+					<Name>_marketId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
+					<Name>_symbolId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Container</Type>
+					<TypeName></TypeName>
+					<Name>_dataCon</Name>
+				</AxMethodParameter>
+			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
-				<Type>Record</Type>
-				<TypeName>RMarketTable</TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>url</Name>
-			<Visibility>Public</Visibility>
-			<ReturnType>
-				<Tags></Tags>
-				<Type>ExtendedDataType</Type>
-				<TypeName>RMarketAPIMethodURL</TypeName>
+				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

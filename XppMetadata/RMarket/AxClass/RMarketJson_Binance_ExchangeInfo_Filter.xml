@@ -99,9 +99,25 @@
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
 			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
+			<Name>maxNotional</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
 			<Type>Enum</Type>
 			<TypeName>boolean</TypeName>
-			<Name>applyToMarket</Name>
+			<Name>applyMinToMarket</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Enum</Type>
+			<TypeName>boolean</TypeName>
+			<Name>applyMaxToMarket</Name>
 			<Attributes />
 			<Visibility>Private</Visibility>
 		</AxClassMemberVariable>
@@ -459,14 +475,43 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>parmApplyToMarket</Name>
+			<Name>parmMaxNotional</Name>
 			<Visibility>Public</Visibility>
 			<Attributes>
 				<AxAttribute>
 					<Name>DataMember</Name>
 					<Parameters>
 						<AxAttributeParameter>
-							<TypeValue>'applyToMarket'</TypeValue>
+							<TypeValue>'maxNotional'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<DefaultValue>maxNotional</DefaultValue>
+					<Name>_maxNotional</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmApplyMinToMarket</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'applyMinToMarket'</TypeValue>
 							<AdditionalData />
 						</AxAttributeParameter>
 					</Parameters>
@@ -477,8 +522,37 @@
 					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
-					<DefaultValue>applyToMarket</DefaultValue>
-					<Name>_applyToMarket</Name>
+					<DefaultValue>applyMinToMarket</DefaultValue>
+					<Name>_applyMinToMarket</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmApplyMaxToMarket</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'applyMaxToMarket'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>applyMaxToMarket</DefaultValue>
+					<Name>_applyMaxToMarket</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

@@ -107,6 +107,12 @@
 					<MenuItemName>RMarketIndicatorCalc</MenuItemName>
 					<MenuItemType>Action</MenuItemType>
 				</AxMenuElement>
+				<AxMenuElement xmlns=""
+					i:type="AxMenuElementMenuItem">
+					<Name>RMarketSymbolPropertyUpdate</Name>
+					<MenuItemName>RMarketSymbolPropertyUpdate</MenuItemName>
+					<MenuItemType>Action</MenuItemType>
+				</AxMenuElement>
 			</Elements>
 		</AxMenuElement>
 		<AxMenuElement xmlns=""
@@ -131,8 +137,8 @@
 				</AxMenuElement>
 				<AxMenuElement xmlns=""
 					i:type="AxMenuElementMenuItem">
-					<Name>RMarketSymbolTable</Name>
-					<MenuItemName>RMarketSymbolTable</MenuItemName>
+					<Name>RMarketSymbol</Name>
+					<MenuItemName>RMarketSymbol</MenuItemName>
 				</AxMenuElement>
 				<AxMenuElement xmlns=""
 					i:type="AxMenuElementMenuItem">

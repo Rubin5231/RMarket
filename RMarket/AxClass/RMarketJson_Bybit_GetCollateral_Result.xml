@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_GetCollateral_Result</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_GetCollateral_Result
+{
+    private boolean collateralSwitch;
+    private str marginMode;
+    private List list;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmCollateralSwitch</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает статус залогового режима </summary>
+    /// <param name="_collateralSwitch"> Включен ли залоговый режим </param>
+    /// <returns> Включен ли залоговый режим </returns>
+    [DataMember('collateralSwitch')]
+    public boolean parmCollateralSwitch(boolean _collateralSwitch = collateralSwitch)
+    {
+        collateralSwitch = _collateralSwitch;
+        return collateralSwitch;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMarginMode</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает режим маржи ["REGULAR_MARGIN", "PORTFOLIO_MARGIN"] </summary>
+    /// <param name="_marginMode"> Тип маржинального режима </param>
+    /// <returns> Тип маржинального режима </returns>
+    [DataMember('marginMode')]
+    public str parmMarginMode(str _marginMode = marginMode)
+    {
+        marginMode = _marginMode;
+        return marginMode;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmList</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает список валют залога </summary>
+    /// <param name="_list"> Список данных по валютам </param>
+    /// <returns> Список данных по валютам </returns>
+    [DataMember('list'), DataCollectionAttribute(Types::Class, classStr(RMarketJson_Bybit_GetCollateral_Item))]
+    public List parmList(List _list = list)
+    {
+        list = _list;
+        return list;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

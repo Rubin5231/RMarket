@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxSecurityPrivilege xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>RMarketSymbolTableView</Name>
+	<Name>RMarketSymbolView</Name>
 	<Label>Symbols view</Label>
 	<DataEntityPermissions />
 	<DirectAccessPermissions />
 	<EntryPoints>
 		<AxSecurityEntryPointReference>
-			<Name>RMarketSymbolTable</Name>
+			<Name>RMarketSymbol</Name>
 			<Grant>
 				<Read>Allow</Read>
 			</Grant>
-			<ObjectName>RMarketSymbolTable</ObjectName>
+			<ObjectName>RMarketSymbol</ObjectName>
 			<ObjectType>MenuItemDisplay</ObjectType>
 			<Forms>
 				<AxSecurityEntryPointReferenceForm>
-					<Name>RMarketSymbolTable</Name>
+					<Name>RMarketSymbol</Name>
 					<Controls />
 					<DataSources />
 				</AxSecurityEntryPointReferenceForm>

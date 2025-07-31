@@ -34,7 +34,7 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketSymbolTable</TypeName>
+					<TypeName>RMarketSymbol</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 			</Parameters>

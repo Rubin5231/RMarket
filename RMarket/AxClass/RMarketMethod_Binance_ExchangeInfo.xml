@@ -9,7 +9,7 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     
     protected str symbol;
     protected str interval;
-    protected int limit;
+    //protected int limit;
     protected RMarketTimestamp fromTS;
     protected RMarketTimestamp toTS;
     
@@ -24,7 +24,7 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     {
         apiClient = new RMarketApiClientBinance();
         apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
-        apiClient.parmMethodUrl('/api/v3/klines');
+        apiClient.parmMethodUrl('/api/v3/exchangeInfo');
 
         // Do this before execute()
         //apiClient.setBaseUrl('');
@@ -45,20 +45,10 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     public void initParameters(str _symbol, int _limit = 1000)
     {
         symbol = strUpr(_symbol);
-        limit = _limit;
+        //limit = _limit;
 
         apiClient.addQueryParam('symbol', symbol);
-        apiClient.addQueryParam('limit', int2Str(limit));
-    }
-
-]]></Source>
-			</Method>
-			<Method>
-				<Name>getLimit</Name>
-				<Source><![CDATA[
-    public int getLimit()
-    {
-        return limit;
+        //apiClient.addQueryParam('limit', int2Str(limit));
     }
 
 ]]></Source>
@@ -66,6 +56,11 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
 			<Method>
 				<Name>prepare</Name>
 				<Source><![CDATA[
+    //public int getLimit()
+    //{
+    //    return limit;
+    //}
+
     public void prepare()
     {
         // Add your code here...
@@ -92,8 +87,6 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     {
         super();
 
-        super();
-
         str responseStr = apiClient.getResponseBody();
 
         if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
@@ -111,11 +104,47 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
 				<Source><![CDATA[
     container getInfoCon()
     {
-        container ret;
-        //if (responseContract)
-        //    ret = responseContract.getKlineList();
-        //else
-        //    ret = new List(Types::Container);
+        RMarketJson_Binance_ExchangeInfo_Filter filter, pricefilter, limitFilter, marketFilter, notionFilter;
+        List ls = responseContract.parmSymbols();
+        ListEnumerator enum = ls.getEnumerator();
+        enum.moveNext();
+        RMarketJson_Binance_ExchangeInfo_Symbol item = enum.current();
+
+        ls = item.parmFilters();
+        enum = ls.getEnumerator();
+        while (enum.moveNext())
+        {
+            filter = enum.current();
+            switch (filter.parmFilterType())
+            {
+                case 'PRICE_FILTER':    pricefilter  = filter; break;
+                case 'LOT_SIZE':        limitFilter  = filter; break;
+                case 'MARKET_LOT_SIZE': marketFilter = filter; break;
+                //case 'TRAILING_DELTA':
+                //case 'PERCENT_PRICE_BY_SIDE':
+                case 'NOTIONAL':        notionFilter = filter; break;
+                //case 'MAX_NUM_ORDERS':
+                //case 'MAX_NUM_ALGO_ORDERS':
+            }
+        }
+
+        container ret = [//item.parmBaseAsset(), item.parmQuoteAsset()];
+            power(0.1, item.parmBaseAssetPrecision()),  //BasePrecision
+            power(0.1, item.parmQuoteAssetPrecision()), //QuotePrecision
+            str2Num(pricefilter.parmMinPrice()),        //MinPrice
+            str2Num(pricefilter.parmMaxPrice()),        //MaxPrice
+            str2Num(pricefilter.parmTickSize()),        //StepPrice
+            str2Num(marketFilter.parmMinQty()),         //MinMarketQty
+            str2Num(marketFilter.parmMaxQty()),         //MaxMarketQty
+            str2Num(marketFilter.parmStepSize()),       //StepMarketQty
+            str2Num(limitFilter.parmMinQty()),          //MinLimitQty
+            str2Num(limitFilter.parmMaxQty()),          //MaxLimitQty
+            str2Num(limitFilter.parmStepSize()),        //StepLimitQty
+            str2Num(notionFilter.parmMinNotional()),    //MinLimitAmount
+            str2Num(notionFilter.parmMaxNotional()),    //MaxLimitAmount
+            (notionFilter.parmApplyMinToMarket() == true) ? str2Num(notionFilter.parmMinNotional()) : 0,   //MinMarketAmount
+            (notionFilter.parmApplyMaxToMarket() == true) ? str2Num(notionFilter.parmMaxNotional()) : 0    //MaxMarketAmount
+            ];
         return ret;
     }
 

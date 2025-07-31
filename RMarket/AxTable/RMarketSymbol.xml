@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>RMarketSymbolTable</Name>
+	<Name>RMarketSymbol</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class RMarketSymbolTable extends common
+public class RMarketSymbol extends common
 {
 }
 ]]></Declaration>
@@ -11,27 +11,27 @@ public class RMarketSymbolTable extends common
 			<Method>
 				<Name>find</Name>
 				<Source><![CDATA[
-    public static RMarketSymbolTable find(RMarketSymbolId   _symbolId,
-                                          boolean           _forUpdate = false)
+    public static RMarketSymbol find(RMarketSymbolId   _symbolId,
+                                     boolean           _forUpdate = false)
     {
-        RMarketSymbolTable marketSymbolTable;
+        RMarketSymbol symbol;
         ;
         if (_symbolId)
         {
-            marketSymbolTable.selectForUpdate(_forUpdate);
+            symbol.selectForUpdate(_forUpdate);
             
-            select firstonly marketSymbolTable
-                where marketSymbolTable.SymbolId  == _symbolId;
+            select firstonly symbol
+                where symbol.SymbolId  == _symbolId;
         }
         
-        return marketSymbolTable;
+        return symbol;
     }
 
 ]]></Source>
 			</Method>
 		</Methods>
 	</SourceCode>
-	<FormRef>RMarketSymbolTable</FormRef>
+	<FormRef>RMarketSymbol</FormRef>
 	<Label>Symbols</Label>
 	<TableGroup>Group</TableGroup>
 	<TitleField1>SymbolId</TitleField1>
@@ -62,10 +62,13 @@ public class RMarketSymbolTable extends common
 			<IsSystemGenerated>Yes</IsSystemGenerated>
 			<Fields>
 				<AxTableFieldGroupField>
-					<DataField>Description</DataField>
+					<DataField>SymbolId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>SymbolId</DataField>
+					<DataField>BaseCrypto</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>QuoteCrypto</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
 		</AxTableFieldGroup>
@@ -98,6 +101,12 @@ public class RMarketSymbolTable extends common
 					<DataField>SymbolId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
+					<DataField>BaseCrypto</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>QuoteCrypto</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
 					<DataField>Description</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
@@ -118,6 +127,20 @@ public class RMarketSymbolTable extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
+			<Name>BaseCrypto</Name>
+			<ExtendedDataType>RMarketCryptoCode</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>Base Crypto</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>QuoteCrypto</Name>
+			<ExtendedDataType>RMarketCryptoCode</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>Quote Crypto</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
 			<Name>Description</Name>
 			<ExtendedDataType>Description</ExtendedDataType>
 		</AxTableField>
@@ -135,6 +158,43 @@ public class RMarketSymbolTable extends common
 		</AxTableIndex>
 	</Indexes>
 	<Mappings />
-	<Relations />
+	<Relations>
+		<AxTableRelation xmlns=""
+			i:type="AxTableRelationForeignKey">
+			<Name>RMarketCryptoBase</Name>
+			<Cardinality>ZeroMore</Cardinality>
+			<OnDelete>Restricted</OnDelete>
+			<RelatedTable>RMarketCrypto</RelatedTable>
+			<RelatedTableCardinality>ZeroOne</RelatedTableCardinality>
+			<RelationshipType>Association</RelationshipType>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>BaseCrypto</Name>
+					<SourceEDT>RMarketCryptoCode</SourceEDT>
+					<Field>BaseCrypto</Field>
+					<RelatedField>CryptoCode</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+		<AxTableRelation xmlns=""
+			i:type="AxTableRelationForeignKey">
+			<Name>RMarketCryptoQuote</Name>
+			<Cardinality>ZeroMore</Cardinality>
+			<OnDelete>Restricted</OnDelete>
+			<RelatedTable>RMarketCrypto</RelatedTable>
+			<RelatedTableCardinality>ZeroOne</RelatedTableCardinality>
+			<RelationshipType>Association</RelationshipType>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>QuoteCrypto</Name>
+					<SourceEDT>RMarketCryptoCode</SourceEDT>
+					<Field>QuoteCrypto</Field>
+					<RelatedField>CryptoCode</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+	</Relations>
 	<StateMachines />
 </AxTable>

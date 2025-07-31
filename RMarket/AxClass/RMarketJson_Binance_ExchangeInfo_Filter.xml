@@ -17,7 +17,9 @@ public class RMarketJson_Binance_ExchangeInfo_Filter
     private str maxQty;
     private str stepSize;
     private str minNotional;
-    private boolean applyToMarket;
+    private str maxNotional;
+    private boolean applyMinToMarket;
+    private boolean applyMaxToMarket;
     private int limit;
     private int maxNumOrders;
     private int maxNumAlgoOrders;
@@ -192,16 +194,46 @@ public class RMarketJson_Binance_ExchangeInfo_Filter
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>parmApplyToMarket</Name>
+				<Name>parmMaxNotional</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает минимальную номинальную стоимость </summary>
+    /// <param name="_maxNotional"> Минимальная стоимость ордера </param>
+    /// <returns> Минимальная стоимость ордера </returns>
+    [DataMember('maxNotional')]
+    public str parmMaxNotional(str _maxNotional = maxNotional)
+    {
+        maxNotional = _maxNotional;
+        return maxNotional;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmApplyMinToMarket</Name>
 				<Source><![CDATA[
     /// <summary> Получает или устанавливает флаг применения к рыночным ордерам </summary>
     /// <param name="_applyToMarket"> Применять ли к рыночным ордерам </param>
     /// <returns> Применять ли к рыночным ордерам </returns>
-    [DataMember('applyToMarket')]
-    public boolean parmApplyToMarket(boolean _applyToMarket = applyToMarket)
+    [DataMember('applyMinToMarket')]
+    public boolean parmApplyMinToMarket(boolean _applyMinToMarket = applyMinToMarket)
     {
-        applyToMarket = _applyToMarket;
-        return applyToMarket;
+        applyMinToMarket = _applyMinToMarket;
+        return applyMinToMarket;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmApplyMaxToMarket</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает флаг применения к рыночным ордерам </summary>
+    /// <param name="_applyToMarket"> Применять ли к рыночным ордерам </param>
+    /// <returns> Применять ли к рыночным ордерам </returns>
+    [DataMember('applyMaxToMarket')]
+    public boolean parmApplyMaxToMarket(boolean _applyMaxToMarket = applyMaxToMarket)
+    {
+        applyMaxToMarket = _applyMaxToMarket;
+        return applyMaxToMarket;
     }
 
 ]]></Source>

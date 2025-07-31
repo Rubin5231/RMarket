@@ -30,13 +30,6 @@
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
 			<Tags></Tags>
-			<Type>Int32</Type>
-			<TypeName></TypeName>
-			<Name>limit</Name>
-			<Attributes />
-		</AxClassMemberVariable>
-		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>ExtendedDataType</Type>
 			<TypeName>RMarketTimestamp</TypeName>
 			<Name>fromTS</Name>
@@ -79,15 +72,6 @@
 			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
-				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>getLimit</Name>
-			<Visibility>Public</Visibility>
-			<ReturnType>
-				<Tags></Tags>
-				<Type>Int32</Type>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>

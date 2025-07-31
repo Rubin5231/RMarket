@@ -4,13 +4,13 @@
 	<Name>RMarketSymbolId</Name>
 	<Extends>SysGroup</Extends>
 	<Label>Symbol</Label>
-	<ReferenceTable>RMarketSymbolTable</ReferenceTable>
+	<ReferenceTable>RMarketSymbol</ReferenceTable>
 	<ArrayElements />
 	<Relations />
 	<TableReferences>
 		<AxEdtTableReference>
 			<RelatedField>SymbolId</RelatedField>
-			<Table>RMarketSymbolTable</Table>
+			<Table>RMarketSymbol</Table>
 		</AxEdtTableReference>
 	</TableReferences>
 </AxEdt>

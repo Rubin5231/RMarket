@@ -13,7 +13,7 @@ public class RMarketJob_Instrument
 				<Source><![CDATA[
         public static void main(Args _args)
     {
-        RMarketSymbolTable symbol;
+        RMarketSymbol symbol;
         // Инициализация биржи
         RMarketTable market = RMarketTable::find('TestBybit');
         str s;
@@ -33,7 +33,7 @@ public class RMarketJob_Instrument
 			<Method>
 				<Name>getInstrumentInfo</Name>
 				<Source><![CDATA[
-    public static str getInstrumentInfo(RMarketTable _market, RMarketSymbolTable _symbol)
+    public static str getInstrumentInfo(RMarketTable _market, RMarketSymbol _symbol)
     {
         RMarketMethodInterface_Instrument apiMethod = RMarketMethodInterface::Instrument(_market.ApiType);
         apiMethod.setBaseUrl(_market.ApiUrl);

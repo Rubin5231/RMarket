@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJob_Collateral</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketJob_Collateral
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketSymbol symbol;
+        // Инициализация биржи
+        RMarketTable market = RMarketTable::find('TestBybit');
+        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11');
+        str s;
+
+        while select symbol
+        {
+        
+            s = RMarketJob_Collateral::getInstrumentInfo(market, key, symbol.BaseCrypto);
+
+            Info(strFmt("%1 %2: %3", market.MarketId, symbol.SymbolId, s));
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getInstrumentInfo</Name>
+				<Source><![CDATA[
+    public static str getInstrumentInfo(RMarketTable _market, RMarketApiKey _apiKey, RMarketCryptoCode _currency)
+    {
+        RMarketMethod_Bybit_GetCollateral apiMethod = new RMarketMethod_Bybit_GetCollateral();
+        apiMethod.setBaseUrl(_market.ApiUrl);
+        apiMethod.setApiKey(_apiKey);
+        apiMethod.initParameters(_currency);
+        apiMethod.execute();
+        //str createdOrderId =
+        return "";//con2Str(apiMethod.getInfoCon(), ' | ');
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

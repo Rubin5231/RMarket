@@ -65,7 +65,7 @@
 			<Fields />
 		</DataSource>
 		<DataSource>
-			<Name>RMarketAPIMethodTable</Name>
+			<Name>RMarketSymbolProperty</Name>
 			<Methods>
 				<Method>
 					<Name>create</Name>
@@ -84,7 +84,7 @@
 					<Variables>
 						<AxMethodVariable>
 							<Type>Record</Type>
-							<TypeName>RMarketAPIMethodTable</TypeName>
+							<TypeName>RMarketSymbolProperty</TypeName>
 							<Name>record</Name>
 						</AxMethodVariable>
 					</Variables>
@@ -161,7 +161,7 @@
 			</Methods>
 		</Control>
 		<Control>
-			<Name>APIMethodsNewButton</Name>
+			<Name>SymbolPropertyNewButton</Name>
 			<Type>Button</Type>
 			<Methods>
 				<Method>
@@ -174,7 +174,7 @@
 			</Methods>
 		</Control>
 		<Control>
-			<Name>APIMethodsDeleteButton</Name>
+			<Name>SymbolPropertyDeleteButton</Name>
 			<Type>Button</Type>
 			<Methods>
 				<Method>
@@ -186,8 +186,8 @@
 					<Variables>
 						<AxMethodVariable>
 							<Type>Record</Type>
-							<TypeName>RMarketAPIMethodTable</TypeName>
-							<Name>method</Name>
+							<TypeName>RMarketSymbolProperty</TypeName>
+							<Name>prop</Name>
 						</AxMethodVariable>
 					</Variables>
 				</Method>
