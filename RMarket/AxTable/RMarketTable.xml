@@ -85,6 +85,9 @@ public class RMarketTable extends common
 				<AxTableFieldGroupField>
 					<DataField>MarketId</DataField>
 				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Type</DataField>
+				</AxTableFieldGroupField>
 			</Fields>
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
@@ -95,6 +98,9 @@ public class RMarketTable extends common
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>Description</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Type</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>ApiType</DataField>
@@ -119,6 +125,11 @@ public class RMarketTable extends common
 			<Name>Description</Name>
 			<ExtendedDataType>Description</ExtendedDataType>
 			<Label>Description</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Type</Name>
+			<EnumType>RMarketType</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">

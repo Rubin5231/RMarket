@@ -71,6 +71,16 @@ public class RMarketSubAccount extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>RMarketSymbol</Name>
+				<Source><![CDATA[
+    public RMarketSymbol RMarketSymbol(boolean _forUpdate = false)
+    {
+        return RMarketSymbol::find(this.SymbolId, _forUpdate);
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Subaccounts</Label>

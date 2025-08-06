@@ -23,7 +23,7 @@ internal final class RMarketJobTest_Kline_Bybit
   "retCode": 5,
   "retMsg": "OK",
   "result": {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT",
     "list": [
       [

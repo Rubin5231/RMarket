@@ -8,11 +8,13 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketPositionId</TypeName>
 					<Name>_positionId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -20,16 +22,88 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Record</Type>
 				<TypeName>RMarketPosition</TypeName>
 			</ReturnType>
-			<Variables>
-				<AxMethodVariable>
+		</Method>
+		<Method>
+			<Name>initValue</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>initFromSubAccount</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketPosition</TypeName>
-					<Name>position</Name>
-				</AxMethodVariable>
-			</Variables>
+					<TypeName>RMarketSubAccount</TypeName>
+					<Name>_subAccount</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>RMarketAccount</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketAccount</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>RMarketSubAccount</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketSubAccount</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>RMarketSymbol</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketSymbol</TypeName>
+			</ReturnType>
 		</Method>
 	</Methods>
 </z:anyType>

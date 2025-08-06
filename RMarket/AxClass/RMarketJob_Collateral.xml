@@ -11,7 +11,7 @@ public class RMarketJob_Collateral
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
-    public static void main(Args _args)
+        public static void main(Args _args)
     {
         RMarketSymbol symbol;
         // Инициализация биржи
@@ -21,27 +21,45 @@ public class RMarketJob_Collateral
 
         while select symbol
         {
-        
-            s = RMarketJob_Collateral::getInstrumentInfo(market, key, symbol.BaseCrypto);
+            setPrefix(strFmt("%1 %2", market.MarketId, symbol.BaseCrypto));
+            s = RMarketJob_Collateral::set(market, key, symbol.BaseCrypto, true);
+            info(strFmt("Enable - %1", s));
 
-            Info(strFmt("%1 %2: %3", market.MarketId, symbol.SymbolId, s));
+            s = RMarketJob_Collateral::get(market, key, symbol.BaseCrypto);
+            Info(strFmt("Check if enabled - %1", s));
         }
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>getInstrumentInfo</Name>
+				<Name>set</Name>
 				<Source><![CDATA[
-    public static str getInstrumentInfo(RMarketTable _market, RMarketApiKey _apiKey, RMarketCryptoCode _currency)
+    public static str set(RMarketTable _market, RMarketApiKey _apiKey, RMarketCryptoCode _currency, boolean _enable)
+    {
+        RMarketMethod_Bybit_SetCollateral apiMethod = new RMarketMethod_Bybit_SetCollateral();
+        apiMethod.setBaseUrl(_market.ApiUrl);
+        apiMethod.setApiKey(_apiKey);
+        apiMethod.initParameters(_currency, _enable);
+        apiMethod.execute();
+        RMarketJson_Bybit_Response result = apiMethod.getResult();
+        return result.parmRetMsg();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>get</Name>
+				<Source><![CDATA[
+    public static str get(RMarketTable _market, RMarketApiKey _apiKey, RMarketCryptoCode _currency)
     {
         RMarketMethod_Bybit_GetCollateral apiMethod = new RMarketMethod_Bybit_GetCollateral();
         apiMethod.setBaseUrl(_market.ApiUrl);
         apiMethod.setApiKey(_apiKey);
         apiMethod.initParameters(_currency);
         apiMethod.execute();
-        //str createdOrderId =
-        return "";//con2Str(apiMethod.getInfoCon(), ' | ');
+        RMarketJson_Bybit_GetCollateral_Item item = apiMethod.getResult();
+        return item.parmCollateralSwitch() ? "ON" : "off";
     }
 
 ]]></Source>

@@ -150,6 +150,39 @@
 			</Methods>
 		</Control>
 		<Control>
+			<Name>OrdersNewButton</Name>
+			<Type>Button</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>OrdersDeleteButton</Name>
+			<Type>Button</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyOrders</TypeName>
+							<Name>orders</Name>
+						</AxMethodVariable>
+					</Variables>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
 			<Name>ConditionNewButton</Name>
 			<Type>Button</Type>
 			<Methods>

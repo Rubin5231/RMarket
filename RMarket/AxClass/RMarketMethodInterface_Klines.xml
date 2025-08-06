@@ -22,7 +22,11 @@ interface RMarketMethodInterface_Klines
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    void initParameters(str _symbol, str _interval, str _category = 'spot', int _limit = 1000)
+    void initParameters(
+        RMarketSymbolId _symbol, 
+        str _interval, 
+        RMarketType _marketType, 
+        int _limit = 1000)
     {}
 
 ]]></Source>

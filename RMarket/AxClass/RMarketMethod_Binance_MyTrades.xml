@@ -21,6 +21,8 @@ public class RMarketMethod_Binance_MyTrades extends RMarketMethod implements RMa
 {
     protected RMarketJson_Binance_Account responseContract;
 
+    protected RMarketSymbolId symbol;
+
 }
 ]]></Declaration>
 		<Methods>
@@ -44,7 +46,7 @@ public class RMarketMethod_Binance_MyTrades extends RMarketMethod implements RMa
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    void initParameters()
+    void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
         //symbol	    STRING	YES
         //orderId	    LONG	NO	This can only be used in combination with symbol.
@@ -54,6 +56,9 @@ public class RMarketMethod_Binance_MyTrades extends RMarketMethod implements RMa
         //limit	        INT	    NO	Default: 500; Maximum: 1000.
         //recvWindow	LONG	NO	The value cannot be greater than 60000
         //timestamp	    LONG	YES
+        symbol = strUpr(_symbol);
+
+        apiClient.addQueryParam('symbol', symbol);
     }
 
 ]]></Source>

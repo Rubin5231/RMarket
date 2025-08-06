@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>RMarketPositionOrderStatus</Name>
+	<Name>RMarketOrderSide</Name>
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
-			<Name>Active</Name>
-			<Label>Active</Label>
+			<Name>None</Name>
+			<Label>None</Label>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>Executed</Name>
-			<Label>Executed</Label>
+			<Name>Buy</Name>
+			<Label>Buy</Label>
 			<Value>1</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>Canceled</Name>
-			<Label>Canceled</Label>
+			<Name>Sell</Name>
+			<Label>Sell</Label>
 			<Value>2</Value>
 		</AxEnumValue>
 	</EnumValues>

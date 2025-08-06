@@ -78,14 +78,14 @@ public class RMarketMethod_Bybit_GetCollateral extends RMarketMethod
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>getInfoCon</Name>
+				<Name>getResult</Name>
 				<Source><![CDATA[
-    container getInfoCon()
+    public RMarketJson_Bybit_GetCollateral_Item getResult()
     {
         List ls = responseContract.parmResult().parmList();
         ListEnumerator enum = ls.getEnumerator();
         enum.moveNext();
-        //RMarketJson_Bybit_Instrument_Item item = enum.current();
+        RMarketJson_Bybit_GetCollateral_Item item = enum.current();
         //container ret = [//item.parmBaseCoin(), item.parmQuoteCoin()];
         //    str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //BasePrecision
         //    str2Num(item.parmLotSizeFilter().parmQuotePrecision()), //QuotePrecision
@@ -103,7 +103,7 @@ public class RMarketMethod_Bybit_GetCollateral extends RMarketMethod
         //    str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),    //MinMarketAmount
         //    str2Num(item.parmLotSizeFilter().parmMaxOrderAmt())     //MaxMarketAmount
         //    ];
-        return conNull();//ret;
+        return item;
     }
 
 ]]></Source>

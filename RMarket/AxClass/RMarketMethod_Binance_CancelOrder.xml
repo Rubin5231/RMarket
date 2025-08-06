@@ -40,7 +40,8 @@ public class RMarketMethod_Binance_CancelOrder extends RMarketMethod implements 
     /// <param name="_orderId"> ID ордера </param>
     /// <returns> Результат удаления ордера </returns>
     public void initParameters(
-        str _symbol,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
         str _orderId)
     {
         //symbol	            STRING	YES

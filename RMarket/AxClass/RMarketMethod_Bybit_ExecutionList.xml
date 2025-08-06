@@ -20,6 +20,8 @@ public class RMarketMethod_Bybit_ExecutionList extends RMarketMethod implements 
 {
     protected RMarketJson_Bybit_ExecutionList responseContract;
     
+    protected str category;
+    protected RMarketSymbolId symbol;
     protected str accountType;
     
 }
@@ -46,25 +48,30 @@ public class RMarketMethod_Bybit_ExecutionList extends RMarketMethod implements 
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    void initParameters()
+    void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
-        //category	true	string	Product type
+        //category	    true	string	Product type
         //                            UTA2.0, UTA1.0: linear, inverse, spot, option
         //                            classic account: linear, inverse, spot
         //symbol	    false	string	Symbol name, like BTCUSDT, uppercase only
         //orderId	    false	string	Order ID
         //orderLinkId	false	string	User customised order ID. Classic account does not support this param
-        //baseCoin	false	string	Base coin, uppercase only
+        //baseCoin	    false	string	Base coin, uppercase only
         //                            UTA1.0(category=inverse) and classic account are not supported
-        //startTime	false	integer	The start timestamp (ms)
+        //startTime	    false	integer	The start timestamp (ms)
         //                            startTime and endTime are not passed, return 7 days by default;
         //                            Only startTime is passed, return range between startTime and startTime+7 days
         //                            Only endTime is passed, return range between endTime-7 days and endTime
         //                            If both are passed, the rule is endTime - startTime <= 7 days
         //endTime	    false	integer	The end timestamp (ms)
-        //execType	false	string	Execution type. Classic spot is not supported
-        //limit	    false	integer	Limit for data size per page. [1, 100]. Default: 50
+        //execType	    false	string	Execution type. Classic spot is not supported
+        //limit	        false	integer	Limit for data size per page. [1, 100]. Default: 50
         //cursor	    false	string	Cursor. Use the nextPageCursor token from the response to retrieve the next page of the result set
+        category = RMarketUtil::enum2strBBT(_marketType);
+        symbol = strUpr(_symbol);
+
+        apiClient.addQueryParam('category', category);
+        apiClient.addQueryParam('symbol', symbol);
     }
 
 ]]></Source>
@@ -74,8 +81,6 @@ public class RMarketMethod_Bybit_ExecutionList extends RMarketMethod implements 
 				<Source><![CDATA[
     public void prepare()
     {
-        apiClient.addQueryParam('category', 'spot');  //Hardcode
-    
         super();
     }
 

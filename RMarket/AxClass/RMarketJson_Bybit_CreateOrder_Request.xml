@@ -417,7 +417,7 @@ public class RMarketJson_Bybit_CreateOrder_Request
         //if () RMarketUtil::jsonWrite(jsonWriter, '', stopLoss); //str
         //if () RMarketUtil::jsonWrite(jsonWriter, '', tpTriggerBy); //str
         //if () RMarketUtil::jsonWrite(jsonWriter, '', slTriggerBy); //str
-        //if () RMarketUtil::jsonWrite(jsonWriter, '', reduceOnly); //boolean
+        /*if ()*/ RMarketUtil::jsonWrite(jsonWriter, 'reduceOnly', reduceOnly); //boolean
         //if () RMarketUtil::jsonWrite(jsonWriter, '', closeOnTrigger); //boolean
         //if () RMarketUtil::jsonWrite(jsonWriter, '', positionIdx); //int
         if (marketUnit)

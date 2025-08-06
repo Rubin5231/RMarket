@@ -41,13 +41,13 @@ public class RMarketMethod_Bybit_Instrument extends RMarketMethod implements RMa
     /// <param name="_interval">Интервал свечи</param>
     /// <param name="_limit">Количество свечей</param>
     /// <param name="_category">Категория (spot, linear, inverse)</param>
-    public void initParameters(str _symbol, int _limit = 1000)
+    public void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
         symbol = strUpr(_symbol);
-        //limit = _limit;
+        category = RMarketUtil::enum2strBBT(_marketType);
 
         apiClient.addQueryParam('symbol', symbol);
-        //apiClient.addQueryParam('limit', int2Str(limit));
+        apiClient.addQueryParam('category', category);
     }
 
 ]]></Source>
@@ -62,7 +62,6 @@ public class RMarketMethod_Bybit_Instrument extends RMarketMethod implements RMa
 
     public void prepare()
     {
-        apiClient.addQueryParam('category', "spot");
         apiClient.addQueryParam('status', "Trading");
 
         super();

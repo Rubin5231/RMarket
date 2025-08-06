@@ -38,6 +38,11 @@ public class RMarketAutoTrade_Test extends RMarketAutoTrade
         RMarketCandleTable candle;
         RMarketTimestampTable tsTable;
 
+        // Loop for every minute from start to last candle.
+        // Try to select candles for current time. 
+        // If candle selected, set ts cursoe from it
+        // If candle not selected, don't calculate actions, only handle orders
+        // And remove shadow accounts!!!!
         while select Timestamp, DateTime from tsTable
             group by Timestamp, DateTime
             exists join candle

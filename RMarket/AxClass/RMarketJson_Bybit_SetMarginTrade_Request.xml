@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_SetMarginTrade_Request</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_SetMarginTrade_Request
+{
+    private str spotMarginMode;
+
+    }
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmSpotMarginMode</Name>
+				<Source><![CDATA[
+    /// <summary> Устанавливает режим маржи для спота. Допустимые значения: ["0", "1"] </summary>
+    /// <param name="_spotMarginMode"> Режим маржи: 0=Regular margin mode, 1=Portfolio margin mode </param>
+    /// <returns> Режим маржи </returns>
+    [DataMember('spotMarginMode')]
+    public str parmSpotMarginMode(str _spotMarginMode = spotMarginMode)
+    {
+        spotMarginMode = _spotMarginMode;
+        return spotMarginMode;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>jsonRequest</Name>
+				<Source><![CDATA[
+    /// <summary>Формирует JSON-тело запроса</summary>
+    /// <returns>Строка с JSON-запросом</returns>
+    public str jsonRequest()
+    {
+        str ret = FormJsonSerializer::serializeClass(this);
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

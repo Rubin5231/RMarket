@@ -4,6 +4,11 @@
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
+			<Name>None</Name>
+			<Label>None</Label>
+			<Value>2</Value>
+		</AxEnumValue>
+		<AxEnumValue>
 			<Name>Long</Name>
 			<Label>Long</Label>
 		</AxEnumValue>

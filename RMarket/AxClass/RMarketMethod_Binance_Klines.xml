@@ -53,7 +53,11 @@ public class RMarketMethod_Binance_Klines extends RMarketMethod implements RMark
     /// <param name="_interval">Интервал свечи</param>
     /// <param name="_limit">Количество свечей</param>
     /// <param name="_category">Категория (spot, linear, inverse)</param>
-    public void initParameters(str _symbol, str _interval, str _category = 'spot', int _limit = 1000)
+    void initParameters(
+        RMarketSymbolId _symbol,
+        str _interval,
+        RMarketType _marketType,
+        int _limit = 1000)
     {
         symbol = _symbol;
         interval = _interval;

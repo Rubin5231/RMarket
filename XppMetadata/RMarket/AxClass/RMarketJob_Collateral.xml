@@ -21,7 +21,43 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>getInstrumentInfo</Name>
+			<Name>set</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketApiKey</TypeName>
+					<Name>_apiKey</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketCryptoCode</TypeName>
+					<Name>_currency</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>_enable</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>get</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>

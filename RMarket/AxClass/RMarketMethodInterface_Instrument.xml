@@ -20,7 +20,7 @@ interface RMarketMethodInterface_Instrument
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    public void initParameters(str _symbol, int _limit = 1000)
+    public void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
     }
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_GetMarginTradeStatus_Result</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_GetMarginTradeStatus_Result
+{
+    private str spotLeverage;
+    private str spotMarginMode;
+    private str effectiveLeverage;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmSpotLeverage</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает кредитное плечо спота </summary>
+    /// <param name="_spotLeverage"> Значение кредитного плеча (пустая строка если маржинальная торговля выключена) </param>
+    /// <returns> Значение кредитного плеча </returns>
+    [DataMember('spotLeverage')]
+    public str parmSpotLeverage(str _spotLeverage = spotLeverage)
+    {
+        spotLeverage = _spotLeverage;
+        return spotLeverage;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSpotMarginMode</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает режим маржинальной торговли ["0", "1"] </summary>
+    /// <param name="_spotMarginMode"> Статус маржинальной торговли (1 - вкл, 0 - выкл) </param>
+    /// <returns> Статус маржинальной торговли </returns>
+    [DataMember('spotMarginMode')]
+    public str parmSpotMarginMode(str _spotMarginMode = spotMarginMode)
+    {
+        spotMarginMode = _spotMarginMode;
+        return spotMarginMode;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmEffectiveLeverage</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает эффективное плечо </summary>
+    /// <param name="_effectiveLeverage"> Фактический коэффициент кредитного плеча (точность до 2 знаков) </param>
+    /// <returns> Фактический коэффициент кредитного плеча </returns>
+    [DataMember('effectiveLeverage')]
+    public str parmEffectiveLeverage(str _effectiveLeverage = effectiveLeverage)
+    {
+        effectiveLeverage = _effectiveLeverage;
+        return effectiveLeverage;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

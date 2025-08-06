@@ -61,12 +61,12 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>getInfoCon</Name>
+			<Name>getResult</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
 				<Tags></Tags>
-				<Type>Container</Type>
-				<TypeName></TypeName>
+				<Type>Class</Type>
+				<TypeName>RMarketJson_Bybit_GetCollateral_Item</TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

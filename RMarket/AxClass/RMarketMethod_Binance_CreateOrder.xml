@@ -48,9 +48,10 @@ public class RMarketMethod_Binance_CreateOrder extends RMarketMethod implements 
     /// <param name="_clientOrderId"> Клиентский ID ордера </param>
     /// <returns> Результат создания ордера </returns>
     public void initParameters(
-        str _symbol,
-        str _side,
-        str _orderType,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
+        RMarketOrderSide _orderSide,
+        RMarketOrderType _orderType,
         str _qty,
         str _price = '',
         str _clientOrderId = '')
@@ -98,8 +99,8 @@ public class RMarketMethod_Binance_CreateOrder extends RMarketMethod implements 
         //                            This is a LIMIT order that will be rejected if the order immediately matches and trades as a taker.
         //                            This is also known as a POST-ONLY order.
         symbol = _symbol;
-        side = _side;
-        orderType = _orderType;
+        side = RMarketUtil::enum2strBNN(_orderSide);
+        orderType = RMarketUtil::enum2strBNN(_orderType);
         qty = _qty;
         price = _price;
         clientOrderId = _clientOrderId;

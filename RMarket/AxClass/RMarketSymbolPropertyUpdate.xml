@@ -179,7 +179,7 @@ public class RMarketSymbolPropertyUpdate extends RunBaseBatch implements BatchRe
 
             apiMethod = RMarketMethodInterface::Instrument(market.ApiType);
             apiMethod.setBaseUrl(market.ApiUrl);
-            apiMethod.initParameters(symbol.SymbolId);
+            apiMethod.initParameters(symbol.SymbolId, market.Type);
             apiMethod.execute();
             RMarketSymbolProperty::insertOrUpdate(
                 market.MarketId, 

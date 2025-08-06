@@ -18,7 +18,7 @@ internal final class RMarketJob_rawJsonReader
   "retCode": 5,
   "retMsg": "OK",
   "result": {
-    "category": "spot",
+    "category": "linear",
     "symbol": "BTCUSDT",
     "list": [
       [

@@ -10,6 +10,7 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
 {
     protected RMarketJson_Bybit_CreateOrder_Request requestContract;
     protected RMarketJson_Bybit_Order responseContract;
+    protected str category;
     protected str symbol;
     protected str side;
     protected str orderType;
@@ -53,9 +54,10 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
     /// <param name="_clientOrderId"> Клиентский ID ордера </param>
     /// <returns> Результат создания ордера </returns>
     public void initParameters(
-        str _symbol,
-        str _side,
-        str _orderType,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
+        RMarketOrderSide _orderSide,
+        RMarketOrderType _orderType,
         str _qty,
         str _price = '',
         str _clientOrderId = '')
@@ -173,17 +175,20 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
                                     Market: when you set "stopLoss",
                                     Limit: when you set "stopLoss" and "slLimitPrice"
         */
+        category = RMarketUtil::enum2strBBT(_marketType);
         symbol = _symbol;
-        side = _side;
-        orderType = _orderType;
+        side = RMarketUtil::enum2strBBT(_orderSide);
+        orderType = RMarketUtil::enum2strBBT(_orderType);
         qty = _qty;
         price = _price;
         clientOrderId = _clientOrderId;
 
+        requestContract.parmCategory(category);
         requestContract.parmSymbol(symbol);
         requestContract.parmSide(side);
         requestContract.parmOrderType(orderType);
         requestContract.parmQty(qty);
+        requestContract.parmReduceOnly(true);
                 
         if (_price)
             requestContract.parmPrice(price);
@@ -199,8 +204,6 @@ public class RMarketMethod_Bybit_CreateOrder extends RMarketMethod implements RM
 				<Source><![CDATA[
     public void prepare()
     {
-        requestContract.parmCategory("spot");
-        //requestContract.parmCategory("linear");
         requestContract.parmIsLeverage(1);
         //requestContract.parmMarketUnit("quoteCoin");
 

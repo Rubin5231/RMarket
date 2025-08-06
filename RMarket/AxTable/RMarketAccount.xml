@@ -189,6 +189,9 @@ public class RMarketAccount extends common
 					<DataField>Active</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
+					<DataField>Leverage</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
 					<DataField>NextActionDateTime</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
@@ -278,6 +281,10 @@ public class RMarketAccount extends common
 			i:type="AxTableFieldEnum">
 			<Name>AccountTestType</Name>
 			<EnumType>RMarketAccountTestType</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldReal">
+			<Name>Leverage</Name>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

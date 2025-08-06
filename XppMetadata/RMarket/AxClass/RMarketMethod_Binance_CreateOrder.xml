@@ -8,49 +8,42 @@
 	</Implements>
 	<Members>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>Class</Type>
 			<TypeName>RMarketJson_Binance_CreateOrder</TypeName>
 			<Name>responseContract</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>symbol</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>side</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>orderType</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>qty</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>price</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
-			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>clientOrderId</Name>
@@ -62,7 +55,6 @@
 			<Name>new</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -71,38 +63,37 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
-					<Name>_side</Name>
+					<Type>Enum</Type>
+					<TypeName>RMarketOrderSide</TypeName>
+					<Name>_orderSide</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>Enum</Type>
+					<TypeName>RMarketOrderType</TypeName>
 					<Name>_orderType</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<Name>_qty</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<DefaultValue>''</DefaultValue>
 					<Name>_price</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<DefaultValue>''</DefaultValue>
@@ -110,7 +101,6 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -118,15 +108,20 @@
 			<Name>processResponse</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>responseStr</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>getOrderId</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
 			</ReturnType>

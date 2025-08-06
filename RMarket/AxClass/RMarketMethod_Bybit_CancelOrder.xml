@@ -10,6 +10,7 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
 {
     protected RMarketJson_Bybit_CancelOrder_Request requestContract;
     protected RMarketJson_Bybit_Order responseContract;
+    protected str category;
     protected str symbol;
     protected str orderId;
 
@@ -46,11 +47,12 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
     /// <param name="_orderId"> ID ордера </param>
     /// <returns> Результат удаления ордера </returns>
     public void initParameters(
-        str _symbol,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
         str _orderId)
     {
         //https://bybit-exchange.github.io/docs/v5/order/cancel-order
-        //category	true	string	Product type
+        //category	    true	string	Product type
         //                            UTA2.0, UTA1.0: linear, inverse, spot, option
         //                            classic account: linear, inverse, spot
         //symbol	    true	string	Symbol name, like BTCUSDT, uppercase only
@@ -61,9 +63,11 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
         //                            tpslOrder
         //                            StopOrder
         //                            If not passed, Order by default
+        category = RMarketUtil::enum2strBBT(_marketType);
         symbol = _symbol;
         orderId = _orderId;
 
+        requestContract.parmCategory(category);
         requestContract.parmSymbol(symbol);
         requestContract.parmOrderId(orderId);
     }
@@ -75,8 +79,6 @@ public class RMarketMethod_Bybit_CancelOrder extends RMarketMethod implements RM
 				<Source><![CDATA[
     public void prepare()
     {
-        requestContract.parmCategory("spot");
-    
         apiClient.setRequestBody(requestContract.jsonRequest());
 
         super();

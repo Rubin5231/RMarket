@@ -41,7 +41,7 @@ interface RMarketMethodInterface_GetTradeHistory
 			<Method>
 				<Name>initParameters</Name>
 				<Source><![CDATA[
-    public void initParameters()
+    void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
     }
 

@@ -97,6 +97,13 @@
 			<Attributes />
 			<Visibility>Private</Visibility>
 		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Enum</Type>
+			<TypeName>boolean</TypeName>
+			<Name>collateralSwitch</Name>
+			<Attributes />
+		</AxClassMemberVariable>
 	</Members>
 	<Methods>
 		<Method>
@@ -416,6 +423,35 @@
 				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmCollateralSwitch</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'collateralSwitch'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>collateralSwitch</DefaultValue>
+					<Name>_collateralSwitch</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

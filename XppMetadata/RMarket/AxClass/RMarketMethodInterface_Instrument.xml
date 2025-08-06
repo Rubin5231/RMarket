@@ -26,16 +26,15 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>Int32</Type>
-					<TypeName></TypeName>
-					<DefaultValue>1000</DefaultValue>
-					<Name>_limit</Name>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_SetCollateral_Request</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_SetCollateral_Request
+{
+    private str coin;
+    private str collateralSwitch;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmCoin</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает валюту для изменения залогового режима </summary>
+    /// <param name="_coin"> Код валюты (например, "USDT", "BTC") </param>
+    /// <returns> Код валюты </returns>
+    [DataMember('coin')]
+    public str parmCoin(str _coin = coin)
+    {
+        coin = _coin;
+        return coin;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCollateralSwitch</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает режим залога ["ON", "OFF"] </summary>
+    /// <param name="_collateralSwitch"> Включение/выключение залогового режима </param>
+    /// <returns> Статус залогового режима </returns>
+    [DataMember('collateralSwitch')]
+    public str parmCollateralSwitch(str _collateralSwitch = collateralSwitch)
+    {
+        collateralSwitch = _collateralSwitch;
+        return collateralSwitch;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>jsonRequest</Name>
+				<Source><![CDATA[
+    /// <summary>Формирует JSON-тело запроса</summary>
+    /// <returns>Строка с JSON-запросом</returns>
+    public str jsonRequest()
+    {
+        str ret = FormJsonSerializer::serializeClass(this);
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -6,13 +6,12 @@
 public class RMarketPosition extends common
 {
 }
-
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>find</Name>
 				<Source><![CDATA[
-    public static RMarketPosition find(RMarketPositionId  _positionId,
+            public static RMarketPosition find(RMarketPositionId  _positionId,
                                        boolean            _forUpdate = false)
     {
         RMarketPosition position;
@@ -26,6 +25,72 @@ public class RMarketPosition extends common
         }
         
         return position;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initValue</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void initValue()
+    {
+        RMarketPositionId positionId;
+        NumberSequenceReference numberSequenceReference;
+
+        super();
+
+        numberSequenceReference = NumberSeqReference::findReference(extendedTypeNum(RMarketPositionId));
+        if (numberSequenceReference)
+        {
+            this.PositionId = NumberSeq::newGetNum(numberSequenceReference).num();
+        }
+        this.Direction    = RMarketPositionDirection::None;
+        this.Status       = RMarketPositionStatus::Created;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initFromSubAccount</Name>
+				<Source><![CDATA[
+    public void initFromSubAccount(RMarketSubAccount _subAccount)
+    {
+        this.SubAccountId = _subAccount.SubAccountId;
+        this.AccountId    = _subAccount.AccountId;
+        this.SymbolId     = _subAccount.SymbolId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>RMarketAccount</Name>
+				<Source><![CDATA[
+    public RMarketAccount RMarketAccount(boolean _forUpdate = false)
+    {
+        return RMarketAccount::find(this.AccountId, _forUpdate);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>RMarketSubAccount</Name>
+				<Source><![CDATA[
+    public RMarketSubAccount RMarketSubAccount(boolean _forUpdate = false)
+    {
+        return RMarketSubAccount::find(this.SubAccountId, _forUpdate);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>RMarketSymbol</Name>
+				<Source><![CDATA[
+    public RMarketSymbol RMarketSymbol(boolean _forUpdate = false)
+    {
+        return RMarketSymbol::find(this.SymbolId, _forUpdate);
     }
 
 ]]></Source>
@@ -86,9 +151,6 @@ public class RMarketPosition extends common
 					<DataField>Description</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>CloseDateTime</DataField>
-				</AxTableFieldGroupField>
-				<AxTableFieldGroupField>
 					<DataField>Direction</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
@@ -98,18 +160,27 @@ public class RMarketPosition extends common
 					<DataField>PriceEntry</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>PriceExit</DataField>
-				</AxTableFieldGroupField>
-				<AxTableFieldGroupField>
 					<DataField>Size</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>OpenDateTime</DataField>
+					<DataField>SignalDateTime</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
 		</AxTableFieldGroup>
 	</FieldGroups>
 	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>AccountId</Name>
+			<ExtendedDataType>RMarketAccountId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>SubAccountId</Name>
+			<ExtendedDataType>RMarketSubAccountId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
 			<Name>PositionId</Name>
@@ -124,12 +195,6 @@ public class RMarketPosition extends common
 			<ExtendedDataType>Description</ExtendedDataType>
 		</AxTableField>
 		<AxTableField xmlns=""
-			i:type="AxTableFieldString">
-			<Name>SubAccountId</Name>
-			<ExtendedDataType>RMarketSubAccountId</ExtendedDataType>
-			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
-		</AxTableField>
-		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
 			<Name>Direction</Name>
 			<EnumType>RMarketPositionDirection</EnumType>
@@ -140,14 +205,14 @@ public class RMarketPosition extends common
 			<EnumType>RMarketPositionStatus</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
-			i:type="AxTableFieldReal">
-			<Name>PriceEntry</Name>
-			<ExtendedDataType>AmountCur</ExtendedDataType>
+			i:type="AxTableFieldString">
+			<Name>SymbolId</Name>
+			<ExtendedDataType>RMarketSymbolId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">
-			<Name>PriceExit</Name>
+			<Name>PriceEntry</Name>
 			<ExtendedDataType>AmountCur</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
@@ -159,11 +224,11 @@ public class RMarketPosition extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldUtcDateTime">
-			<Name>OpenDateTime</Name>
+			<Name>SignalDateTime</Name>
 		</AxTableField>
 		<AxTableField xmlns=""
-			i:type="AxTableFieldUtcDateTime">
-			<Name>CloseDateTime</Name>
+			i:type="AxTableFieldInt64">
+			<Name>SignalTimestamp</Name>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
@@ -181,6 +246,18 @@ public class RMarketPosition extends common
 	<Mappings />
 	<Relations>
 		<AxTableRelation>
+			<Name>RMarketAccount</Name>
+			<RelatedTable>RMarketAccount</RelatedTable>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>AccountId</Name>
+					<Field>AccountId</Field>
+					<RelatedField>AccountId</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+		<AxTableRelation>
 			<Name>RMarketSubAccount</Name>
 			<RelatedTable>RMarketSubAccount</RelatedTable>
 			<Constraints>
@@ -189,6 +266,18 @@ public class RMarketPosition extends common
 					<Name>SubAccountId</Name>
 					<Field>SubAccountId</Field>
 					<RelatedField>SubAccountId</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+		<AxTableRelation>
+			<Name>RMarketSymbol</Name>
+			<RelatedTable>RMarketSymbol</RelatedTable>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>SymbolId</Name>
+					<Field>SymbolId</Field>
+					<RelatedField>SymbolId</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>

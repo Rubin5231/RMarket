@@ -4,6 +4,16 @@
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
+			<Name>None</Name>
+			<Label>None</Label>
+			<Value>4</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>Enter</Name>
+			<Label>Enter</Label>
+			<Value>3</Value>
+		</AxEnumValue>
+		<AxEnumValue>
 			<Name>StopLoss</Name>
 			<Label>Stop loss</Label>
 		</AxEnumValue>
@@ -16,11 +26,6 @@
 			<Name>TrailingStop</Name>
 			<Label>Trailing stop</Label>
 			<Value>2</Value>
-		</AxEnumValue>
-		<AxEnumValue>
-			<Name>Limit</Name>
-			<Label>Limit</Label>
-			<Value>3</Value>
 		</AxEnumValue>
 	</EnumValues>
 	<IsExtensible>true</IsExtensible>

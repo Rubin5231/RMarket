@@ -47,7 +47,8 @@ interface RMarketMethodInterface_CancelOrder
     /// <param name="_clientOrderId"> Клиентский идентификатор ордера </param>
     /// <returns> Результат удаления ордера </returns>
     public void initParameters(
-        str _symbol,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
         str _orderId)
     {}
 

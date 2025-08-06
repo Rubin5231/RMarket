@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketMethod_Bybit_GetMarginTradeStatus</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketMethod_Bybit_GetMarginTradeStatus extends RMarketMethod
+{
+    protected RMarketJson_Bybit_GetMarginTradeStatus responseContract;
+    protected RMarketCryptoCode currency;
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary> Конструктор класса </summary>
+    public void new()
+    {
+        super();
+
+        apiClient = new RMarketApiClientBybit();
+        apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
+        apiClient.parmMethodUrl('/v5/spot-margin-trade/state');
+
+        // Do this before execute()
+        //apiClient.setBaseUrl('');
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Устанавливает параметры запроса
+    /// </summary>
+    public void initParameters()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>prepare</Name>
+				<Source><![CDATA[
+    public void prepare()
+    {
+        super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processResponse</Name>
+				<Source><![CDATA[
+    public void processResponse()
+    {
+        super();
+
+        str responseStr = apiClient.getResponseBody();
+
+        if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
+            throw Error(strfmt("Request returns error!"));
+    
+        responseContract = RMarketJsonSerializer::deserializeObject(
+            classNum(RMarketJson_Bybit_GetMarginTradeStatus),
+            responseStr) as RMarketJson_Bybit_GetMarginTradeStatus;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getResult</Name>
+				<Source><![CDATA[
+    public RMarketJson_Bybit_GetMarginTradeStatus_Result getResult()
+    {
+        return responseContract.parmResult();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

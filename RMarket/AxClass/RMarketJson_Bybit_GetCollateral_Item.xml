@@ -17,14 +17,15 @@ public class RMarketJson_Bybit_GetCollateral_Item
     private str freeBorrowingAmount;
     private str freeBorrowAmount;
     private str maxBorrowingAmount;
+    protected boolean collateralSwitch;
 
-    }
+}
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>parmCurrency</Name>
 				<Source><![CDATA[
-    /// <summary> Получает или устанавливает валюту </summary>
+            /// <summary> Получает или устанавливает валюту </summary>
     /// <param name="_currency"> Код валюты (например, USDT) </param>
     /// <returns> Код валюты </returns>
     [DataMember('currency')]
@@ -144,9 +145,9 @@ public class RMarketJson_Bybit_GetCollateral_Item
 			<Method>
 				<Name>parmFreeBorrowingAmount</Name>
 				<Source><![CDATA[
-    /// <summary> Получает или устанавливает сумму беспроцентного займа </summary>
-    /// <param name="_freeBorrowingAmount"> Беспроцентный лимит займа </param>
-    /// <returns> Беспроцентный лимит займа </returns>
+    /// <summary> </summary>
+    /// <param name="_freeBorrowingAmount"> </param>
+    /// <returns> </returns>
     [DataMember('freeBorrowingAmount')]
     public str parmFreeBorrowingAmount(str _freeBorrowingAmount = freeBorrowingAmount)
     {
@@ -174,14 +175,29 @@ public class RMarketJson_Bybit_GetCollateral_Item
 			<Method>
 				<Name>parmMaxBorrowingAmount</Name>
 				<Source><![CDATA[
-    /// <summary> Получает или устанавливает сумму беспроцентного займа </summary>
-    /// <param name="_freeBorrowAmount"> Беспроцентный лимит займа </param>
-    /// <returns> Беспроцентный лимит займа </returns>
+    /// <summary> </summary>
+    /// <param name="_freeBorrowAmount"> </param>
+    /// <returns> </returns>
     [DataMember('maxBorrowingAmount')]
     public str parmMaxBorrowingAmount(str _maxBorrowingAmount = maxBorrowingAmount)
     {
         maxBorrowingAmount = _maxBorrowingAmount;
         return maxBorrowingAmount;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmCollateralSwitch</Name>
+				<Source><![CDATA[
+    /// <summary> </summary>
+    /// <param name="_collateralSwitch"> </param>
+    /// <returns> </returns>
+    [DataMember('collateralSwitch')]
+    public boolean parmCollateralSwitch(boolean _collateralSwitch = collateralSwitch)
+    {
+        collateralSwitch = _collateralSwitch;
+        return collateralSwitch;
     }
 
 ]]></Source>

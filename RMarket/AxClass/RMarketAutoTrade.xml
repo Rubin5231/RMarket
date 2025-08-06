@@ -224,6 +224,9 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
         // STEP 3 - Обработать действия стратегий по каждому субсчету
         this.makeAccountActions(account);
 
+        // STEP 4 - Check and handle position and it's orders
+        this.checkHandlePosition(account);
+
         // STEP 2 - Синхронизировать тестовый счет просчетом ордеров, repeat for real account
         this.synchronizeAccount(account);
 
@@ -252,6 +255,10 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
     protected void synchronizeAccount(RMarketAccount _account)
     {
         int attemptsNum;
+
+        // Take last transaction dt
+        // Do request for transactions from last known to now
+        // Save every transactions with link to order and actualize order and its position status
 
         //Request balance
         do
@@ -304,7 +311,10 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
                 join strategy
                     where strategy.StrategyId == action.StrategyId
                        && strategy.StrategyId == subAccount.StrategyId
+                //TODO notexists join actionLog
             {
+                ttsbegin;
+
                 // calculate signal for action
                 signal = action.calcSignal(subAccount, tsCursor);
 
@@ -317,6 +327,8 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
                     
                     this.executeAction(subAccount, action);
                 }
+
+                ttscommit;
             }
         }
     }
@@ -341,13 +353,70 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
                 break;
 
             case RMarketStrategyActionType::CloseLong:
+                // Close long position by MarketOrder
+                this.closePosition(_subAccount, RMarketPositionDirection::Long);
+                break;
             case RMarketStrategyActionType::CloseShort:
+                // Close short position by MarketOrder
+                this.closePosition(_subAccount, RMarketPositionDirection::Short);
+                break;
             case RMarketStrategyActionType::OpenLong:
+                // Create new long position if long position not exists
+                this.openPosition(_subAccount, RMarketPositionDirection::Long);
+                break;
             case RMarketStrategyActionType::OpenShort:
+                // Create new short position if short position not exists
+                this.openPosition(_subAccount, RMarketPositionDirection::Short);
+                break;
             case RMarketStrategyActionType::TrailOrder:
+                // Not understand yet
             default:
                 throw error(strFmt("Action type %1 isn't implemented yet!", enum2Str(_action.type)));
         }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>closePosition</Name>
+				<Source><![CDATA[
+    protected void closePosition(RMarketSubAccount _subAccount, RMarketPositionDirection _direction)
+    {
+        // Ask market for actual size of current _direction position
+        // Create Market order for closing position
+        // Synchronize account's transactions
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>openPosition</Name>
+				<Source><![CDATA[
+    protected void openPosition(RMarketSubAccount _subAccount, RMarketPositionDirection _direction)
+    {
+        RMarketPosition position;
+
+        position.clear();
+        position.initValue();
+        position.initFromSubAccount(_subAccount);
+        position.Direction = _direction;
+        //position.PriceEntry
+        //position.Size
+        //position.SignalDateTime
+        //position.SignalTimestamp
+        if (position.validateWrite())
+            position.write();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>checkHandlePosition</Name>
+				<Source><![CDATA[
+    // STEP 4 - Check and handle position and it's orders
+    protected void checkHandlePosition(RMarketAccount _account)
+    {
+
     }
 
 ]]></Source>

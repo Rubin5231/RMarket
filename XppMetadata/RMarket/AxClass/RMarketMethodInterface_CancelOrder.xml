@@ -50,8 +50,14 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>

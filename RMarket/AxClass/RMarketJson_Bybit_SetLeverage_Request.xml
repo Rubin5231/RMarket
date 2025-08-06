@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_SetLeverage_Request</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_SetLeverage_Request
+{
+    private str leverage;
+
+    }
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmLeverage</Name>
+				<Source><![CDATA[
+        /// <summary> Получает или устанавливает значение кредитного плеча. Допустимый диапазон: ["2" .. "10"] </summary>
+    /// <param name="_leverage"> Уровень кредитного плеча (целое число в виде строки) </param>
+    /// <returns> Уровень кредитного плеча </returns>
+    [DataMember('leverage')]
+    public str parmLeverage(str _leverage = leverage)
+    {
+        leverage = _leverage;
+        return leverage;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>jsonRequest</Name>
+				<Source><![CDATA[
+    /// <summary>Формирует JSON-тело запроса</summary>
+    /// <returns>Строка с JSON-запросом</returns>
+    public str jsonRequest()
+    {
+        str ret = FormJsonSerializer::serializeClass(this);
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

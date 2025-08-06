@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJob_Orders</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJob_Orders
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Class entry point. The system will call this method when a designated menu 
+    /// is selected or when execution starts and this class is set as the startup class.
+    /// </summary>
+    /// <param name = "_args">The specified arguments.</param>
+    public static void main(Args _args)
+    {
+        RMarketTable market = RMarketTable::find('TestBybit');
+        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11');
+        RMarketSymbolId symbolId = "BTCUSDT";
+        RMarketOrderSide side = RMarketOrderSide::Sell;
+        RMarketOrderType type = RMarketOrderType::Market;
+
+        str orderId;
+        
+        orderId = RMarketJob_Orders::createOrder(
+            market, 
+            key,
+            symbolId,
+            side,
+            type,
+            "0.00001",
+            "110000");
+
+        if (orderId)
+        {
+            Info(strFmt("Order '%1' created", orderId));
+
+            orderId = RMarketJob_Orders::cancelOrder(
+                market,
+                key,
+                symbolId,
+                orderId);
+            
+            if (orderId)
+                Info(strFmt("Order '%1' canceled", orderId));
+        }
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createOrder</Name>
+				<Source><![CDATA[
+    public static str createOrder(
+        RMarketTable _market, 
+        RMarketApiKey _apiKey,
+        RMarketSymbolId _symbolId,
+        RMarketOrderSide _side,
+        RMarketOrderType _type,
+        str _qty,
+        str _price)
+    {
+        RMarketMethodInterface_CreateOrder apiMethod = RMarketMethodInterface::CreateOrder(_market.ApiType);
+        apiMethod.setBaseUrl(_market.ApiUrl);
+        apiMethod.setApiKey(_apiKey);
+        apiMethod.initParameters(
+            _market.Type,
+            _symbolId, 
+            _side, 
+            _type, 
+            _qty,
+            _price/*, "50000"*/);
+        apiMethod.execute();
+        str createdOrderId = apiMethod.getOrderId();
+        return createdOrderId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>cancelOrder</Name>
+				<Source><![CDATA[
+    // Отмена ордера
+    public static str cancelOrder(
+        RMarketTable _market, 
+        RMarketApiKey _apiKey,
+        RMarketSymbolId _symbolId,
+        str _orderId)
+    {
+        RMarketMethodInterface_CancelOrder apiMethod = RMarketMethodInterface::CancelOrder(_market.ApiType);
+        apiMethod.setBaseUrl(_market.ApiUrl);
+        apiMethod.setApiKey(_apiKey);
+        apiMethod.initParameters(_market.Type, _symbolId, _orderId);
+        apiMethod.execute();
+        str canceledOrderId = apiMethod.getOrderId();
+        return canceledOrderId;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

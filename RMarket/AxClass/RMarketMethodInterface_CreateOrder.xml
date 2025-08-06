@@ -50,9 +50,10 @@ interface RMarketMethodInterface_CreateOrder
     /// <param name="_clientOrderId"> Клиентский идентификатор ордера </param>
     /// <returns> Результат создания ордера </returns>
     public void initParameters(
-        str _symbol,
-        str _side,
-        str _orderType,
+        RMarketType _marketType,
+        RMarketSymbolId _symbol,
+        RMarketOrderSide _orderSide,
+        RMarketOrderType _orderType,
         str _qty,
         str _price = '',
         str _clientOrderId = '')

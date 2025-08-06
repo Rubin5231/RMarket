@@ -4,8 +4,8 @@
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
-			<Name>Plan</Name>
-			<Label>Plan</Label>
+			<Name>Created</Name>
+			<Label>Created</Label>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>Open</Name>

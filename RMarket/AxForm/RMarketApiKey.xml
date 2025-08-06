@@ -21,7 +21,47 @@ public class RMarketApiKey extends FormRun
 		<AxFormDataSource xmlns="">
 			<Name>RMarketApiKey</Name>
 			<Table>RMarketApiKey</Table>
-			<Fields />
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>ApiKey</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>CreatedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>CreatedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>KeyName</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Login</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>MarketId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Secret</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
 			<ReferencedDataSources />
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
@@ -92,7 +132,53 @@ public class RMarketApiKey extends FormRun
 						<Type>Group</Type>
 						<FormControlExtension
 							i:nil="true" />
-						<Controls />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormStringControl">
+								<Name>Overview_MarketId</Name>
+								<Type>String</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<DataField>MarketId</DataField>
+								<DataSource>RMarketApiKey</DataSource>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormStringControl">
+								<Name>Overview_Login</Name>
+								<Type>String</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<DataField>Login</DataField>
+								<DataSource>RMarketApiKey</DataSource>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormStringControl">
+								<Name>Overview_KeyName</Name>
+								<Type>String</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<DataField>KeyName</DataField>
+								<DataSource>RMarketApiKey</DataSource>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormStringControl">
+								<Name>Overview_ApiKey</Name>
+								<Type>String</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<DataField>ApiKey</DataField>
+								<DataSource>RMarketApiKey</DataSource>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormStringControl">
+								<Name>Overview_Secret</Name>
+								<Type>String</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<DataField>Secret</DataField>
+								<DataSource>RMarketApiKey</DataSource>
+							</AxFormControl>
+						</Controls>
 						<DataGroup>Overview</DataGroup>
 						<DataSource>RMarketApiKey</DataSource>
 					</AxFormControl>

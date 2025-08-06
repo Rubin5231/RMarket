@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_SetMarginTrade</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_SetMarginTrade extends RMarketJson_Bybit_Response
+{
+    private RMarketJson_Bybit_SetMarginTrade_Result result;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmResult</Name>
+				<Source><![CDATA[
+    /// <summary> Получает или устанавливает результат операции </summary>
+    /// <param name="_result"> Результат переключения режима </param>
+    /// <returns> Объект результата </returns>
+    [DataMemberAttribute('result')]
+    public RMarketJson_Bybit_SetMarginTrade_Result parmResult(RMarketJson_Bybit_SetMarginTrade_Result _result = result)
+    {
+        result = _result;
+        return result;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

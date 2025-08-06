@@ -25,6 +25,13 @@
 			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
+			<Name>category</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
 			<Name>symbol</Name>
 			<Attributes />
 		</AxClassMemberVariable>
@@ -51,8 +58,14 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>

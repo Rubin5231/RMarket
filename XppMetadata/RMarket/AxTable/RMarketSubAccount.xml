@@ -69,5 +69,23 @@
 				<TypeName>RMarketAccount</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>RMarketSymbol</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketSymbol</TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

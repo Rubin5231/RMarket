@@ -4,8 +4,8 @@
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
-			<Name>NS</Name>
-			<Label>NS</Label>
+			<Name>None</Name>
+			<Label>None</Label>
 			<Value>2</Value>
 		</AxEnumValue>
 		<AxEnumValue>

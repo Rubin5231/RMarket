@@ -65,8 +65,8 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
@@ -77,10 +77,9 @@
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
-					<DefaultValue>'spot'</DefaultValue>
-					<Name>_category</Name>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>

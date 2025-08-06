@@ -5,8 +5,156 @@
 		<Declaration><![CDATA[
 public class RMarketAutoTrade_Bybit extends RMarketAutoTrade
 {
+
 }
 ]]></Declaration>
-		<Methods />
+		<Methods>
+			<Method>
+				<Name>prepareAccount</Name>
+				<Source><![CDATA[
+    protected void prepareAccount(RMarketAccount _account)
+    {
+        // For margin trade
+        this.enableCollateral(_account);
+        this.enableMarginTradeLeverage(_account);
+
+        super(_account);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>enableCollateral</Name>
+				<Source><![CDATA[
+    protected void enableCollateral(RMarketAccount _account)
+    {
+        RMarketSubAccount subAccount;
+        boolean res = true;
+
+        while select subAccount
+            where subAccount.Active    == NoYes::Yes
+               && subAccount.AccountId == _account.AccountId
+        {
+            if (!this.getCollateralSwitch(_account, subAccount.RMarketSymbol().BaseCrypto))
+            {
+                if (!this.setCollateralSwitch(_account, subAccount.RMarketSymbol().BaseCrypto, true))
+                {
+                    res = res && checkfailed(strFmt("Unable to turn on margintrade for %1",
+                        subAccount.RMarketSymbol().BaseCrypto));
+                }
+            }
+        }
+
+        if (!res)
+            throw error(strFmt("Unable to prepare for margin trade on account %1", _account.AccountId));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>enableMarginTradeLeverage</Name>
+				<Source><![CDATA[
+    protected void enableMarginTradeLeverage(RMarketAccount _account)
+    {
+        real spotLeverage, effectiveLeverage;
+        boolean spotMarginMode;
+
+        [spotLeverage, spotMarginMode, effectiveLeverage] = this.getMarginTradeStatus(_account);
+
+        if (!spotMarginMode)
+            if (!this.setMarginTrade(_account, true))   //HARCODE
+                throw error(strFmt("Unable to set margin trade on account %1", _account.AccountId));
+        
+        if (spotLeverage != _account.Leverage)          
+            if (!this.setLeverage(_account, _account.Leverage))
+                throw error(strFmt("Unable to set leverage %2 on account %1", _account.AccountId, _account.Leverage));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getCollateralSwitch</Name>
+				<Source><![CDATA[
+    protected boolean getCollateralSwitch(RMarketAccount _account, RMarketCryptoCode _currency)
+    {
+        RMarketMethod_Bybit_GetCollateral apiMethod = new RMarketMethod_Bybit_GetCollateral();
+        apiMethod.setBaseUrl(_account.RMarketTable().ApiUrl);
+        apiMethod.setApiKey(_account.RMarketApiKey());
+        apiMethod.initParameters(_currency);
+        apiMethod.execute();
+        RMarketJson_Bybit_GetCollateral_Item item = apiMethod.getResult();
+        return item.parmCollateralSwitch();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setCollateralSwitch</Name>
+				<Source><![CDATA[
+    protected boolean setCollateralSwitch(RMarketAccount _account, RMarketCryptoCode _currency, boolean _set)
+    {
+        RMarketMethod_Bybit_SetCollateral apiMethod = new RMarketMethod_Bybit_SetCollateral();
+        apiMethod.setBaseUrl(_account.RMarketTable().ApiUrl);
+        apiMethod.setApiKey(_account.RMarketApiKey());
+        apiMethod.initParameters(_currency, _set);
+        apiMethod.execute();
+        RMarketJson_Bybit_Response result = apiMethod.getResult();
+        return result.parmRetCode() == 0;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getMarginTradeStatus</Name>
+				<Source><![CDATA[
+    protected container getMarginTradeStatus(RMarketAccount _account)
+    {
+        container ret;
+        RMarketMethod_Bybit_GetMarginTradeStatus apiMethod = new RMarketMethod_Bybit_GetMarginTradeStatus();
+        apiMethod.setBaseUrl(_account.RMarketTable().ApiUrl);
+        apiMethod.setApiKey(_account.RMarketApiKey());
+        apiMethod.execute();
+        ret = [
+            (apiMethod.getResult().parmSpotLeverage() == "") ? 0.0 : str2Num(apiMethod.getResult().parmSpotLeverage()),
+            (apiMethod.getResult().parmSpotMarginMode() == "1"),
+            str2Num(apiMethod.getResult().parmEffectiveLeverage())];
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setMarginTrade</Name>
+				<Source><![CDATA[
+    protected boolean setMarginTrade(RMarketAccount _account, boolean _set)
+    {
+        RMarketMethod_Bybit_SetMarginTrade apiMethod = new RMarketMethod_Bybit_SetMarginTrade();
+        apiMethod.setBaseUrl(_account.RMarketTable().ApiUrl);
+        apiMethod.setApiKey(_account.RMarketApiKey());
+        apiMethod.initParameters(_set);
+        apiMethod.execute();
+        RMarketJson_Bybit_Response result = apiMethod.getResult();
+        return result.parmRetCode() == 0;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setLeverage</Name>
+				<Source><![CDATA[
+    protected boolean setLeverage(RMarketAccount _account, int _leverage)
+    {
+        RMarketMethod_Bybit_SetLeverage apiMethod = new RMarketMethod_Bybit_SetLeverage();
+        apiMethod.setBaseUrl(_account.RMarketTable().ApiUrl);
+        apiMethod.setApiKey(_account.RMarketApiKey());
+        apiMethod.initParameters(_leverage);
+        apiMethod.execute();
+        RMarketJson_Bybit_SetMarginTrade result = apiMethod.getResult();
+        return result.parmResult().parmSpotMarginMode() == "1";
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

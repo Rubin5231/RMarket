@@ -38,7 +38,7 @@ public class RMarketJob_Instrument
         RMarketMethodInterface_Instrument apiMethod = RMarketMethodInterface::Instrument(_market.ApiType);
         apiMethod.setBaseUrl(_market.ApiUrl);
         //apiMethod.setApiKey(_apiKey);
-        apiMethod.initParameters(_symbol.SymbolId);
+        apiMethod.initParameters(_symbol.SymbolId, _market.Type);
         apiMethod.execute();
         //str createdOrderId = 
         return con2Str(apiMethod.getInfoCon(), ' | ');

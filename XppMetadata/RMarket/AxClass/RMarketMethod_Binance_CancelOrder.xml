@@ -8,18 +8,21 @@
 	</Implements>
 	<Members>
 		<AxClassMemberVariable>
+			<Tags></Tags>
 			<Type>Class</Type>
 			<TypeName>RMarketJson_Binance_CancelOrder</TypeName>
 			<Name>responseContract</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
+			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>symbol</Name>
 			<Attributes />
 		</AxClassMemberVariable>
 		<AxClassMemberVariable>
+			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
 			<Name>orderId</Name>
@@ -31,6 +34,7 @@
 			<Name>new</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
+				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -39,17 +43,26 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbol</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<Name>_orderId</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -57,20 +70,15 @@
 			<Name>processResponse</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
+				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
-			<Variables>
-				<AxMethodVariable>
-					<Type>String</Type>
-					<TypeName></TypeName>
-					<Name>responseStr</Name>
-				</AxMethodVariable>
-			</Variables>
 		</Method>
 		<Method>
 			<Name>getOrderId</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
 			</ReturnType>

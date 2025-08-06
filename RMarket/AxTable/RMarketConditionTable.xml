@@ -369,6 +369,12 @@ public class RMarketConditionTable extends common
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
+			i:type="AxTableFieldInt64">
+			<Name>RefTableId</Name>
+			<ExtendedDataType>RefTableId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
 			<Name>Num</Name>
 		</AxTableField>
@@ -462,6 +468,11 @@ public class RMarketConditionTable extends common
 					<Name>RefRecId</Name>
 					<Field>RefRecId</Field>
 					<RelatedField>RecId</RelatedField>
+				</AxTableRelationConstraint>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintFixed">
+					<Name>RefTableId</Name>
+					<Field>RefTableId</Field>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>

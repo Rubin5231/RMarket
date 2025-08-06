@@ -18,6 +18,20 @@
 			<Tags></Tags>
 			<Type>String</Type>
 			<TypeName></TypeName>
+			<Name>category</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>ExtendedDataType</Type>
+			<TypeName>RMarketSymbolId</TypeName>
+			<Name>symbol</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
 			<Name>accountType</Name>
 			<Attributes />
 		</AxClassMemberVariable>
@@ -34,6 +48,20 @@
 		<Method>
 			<Name>initParameters</Name>
 			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSymbolId</TypeName>
+					<Name>_symbol</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketType</TypeName>
+					<Name>_marketType</Name>
+				</AxMethodParameter>
+			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
 				<TypeName></TypeName>

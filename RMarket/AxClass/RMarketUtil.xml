@@ -12,7 +12,7 @@ public class RMarketUtil
 			<Method>
 				<Name>normalizeDateTime2UTC</Name>
 				<Source><![CDATA[
-    public static UtcDateTime normalizeDateTime2UTC(UtcDateTime _value)
+        public static UtcDateTime normalizeDateTime2UTC(UtcDateTime _value)
     {
         if (!_value)
         {
@@ -177,6 +177,89 @@ public class RMarketUtil
     {
         _json.WritePropertyName(_name);
         _json.WriteValue(_value);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>enum2strBBT</Name>
+				<Source><![CDATA[
+    public static str enum2strBBT(anytype _enum)
+    {
+        str ret = "";
+
+        if (typeOf(_enum) != Types::Enum)
+            throw error("Wrong use of function");
+
+        switch (DictEnum::value2id(_enum))
+        {
+            case enumNum(RMarketType):
+                switch (_enum)
+                {
+                    case RMarketType::None:    ret = "";       break;
+                    case RMarketType::Spot:    ret = "spot";   break;
+                    case RMarketType::Futures: ret = "linear"; break;
+                }
+                break;
+            
+            case enumNum(RMarketOrderType):
+                switch (_enum)
+                {
+                    case RMarketOrderType::None:   ret = "";       break;
+                    case RMarketOrderType::Limit:  ret = "Limit";  break;
+                    case RMarketOrderType::Market: ret = "Market"; break;
+                }
+                break;
+            
+            case enumNum(RMarketOrderSide):
+                switch (_enum)
+                {
+                    case RMarketOrderSide::None: ret = "";     break;
+                    case RMarketOrderSide::Buy:  ret = "Buy";  break;
+                    case RMarketOrderSide::Sell: ret = "Sell"; break;
+                }
+                break;
+
+            default: throw error("Wrong use of function");
+        }
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>enum2strBNN</Name>
+				<Source><![CDATA[
+    public static str enum2strBNN(anytype _enum)
+    {
+        str ret = "";
+
+        if (typeOf(_enum) != Types::Enum)
+            throw error("Wrong use of function");
+
+        switch (DictEnum::value2id(_enum))
+        {
+            case enumNum(RMarketOrderType):
+                switch (_enum)
+                {
+                    case RMarketOrderType::None:   ret = "";       break;
+                    case RMarketOrderType::Limit:  ret = "LIMIT";  break;
+                    case RMarketOrderType::Market: ret = "MARKET"; break;
+                }
+                break;
+            
+            case enumNum(RMarketOrderSide):
+                switch (_enum)
+                {
+                    case RMarketOrderSide::None: ret = "";     break;
+                    case RMarketOrderSide::Buy:  ret = "BUY";  break;
+                    case RMarketOrderSide::Sell: ret = "SELL"; break;
+                }
+                break;
+
+            default: throw error("Wrong use of function");
+        }
+        return ret;
     }
 
 ]]></Source>

@@ -56,14 +56,18 @@ public class RMarketMethod_Bybit_Klines extends RMarketMethod implements RMarket
     /// <param name="_interval">Интервал свечи</param>
     /// <param name="_limit">Количество свечей</param>
     /// <param name="_category">Категория (spot, linear, inverse)</param>
-    public void initParameters(str _symbol, str _interval, str _category = 'spot', int _limit = 1000)
+    void initParameters(
+        RMarketSymbolId _symbol,
+        str _interval,
+        RMarketType _marketType,
+        int _limit = 1000)
     {
-        category = _category;
+        category = RMarketUtil::enum2strBBT(_marketType);
         symbol = strUpr(_symbol);
         interval = _interval;
         limit = _limit;
 
-        apiClient.addQueryParam('category', _category);
+        apiClient.addQueryParam('category', category);
         apiClient.addQueryParam('symbol', symbol);
         apiClient.addQueryParam('interval', interval);
         apiClient.addQueryParam('limit', int2Str(limit));

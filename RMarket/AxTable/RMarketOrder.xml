@@ -160,7 +160,7 @@ public class RMarketOrder extends common
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
 			<Name>Status</Name>
-			<EnumType>RMarketPositionOrderStatus</EnumType>
+			<EnumType>RMarketOrderStatus</EnumType>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

@@ -9,7 +9,6 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     
     protected str symbol;
     protected str interval;
-    //protected int limit;
     protected RMarketTimestamp fromTS;
     protected RMarketTimestamp toTS;
     
@@ -39,16 +38,11 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
     /// Устанавливает основные параметры запроса
     /// </summary>
     /// <param name="_symbol">Торговая пара</param>
-    /// <param name="_interval">Интервал свечи</param>
-    /// <param name="_limit">Количество свечей</param>
-    /// <param name="_category">Категория (spot, linear, inverse)</param>
-    public void initParameters(str _symbol, int _limit = 1000)
+    public void initParameters(RMarketSymbolId _symbol, RMarketType _marketType)
     {
         symbol = strUpr(_symbol);
-        //limit = _limit;
 
         apiClient.addQueryParam('symbol', symbol);
-        //apiClient.addQueryParam('limit', int2Str(limit));
     }
 
 ]]></Source>
@@ -56,11 +50,6 @@ public class RMarketMethod_Binance_ExchangeInfo extends RMarketMethod implements
 			<Method>
 				<Name>prepare</Name>
 				<Source><![CDATA[
-    //public int getLimit()
-    //{
-    //    return limit;
-    //}
-
     public void prepare()
     {
         // Add your code here...

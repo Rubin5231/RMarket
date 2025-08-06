@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketMethod_Bybit_SetMarginTrade</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+///
+/// </summary>
+public class RMarketMethod_Bybit_SetMarginTrade extends RMarketMethod
+{
+    protected RMarketJson_Bybit_SetMarginTrade_Request requestContract;
+    protected RMarketJson_Bybit_SetMarginTrade responseContract;
+    protected str coin;
+    protected str collateralSwitch;
+
+    
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    /// <summary> Конструктор класса </summary>
+    public void new()
+    {
+        super();
+
+        apiClient = new RMarketApiClientBybit();
+        apiClient.parmHttpMethod(RMarketAPIHttpMethod::POST);
+        apiClient.parmMethodUrl('/v5/account/set-collateral-switch');
+
+        requestContract = new RMarketJson_Bybit_SetMarginTrade_Request();
+
+        // Do this before execute()
+        //apiClient.setBaseUrl(URL _baseUrl);
+        //apiClient.setApiKey(RMarketApiKey _apiKey)
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initParameters</Name>
+				<Source><![CDATA[
+    public void initParameters(
+        boolean _spotMarginMode)
+    {
+        //https://bybit-exchange.github.io/docs/v5/order/cancel-order
+        //spotMarginMode	true	string	1: on, 0: off
+        requestContract.parmSpotMarginMode(_spotMarginMode ? "1" : "0");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>prepare</Name>
+				<Source><![CDATA[
+    public void prepare()
+    {
+        apiClient.setRequestBody(requestContract.jsonRequest());
+
+        super();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processResponse</Name>
+				<Source><![CDATA[
+    public void processResponse()
+    {
+        super();
+
+        str responseStr = apiClient.getResponseBody();
+
+        if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
+            throw Error(strfmt("Request returns error!"));
+    
+        responseContract = RMarketJsonSerializer::deserializeObject(
+            classNum(RMarketJson_Bybit_SetMarginTrade),
+            responseStr) as RMarketJson_Bybit_SetMarginTrade;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getResult</Name>
+				<Source><![CDATA[
+    public RMarketJson_Bybit_SetMarginTrade getResult()
+    {
+        return responseContract;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
