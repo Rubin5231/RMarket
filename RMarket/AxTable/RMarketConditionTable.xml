@@ -134,25 +134,25 @@ public class RMarketConditionTable extends common
     public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
     {
         boolean ret;
-        real leftValue  = this.calcLeftValue(_subAccount, _tsCursor);
-        real rightValue = this.calcRightValue(_subAccount, _tsCursor);
+        real value  = this.calcValue(_subAccount, _tsCursor);
+        real value2 = this.calcValue2(_subAccount, _tsCursor);
 
         switch (this.ComparisonType)
         {
             case RMarketConditionComparisonType::Equal:
-                ret = (leftValue == rightValue);
+                ret = (value == value2);
                 break;
             case RMarketConditionComparisonType::Less:
-                ret = (leftValue <  rightValue);
+                ret = (value <  value2);
                 break;
             case RMarketConditionComparisonType::LessOrEqual:
-                ret = (leftValue <= rightValue);
+                ret = (value <= value2);
                 break;
             case RMarketConditionComparisonType::More:
-                ret = (leftValue >  rightValue);
+                ret = (value >  value2);
                 break;
             case RMarketConditionComparisonType::MoreOrEqual:
-                ret = (leftValue >= rightValue);
+                ret = (value >= value2);
                 break;
             default:
                 throw error(strFmt("Comparison type %1 isn't implemented yet!", enum2Str(this.ComparisonType)));
@@ -163,7 +163,7 @@ public class RMarketConditionTable extends common
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>calcLeftValue</Name>
+				<Name>calcValue</Name>
 				<Source><![CDATA[
     // Loop and calculate conditions
     //while select condition
@@ -172,52 +172,52 @@ public class RMarketConditionTable extends common
     //{
     //}
 
-    protected real calcLeftValue(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
+    protected real calcValue(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
     {
-        return this.calcValue(
+        return this.calcValueW(
             _subAccount, 
             _tsCursor,
-            this.LeftSource,
-            this.LeftIndicatorId,
-            this.LeftCandleValue,
-            this.LeftValue,
-            this.LeftIndex,
-            this.LeftInterval
+            this.Source,
+            this.IndicatorId,
+            this.CandleValue,
+            this.Value,
+            this.Shift,
+            this.Interval
             );
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>calcRightValue</Name>
+				<Name>calcValue2</Name>
 				<Source><![CDATA[
-    protected real calcRightValue(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
+    protected real calcValue2(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
     {
-        return this.calcValue(
+        return this.calcValueW(
             _subAccount,
             _tsCursor,
-            this.RightSource,
-            this.RightIndicatorId,
-            this.RightCandleValue,
-            this.RightValue,
-            this.RightIndex,
-            this.RightInterval
+            this.SecondSource,
+            this.SecondIndicatorId,
+            this.SecondCandleValue,
+            this.SecondValue,
+            this.SecondShift,
+            this.SecondInterval
             );
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>calcValue</Name>
+				<Name>calcValueW</Name>
 				<Source><![CDATA[
-    protected real calcValue(
+    protected real calcValueW(
         RMarketSubAccount           _subAccount, 
         RMarketTimestamp            _tsCursor,
         RMarketConditionValueSource _src,
         RMarketIndicatorId          _indicatorId,
         RMarketIndicatorBaseEnum    _candleValue,
         real                        _value,
-        int                         _index,
+        int                         _shift,
         RMarketCandleInterval       _interval
         )
     {
@@ -229,7 +229,7 @@ public class RMarketConditionTable extends common
         if (_src == RMarketConditionValueSource::Candle ||
             _src == RMarketConditionValueSource::Indicator)
         {
-            _tsCursor = RMarketUtil::calculateCandleTimestamp(_tsCursor, _interval, _index);
+            _tsCursor = RMarketUtil::calculateCandleTimestamp(_tsCursor, _interval, _shift);
             dim = RMarketDim::findOrCreateDims(
                 _subAccount.RMarketAccount().MarketId, 
                 _subAccount.SymbolId, 
@@ -313,65 +313,102 @@ public class RMarketConditionTable extends common
 			<Fields />
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
-			<Name>Overview</Name>
+			<Name>OverviewAction</Name>
 			<Label>Overview</Label>
 			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>Relation</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>RefRecId</DataField>
+				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>Num</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftSource</DataField>
+					<DataField>Source</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftIndicatorId</DataField>
+					<DataField>IndicatorId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftCandleValue</DataField>
+					<DataField>CandleValue</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftValue</DataField>
+					<DataField>Value</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftIndex</DataField>
+					<DataField>Shift</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>LeftInterval</DataField>
+					<DataField>Interval</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>ComparisonType</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightSource</DataField>
+					<DataField>SecondSource</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightIndicatorId</DataField>
+					<DataField>SecondIndicatorId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightCandleValue</DataField>
+					<DataField>SecondCandleValue</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightValue</DataField>
+					<DataField>SecondValue</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightIndex</DataField>
+					<DataField>SecondShift</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RightInterval</DataField>
+					<DataField>SecondInterval</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>OverviewOrders</Name>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>Relation</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>RefRecId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Num</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Source</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IndicatorId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>CandleValue</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Shift</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Interval</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Value</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
 		</AxTableFieldGroup>
 	</FieldGroups>
 	<Fields>
 		<AxTableField xmlns=""
-			i:type="AxTableFieldInt64">
-			<Name>RefRecId</Name>
-			<ExtendedDataType>RefRecId</ExtendedDataType>
-			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			i:type="AxTableFieldEnum">
+			<Name>Relation</Name>
+			<EnumType>RMarketConditionRelation</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt64">
-			<Name>RefTableId</Name>
-			<ExtendedDataType>RefTableId</ExtendedDataType>
+			<Name>RefRecId</Name>
+			<ExtendedDataType>RefRecId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
@@ -380,32 +417,32 @@ public class RMarketConditionTable extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>LeftSource</Name>
+			<Name>Source</Name>
 			<EnumType>RMarketConditionValueSource</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
-			<Name>LeftIndicatorId</Name>
+			<Name>IndicatorId</Name>
 			<ExtendedDataType>RMarketIndicatorId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>LeftCandleValue</Name>
+			<Name>CandleValue</Name>
 			<EnumType>RMarketIndicatorBaseEnum</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
-			<Name>LeftIndex</Name>
+			<Name>Shift</Name>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>LeftInterval</Name>
+			<Name>Interval</Name>
 			<EnumType>RMarketCandleInterval</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">
-			<Name>LeftValue</Name>
+			<Name>Value</Name>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
@@ -414,32 +451,32 @@ public class RMarketConditionTable extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>RightSource</Name>
+			<Name>SecondSource</Name>
 			<EnumType>RMarketConditionValueSource</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldString">
-			<Name>RightIndicatorId</Name>
+			<Name>SecondIndicatorId</Name>
 			<ExtendedDataType>RMarketIndicatorId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>RightCandleValue</Name>
+			<Name>SecondCandleValue</Name>
 			<EnumType>RMarketIndicatorBaseEnum</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
-			<Name>RightIndex</Name>
+			<Name>SecondShift</Name>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>RightInterval</Name>
+			<Name>SecondInterval</Name>
 			<EnumType>RMarketCandleInterval</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">
-			<Name>RightValue</Name>
+			<Name>SecondValue</Name>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />
@@ -471,44 +508,63 @@ public class RMarketConditionTable extends common
 				</AxTableRelationConstraint>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintFixed">
-					<Name>RefTableId</Name>
-					<Field>RefTableId</Field>
+					<Name>Relation</Name>
+					<Field>Relation</Field>
+					<ValueStr>RMarketConditionRelation::RMarketStrategyAction</ValueStr>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>
 		<AxTableRelation>
-			<Name>LeftIndicatorSetupTable</Name>
+			<Name>IndicatorSetupTable</Name>
 			<RelatedTable>RMarketIndicatorSetupTable</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
-					<Name>LeftIndicatorId</Name>
-					<Field>LeftIndicatorId</Field>
+					<Name>IndicatorId</Name>
+					<Field>IndicatorId</Field>
 					<RelatedField>IndicatorId</RelatedField>
 				</AxTableRelationConstraint>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintFixed">
-					<Name>LeftSource</Name>
-					<Field>LeftSource</Field>
+					<Name>Source</Name>
+					<Field>Source</Field>
 					<ValueStr>RMarketConditionValueSource::Indicator</ValueStr>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>
 		<AxTableRelation>
-			<Name>RightIndicatorSetupTable</Name>
+			<Name>SecondIndicatorSetupTable</Name>
 			<RelatedTable>RMarketIndicatorSetupTable</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
-					<Name>RightIndicatorId</Name>
-					<Field>RightIndicatorId</Field>
+					<Name>SecondIndicatorId</Name>
+					<Field>SecondIndicatorId</Field>
 					<RelatedField>IndicatorId</RelatedField>
 				</AxTableRelationConstraint>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintFixed">
-					<Name>RightSource</Name>
-					<Field>RightSource</Field>
+					<Name>SecondSource</Name>
+					<Field>SecondSource</Field>
 					<ValueStr>RMarketConditionValueSource::Indicator</ValueStr>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+		<AxTableRelation>
+			<Name>RMarketStrategyOrders</Name>
+			<RelatedTable>RMarketStrategyOrders</RelatedTable>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>RefRecId</Name>
+					<Field>RefRecId</Field>
+					<RelatedField>RecId</RelatedField>
+				</AxTableRelationConstraint>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintFixed">
+					<Name>Relation</Name>
+					<Field>Relation</Field>
+					<ValueStr>RMarketConditionRelation::RMarketStrategyOrders</ValueStr>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>

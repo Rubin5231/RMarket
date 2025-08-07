@@ -6,6 +6,13 @@
 			<Name>classDeclaration</Name>
 			<ReturnType />
 		</Method>
+		<Method>
+			<Name>currentCondition_DS</Name>
+			<ReturnType>
+				<Type>Class</Type>
+				<TypeName>FormDataSource</TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 	<DataSources>
 		<DataSource>
@@ -25,24 +32,12 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>action</Name>
-						</AxMethodVariable>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
 		</DataSource>
 		<DataSource>
-			<Name>RMarketConditionTable</Name>
+			<Name>ActionConditionTable</Name>
 			<Methods>
 				<Method>
 					<Name>create</Name>
@@ -58,24 +53,46 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>condition</Name>
-						</AxMethodVariable>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
+				</Method>
+			</Methods>
+			<Fields />
+		</DataSource>
+		<DataSource>
+			<Name>OrdersConditionTable</Name>
+			<Methods>
+				<Method>
+					<Name>create</Name>
+					<Visibility>Public</Visibility>
+					<Parameters>
+						<AxMethodParameter>
+							<Type>Enum</Type>
+							<TypeName>boolean</TypeName>
+							<DefaultValue>false</DefaultValue>
+							<Name>_append</Name>
+						</AxMethodParameter>
+					</Parameters>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
 				</Method>
 			</Methods>
 			<Fields />
 		</DataSource>
 	</DataSources>
 	<DataControls>
+		<Control>
+			<Name>ActionTabPage</Name>
+			<Type>TabPage</Type>
+			<Methods>
+				<Method>
+					<Name>pageActivated</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
 		<Control>
 			<Name>ActionNewButton</Name>
 			<Type>Button</Type>
@@ -99,13 +116,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>action</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -119,13 +129,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -139,13 +142,19 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>OrdersTabPage</Name>
+			<Type>TabPage</Type>
+			<Methods>
+				<Method>
+					<Name>pageActivated</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
 				</Method>
 			</Methods>
 		</Control>
@@ -172,13 +181,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyOrders</TypeName>
-							<Name>orders</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -205,13 +207,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>condition</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -225,13 +220,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -245,13 +233,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
