@@ -1,2 +1,8 @@
 /bin/
 /BuildProjectResult.log
+/Projects/.vs/
+/Projects/**/bin/
+/Projects/**/obj/
+*.rnrproj.user
+*.suo
+*.user

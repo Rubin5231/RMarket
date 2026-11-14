@@ -1,0 +1,1419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <BuildTasksDirectory Condition=" '$(BuildTasksDirectory)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\Dynamics\AX</BuildTasksDirectory>
+    <Model>RMarket</Model>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin</OutputPath>
+    <SchemaVersion>2.0</SchemaVersion>
+    <GenerateCrossReferences>True</GenerateCrossReferences>
+    <RunAppCheckerRules>False</RunAppCheckerRules>
+    <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
+    <DeployOnline>False</DeployOnline>
+    <ProjectGuid>{ef9030f0-bc69-4d6f-94c4-58e10c7a4f27}</ProjectGuid>
+    <Name>RMarket</Name>
+    <RootNamespace>RMarket</RootNamespace>
+    <StartupType>Class</StartupType>
+    <StartupObject>RMarketJob_EnableMarginTrade</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Configuration>Debug</Configuration>
+    <DBSyncInBuild>True</DBSyncInBuild>
+    <GenerateFormAdaptors>False</GenerateFormAdaptors>
+    <Company>
+    </Company>
+    <Partition>initial</Partition>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DataEntityExpandParentChildRelations>False</DataEntityExpandParentChildRelations>
+    <DataEntityUseLabelTextAsFieldName>False</DataEntityUseLabelTextAsFieldName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Action Menu Items\" />
+    <Folder Include="Base Enum Extensions\" />
+    <Folder Include="Base Enums\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Classes\Jobs" />
+    <Folder Include="Classes\IndicatorCalculator" />
+    <Folder Include="Classes\API Bybit Contracts" />
+    <Folder Include="Classes\API Binance Contracts" />
+    <Folder Include="Classes\ApiClient" />
+    <Folder Include="Classes\ApiMethod" />
+    <Folder Include="Classes\ApiMethodInterface" />
+    <Folder Include="Display Menu Items\" />
+    <Folder Include="EDT Integer64s\" />
+    <Folder Include="EDT Reals\" />
+    <Folder Include="EDT Strings\" />
+    <Folder Include="Extended Data Types\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Menu Extensions\" />
+    <Folder Include="Menus\" />
+    <Folder Include="Output Menu Items\" />
+    <Folder Include="Reports\" />
+    <Folder Include="Security Privileges\" />
+    <Folder Include="Security Roles\" />
+    <Folder Include="Simple Queries\" />
+    <Folder Include="Tables\" />
+    <Folder Include="Views\" />
+    <Folder Include="Workflow Categories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AxClass\CustTableTableEventHandler">
+      <SubType>Content</SubType>
+      <Name>CustTableTableEventHandler</Name>
+      <Link>Classes\CustTableTableEventHandler</Link>
+    </Content>
+    <Content Include="AxClass\NumberSeqModuleRMarket">
+      <SubType>Content</SubType>
+      <Name>NumberSeqModuleRMarket</Name>
+      <Link>Classes\NumberSeqModuleRMarket</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAccountSynchronize">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountSynchronize</Name>
+      <Link>Classes\RMarketAccountSynchronize</Link>
+    </Content>
+    <Content Include="AxClass\RMarketApiClient">
+      <SubType>Content</SubType>
+      <Name>RMarketApiClient</Name>
+      <Link>Classes\ApiClient\RMarketApiClient</Link>
+    </Content>
+    <Content Include="AxClass\RMarketApiClientBinance">
+      <SubType>Content</SubType>
+      <Name>RMarketApiClientBinance</Name>
+      <Link>Classes\ApiClient\RMarketApiClientBinance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketApiClientBybit">
+      <SubType>Content</SubType>
+      <Name>RMarketApiClientBybit</Name>
+      <Link>Classes\ApiClient\RMarketApiClientBybit</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAutoTrade">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTrade</Name>
+      <Link>Classes\RMarketAutoTrade</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAutoTradeMulti">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTradeMulti</Name>
+      <Link>Classes\RMarketAutoTradeMulti</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAutoTrade_Binance">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTrade_Binance</Name>
+      <Link>Classes\RMarketAutoTrade_Binance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAutoTrade_Bybit">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTrade_Bybit</Name>
+      <Link>Classes\RMarketAutoTrade_Bybit</Link>
+    </Content>
+    <Content Include="AxClass\RMarketAutoTrade_Test">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTrade_Test</Name>
+      <Link>Classes\RMarketAutoTrade_Test</Link>
+    </Content>
+    <Content Include="AxClass\RMarketCandlesLoad">
+      <SubType>Content</SubType>
+      <Name>RMarketCandlesLoad</Name>
+      <Link>Classes\RMarketCandlesLoad</Link>
+    </Content>
+    <Content Include="AxClass\RMarketFixGaps">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGaps</Name>
+      <Link>Classes\RMarketFixGaps</Link>
+    </Content>
+    <Content Include="AxClass\RMarketFixGapsCandlesCalc">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGapsCandlesCalc</Name>
+      <Link>Classes\RMarketFixGapsCandlesCalc</Link>
+    </Content>
+    <Content Include="AxClass\RMarketFixGapsCandlesDownload">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGapsCandlesDownload</Name>
+      <Link>Classes\RMarketFixGapsCandlesDownload</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalc">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalc</Name>
+      <Link>Classes\RMarketIndicatorCalc</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalculator">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalculator</Name>
+      <Link>Classes\IndicatorCalculator\RMarketIndicatorCalculator</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalculator_ATR">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalculator_ATR</Name>
+      <Link>Classes\IndicatorCalculator\RMarketIndicatorCalculator_ATR</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalculator_EMA">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalculator_EMA</Name>
+      <Link>Classes\IndicatorCalculator\RMarketIndicatorCalculator_EMA</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalculator_RSI">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalculator_RSI</Name>
+      <Link>Classes\IndicatorCalculator\RMarketIndicatorCalculator_RSI</Link>
+    </Content>
+    <Content Include="AxClass\RMarketIndicatorCalculator_SMA">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalculator_SMA</Name>
+      <Link>Classes\IndicatorCalculator\RMarketIndicatorCalculator_SMA</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob">
+      <SubType>Content</SubType>
+      <Name>RMarketJob</Name>
+      <Link>Classes\Jobs\RMarketJob</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest</Name>
+      <Link>Classes\Jobs\RMarketJobTest</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_Bybit_Wallet_Balance">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_Bybit_Wallet_Balance</Name>
+      <Link>Classes\Jobs\RMarketJobTest_Bybit_Wallet_Balance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_Kline_Bybit">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_Kline_Bybit</Name>
+      <Link>Classes\Jobs\RMarketJobTest_Kline_Bybit</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_ApiMethods">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_ApiMethods</Name>
+      <Link>Classes\Jobs\RMarketJob_ApiMethods</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_Collateral">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_Collateral</Name>
+      <Link>Classes\Jobs\RMarketJob_Collateral</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_EnableMarginTrade">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_EnableMarginTrade</Name>
+      <Link>Classes\RMarketJob_EnableMarginTrade</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_HistoryLoadCalcBatchStart">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_HistoryLoadCalcBatchStart</Name>
+      <Link>Classes\Jobs\RMarketJob_HistoryLoadCalcBatchStart</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_Instrument">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_Instrument</Name>
+      <Link>Classes\Jobs\RMarketJob_Instrument</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_Orders">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_Orders</Name>
+      <Link>Classes\Jobs\RMarketJob_Orders</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJob_rawJsonReader">
+      <SubType>Content</SubType>
+      <Name>RMarketJob_rawJsonReader</Name>
+      <Link>Classes\Jobs\RMarketJob_rawJsonReader</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJsonSerializer">
+      <SubType>Content</SubType>
+      <Name>RMarketJsonSerializer</Name>
+      <Link>Classes\RMarketJsonSerializer</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJsonSerializerValidZeroValueFlight">
+      <SubType>Content</SubType>
+      <Name>RMarketJsonSerializerValidZeroValueFlight</Name>
+      <Link>Classes\RMarketJsonSerializerValidZeroValueFlight</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_Account">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_Account</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_Account</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_Account_Balance">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_Account_Balance</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_Account_Balance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_CancelOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_CancelOrder</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_CancelOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_CreateOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_CreateOrder</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_CreateOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_CreateOrder_Fill">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_CreateOrder_Fill</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_CreateOrder_Fill</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_ExchangeInfo">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_ExchangeInfo</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_ExchangeInfo</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_ExchangeInfo_Filter">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_ExchangeInfo_Filter</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_ExchangeInfo_Filter</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_ExchangeInfo_RateLimit">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_ExchangeInfo_RateLimit</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_ExchangeInfo_RateLimit</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_ExchangeInfo_Symbol">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_ExchangeInfo_Symbol</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_ExchangeInfo_Symbol</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_Klines">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_Klines</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_Klines</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_Time">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_Time</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_Time</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_TradeList">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_TradeList</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_TradeList</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Binance_TradeList_Item">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Binance_TradeList_Item</Name>
+      <Link>Classes\API Binance Contracts\RMarketJson_Binance_TradeList_Item</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_CancelOrder_Request">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_CancelOrder_Request</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_CancelOrder_Request</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_CreateOrder_Request">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_CreateOrder_Request</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_CreateOrder_Request</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_ExecutionList">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_ExecutionList</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_ExecutionList</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_ExecutionList_Item">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_ExecutionList_Item</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_ExecutionList_Item</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_ExecutionList_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_ExecutionList_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_ExecutionList_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_GetCollateral">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_GetCollateral</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_GetCollateral</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_GetCollateral_Item">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_GetCollateral_Item</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_GetCollateral_Item</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_GetCollateral_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_GetCollateral_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_GetCollateral_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_GetMarginTradeStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_GetMarginTradeStatus</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_GetMarginTradeStatus</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_GetMarginTradeStatus_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_GetMarginTradeStatus_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_GetMarginTradeStatus_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument_Item">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument_Item</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument_Item</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument_LeverageFilter">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument_LeverageFilter</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument_LeverageFilter</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument_LotSizeFilter">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument_LotSizeFilter</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument_LotSizeFilter</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument_PriceFilter">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument_PriceFilter</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument_PriceFilter</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Instrument_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Instrument_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Instrument_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Kline">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Kline</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Kline</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Kline_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Kline_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Kline_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Order">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Order</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Order</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Order_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Order_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Order_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Response">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Response</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Response</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_SetCollateral_Request">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_SetCollateral_Request</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_SetCollateral_Request</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_SetLeverage_Request">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_SetLeverage_Request</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_SetLeverage_Request</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_SetMarginTrade">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_SetMarginTrade</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_SetMarginTrade</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_SetMarginTrade_Request">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_SetMarginTrade_Request</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_SetMarginTrade_Request</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_SetMarginTrade_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_SetMarginTrade_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_SetMarginTrade_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Time">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Time</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Time</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_Time_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_Time_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Time_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_WalletBalance">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_WalletBalance</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_WalletBalance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_WalletBalance_Account">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_WalletBalance_Account</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_WalletBalance_Account</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_WalletBalance_Coin">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_WalletBalance_Coin</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_WalletBalance_Coin</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_WalletBalance_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_WalletBalance_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_WalletBalance_Result</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod</Name>
+      <Link>Classes\ApiMethod\RMarketMethod</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_CancelOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_CancelOrder</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_CancelOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_CreateOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_CreateOrder</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_CreateOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_GetAccountBalance">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_GetAccountBalance</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_GetAccountBalance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_GetTradeHistory">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_GetTradeHistory</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_GetTradeHistory</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_Instrument">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_Instrument</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_Instrument</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_Klines">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_Klines</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_Klines</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethodInterface_Time">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_Time</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_Time</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_AccountBalance">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_AccountBalance</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_AccountBalance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_CancelOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_CancelOrder</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_CancelOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_CreateOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_CreateOrder</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_CreateOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_ExchangeInfo">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_ExchangeInfo</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_ExchangeInfo</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_Klines">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_Klines</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_Klines</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_MyTrades">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_MyTrades</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_MyTrades</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Binance_Time">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Binance_Time</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Binance_Time</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_AccountCoinsBalance">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_AccountCoinsBalance</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_AccountCoinsBalance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_CancelOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_CancelOrder</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_CancelOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_CreateOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_CreateOrder</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_CreateOrder</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_ExecutionList">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_ExecutionList</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_ExecutionList</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_GetCollateral">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_GetCollateral</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_GetCollateral</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_GetMarginTradeStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_GetMarginTradeStatus</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_GetMarginTradeStatus</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_Instrument">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_Instrument</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_Instrument</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_Klines">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_Klines</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_Klines</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_SetCollateral">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_SetCollateral</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_SetCollateral</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_SetLeverage">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_SetLeverage</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_SetLeverage</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_SetMarginTrade">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_SetMarginTrade</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_SetMarginTrade</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_Time">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_Time</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_Time</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_WalletBalance">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_WalletBalance</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_WalletBalance</Link>
+    </Content>
+    <Content Include="AxClass\RMarketNumberSequenceRegisterJob">
+      <SubType>Content</SubType>
+      <Name>RMarketNumberSequenceRegisterJob</Name>
+      <Link>Classes\Jobs\RMarketNumberSequenceRegisterJob</Link>
+    </Content>
+    <Content Include="AxClass\RMarketSymbolPropertyUpdate">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolPropertyUpdate</Name>
+      <Link>Classes\RMarketSymbolPropertyUpdate</Link>
+    </Content>
+    <Content Include="AxClass\RMarketUtil">
+      <SubType>Content</SubType>
+      <Name>RMarketUtil</Name>
+      <Link>Classes\RMarketUtil</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketAccountId">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountId</Name>
+      <Link>EDT Strings\RMarketAccountId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketApiKeyName">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKeyName</Name>
+      <Link>EDT Strings\RMarketApiKeyName</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketAPIMethodURL">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIMethodURL</Name>
+      <Link>EDT Strings\RMarketAPIMethodURL</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleClose">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleClose</Name>
+      <Link>Extended Data Types\RMarketCandleClose</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleDateTime">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleDateTime</Name>
+      <Link>Extended Data Types\RMarketCandleDateTime</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleHigh">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleHigh</Name>
+      <Link>Extended Data Types\RMarketCandleHigh</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleIntervalStr">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleIntervalStr</Name>
+      <Link>EDT Strings\RMarketCandleIntervalStr</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleLow">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleLow</Name>
+      <Link>Extended Data Types\RMarketCandleLow</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleOpen">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleOpen</Name>
+      <Link>Extended Data Types\RMarketCandleOpen</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleTurnover">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTurnover</Name>
+      <Link>Extended Data Types\RMarketCandleTurnover</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCandleVolume">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleVolume</Name>
+      <Link>Extended Data Types\RMarketCandleVolume</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketCryptoCode">
+      <SubType>Content</SubType>
+      <Name>RMarketCryptoCode</Name>
+      <Link>EDT Strings\RMarketCryptoCode</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketDimRecId">
+      <SubType>Content</SubType>
+      <Name>RMarketDimRecId</Name>
+      <Link>EDT Integer64s\RMarketDimRecId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketDurationMs">
+      <SubType>Content</SubType>
+      <Name>RMarketDurationMs</Name>
+      <Link>EDT Integer64s\RMarketDurationMs</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketId">
+      <SubType>Content</SubType>
+      <Name>RMarketId</Name>
+      <Link>EDT Strings\RMarketId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketIndicatorId">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorId</Name>
+      <Link>EDT Strings\RMarketIndicatorId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketIndicatorParameter">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorParameter</Name>
+      <Link>EDT Reals\RMarketIndicatorParameter</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketIndicatorValue">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorValue</Name>
+      <Link>EDT Reals\RMarketIndicatorValue</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketOrderId">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderId</Name>
+      <Link>EDT Strings\RMarketOrderId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketPositionId">
+      <SubType>Content</SubType>
+      <Name>RMarketPositionId</Name>
+      <Link>EDT Strings\RMarketPositionId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketStrategyId">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyId</Name>
+      <Link>EDT Strings\RMarketStrategyId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketSubAccountId">
+      <SubType>Content</SubType>
+      <Name>RMarketSubAccountId</Name>
+      <Link>EDT Strings\RMarketSubAccountId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketSymbolId">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolId</Name>
+      <Link>EDT Strings\RMarketSymbolId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketTimestamp">
+      <SubType>Content</SubType>
+      <Name>RMarketTimestamp</Name>
+      <Link>EDT Integer64s\RMarketTimestamp</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketTransId">
+      <SubType>Content</SubType>
+      <Name>RMarketTransId</Name>
+      <Link>EDT Strings\RMarketTransId</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketTransOriginId">
+      <SubType>Content</SubType>
+      <Name>RMarketTransOriginId</Name>
+      <Link>EDT Strings\RMarketTransOriginId</Link>
+    </Content>
+    <Content Include="AxEnumExtension\NumberSeqModule.RMarket">
+      <SubType>Content</SubType>
+      <Name>NumberSeqModule.RMarket</Name>
+      <Link>Base Enum Extensions\NumberSeqModule.RMarket</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketAccountTestType">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountTestType</Name>
+      <Link>Base Enums\RMarketAccountTestType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketAccountType">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountType</Name>
+      <Link>Base Enums\RMarketAccountType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketAPIHttpMethod">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIHttpMethod</Name>
+      <Link>Base Enums\RMarketAPIHttpMethod</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketAPIMethodEnum">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIMethodEnum</Name>
+      <Link>Base Enums\RMarketAPIMethodEnum</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketAPIType">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIType</Name>
+      <Link>Base Enums\RMarketAPIType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketCandleInterval">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleInterval</Name>
+      <Link>Base Enums\RMarketCandleInterval</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketConditionComparisonType">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionComparisonType</Name>
+      <Link>Base Enums\RMarketConditionComparisonType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketConditionRelation">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionRelation</Name>
+      <Link>Base Enums\RMarketConditionRelation</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketConditionValueSource">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionValueSource</Name>
+      <Link>Base Enums\RMarketConditionValueSource</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketEventType">
+      <SubType>Content</SubType>
+      <Name>RMarketEventType</Name>
+      <Link>Base Enums\RMarketEventType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketFixGapsEnum">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGapsEnum</Name>
+      <Link>Base Enums\RMarketFixGapsEnum</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketIndicatorBaseEnum">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorBaseEnum</Name>
+      <Link>Base Enums\RMarketIndicatorBaseEnum</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketIndicatorType">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorType</Name>
+      <Link>Base Enums\RMarketIndicatorType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketLogLevel">
+      <SubType>Content</SubType>
+      <Name>RMarketLogLevel</Name>
+      <Link>Base Enums\RMarketLogLevel</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketOrderRole">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderRole</Name>
+      <Link>Base Enums\RMarketOrderRole</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketOrderSide">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderSide</Name>
+      <Link>Base Enums\RMarketOrderSide</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketOrderStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderStatus</Name>
+      <Link>Base Enums\RMarketOrderStatus</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketOrderType">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderType</Name>
+      <Link>Base Enums\RMarketOrderType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketPositionDirection">
+      <SubType>Content</SubType>
+      <Name>RMarketPositionDirection</Name>
+      <Link>Base Enums\RMarketPositionDirection</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketPositionStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketPositionStatus</Name>
+      <Link>Base Enums\RMarketPositionStatus</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketStrategyActionType">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyActionType</Name>
+      <Link>Base Enums\RMarketStrategyActionType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketStrategyStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyStatus</Name>
+      <Link>Base Enums\RMarketStrategyStatus</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketTransOriginType">
+      <SubType>Content</SubType>
+      <Name>RMarketTransOriginType</Name>
+      <Link>Base Enums\RMarketTransOriginType</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketTransStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketTransStatus</Name>
+      <Link>Base Enums\RMarketTransStatus</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketType">
+      <SubType>Content</SubType>
+      <Name>RMarketType</Name>
+      <Link>Base Enums\RMarketType</Link>
+    </Content>
+    <Content Include="AxForm\RMarketAccount">
+      <SubType>Content</SubType>
+      <Name>RMarketAccount</Name>
+      <Link>Forms\RMarketAccount</Link>
+    </Content>
+    <Content Include="AxForm\RMarketApiKey">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKey</Name>
+      <Link>Forms\RMarketApiKey</Link>
+    </Content>
+    <Content Include="AxForm\RMarketAPIMethodLog">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIMethodLog</Name>
+      <Link>Forms\RMarketAPIMethodLog</Link>
+    </Content>
+    <Content Include="AxForm\RMarketCandleGapsForm">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleGapsForm</Name>
+      <Link>Forms\RMarketCandleGapsForm</Link>
+    </Content>
+    <Content Include="AxForm\RMarketCandleStatForm">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleStatForm</Name>
+      <Link>Forms\RMarketCandleStatForm</Link>
+    </Content>
+    <Content Include="AxForm\RMarketCandleTable">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTable</Name>
+      <Link>Forms\RMarketCandleTable</Link>
+    </Content>
+    <Content Include="AxForm\RMarketCrypto">
+      <SubType>Content</SubType>
+      <Name>RMarketCrypto</Name>
+      <Link>Forms\RMarketCrypto</Link>
+    </Content>
+    <Content Include="AxForm\RMarketEventLog">
+      <SubType>Content</SubType>
+      <Name>RMarketEventLog</Name>
+      <Link>Forms\RMarketEventLog</Link>
+    </Content>
+    <Content Include="AxForm\RMarketIndicatorSetupTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorSetupTable</Name>
+      <Link>Forms\RMarketIndicatorSetupTable</Link>
+    </Content>
+    <Content Include="AxForm\RMarketIndicatorTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorTable</Name>
+      <Link>Forms\RMarketIndicatorTable</Link>
+    </Content>
+    <Content Include="AxForm\RMarketOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketOrder</Name>
+      <Link>Forms\RMarketOrder</Link>
+    </Content>
+    <Content Include="AxForm\RMarketParameters">
+      <SubType>Content</SubType>
+      <Name>RMarketParameters</Name>
+      <Link>Forms\RMarketParameters</Link>
+    </Content>
+    <Content Include="AxForm\RMarketPosition">
+      <SubType>Content</SubType>
+      <Name>RMarketPosition</Name>
+      <Link>Forms\RMarketPosition</Link>
+    </Content>
+    <Content Include="AxForm\RMarketStrategy">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategy</Name>
+      <Link>Forms\RMarketStrategy</Link>
+    </Content>
+    <Content Include="AxForm\RMarketSum">
+      <SubType>Content</SubType>
+      <Name>RMarketSum</Name>
+      <Link>Forms\RMarketSum</Link>
+    </Content>
+    <Content Include="AxForm\RMarketSymbol">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbol</Name>
+      <Link>Forms\RMarketSymbol</Link>
+    </Content>
+    <Content Include="AxForm\RMarketTable">
+      <SubType>Content</SubType>
+      <Name>RMarketTable</Name>
+      <Link>Forms\RMarketTable</Link>
+    </Content>
+    <Content Include="AxForm\RMarketTrans">
+      <SubType>Content</SubType>
+      <Name>RMarketTrans</Name>
+      <Link>Forms\RMarketTrans</Link>
+    </Content>
+    <Content Include="AxMenuExtension\MainMenu.RMarket">
+      <SubType>Content</SubType>
+      <Name>MainMenu.RMarket</Name>
+      <Link>Menu Extensions\MainMenu.RMarket</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketAutoTrade">
+      <SubType>Content</SubType>
+      <Name>RMarketAutoTrade</Name>
+      <Link>Action Menu Items\RMarketAutoTrade</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketCandlesLoad">
+      <SubType>Content</SubType>
+      <Name>RMarketCandlesLoad</Name>
+      <Link>Action Menu Items\RMarketCandlesLoad</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketFixGapsCalc">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGapsCalc</Name>
+      <Link>Action Menu Items\RMarketFixGapsCalc</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketFixGapsDownload">
+      <SubType>Content</SubType>
+      <Name>RMarketFixGapsDownload</Name>
+      <Link>Action Menu Items\RMarketFixGapsDownload</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketIndicatorCalc">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorCalc</Name>
+      <Link>Action Menu Items\RMarketIndicatorCalc</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketSymbolPropertyUpdate">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolPropertyUpdate</Name>
+      <Link>Action Menu Items\RMarketSymbolPropertyUpdate</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketAccount">
+      <SubType>Content</SubType>
+      <Name>RMarketAccount</Name>
+      <Link>Display Menu Items\RMarketAccount</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketApiKey">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKey</Name>
+      <Link>Display Menu Items\RMarketApiKey</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketAPIMethodLog">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIMethodLog</Name>
+      <Link>Display Menu Items\RMarketAPIMethodLog</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketCandleGapsForm">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleGapsForm</Name>
+      <Link>Display Menu Items\RMarketCandleGapsForm</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketCandleStatForm">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleStatForm</Name>
+      <Link>Display Menu Items\RMarketCandleStatForm</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketCandleTable">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTable</Name>
+      <Link>Display Menu Items\RMarketCandleTable</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketCrypto">
+      <SubType>Content</SubType>
+      <Name>RMarketCrypto</Name>
+      <Link>Display Menu Items\RMarketCrypto</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketEventLog">
+      <SubType>Content</SubType>
+      <Name>RMarketEventLog</Name>
+      <Link>Display Menu Items\RMarketEventLog</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketIndicatorSetupTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorSetupTable</Name>
+      <Link>Display Menu Items\RMarketIndicatorSetupTable</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketIndicatorTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorTable</Name>
+      <Link>Display Menu Items\RMarketIndicatorTable</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketOrder</Name>
+      <Link>Display Menu Items\RMarketOrder</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketParameters">
+      <SubType>Content</SubType>
+      <Name>RMarketParameters</Name>
+      <Link>Display Menu Items\RMarketParameters</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketPosition">
+      <SubType>Content</SubType>
+      <Name>RMarketPosition</Name>
+      <Link>Display Menu Items\RMarketPosition</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketStrategy">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategy</Name>
+      <Link>Display Menu Items\RMarketStrategy</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketSum">
+      <SubType>Content</SubType>
+      <Name>RMarketSum</Name>
+      <Link>Display Menu Items\RMarketSum</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketSymbol">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbol</Name>
+      <Link>Display Menu Items\RMarketSymbol</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketTable">
+      <SubType>Content</SubType>
+      <Name>RMarketTable</Name>
+      <Link>Display Menu Items\RMarketTable</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketTrans">
+      <SubType>Content</SubType>
+      <Name>RMarketTrans</Name>
+      <Link>Display Menu Items\RMarketTrans</Link>
+    </Content>
+    <Content Include="AxMenu\RMarketMenu">
+      <SubType>Content</SubType>
+      <Name>RMarketMenu</Name>
+      <Link>Menus\RMarketMenu</Link>
+    </Content>
+    <Content Include="AxQuery\RMarketCandleGapsQuery">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleGapsQuery</Name>
+      <Link>Simple Queries\RMarketCandleGapsQuery</Link>
+    </Content>
+    <Content Include="AxQuery\RMarketCandleStatQuery">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleStatQuery</Name>
+      <Link>Simple Queries\RMarketCandleStatQuery</Link>
+    </Content>
+    <Content Include="AxQuery\RMarketCandleViewQuery">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleViewQuery</Name>
+      <Link>Simple Queries\RMarketCandleViewQuery</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketAccountMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountMaintain</Name>
+      <Link>Security Privileges\RMarketAccountMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketAccountView">
+      <SubType>Content</SubType>
+      <Name>RMarketAccountView</Name>
+      <Link>Security Privileges\RMarketAccountView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketApiKeyMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKeyMaintain</Name>
+      <Link>Security Privileges\RMarketApiKeyMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketApiKeyView">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKeyView</Name>
+      <Link>Security Privileges\RMarketApiKeyView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketCandleTableMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTableMaintain</Name>
+      <Link>Security Privileges\RMarketCandleTableMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketCandleTableView">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTableView</Name>
+      <Link>Security Privileges\RMarketCandleTableView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketCryptoMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketCryptoMaintain</Name>
+      <Link>Security Privileges\RMarketCryptoMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketCryptoView">
+      <SubType>Content</SubType>
+      <Name>RMarketCryptoView</Name>
+      <Link>Security Privileges\RMarketCryptoView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketEventLogMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketEventLogMaintain</Name>
+      <Link>Security Privileges\RMarketEventLogMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketEventLogView">
+      <SubType>Content</SubType>
+      <Name>RMarketEventLogView</Name>
+      <Link>Security Privileges\RMarketEventLogView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketIndicatorSetupTableMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorSetupTableMaintain</Name>
+      <Link>Security Privileges\RMarketIndicatorSetupTableMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketIndicatorSetupTableView">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorSetupTableView</Name>
+      <Link>Security Privileges\RMarketIndicatorSetupTableView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketIndicatorTableMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorTableMaintain</Name>
+      <Link>Security Privileges\RMarketIndicatorTableMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketIndicatorTableView">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorTableView</Name>
+      <Link>Security Privileges\RMarketIndicatorTableView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketOrderMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderMaintain</Name>
+      <Link>Security Privileges\RMarketOrderMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketOrderView">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderView</Name>
+      <Link>Security Privileges\RMarketOrderView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketParametersMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketParametersMaintain</Name>
+      <Link>Security Privileges\RMarketParametersMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketParametersView">
+      <SubType>Content</SubType>
+      <Name>RMarketParametersView</Name>
+      <Link>Security Privileges\RMarketParametersView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketPositionMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketPositionMaintain</Name>
+      <Link>Security Privileges\RMarketPositionMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketPositionView">
+      <SubType>Content</SubType>
+      <Name>RMarketPositionView</Name>
+      <Link>Security Privileges\RMarketPositionView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketStrategyMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyMaintain</Name>
+      <Link>Security Privileges\RMarketStrategyMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketStrategyView">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyView</Name>
+      <Link>Security Privileges\RMarketStrategyView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSumMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketSumMaintain</Name>
+      <Link>Security Privileges\RMarketSumMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSumView">
+      <SubType>Content</SubType>
+      <Name>RMarketSumView</Name>
+      <Link>Security Privileges\RMarketSumView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSymbolMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolMaintain</Name>
+      <Link>Security Privileges\RMarketSymbolMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSymbolView">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolView</Name>
+      <Link>Security Privileges\RMarketSymbolView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketTableMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketTableMaintain</Name>
+      <Link>Security Privileges\RMarketTableMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketTableView">
+      <SubType>Content</SubType>
+      <Name>RMarketTableView</Name>
+      <Link>Security Privileges\RMarketTableView</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketTransMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketTransMaintain</Name>
+      <Link>Security Privileges\RMarketTransMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketTransView">
+      <SubType>Content</SubType>
+      <Name>RMarketTransView</Name>
+      <Link>Security Privileges\RMarketTransView</Link>
+    </Content>
+    <Content Include="AxSecurityRole\RMarketRole">
+      <SubType>Content</SubType>
+      <Name>RMarketRole</Name>
+      <Link>Security Roles\RMarketRole</Link>
+    </Content>
+    <Content Include="AxTable\RMarketAccount">
+      <SubType>Content</SubType>
+      <Name>RMarketAccount</Name>
+      <Link>Tables\RMarketAccount</Link>
+    </Content>
+    <Content Include="AxTable\RMarketApiKey">
+      <SubType>Content</SubType>
+      <Name>RMarketApiKey</Name>
+      <Link>Tables\RMarketApiKey</Link>
+    </Content>
+    <Content Include="AxTable\RMarketAPIMethodLog">
+      <SubType>Content</SubType>
+      <Name>RMarketAPIMethodLog</Name>
+      <Link>Tables\RMarketAPIMethodLog</Link>
+    </Content>
+    <Content Include="AxTable\RMarketCandleTable">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleTable</Name>
+      <Link>Tables\RMarketCandleTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketConditionTable">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionTable</Name>
+      <Link>Tables\RMarketConditionTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketCrypto">
+      <SubType>Content</SubType>
+      <Name>RMarketCrypto</Name>
+      <Link>Tables\RMarketCrypto</Link>
+    </Content>
+    <Content Include="AxTable\RMarketDim">
+      <SubType>Content</SubType>
+      <Name>RMarketDim</Name>
+      <Link>Tables\RMarketDim</Link>
+    </Content>
+    <Content Include="AxTable\RMarketEventLog">
+      <SubType>Content</SubType>
+      <Name>RMarketEventLog</Name>
+      <Link>Tables\RMarketEventLog</Link>
+    </Content>
+    <Content Include="AxTable\RMarketIndicatorLinkTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorLinkTable</Name>
+      <Link>Tables\RMarketIndicatorLinkTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketIndicatorSetupTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorSetupTable</Name>
+      <Link>Tables\RMarketIndicatorSetupTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketIndicatorTable">
+      <SubType>Content</SubType>
+      <Name>RMarketIndicatorTable</Name>
+      <Link>Tables\RMarketIndicatorTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketIntervals">
+      <SubType>Content</SubType>
+      <Name>RMarketIntervals</Name>
+      <Link>Tables\RMarketIntervals</Link>
+    </Content>
+    <Content Include="AxTable\RMarketOrder">
+      <SubType>Content</SubType>
+      <Name>RMarketOrder</Name>
+      <Link>Tables\RMarketOrder</Link>
+    </Content>
+    <Content Include="AxTable\RMarketParameters">
+      <SubType>Content</SubType>
+      <Name>RMarketParameters</Name>
+      <Link>Tables\RMarketParameters</Link>
+    </Content>
+    <Content Include="AxTable\RMarketPosition">
+      <SubType>Content</SubType>
+      <Name>RMarketPosition</Name>
+      <Link>Tables\RMarketPosition</Link>
+    </Content>
+    <Content Include="AxTable\RMarketStrategy">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategy</Name>
+      <Link>Tables\RMarketStrategy</Link>
+    </Content>
+    <Content Include="AxTable\RMarketStrategyAction">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyAction</Name>
+      <Link>Tables\RMarketStrategyAction</Link>
+    </Content>
+    <Content Include="AxTable\RMarketStrategyOrders">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategyOrders</Name>
+      <Link>Tables\RMarketStrategyOrders</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSubAccount">
+      <SubType>Content</SubType>
+      <Name>RMarketSubAccount</Name>
+      <Link>Tables\RMarketSubAccount</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSum">
+      <SubType>Content</SubType>
+      <Name>RMarketSum</Name>
+      <Link>Tables\RMarketSum</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSymbol">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbol</Name>
+      <Link>Tables\RMarketSymbol</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSymbolIntervals">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolIntervals</Name>
+      <Link>Tables\RMarketSymbolIntervals</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSymbolProperty">
+      <SubType>Content</SubType>
+      <Name>RMarketSymbolProperty</Name>
+      <Link>Tables\RMarketSymbolProperty</Link>
+    </Content>
+    <Content Include="AxTable\RMarketTable">
+      <SubType>Content</SubType>
+      <Name>RMarketTable</Name>
+      <Link>Tables\RMarketTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketTimestampTable">
+      <SubType>Content</SubType>
+      <Name>RMarketTimestampTable</Name>
+      <Link>Tables\RMarketTimestampTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketTrans">
+      <SubType>Content</SubType>
+      <Name>RMarketTrans</Name>
+      <Link>Tables\RMarketTrans</Link>
+    </Content>
+    <Content Include="AxView\RMarketCandleGapsView">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleGapsView</Name>
+      <Link>Views\RMarketCandleGapsView</Link>
+    </Content>
+    <Content Include="AxView\RMarketCandleStatView">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleStatView</Name>
+      <Link>Views\RMarketCandleStatView</Link>
+    </Content>
+    <Content Include="AxView\RMarketCandleView">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleView</Name>
+      <Link>Views\RMarketCandleView</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
+</Project>
