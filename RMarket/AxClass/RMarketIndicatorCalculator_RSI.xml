@@ -39,9 +39,12 @@ public class RMarketIndicatorCalculator_RSI extends RMarketIndicatorCalculator
 
         if (indicatorPrev)
         {
-            previousRSI = indicatorPrev.Value;
+            isInitialized = true;
+
+            previousRSI     = indicatorPrev.Value;
             previousAvgGain = indicatorPrev.ValueAux1;
             previousAvgLoss = indicatorPrev.ValueAux2;
+
             prevValue = RMarketCandleTable::find(indicatorPrev.DimRecId, indicatorPrev.Timestamp).getValue(_indicatorSetup.CalcBase);
             ret = _startCalcTS;
         }
@@ -65,7 +68,7 @@ public class RMarketIndicatorCalculator_RSI extends RMarketIndicatorCalculator
         real delta, gain, loss, avgGain, avgLoss, RSI;
 
         // Инициализация кэша и периода
-        if (!gainList)
+        if (!isInitialized && !gainList)
         {
             if (previousRSI)
                 isInitialized = true;

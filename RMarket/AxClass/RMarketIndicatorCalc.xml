@@ -243,7 +243,7 @@ public class RMarketIndicatorCalc extends RunBaseBatch implements BatchRetryable
             throw error("@RMarket:InvalidDateRange");
         }
         
-        if (dtFrom > dtTo)
+        if (dtFrom && dtTo && dtFrom > dtTo)
         {
             throw error("@RMarket:InvalidDateRange");
         }
