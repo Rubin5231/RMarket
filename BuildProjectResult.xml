@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-15T11:30:31.5384717+03:00">
+  GenerationTime="2026-11-15T12:07:02.3948235+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -22,90 +22,6 @@
       <Path>dynamics://Reference/Azure.Core</Path>
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Time</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>17</Line>
-      <Column>9</Column>
-      <EndLine>17</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Instrument</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>35</Line>
-      <Column>9</Column>
-      <EndLine>35</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Klines</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>53</Line>
-      <Column>9</Column>
-      <EndLine>53</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_GetAccountBalance</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>71</Line>
-      <Column>9</Column>
-      <EndLine>71</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_GetTradeHistory</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>89</Line>
-      <Column>9</Column>
-      <EndLine>89</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_CancelOrder</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>107</Line>
-      <Column>9</Column>
-      <EndLine>107</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_CreateOrder</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>UnreachableStatement</Moniker>
-      <Line>125</Line>
-      <Column>9</Column>
-      <EndLine>125</EndLine>
-      <EndColumn>36</EndColumn>
-      <Message>The statement is unreachable.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

@@ -18,9 +18,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_Time();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_Time();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -41,9 +43,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_ExchangeInfo();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_Instrument();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -64,9 +68,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_Klines();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_Klines();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -87,9 +93,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_AccountBalance();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_WalletBalance();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -110,9 +118,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_MyTrades();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_ExecutionList();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -133,9 +143,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_CancelOrder();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_CancelOrder();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
@@ -156,9 +168,11 @@ public class RMarketMethodInterface
         {
             case RMarketApiType::Binance:
                 method = new RMarketMethod_Binance_CreateOrder();
+                break;
             
             case RMarketApiType::Bybit:
                 method = new RMarketMethod_Bybit_CreateOrder();
+                break;
             
             default:
                 throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
