@@ -552,7 +552,8 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
 				<Source><![CDATA[
     private void flushCandles(RMarketCandleTable _tempTable)
     {
-        RMarketCandleTable candle;
+        RMarketCandleLoadMode mode;
+        RMarketCandleTable candle,candleExisting;
         RMarketTimestampTable tsTable, tsNew;
         RecordInsertList tsList = new RecordInsertList(tableNum(RMarketTimestampTable));
 
@@ -573,10 +574,40 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
         candle.skipDataMethods(true);
         candle.skipEvents(true);
         candle.skipDatabaseLog(true);
-        insert_recordset candle
-            (DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover)
-        select DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover
-            from _tempTable;
+
+        //-- A1.5 -->>
+        switch(mode)
+        {
+            case RMarketCandleLoadMode::Reload:
+                delete_from candle
+                    exists join _tempTable
+                        where _tempTable.DimRecId  == candle.DimRecId
+                           && _tempTable.Timestamp == candle.Timestamp;
+
+                insert_recordset candle
+                    (DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover)
+                select DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover
+                    from _tempTable;
+
+                break;
+
+            case RMarketCandleLoadMode::Verify:
+                break;
+
+            case RMarketCandleLoadMode::Load:
+            default:
+        //-- A1.5 --<<
+                insert_recordset candle
+                    (DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover)
+                select DimRecId,Timestamp, Open, High, Low, Close, Volume, Turnover
+                    from _tempTable
+        //-- A1.5 -->>
+                    notexists join candleExisting
+                        where candleExisting.DimRecId  == _tempTable.DimRecId
+                           && candleExisting.Timestamp == _tempTable.Timestamp;
+        }
+        //-- A1.5 --<<
+
         
         _tempTable.skipDataMethods(true);
         _tempTable.skipEvents(true);
