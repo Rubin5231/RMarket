@@ -46,6 +46,7 @@
     <Folder Include="Classes\ApiMethod" />
     <Folder Include="Classes\ApiMethodInterface" />
     <Folder Include="Display Menu Items\" />
+    <Folder Include="EDT Enums\" />
     <Folder Include="EDT Integer64s\" />
     <Folder Include="EDT Reals\" />
     <Folder Include="EDT Strings\" />
@@ -782,6 +783,11 @@
       <SubType>Content</SubType>
       <Name>RMarketCandleInterval</Name>
       <Link>Base Enums\RMarketCandleInterval</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketCandleLoadMode">
+      <SubType>Content</SubType>
+      <Name>RMarketCandleLoadMode</Name>
+      <Link>Base Enums\RMarketCandleLoadMode</Link>
     </Content>
     <Content Include="AxEnum\RMarketConditionComparisonType">
       <SubType>Content</SubType>
