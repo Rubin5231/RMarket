@@ -552,7 +552,7 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
 				<Source><![CDATA[
     private void flushCandles(RMarketCandleTable _tempTable)
     {
-        RMarketCandleLoadMode mode;
+        RMarketCandleLoadMode mode = RMarketCandleLoadMode::Load;   //-- A1.5 --
         RMarketCandleTable candle,candleExisting;
         RMarketTimestampTable tsTable, tsNew;
         RecordInsertList tsList = new RecordInsertList(tableNum(RMarketTimestampTable));
