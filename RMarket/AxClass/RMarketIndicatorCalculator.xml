@@ -167,7 +167,7 @@ abstract public class RMarketIndicatorCalculator
                     insertList.add(indicator);
 
                     counter++;
-                    if (counter div 1000 == 0)
+                    if (counter mod 1000 == 0)
                     {
                         insertList.insertDatabase();
                         insertList = new RecordInsertList(tableNum(RMarketIndicatorTable));

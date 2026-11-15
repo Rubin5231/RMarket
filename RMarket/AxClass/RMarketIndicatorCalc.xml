@@ -243,6 +243,11 @@ public class RMarketIndicatorCalc extends RunBaseBatch implements BatchRetryable
             throw error("@RMarket:InvalidDateRange");
         }
         
+        if (dtFrom > dtTo)
+        {
+            throw error("@RMarket:InvalidDateRange");
+        }
+        
         return true;
     }
 
@@ -358,7 +363,7 @@ public class RMarketIndicatorCalc extends RunBaseBatch implements BatchRetryable
 
         defaultTo = tsTable ? RMarketUtil::calculateCandleDateTime(tsTable.DateTime, _marketDim.Interval, 1) : defaultTo;
 
-        if (dtFrom)
+        if (dtTo)
             defaultTo = min(defaultTo, RMarketUtil::normalizeDateTime2UTC(dtTo));
 
         return defaultTo;
