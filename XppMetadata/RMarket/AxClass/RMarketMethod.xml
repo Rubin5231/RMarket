@@ -18,11 +18,41 @@
 			<Name>result</Name>
 			<Attributes />
 		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>ExtendedDataType</Type>
+			<TypeName>RMarketId</TypeName>
+			<Name>marketId</Name>
+			<Attributes />
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Enum</Type>
+			<TypeName>RMarketApiType</TypeName>
+			<Name>apiType</Name>
+			<Attributes />
+		</AxClassMemberVariable>
 	</Members>
 	<Methods>
 		<Method>
 			<Name>new</Name>
 			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>initMarket</Name>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
+				</AxMethodParameter>
+			</Parameters>
 			<ReturnType>
 				<Tags></Tags>
 				<TypeName></TypeName>

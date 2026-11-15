@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-15T09:54:58.6789032+03:00">
+  GenerationTime="2026-11-15T11:30:31.5384717+03:00">
   <Items>
-    <Diagnostic>
-      <DiagnosticType>TaskListItem</DiagnosticType>
-      <Severity>Informational</Severity>
-      <Path>dynamics://Table/RMarketStrategyAction/Method/calcSignal</Path>
-      <ElementType>Table Method</ElementType>
-      <Moniker>TaskListItem</Moniker>
-      <Line>142</Line>
-      <Column>9</Column>
-      <EndLine>142</EndLine>
-      <EndColumn>33</EndColumn>
-      <Message>TODO Record signal log</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>TaskListItem</DiagnosticType>
-      <Severity>Informational</Severity>
-      <Path>dynamics://Class/RMarketAutoTrade/Method/makeAccountActions</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>TaskListItem</Moniker>
-      <Line>223</Line>
-      <Column>17</Column>
-      <EndLine>223</EndLine>
-      <EndColumn>48</EndColumn>
-      <Message>TODO notexists join actionLog</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>TaskListItem</DiagnosticType>
-      <Severity>Informational</Severity>
-      <Path>dynamics://Class/RMarketUtil/Method/calculateCandleDateTime</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>TaskListItem</Moniker>
-      <Line>104</Line>
-      <Column>45</Column>
-      <EndLine>104</EndLine>
-      <EndColumn>69</EndColumn>
-      <Message>TODO make right for d3</Message>
-    </Diagnostic>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
       <Severity>Warning</Severity>
@@ -62,193 +26,85 @@
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_ExecutionList/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>23</Line>
-      <Column>5</Column>
-      <EndLine>23</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_Klines/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>23</Line>
-      <Column>5</Column>
-      <EndLine>23</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_AccountCoinsBalance/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>10</Line>
-      <Column>5</Column>
-      <EndLine>10</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_AccountBalance/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>20</Line>
-      <Column>5</Column>
-      <EndLine>20</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketAutoTrade_Bybit/Method/enableMarginTradeLeverage</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>TypeConversionLosesRangeAndPrecision</Moniker>
-      <Line>48</Line>
-      <Column>45</Column>
-      <EndLine>48</EndLine>
-      <EndColumn>62</EndColumn>
-      <Message>The type conversion from 'real' to 'int' loses range and precision.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_WalletBalance/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>21</Line>
-      <Column>5</Column>
-      <EndLine>21</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_ExchangeInfo/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>11</Line>
-      <Column>5</Column>
-      <EndLine>11</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_Time/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>15</Line>
-      <Column>5</Column>
-      <EndLine>15</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_CreateOrder/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>15</Line>
-      <Column>5</Column>
-      <EndLine>15</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_MyTrades/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>22</Line>
-      <Column>5</Column>
-      <EndLine>22</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_Time/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>15</Line>
-      <Column>5</Column>
-      <EndLine>15</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Binance_CancelOrder/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>11</Line>
-      <Column>5</Column>
-      <EndLine>11</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketJsonSerializer/Method/writePrimitiveValue</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>InternalUseOnlyClrMemberInaccessible</Moniker>
-      <Line>391</Line>
-      <Column>17</Column>
-      <EndLine>391</EndLine>
-      <EndColumn>127</EndColumn>
-      <Message>Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . </Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketJsonSerializer/Method/deserializeValue</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>InternalUseOnlyClrMemberInaccessible</Moniker>
-      <Line>534</Line>
-      <Column>17</Column>
-      <EndLine>534</EndLine>
-      <EndColumn>123</EndColumn>
-      <Message>Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . </Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketJsonSerializer/Method/deserializeObjectInternal</Path>
-      <ElementType>EqualExpression</ElementType>
-      <Moniker>TypeConversionCSharpExplicit</Moniker>
-      <Line>998</Line>
-      <Column>36</Column>
-      <EndLine>998</EndLine>
-      <EndColumn>59</EndColumn>
-      <Message>The explicit type conversion from 'System.Object' to 'System.Decimal' may return a truncated version of the original value or construct a new value with a difference in precision. Use a built-in conversion method if this truncation or loss of precision is both allowed and expected.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketUtil/Method/calculateCandleDateTime</Path>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Time</Path>
       <ElementType>Class Method</ElementType>
       <Moniker>UnreachableStatement</Moniker>
-      <Line>106</Line>
-      <Column>17</Column>
-      <EndLine>106</EndLine>
-      <EndColumn>23</EndColumn>
+      <Line>17</Line>
+      <Column>9</Column>
+      <EndLine>17</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Instrument</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>35</Line>
+      <Column>9</Column>
+      <EndLine>35</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_Klines</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>53</Line>
+      <Column>9</Column>
+      <EndLine>53</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_GetAccountBalance</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>71</Line>
+      <Column>9</Column>
+      <EndLine>71</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_GetTradeHistory</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>89</Line>
+      <Column>9</Column>
+      <EndLine>89</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_CancelOrder</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>107</Line>
+      <Column>9</Column>
+      <EndLine>107</EndLine>
+      <EndColumn>36</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createMethod_CreateOrder</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>125</Line>
+      <Column>9</Column>
+      <EndLine>125</EndLine>
+      <EndColumn>36</EndColumn>
       <Message>The statement is unreachable.</Message>
     </Diagnostic>
   </Items>

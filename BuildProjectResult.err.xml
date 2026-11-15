@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-15T09:41:07.3197459+03:00">
+  GenerationTime="2026-11-15T11:02:50.3707972+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketCandlesLoad/Method/initQuery</Path>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createInstrumentMethod</Path>
       <ElementType>Class Method</ElementType>
-      <Moniker>ExpectedToken</Moniker>
-      <Line>143</Line>
-      <Column>109</Column>
-      <EndLine>143</EndLine>
-      <EndColumn>110</EndColumn>
-      <Message>';' expected.</Message>
+      <Moniker>ImplicitConversionNotAllowed</Moniker>
+      <Line>24</Line>
+      <Column>17</Column>
+      <EndLine>24</EndLine>
+      <EndColumn>67</EndColumn>
+      <Message>Cannot implicitly convert from type 'RMarketMethod_Binance_ExchangeInfo' to type 'RMarketMethodInterface'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createInstrumentMethod</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ImplicitConversionNotAllowed</Moniker>
+      <Line>27</Line>
+      <Column>17</Column>
+      <EndLine>27</EndLine>
+      <EndColumn>63</EndColumn>
+      <Message>Cannot implicitly convert from type 'RMarketMethod_Bybit_Instrument' to type 'RMarketMethodInterface'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketMethodInterface/Method/createInstrumentMethod</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ClassDoesNotContainMethod</Moniker>
+      <Line>32</Line>
+      <Column>9</Column>
+      <EndLine>32</EndLine>
+      <EndColumn>35</EndColumn>
+      <Message>ClassDoesNotContainMethod: Class 'RMarketMethodInterface' does not contain a definition for method 'initMarket' and no extension method 'initMarket' accepting a first argument of type 'RMarketMethodInterface' is found on any extension class.</Message>
+      <ItemSpecific>
+        <OriginatorType
+          alias="0">ClassDoesNotContainMethod</OriginatorType>
+        <Fields>
+          <elementTypeName>Class</elementTypeName>
+          <elementName>RMarketMethodInterface</elementName>
+          <methodName>initMarket</methodName>
+        </Fields>
+      </ItemSpecific>
     </Diagnostic>
   </Items>
-  <Aliases />
+  <Aliases>
+    <Alias
+      assembly="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+      ns="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2">0</Alias>
+  </Aliases>
 </Diagnostics>

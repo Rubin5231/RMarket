@@ -35,8 +35,7 @@ public class RMarketJob_Instrument
 				<Source><![CDATA[
     public static str getInstrumentInfo(RMarketTable _market, RMarketSymbol _symbol)
     {
-        RMarketMethodInterface_Instrument apiMethod = RMarketMethodInterface::Instrument(_market.ApiType);
-        apiMethod.setBaseUrl(_market.ApiUrl);
+        RMarketMethodInterface_Instrument apiMethod = RMarketMethodInterface::createMethod_Instrument(_market);
         //apiMethod.setApiKey(_apiKey);
         apiMethod.initParameters(_symbol.SymbolId, _market.Type);
         apiMethod.execute();

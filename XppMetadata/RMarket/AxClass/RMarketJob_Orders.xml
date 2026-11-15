@@ -10,12 +10,14 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Class</Type>
 					<TypeName>Args</TypeName>
 					<Name>_args</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -25,42 +27,50 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketTable</TypeName>
 					<Name>_market</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketApiKey</TypeName>
 					<Name>_apiKey</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbolId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketOrderSide</TypeName>
 					<Name>_side</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketOrderType</TypeName>
 					<Name>_type</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<Name>_qty</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<Name>_price</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
 			</ReturnType>
@@ -71,27 +81,32 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketTable</TypeName>
 					<Name>_market</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketApiKey</TypeName>
 					<Name>_apiKey</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbolId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>String</Type>
 					<TypeName></TypeName>
 					<Name>_orderId</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
 			</ReturnType>

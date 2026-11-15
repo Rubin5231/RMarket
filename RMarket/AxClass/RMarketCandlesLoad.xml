@@ -247,8 +247,11 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
 
         try
         {
-            apiMethod = RMarketMethodInterface::create_Time(_marketDim.RMarketTable().ApiType);
-            apiMethod.setBaseUrl(_marketDim.RMarketTable().ApiURL);
+            //-->>
+            //apiMethod = RMarketMethodInterface::create_Time(_marketDim.RMarketTable().ApiType);
+            //apiMethod.setBaseUrl(_marketDim.RMarketTable().ApiURL);
+            apiMethod = RMarketMethodInterface::createMethod_Time(_marketDim.RMarketTable());
+            //-->>
             apiMethod.execute();
             seconds = apiMethod.second();
             ret = RMarketUtil::timestamp2dateTimeUTC(seconds);// DateTimeUtil::addSeconds(DateTimeUtil::newDateTime(01\01\1970, 0, Timezone::GMT_COORDINATEDUNIVERSALTIME), seconds);
@@ -382,8 +385,11 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
         RMarketCandleTable tempCandle;
         tempCandle.setTmp();
 
-        RMarketMethodInterface_Klines apiMethod = RMarketMethodInterface::create_Klines(_marketDim.RMarketTable().ApiType);
-        apiMethod.setBaseUrl(_marketDim.RMarketTable().ApiURL);
+        //-->>
+        //RMarketMethodInterface_Klines apiMethod = RMarketMethodInterface::create_Klines(_marketDim.RMarketTable().ApiType);
+        //apiMethod.setBaseUrl(_marketDim.RMarketTable().ApiURL);
+        RMarketMethodInterface_Klines apiMethod = RMarketMethodInterface::createMethod_Klines(_marketDim.RMarketTable());
+        //--<<
         apiMethod.initParameters(
             _marketDim.SymbolId,                        // Торговый символ
             _marketDim.RMarketIntervals().IntervalStr,  // Интервал

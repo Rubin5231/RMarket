@@ -4,113 +4,127 @@
 	<IsPublic>true</IsPublic>
 	<Methods>
 		<Method>
-			<Name>create_Time</Name>
+			<Name>createMethod_Time</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_Time</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>Instrument</Name>
+			<Name>createMethod_Instrument</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_Instrument</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>create_Klines</Name>
+			<Name>createMethod_Klines</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_Klines</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>create_GetAccountBalance</Name>
+			<Name>createMethod_GetAccountBalance</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_GetAccountBalance</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>create_GetTradeHistory</Name>
+			<Name>createMethod_GetTradeHistory</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_GetTradeHistory</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>CancelOrder</Name>
+			<Name>createMethod_CancelOrder</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_CancelOrder</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>CreateOrder</Name>
+			<Name>createMethod_CreateOrder</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Type>Enum</Type>
-					<TypeName>RMarketApiType</TypeName>
-					<Name>_apiType</Name>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketMethodInterface_CreateOrder</TypeName>
 			</ReturnType>

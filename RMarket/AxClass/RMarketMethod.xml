@@ -12,6 +12,9 @@ abstract public class RMarketMethod
 
     protected Map result;
     
+    protected RMarketId         marketId;
+    protected RMarketApiType    apiType;   
+    
 }
 ]]></Declaration>
 		<Methods>
@@ -29,6 +32,19 @@ abstract public class RMarketMethod
         // Do this before execute()
         //apiClient.parmBaseUrl('');
         //apiClient.parmApiKey();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initMarket</Name>
+				<Source><![CDATA[
+    public void initMarket(RMarketTable _market)
+    {
+        marketId = _market.MarketId;
+        apiType  = _market.ApiType;
+
+        this.setBaseUrl(_market.ApiUrl);
     }
 
 ]]></Source>
@@ -155,8 +171,8 @@ abstract public class RMarketMethod
         RMarketAPIMethodLog logRecord;
         logRecord.clear();
         logRecord.initValue();
-        //logRecord.MarketId = marketTable.MarketId;
-        //logRecord.ApiType = marketTable.ApiType;
+        logRecord.MarketId = marketId;
+        logRecord.ApiType  = apiType;
         apiClient.parmLogRecord(logRecord);
     }
 

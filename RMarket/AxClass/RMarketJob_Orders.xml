@@ -65,8 +65,7 @@ internal final class RMarketJob_Orders
         str _qty,
         str _price)
     {
-        RMarketMethodInterface_CreateOrder apiMethod = RMarketMethodInterface::CreateOrder(_market.ApiType);
-        apiMethod.setBaseUrl(_market.ApiUrl);
+        RMarketMethodInterface_CreateOrder apiMethod = RMarketMethodInterface::createMethod_CreateOrder(_market);
         apiMethod.setApiKey(_apiKey);
         apiMethod.initParameters(
             _market.Type,
@@ -92,8 +91,7 @@ internal final class RMarketJob_Orders
         RMarketSymbolId _symbolId,
         str _orderId)
     {
-        RMarketMethodInterface_CancelOrder apiMethod = RMarketMethodInterface::CancelOrder(_market.ApiType);
-        apiMethod.setBaseUrl(_market.ApiUrl);
+        RMarketMethodInterface_CancelOrder apiMethod = RMarketMethodInterface::createMethod_CancelOrder(_market);
         apiMethod.setApiKey(_apiKey);
         apiMethod.initParameters(_market.Type, _symbolId, _orderId);
         apiMethod.execute();

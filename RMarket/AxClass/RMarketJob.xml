@@ -111,8 +111,7 @@ internal final class RMarketJob
     // Создание ордера
     public static str createOrder(RMarketTable _market, RMarketApiKey _apiKey)
     {
-        RMarketMethodInterface_CreateOrder apiMethod = RMarketMethodInterface::CreateOrder(_market.ApiType);
-        apiMethod.setBaseUrl(_market.ApiUrl);
+        RMarketMethodInterface_CreateOrder apiMethod = RMarketMethodInterface::createMethod_CreateOrder(_market);
         apiMethod.setApiKey(_apiKey);
         //apiMethod.initParameters("BTCUSDT", "Sell", "Market", "0.00019"/*, "50000"*/);
         apiMethod.execute();
@@ -128,8 +127,7 @@ internal final class RMarketJob
     // Отмена ордера
     public static str cancelOrder(RMarketTable _market, RMarketApiKey _apiKey, str _orderId)
     {
-        RMarketMethodInterface_CancelOrder apiMethod = RMarketMethodInterface::CancelOrder(_market.ApiType);
-        apiMethod.setBaseUrl(_market.ApiUrl);
+        RMarketMethodInterface_CancelOrder apiMethod = RMarketMethodInterface::createMethod_CancelOrder(_market);
         apiMethod.setApiKey(_apiKey);
         //apiMethod.initParameters("BTCUSDT", _orderId);
         apiMethod.execute();

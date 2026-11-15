@@ -9,141 +9,162 @@ public class RMarketMethodInterface
 ]]></Declaration>
 		<Methods>
 			<Method>
-				<Name>create_Time</Name>
+				<Name>createMethod_Time</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_Time create_Time(RMarketApiType _apiType)
+    public static RMarketMethodInterface_Time createMethod_Time(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_Time();
+                method = new RMarketMethod_Binance_Time();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_Time();
+                method = new RMarketMethod_Bybit_Time();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_Time;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>Instrument</Name>
+				<Name>createMethod_Instrument</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_Instrument Instrument(RMarketApiType _apiType)
+    public static RMarketMethodInterface_Instrument createMethod_Instrument(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_ExchangeInfo();
+                method = new RMarketMethod_Binance_ExchangeInfo();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_Instrument();
+                method = new RMarketMethod_Bybit_Instrument();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_Instrument;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>create_Klines</Name>
+				<Name>createMethod_Klines</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_Klines create_Klines(RMarketApiType _apiType)
+    public static RMarketMethodInterface_Klines createMethod_Klines(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_Klines();
+                method = new RMarketMethod_Binance_Klines();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_Klines();
+                method = new RMarketMethod_Bybit_Klines();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_Klines;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>create_GetAccountBalance</Name>
+				<Name>createMethod_GetAccountBalance</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_GetAccountBalance create_GetAccountBalance(RMarketApiType _apiType)
+    public static RMarketMethodInterface_GetAccountBalance createMethod_GetAccountBalance(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_AccountBalance();
+                method = new RMarketMethod_Binance_AccountBalance();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_WalletBalance();
+                method = new RMarketMethod_Bybit_WalletBalance();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_GetAccountBalance;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>create_GetTradeHistory</Name>
+				<Name>createMethod_GetTradeHistory</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_GetTradeHistory create_GetTradeHistory(RMarketApiType _apiType)
+    public static RMarketMethodInterface_GetTradeHistory createMethod_GetTradeHistory(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_MyTrades();
+                method = new RMarketMethod_Binance_MyTrades();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_ExecutionList();
+                method = new RMarketMethod_Bybit_ExecutionList();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_GetTradeHistory;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>CancelOrder</Name>
+				<Name>createMethod_CancelOrder</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_CancelOrder CancelOrder(RMarketApiType _apiType)
+    public static RMarketMethodInterface_CancelOrder createMethod_CancelOrder(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_CancelOrder();
+                method = new RMarketMethod_Binance_CancelOrder();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_CancelOrder();
+                method = new RMarketMethod_Bybit_CancelOrder();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_CancelOrder;
     }
 
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>CreateOrder</Name>
+				<Name>createMethod_CreateOrder</Name>
 				<Source><![CDATA[
-    public static RMarketMethodInterface_CreateOrder CreateOrder(RMarketApiType _apiType)
+    public static RMarketMethodInterface_CreateOrder createMethod_CreateOrder(RMarketTable _market)
     {
-        switch (_apiType)
+        RMarketMethod method;
+        switch (_market.ApiType)
         {
             case RMarketApiType::Binance:
-                return new RMarketMethod_Binance_CreateOrder();
+                method = new RMarketMethod_Binance_CreateOrder();
             
             case RMarketApiType::Bybit:
-                return new RMarketMethod_Bybit_CreateOrder();
+                method = new RMarketMethod_Bybit_CreateOrder();
             
             default:
-                throw error(strFmt("Unsupported api type: %1", enum2Str(_apiType)));
+                throw error(strFmt("Unsupported api type: %1", enum2Str(_market.ApiType)));
         }
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_CreateOrder;
     }
 
 ]]></Source>

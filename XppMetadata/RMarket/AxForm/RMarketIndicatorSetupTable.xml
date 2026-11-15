@@ -25,6 +25,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketIndicatorLinkTable</TypeName>
+							<Name>linkTable</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -54,6 +61,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketIndicatorLinkTable</TypeName>
+							<Name>indicatorLink</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
