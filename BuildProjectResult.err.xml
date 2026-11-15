@@ -1,114 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2025-08-06T22:51:37.2656721+03:00">
+  GenerationTime="2026-11-15T09:41:07.3197459+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/ActionConditionTable/Method/create</Path>
-      <ElementType>Form DataSource Method</ElementType>
-      <Moniker>InvalidTypeNameAsQualifier</Moniker>
-      <Line>47</Line>
-      <Column>45</Column>
-      <EndLine>47</EndLine>
-      <EndColumn>66</EndColumn>
-      <Message>The qualifier 'RMarketConditionTable' is not valid in this context. Use a variable of this type instead. </Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionNewButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>NotDeclared</Moniker>
-      <Line>256</Line>
-      <Column>17</Column>
-      <EndLine>256</EndLine>
-      <EndColumn>41</EndColumn>
-      <Message>'RMarketConditionTable_DS' is not declared.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionNewButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>VariableNotFound</Moniker>
-      <Line>258</Line>
-      <Column>17</Column>
-      <EndLine>258</EndLine>
-      <EndColumn>42</EndColumn>
-      <Message>Variable 'RMarketConditionTable_DS' is not found in scope.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionDeleteButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>NotDeclared</Moniker>
-      <Line>275</Line>
-      <Column>25</Column>
-      <EndLine>275</EndLine>
-      <EndColumn>49</EndColumn>
-      <Message>'RMarketConditionTable_DS' is not declared.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionDeleteButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>VariableNotFound</Moniker>
-      <Line>287</Line>
-      <Column>13</Column>
-      <EndLine>287</EndLine>
-      <EndColumn>38</EndColumn>
-      <Message>Variable 'RMarketConditionTable_DS' is not found in scope.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionUpButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>NotDeclared</Moniker>
-      <Line>304</Line>
-      <Column>22</Column>
-      <EndLine>304</EndLine>
-      <EndColumn>46</EndColumn>
-      <Message>'RMarketConditionTable_DS' is not declared.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionUpButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>VariableNotFound</Moniker>
-      <Line>306</Line>
-      <Column>13</Column>
-      <EndLine>306</EndLine>
-      <EndColumn>38</EndColumn>
-      <Message>Variable 'RMarketConditionTable_DS' is not found in scope.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionDownButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>NotDeclared</Moniker>
-      <Line>323</Line>
-      <Column>22</Column>
-      <EndLine>323</EndLine>
-      <EndColumn>46</EndColumn>
-      <Message>'RMarketConditionTable_DS' is not declared.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormActionPaneControl/ConditionActionPane/FormButtonGroupControl/ConditionButtonGroup/FormButtonControl/ConditionDownButton/Method/clicked</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>VariableNotFound</Moniker>
-      <Line>325</Line>
-      <Column>13</Column>
-      <EndLine>325</EndLine>
-      <EndColumn>38</EndColumn>
-      <Message>Variable 'RMarketConditionTable_DS' is not found in scope.</Message>
+      <Path>dynamics://Class/RMarketCandlesLoad/Method/initQuery</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ExpectedToken</Moniker>
+      <Line>143</Line>
+      <Column>109</Column>
+      <EndLine>143</EndLine>
+      <EndColumn>110</EndColumn>
+      <Message>';' expected.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

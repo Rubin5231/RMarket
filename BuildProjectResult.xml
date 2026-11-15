@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-15T09:29:10.3193688+03:00">
+  GenerationTime="2026-11-15T09:41:31.1356588+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -22,30 +22,6 @@
       <Path>dynamics://Reference/Azure.Core</Path>
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketCandlesLoad/Method/getFromDialog</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ExtensibleEnumInComparisonAgainstNumericalValue</Moniker>
-      <Line>44</Line>
-      <Column>56</Column>
-      <EndLine>44</EndLine>
-      <EndColumn>71</EndColumn>
-      <Message>Comparing a numerical value with extensible enum 'Extensible Enumeration(RMarketCandleInterval)' will yield unexpected results. Extensible enum values are not deterministically assigned to a numerical value.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketCandlesLoad/Method/initQuery</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ExtensibleEnumInComparisonAgainstNumericalValue</Moniker>
-      <Line>143</Line>
-      <Column>56</Column>
-      <EndLine>143</EndLine>
-      <EndColumn>71</EndColumn>
-      <Message>Comparing a numerical value with extensible enum 'Extensible Enumeration(RMarketCandleInterval)' will yield unexpected results. Extensible enum values are not deterministically assigned to a numerical value.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

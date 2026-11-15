@@ -12,7 +12,7 @@ interface RMarketMethodInterface_GetTradeHistory
 				<Name>setBaseUrl</Name>
 				<Source><![CDATA[
     // From RMarketMethod
-    public void setBaseUrl(str _baseUrl)
+    public void setBaseUrl(URL _baseUrl)
     {
     }
 

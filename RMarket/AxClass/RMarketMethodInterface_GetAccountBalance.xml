@@ -12,7 +12,7 @@ interface RMarketMethodInterface_GetAccountBalance
 				<Name>setBaseUrl</Name>
 				<Source><![CDATA[
     // From RMarketMethod
-    void setBaseUrl(str _baseUrl)
+    void setBaseUrl(URL _baseUrl)
     {}
 
 ]]></Source>

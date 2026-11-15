@@ -10,8 +10,8 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>String</Type>
-					<TypeName></TypeName>
+					<Type>ExtendedDataType</Type>
+					<TypeName>URL</TypeName>
 					<Name>_baseUrl</Name>
 				</AxMethodParameter>
 			</Parameters>

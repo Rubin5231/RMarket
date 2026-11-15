@@ -11,7 +11,7 @@ interface RMarketMethodInterface_Instrument
 			<Method>
 				<Name>setBaseUrl</Name>
 				<Source><![CDATA[
-    void setBaseUrl(str _baseUrl)
+    void setBaseUrl(URL _baseUrl)
     {
     }
 

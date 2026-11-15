@@ -39,6 +39,13 @@
 						<Type>Int32</Type>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Int32</Type>
+							<TypeName></TypeName>
+							<Name>ret</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 				<Method>
 					<Name>removeFilter</Name>
@@ -73,6 +80,13 @@
 								<Type>Record</Type>
 								<TypeName>Common</TypeName>
 							</ReturnType>
+							<Variables>
+								<AxMethodVariable>
+									<Type>ExtendedDataType</Type>
+									<TypeName>NumberSequenceCode</TypeName>
+									<Name>code</Name>
+								</AxMethodVariable>
+							</Variables>
 						</Method>
 						<Method>
 							<Name>lookupReference</Name>
@@ -88,6 +102,23 @@
 								<Type>Record</Type>
 								<TypeName>Common</TypeName>
 							</ReturnType>
+							<Variables>
+								<AxMethodVariable>
+									<Type>Class</Type>
+									<TypeName>SysReferenceTableLookup</TypeName>
+									<Name>sysTableLookup</Name>
+								</AxMethodVariable>
+								<AxMethodVariable>
+									<Type>Class</Type>
+									<TypeName>Query</TypeName>
+									<Name>lookupQuery</Name>
+								</AxMethodVariable>
+								<AxMethodVariable>
+									<Type>Record</Type>
+									<TypeName>NumberSequenceTable</TypeName>
+									<Name>selectedRecord</Name>
+								</AxMethodVariable>
+							</Variables>
 						</Method>
 					</Methods>
 				</Field>
@@ -106,6 +137,13 @@
 						<Type>Enum</Type>
 						<TypeName>boolean</TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Enum</Type>
+							<TypeName>boolean</TypeName>
+							<Name>ret</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>

@@ -57,7 +57,6 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
         marketId = dialogMarketId.value();
         symbolId = dialogSymbolId.value();
         interval = dialogInterval.value();
-        if (interval != RMarketCandleInterval::None && interval != 255)
         dtFrom = dialogFrom.value();
         dtTo = dialogTo.value();
         return ret;
@@ -193,6 +192,7 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
 				<Source><![CDATA[
     protected void initQuery()
     {
+        DictEnum dictEnum = new DictEnum(enumNum(RMarketCandleInterval));
         Query query = new Query();
         QueryBuildDataSource qbdsInterval = query.addDataSource(tableNum(RMarketIntervals));
         qbdsInterval.addRange(fieldNum(RMarketIntervals, Support)).value(SysQuery::value(NoYes::Yes));
@@ -211,7 +211,8 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
             qbdsSymbolIntervals.addRange(fieldNum(RMarketSymbolIntervals, SymbolId)).value(SysQuery::value(symbolId));
         }
         
-        if (interval != RMarketCandleInterval::None && interval != 255)
+        interval = (dictEnum.value2Symbol(any2Int(interval)) != '') ? interval : RMarketCandleInterval::None;
+        if (interval != RMarketCandleInterval::None)
         {
             qbdsInterval.addRange(fieldNum(RMarketIntervals, Interval)).value(SysQuery::value(interval));
         }

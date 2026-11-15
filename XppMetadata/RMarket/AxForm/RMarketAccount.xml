@@ -18,6 +18,13 @@
 						<Type>Int32</Type>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Int32</Type>
+							<TypeName></TypeName>
+							<Name>ret</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -47,6 +54,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketSubAccount</TypeName>
+							<Name>subAccount</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
