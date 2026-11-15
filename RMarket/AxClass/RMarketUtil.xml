@@ -6,13 +6,13 @@
 public class RMarketUtil
 {
 
-    }
+}
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>normalizeDateTime2UTC</Name>
 				<Source><![CDATA[
-        public static UtcDateTime normalizeDateTime2UTC(UtcDateTime _value)
+            public static UtcDateTime normalizeDateTime2UTC(UtcDateTime _value)
     {
         if (!_value)
         {
@@ -159,7 +159,7 @@ public class RMarketUtil
 			<Method>
 				<Name>calculateCandleTimestamp</Name>
 				<Source><![CDATA[
-    public static RMarketTimestamp calculateCandleTimestamp(RMarketTimestamp _ts, RMarketCandleInterval _interval, int64 _shift = 0)
+    public static RMarketTimestamp calculateCandleTimestamp(RMarketTimestamp _ts, RMarketCandleInterval _interval, int _shift = 0)
     {
         RMarketTimestamp ret;
         UtcDateTime _dt = RMarketUtil::timestamp2dateTimeUTC(_ts);

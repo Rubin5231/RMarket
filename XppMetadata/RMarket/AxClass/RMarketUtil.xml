@@ -135,7 +135,7 @@
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>Int64</Type>
+					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<DefaultValue>0</DefaultValue>
 					<Name>_shift</Name>
