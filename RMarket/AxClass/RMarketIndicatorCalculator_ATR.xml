@@ -37,6 +37,7 @@ public class RMarketIndicatorCalculator_ATR extends RMarketIndicatorCalculator
 
         if (indicatorPrev)
         {
+            isInitialized = true;   //-- A2.4 --
             previousATR = indicatorPrev.Value;
             prevClose = RMarketCandleTable::find(indicatorPrev.DimRecId, indicatorPrev.Timestamp).Close;
             ret = _startCalcTS;
@@ -61,15 +62,20 @@ public class RMarketIndicatorCalculator_ATR extends RMarketIndicatorCalculator
         real tr, ATR;
 
         // Инициализация кэша и периода
-        if (!trList)
+        //-- A2.4 -->>
+        //if (!trList)
+        if (!isInitialized && !trList)
+        //-- A2.4 --<<
         {
-            if (previousATR)
-                isInitialized = true;
-            else
-            {
-                isInitialized = false;
+            //-- A2.4 -->>
+            //if (previousATR)
+            //    isInitialized = true;
+            //else
+            //{
+            //    isInitialized = false;
+            //-- A2.4 --<<
                 trList = new List(Types::Real);
-            }
+            //} //-- A2.4 --
         }
         period = real2int(_indicatorSetup.Parameter);
 

@@ -39,7 +39,7 @@ public class RMarketIndicatorCalculator_RSI extends RMarketIndicatorCalculator
 
         if (indicatorPrev)
         {
-            isInitialized = true;
+            isInitialized = true;   //-- A2.3 --
 
             previousRSI     = indicatorPrev.Value;
             previousAvgGain = indicatorPrev.ValueAux1;
@@ -68,16 +68,21 @@ public class RMarketIndicatorCalculator_RSI extends RMarketIndicatorCalculator
         real delta, gain, loss, avgGain, avgLoss, RSI;
 
         // Инициализация кэша и периода
+        //-- A2.3 -->>
+        //if (!gainList)
         if (!isInitialized && !gainList)
+        //-- A2.3 --<<
         {
-            if (previousRSI)
-                isInitialized = true;
-            else
-            {
-                isInitialized = false;
+            //-- A2.3 -->>
+            //if (previousRSI)
+            //    isInitialized = true;
+            //else
+            //{
+            //    isInitialized = false;
+            //-- A2.3 --<<
                 gainList = new List(Types::Real);
                 lossList = new List(Types::Real);
-            }
+            //} //-- A2.3 --
         }
         period = real2int(_indicatorSetup.Parameter);
 

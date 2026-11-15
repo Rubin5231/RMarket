@@ -36,6 +36,7 @@ public class RMarketIndicatorCalculator_EMA extends RMarketIndicatorCalculator
 
         if (indicatorPrev)
         {
+            isInitialized = true;   //-- A2.4 --
             previousEMA = indicatorPrev.Value;
             ret = _startCalcTS;
         }
@@ -61,15 +62,20 @@ public class RMarketIndicatorCalculator_EMA extends RMarketIndicatorCalculator
         real EMA;
 
         // Инициализация кэша и периода
-        if (!values)
+        //-- A2.4 -->>
+        //if (!values)
+        if (!isInitialized && !values)
+        //-- A2.4 --<<
         {
-            if (previousEMA)
-                isInitialized = true;
-            else
-            {
-                isInitialized = false;
+            //-- A2.4 -->>
+            //if (previousEMA)
+            //    isInitialized = true;
+            //else
+            //{
+            //    isInitialized = false;
+            //-- A2.4 --<<
                 values = new List(Types::Real);
-            }
+            //} //-- A2.4 --
         }
         period = real2int(_indicatorSetup.Parameter);
 
