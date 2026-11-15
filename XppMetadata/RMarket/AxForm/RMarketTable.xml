@@ -25,13 +25,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketIntervals</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -53,13 +46,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSymbolIntervals</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -81,13 +67,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSymbolProperty</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -117,13 +96,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketIntervals</TypeName>
-							<Name>interval</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -150,13 +122,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSymbolIntervals</TypeName>
-							<Name>symbolInterval</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -183,13 +148,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSymbolProperty</TypeName>
-							<Name>prop</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Diagnostics
+  GenerationTime="2026-11-15T08:43:56.1215096+03:00">
+  <Items>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Table/RMarketStrategyAction/Method/calcSignal</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>142</Line>
+      <Column>9</Column>
+      <EndLine>142</EndLine>
+      <EndColumn>33</EndColumn>
+      <Message>TODO Record signal log</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/created</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>56</Line>
+      <Column>9</Column>
+      <EndLine>56</EndLine>
+      <EndColumn>69</EndColumn>
+      <Message>TODO:  Write code to execute once work items are created.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/RMarketUtil/Method/calculateCandleDateTime</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>104</Line>
+      <Column>45</Column>
+      <EndLine>104</EndLine>
+      <EndColumn>69</EndColumn>
+      <Message>TODO make right for d3</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowTypeSubmitManager/Method/main</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>8</Line>
+      <Column>9</Column>
+      <EndLine>8</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>TODO:  Write code to execute once a work item is submitted.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowTypeEventHandler/Method/started</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>10</Line>
+      <Column>9</Column>
+      <EndLine>10</EndLine>
+      <EndColumn>70</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is started.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowTypeEventHandler/Method/canceled</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>17</Line>
+      <Column>9</Column>
+      <EndLine>17</EndLine>
+      <EndColumn>71</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is canceled.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowTypeEventHandler/Method/completed</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>24</Line>
+      <Column>9</Column>
+      <EndLine>24</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is completed.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/RMarketAutoTrade/Method/makeAccountActions</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>223</Line>
+      <Column>17</Column>
+      <EndLine>223</EndLine>
+      <EndColumn>48</EndColumn>
+      <Message>TODO notexists join actionLog</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>ExternalReference</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Reference/Microsoft.Commerce.Flighting.Common</Path>
+      <Moniker>AssemblyFileNotFound</Moniker>
+      <Message>Assembly 'Microsoft.Xbox.Experimentation.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d91bba2b903dc20f' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>ExternalReference</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Reference/Microsoft.Dynamics___vices.PricingEngine</Path>
+      <Moniker>AssemblyFileNotFound</Moniker>
+      <Message>Assembly 'Microsoft.Dynamics.Commerce.Runtime.Entities.AttributeBasedPricing, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>ExternalReference</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Reference/Azure.Core</Path>
+      <Moniker>AssemblyFileNotFound</Moniker>
+      <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_Klines</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_Klines.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Klines.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_MyTrades</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_MyTrades.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetTradeHistory.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_Klines</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_Klines.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Klines.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_ExchangeInfo</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_ExchangeInfo.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Instrument.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_AccountBalance</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_AccountBalance.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetAccountBalance.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_Time</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_Time.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Time.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_ExecutionList</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_ExecutionList.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetTradeHistory.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_Instrument</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_Instrument.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Instrument.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_CreateOrder</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_CreateOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CreateOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_CancelOrder</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Binance_CancelOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CancelOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalResubmitActionMgr/Method/main</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>8</Line>
+      <Column>3</Column>
+      <EndLine>8</EndLine>
+      <EndColumn>68</EndColumn>
+      <Message>TODO:  Write code to execute once work items are resubmitted.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_WalletBalance</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_WalletBalance.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetAccountBalance.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_CancelOrder</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_CancelOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CancelOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_CreateOrder</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_CreateOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CreateOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_Time</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>NoOverrideParameterTypes</Moniker>
+      <Line>33</Line>
+      <Column>5</Column>
+      <EndLine>33</EndLine>
+      <EndColumn>27</EndColumn>
+      <Message>Method 'void RMarketMethod_Bybit_Time.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Time.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/started</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>14</Line>
+      <Column>9</Column>
+      <EndLine>14</EndLine>
+      <EndColumn>70</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is started.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/returned</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>49</Line>
+      <Column>9</Column>
+      <EndLine>49</EndLine>
+      <EndColumn>71</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is returned.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/completed</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>28</Line>
+      <Column>9</Column>
+      <EndLine>28</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is completed.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/changeRequested</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>42</Line>
+      <Column>9</Column>
+      <EndLine>42</EndLine>
+      <EndColumn>83</EndColumn>
+      <Message>TODO:  Write code to execute once change is requested for the workflow.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/denied</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>35</Line>
+      <Column>9</Column>
+      <EndLine>35</EndLine>
+      <EndColumn>69</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is denied.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/MyWorkflowApprovalEventHandler/Method/canceled</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>21</Line>
+      <Column>9</Column>
+      <EndLine>21</EndLine>
+      <EndColumn>71</EndColumn>
+      <Message>TODO:  Write code to execute once the workflow is canceled.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketUtil/Method/calculateCandleDateTime</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>UnreachableStatement</Moniker>
+      <Line>106</Line>
+      <Column>17</Column>
+      <EndLine>106</EndLine>
+      <EndColumn>23</EndColumn>
+      <Message>The statement is unreachable.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketUtil/Method/calculateCandleTimestamp</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TypeConversionLosesRange</Moniker>
+      <Line>125</Line>
+      <Column>68</Column>
+      <EndLine>125</EndLine>
+      <EndColumn>74</EndColumn>
+      <Message>The type conversion from 'int64' to 'int' loses range.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_MyTrades/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>22</Line>
+      <Column>5</Column>
+      <EndLine>22</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_Klines/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>23</Line>
+      <Column>5</Column>
+      <EndLine>23</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_ExchangeInfo/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>11</Line>
+      <Column>5</Column>
+      <EndLine>11</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketAutoTrade_Bybit/Method/enableMarginTradeLeverage</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TypeConversionLosesRangeAndPrecision</Moniker>
+      <Line>48</Line>
+      <Column>45</Column>
+      <EndLine>48</EndLine>
+      <EndColumn>62</EndColumn>
+      <Message>The type conversion from 'real' to 'int' loses range and precision.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_AccountBalance/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>20</Line>
+      <Column>5</Column>
+      <EndLine>20</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_Time/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>15</Line>
+      <Column>5</Column>
+      <EndLine>15</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketCandlesLoad/Method/initQuery</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ExtensibleEnumInComparisonAgainstNumericalValue</Moniker>
+      <Line>142</Line>
+      <Column>56</Column>
+      <EndLine>142</EndLine>
+      <EndColumn>71</EndColumn>
+      <Message>Comparing a numerical value with extensible enum 'Extensible Enumeration(RMarketCandleInterval)' will yield unexpected results. Extensible enum values are not deterministically assigned to a numerical value.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Metadata</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxWorkflowApproval/MyWorkflowApproval/Deny/ActionMenuItem</Path>
+      <Moniker>RequiredProperty</Moniker>
+      <Message>Property cannot be empty.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketTrans/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketPosition/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketOrder/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketStrategy/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketEventLog/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketAPIMethodLog/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketSum/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>FormPatternValidation</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketApiKey/Design</Path>
+      <Moniker>ErrorFormDesignPatternUnspecified</Moniker>
+      <Message>'FormDesign' has not specified a pattern. Please apply one of the available patterns.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Metadata</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>AxForm/RMarketIndicatorTable/Design/Controls/MainGrid/Controls/Overview/DataGroup</Path>
+      <Moniker>FieldGroupWithNoFields</Moniker>
+      <Message>Field group 'Overview' has no fields.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_CreateOrder/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>15</Line>
+      <Column>5</Column>
+      <EndLine>15</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_CancelOrder/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>11</Line>
+      <Column>5</Column>
+      <EndLine>11</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_WalletBalance/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>21</Line>
+      <Column>5</Column>
+      <EndLine>21</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketJsonSerializer/Method/writePrimitiveValue</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>InternalUseOnlyClrMemberInaccessible</Moniker>
+      <Line>391</Line>
+      <Column>17</Column>
+      <EndLine>391</EndLine>
+      <EndColumn>127</EndColumn>
+      <Message>Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . </Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketJsonSerializer/Method/deserializeValue</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>InternalUseOnlyClrMemberInaccessible</Moniker>
+      <Line>534</Line>
+      <Column>17</Column>
+      <EndLine>534</EndLine>
+      <EndColumn>123</EndColumn>
+      <Message>Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . </Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketJsonSerializer/Method/deserializeObjectInternal</Path>
+      <ElementType>EqualExpression</ElementType>
+      <Moniker>TypeConversionCSharpExplicit</Moniker>
+      <Line>998</Line>
+      <Column>36</Column>
+      <EndLine>998</EndLine>
+      <EndColumn>59</EndColumn>
+      <Message>The explicit type conversion from 'System.Object' to 'System.Decimal' may return a truncated version of the original value or construct a new value with a difference in precision. Use a built-in conversion method if this truncation or loss of precision is both allowed and expected.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_Time/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>15</Line>
+      <Column>5</Column>
+      <EndLine>15</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_AccountCoinsBalance/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>10</Line>
+      <Column>5</Column>
+      <EndLine>10</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketAutoTrade_Test/Method/run</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TableReferenceBeforeJoin</Moniker>
+      <Line>39</Line>
+      <Column>44</Column>
+      <EndLine>39</EndLine>
+      <EndColumn>51</EndColumn>
+      <Message>The table 'account' is  referenced before being joined. Move this reference after the table has been joined in the statement.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Bybit_ExecutionList/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>23</Line>
+      <Column>5</Column>
+      <EndLine>23</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
+    </Diagnostic>
+  </Items>
+  <Aliases />
+</Diagnostics>

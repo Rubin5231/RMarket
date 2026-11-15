@@ -91,7 +91,7 @@ public class RMarketMethod_Bybit_Instrument extends RMarketMethod implements RMa
         if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
             throw Error(strfmt("Request returns error!"));
     
-        responseContract = RMarketJsonSerializer::deserializeObject(
+        responseContract = RMarketJsonSerializer::deserializeObjectStrict(
             classNum(RMarketJson_Bybit_Instrument),
             responseStr) as RMarketJson_Bybit_Instrument;
     }

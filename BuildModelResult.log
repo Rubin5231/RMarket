@@ -1,0 +1,65 @@
+==================================
+TaskListItem Information: Table Method dynamics://Table/RMarketStrategyAction/Method/calcSignal: [(142,9),(142,33)]: TODO Record signal log
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/created: [(56,9),(56,69)]: TODO:  Write code to execute once work items are created.
+TaskListItem Information: Class Method dynamics://Class/RMarketUtil/Method/calculateCandleDateTime: [(104,45),(104,69)]: TODO make right for d3
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowTypeSubmitManager/Method/main: [(8,9),(8,72)]: TODO:  Write code to execute once a work item is submitted.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowTypeEventHandler/Method/started: [(10,9),(10,70)]: TODO:  Write code to execute once the workflow is started.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowTypeEventHandler/Method/canceled: [(17,9),(17,71)]: TODO:  Write code to execute once the workflow is canceled.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowTypeEventHandler/Method/completed: [(24,9),(24,72)]: TODO:  Write code to execute once the workflow is completed.
+TaskListItem Information: Class Method dynamics://Class/RMarketAutoTrade/Method/makeAccountActions: [(223,17),(223,48)]: TODO notexists join actionLog
+ExternalReference Warning: dynamics://Reference/Microsoft.Commerce.Flighting.Common: Assembly 'Microsoft.Xbox.Experimentation.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d91bba2b903dc20f' failed to load because it was not found.
+ExternalReference Warning: dynamics://Reference/Microsoft.Dynamics___vices.PricingEngine: Assembly 'Microsoft.Dynamics.Commerce.Runtime.Entities.AttributeBasedPricing, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' failed to load because it was not found.
+ExternalReference Warning: dynamics://Reference/Azure.Core: Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_Klines: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_Klines.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Klines.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_MyTrades: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_MyTrades.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetTradeHistory.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_Klines: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_Klines.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Klines.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_ExchangeInfo: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_ExchangeInfo.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Instrument.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_AccountBalance: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_AccountBalance.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetAccountBalance.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_Time: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_Time.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Time.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_ExecutionList: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_ExecutionList.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetTradeHistory.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_Instrument: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_Instrument.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Instrument.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_CreateOrder: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_CreateOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CreateOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Binance_CancelOrder: [(33,5),(33,27)]: Method 'void RMarketMethod_Binance_CancelOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CancelOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalResubmitActionMgr/Method/main: [(8,3),(8,68)]: TODO:  Write code to execute once work items are resubmitted.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_WalletBalance: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_WalletBalance.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_GetAccountBalance.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_CancelOrder: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_CancelOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CancelOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_CreateOrder: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_CreateOrder.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_CreateOrder.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+Compile Warning: Class dynamics://Class/RMarketMethod_Bybit_Time: [(33,5),(33,27)]: Method 'void RMarketMethod_Bybit_Time.setBaseUrl(URL _baseUrl)' does not override 'void RMarketMethodInterface_Time.setBaseUrl(str _baseUrl)' because parameter 1 must be of type 'str' instead of 'URL'.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/started: [(14,9),(14,70)]: TODO:  Write code to execute once the workflow is started.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/returned: [(49,9),(49,71)]: TODO:  Write code to execute once the workflow is returned.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/completed: [(28,9),(28,72)]: TODO:  Write code to execute once the workflow is completed.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/changeRequested: [(42,9),(42,83)]: TODO:  Write code to execute once change is requested for the workflow.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/denied: [(35,9),(35,69)]: TODO:  Write code to execute once the workflow is denied.
+TaskListItem Information: Class Method dynamics://Class/MyWorkflowApprovalEventHandler/Method/canceled: [(21,9),(21,71)]: TODO:  Write code to execute once the workflow is canceled.
+Compile Warning: Class Method dynamics://Class/RMarketUtil/Method/calculateCandleDateTime: [(106,17),(106,23)]: The statement is unreachable.
+Compile Warning: Class Method dynamics://Class/RMarketUtil/Method/calculateCandleTimestamp: [(125,68),(125,74)]: The type conversion from 'int64' to 'int' loses range.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_MyTrades/Method/new: [(22,5),(22,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_Klines/Method/new: [(23,5),(23,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_ExchangeInfo/Method/new: [(11,5),(11,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketAutoTrade_Bybit/Method/enableMarginTradeLeverage: [(48,45),(48,62)]: The type conversion from 'real' to 'int' loses range and precision.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_AccountBalance/Method/new: [(20,5),(20,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_Time/Method/new: [(15,5),(15,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketCandlesLoad/Method/initQuery: [(142,56),(142,71)]: Comparing a numerical value with extensible enum 'Extensible Enumeration(RMarketCandleInterval)' will yield unexpected results. Extensible enum values are not deterministically assigned to a numerical value.
+Metadata Warning: AxWorkflowApproval/MyWorkflowApproval/Deny/ActionMenuItem: Property cannot be empty.
+FormPatternValidation Warning: AxForm/RMarketTrans/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketPosition/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketOrder/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketStrategy/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketEventLog/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketAPIMethodLog/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketSum/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+FormPatternValidation Warning: AxForm/RMarketApiKey/Design: 'FormDesign' has not specified a pattern. Please apply one of the available patterns.
+Metadata Warning: AxForm/RMarketIndicatorTable/Design/Controls/MainGrid/Controls/Overview/DataGroup: Field group 'Overview' has no fields.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_CreateOrder/Method/new: [(15,5),(15,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Binance_CancelOrder/Method/new: [(11,5),(11,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Bybit_WalletBalance/Method/new: [(21,5),(21,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketJsonSerializer/Method/writePrimitiveValue: [(391,17),(391,127)]: Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . 
+Compile Warning: Class Method dynamics://Class/RMarketJsonSerializer/Method/deserializeValue: [(534,17),(534,123)]: Type 'SystemRuntimeEventSource' or member 'EventWriteTraceError' is marked InternalUseOnly and is not accessible from the current module 'RMarket' . 
+Compile Warning: EqualExpression dynamics://Class/RMarketJsonSerializer/Method/deserializeObjectInternal: [(998,36),(998,59)]: The explicit type conversion from 'System.Object' to 'System.Decimal' may return a truncated version of the original value or construct a new value with a difference in precision. Use a built-in conversion method if this truncation or loss of precision is both allowed and expected.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Bybit_Time/Method/new: [(15,5),(15,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Bybit_AccountCoinsBalance/Method/new: [(10,5),(10,20)]: Not all paths in the constructor call 'super()'.
+Compile Warning: Class Method dynamics://Class/RMarketAutoTrade_Test/Method/run: [(39,44),(39,51)]: The table 'account' is  referenced before being joined. Move this reference after the table has been joined in the statement.
+Compile Warning: Class Method dynamics://Class/RMarketMethod_Bybit_ExecutionList/Method/new: [(23,5),(23,20)]: Not all paths in the constructor call 'super()'.
+==================================
+Errors: 0
+Warnings: 46
