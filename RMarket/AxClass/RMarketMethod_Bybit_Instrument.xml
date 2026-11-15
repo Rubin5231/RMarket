@@ -108,21 +108,21 @@ public class RMarketMethod_Bybit_Instrument extends RMarketMethod implements RMa
         enum.moveNext();
         RMarketJson_Bybit_Instrument_Item item = enum.current();
         container ret = [//item.parmBaseCoin(), item.parmQuoteCoin()];
-            str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //BasePrecision
-            str2Num(item.parmLotSizeFilter().parmQuotePrecision()), //QuotePrecision
-            str2Num(item.parmPriceFilter().parmMinPrice()),         //MinPrice
-            str2Num(item.parmPriceFilter().parmMaxPrice()),         //MaxPrice
-            str2Num(item.parmPriceFilter().parmTickSize()),         //StepPrice
-            str2Num(item.parmLotSizeFilter().parmMinOrderQty()),    //MinMarketQty
-            str2Num(item.parmLotSizeFilter().parmMaxOrderQty()),    //MaxMarketQty
-            str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //StepMarketQty
-            str2Num(item.parmLotSizeFilter().parmMinOrderQty()),    //MinLimitQty
-            str2Num(item.parmLotSizeFilter().parmMaxOrderQty()),    //MaxLimitQty
-            str2Num(item.parmLotSizeFilter().parmBasePrecision()),  //StepLimitQty
-            str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),    //MinLimitAmount
-            str2Num(item.parmLotSizeFilter().parmMaxOrderAmt()),    //MaxLimitAmount
-            str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),    //MinMarketAmount
-            str2Num(item.parmLotSizeFilter().parmMaxOrderAmt())     //MaxMarketAmount
+            str2Num(item.parmLotSizeFilter().parmBasePrecision()),      //BasePrecision
+            str2Num(item.parmLotSizeFilter().parmQuotePrecision()),     //QuotePrecision
+            str2Num(item.parmPriceFilter().parmMinPrice()),             //MinPrice
+            str2Num(item.parmPriceFilter().parmMaxPrice()),             //MaxPrice
+            str2Num(item.parmPriceFilter().parmTickSize()),             //StepPrice
+            str2Num(item.parmLotSizeFilter().parmMinOrderQty()),        //MinMarketQty
+            str2Num(item.parmLotSizeFilter().parmMaxMarketOrderQty()),  //MaxMarketQty
+            str2Num(item.parmLotSizeFilter().parmBasePrecision()),      //StepMarketQty
+            str2Num(item.parmLotSizeFilter().parmMinOrderQty()),        //MinLimitQty
+            str2Num(item.parmLotSizeFilter().parmMaxLimitOrderQty()),   //MaxLimitQty
+            str2Num(item.parmLotSizeFilter().parmBasePrecision()),      //StepLimitQty
+            str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),        //MinLimitAmount
+            str2Num(item.parmLotSizeFilter().parmMaxOrderAmt()),        //MaxLimitAmount
+            str2Num(item.parmLotSizeFilter().parmMinOrderAmt()),        //MinMarketAmount
+            str2Num(item.parmLotSizeFilter().parmMaxOrderAmt())         //MaxMarketAmount
             ];
         return ret;
     }

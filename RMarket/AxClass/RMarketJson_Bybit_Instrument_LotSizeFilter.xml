@@ -15,6 +15,8 @@ public class RMarketJson_Bybit_Instrument_LotSizeFilter
     private str qtyStep;
     private str minTradingQty;
     private str maxTradingQty;
+    private str maxLimitOrderQty;
+    private str maxMarketOrderQty;
 
 }
 ]]></Declaration>
@@ -150,6 +152,32 @@ public class RMarketJson_Bybit_Instrument_LotSizeFilter
     {
         maxTradingQty = _maxTradingQty;
         return maxTradingQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxLimitOrderQty</Name>
+				<Source><![CDATA[
+    [DataMember('maxLimitOrderQty')]
+    public str parmMaxLimitOrderQty(
+    str _value = maxLimitOrderQty)
+    {
+        maxLimitOrderQty = _value;
+        return maxLimitOrderQty;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmMaxMarketOrderQty</Name>
+				<Source><![CDATA[
+    [DataMember('maxMarketOrderQty')]
+    public str parmMaxMarketOrderQty(
+    str _value = maxMarketOrderQty)
+    {
+        maxMarketOrderQty = _value;
+        return maxMarketOrderQty;
     }
 
 ]]></Source>

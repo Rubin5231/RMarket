@@ -12,13 +12,6 @@
 				<Type>Class</Type>
 				<TypeName>FormDataSource</TypeName>
 			</ReturnType>
-			<Variables>
-				<AxMethodVariable>
-					<Type>Class</Type>
-					<TypeName>FormDataSource</TypeName>
-					<Name>ret</Name>
-				</AxMethodVariable>
-			</Variables>
 		</Method>
 	</Methods>
 	<DataSources>
@@ -39,18 +32,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>action</Name>
-						</AxMethodVariable>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -72,18 +53,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>condition</Name>
-						</AxMethodVariable>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -105,18 +74,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>condition</Name>
-						</AxMethodVariable>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -159,13 +116,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>action</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -179,13 +129,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -199,13 +142,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyAction</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -245,13 +181,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategyOrders</TypeName>
-							<Name>orders</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -278,13 +207,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>condition</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -298,13 +220,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -318,13 +233,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketConditionTable</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>

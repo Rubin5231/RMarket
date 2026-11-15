@@ -81,6 +81,22 @@
 			<Attributes />
 			<Visibility>Private</Visibility>
 		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
+			<Name>maxLimitOrderQty</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>String</Type>
+			<TypeName></TypeName>
+			<Name>maxMarketOrderQty</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
 	</Members>
 	<Methods>
 		<Method>
@@ -336,6 +352,64 @@
 					<TypeName></TypeName>
 					<DefaultValue>maxTradingQty</DefaultValue>
 					<Name>_maxTradingQty</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmMaxLimitOrderQty</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'maxLimitOrderQty'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<DefaultValue>maxLimitOrderQty</DefaultValue>
+					<Name>_value</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmMaxMarketOrderQty</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'maxMarketOrderQty'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<DefaultValue>maxMarketOrderQty</DefaultValue>
+					<Name>_value</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
