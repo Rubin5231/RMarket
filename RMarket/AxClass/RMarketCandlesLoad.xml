@@ -57,6 +57,7 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
         marketId = dialogMarketId.value();
         symbolId = dialogSymbolId.value();
         interval = dialogInterval.value();
+        if (interval != RMarketCandleInterval::None && interval != 255)
         dtFrom = dialogFrom.value();
         dtTo = dialogTo.value();
         return ret;

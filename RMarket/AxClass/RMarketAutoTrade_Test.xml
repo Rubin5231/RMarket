@@ -37,6 +37,7 @@ public class RMarketAutoTrade_Test extends RMarketAutoTrade
         RMarketStrategy strategy;
         RMarketCandleTable candle;
         RMarketTimestampTable tsTable;
+        utcdatetime nextActionDateTime = account.NextActionDateTime;
 
         // Loop for every minute from start to last candle.
         // Try to select candles for current time. 
@@ -47,7 +48,7 @@ public class RMarketAutoTrade_Test extends RMarketAutoTrade
             group by Timestamp, DateTime
             exists join candle
                 where tsTable.Timestamp == candle.Timestamp
-                   && tsTable.DateTime  >= account.NextActionDateTime
+                   && tsTable.DateTime  >= nextActionDateTime
             exists join dim
                 where dim.RecId == candle.DimRecId
             exists join account
