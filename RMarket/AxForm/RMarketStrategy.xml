@@ -494,6 +494,78 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
+				<Name>NodeNewEventButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            if (element.currentCondition_DS().leaveRecord())
+            {
+                element.currentCondition_DS().create();
+            }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>NodeNewGroupButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            if (element.currentCondition_DS().leaveRecord())
+            {
+                element.currentCondition_DS().create();
+            }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>NodeNewConditionButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            if (element.currentCondition_DS().leaveRecord())
+            {
+                element.currentCondition_DS().create();
+            }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
 				<Name>NodeDeleteButton</Name>
 				<Type>Button</Type>
 				<Methods>
@@ -1572,25 +1644,43 @@ public class RMarketStrategy extends FormRun
 																	i:nil="true" />
 																<Controls>
 																	<AxFormControl xmlns=""
-																		i:type="AxFormMenuFunctionButtonControl">
-																		<Name>NodeNewEventMenuButton</Name>
-																		<Type>MenuFunctionButton</Type>
+																		i:type="AxFormButtonControl">
+																		<Name>NodeNewEventButton</Name>
+																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																		<Type>Button</Type>
 																		<FormControlExtension
 																			i:nil="true" />
+																		<AutoRefreshData>Yes</AutoRefreshData>
+																		<Big>Yes</Big>
+																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<NormalImage>New</NormalImage>
+																		<Text>New</Text>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
-																		i:type="AxFormMenuFunctionButtonControl">
-																		<Name>NodeNewGroupMenuButton</Name>
-																		<Type>MenuFunctionButton</Type>
+																		i:type="AxFormButtonControl">
+																		<Name>NodeNewGroupButton</Name>
+																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																		<Type>Button</Type>
 																		<FormControlExtension
 																			i:nil="true" />
+																		<AutoRefreshData>Yes</AutoRefreshData>
+																		<Big>Yes</Big>
+																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<NormalImage>New</NormalImage>
+																		<Text>New</Text>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
-																		i:type="AxFormMenuFunctionButtonControl">
-																		<Name>NodeNewConditionMenuButton</Name>
-																		<Type>MenuFunctionButton</Type>
+																		i:type="AxFormButtonControl">
+																		<Name>NodeNewConditionButton</Name>
+																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																		<Type>Button</Type>
 																		<FormControlExtension
 																			i:nil="true" />
+																		<AutoRefreshData>Yes</AutoRefreshData>
+																		<Big>Yes</Big>
+																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<NormalImage>New</NormalImage>
+																		<Text>New</Text>
 																	</AxFormControl>
 																</Controls>
 																<ButtonDisplay>ImageOnly</ButtonDisplay>
