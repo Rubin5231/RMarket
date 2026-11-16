@@ -896,7 +896,7 @@ public class RMarketStrategy extends FormRun
 					</AxFormControl>
 					<AxFormControl xmlns=""
 						i:type="AxFormGroupControl">
-						<Name>SplitterVGroup</Name>
+						<Name>SplitterVTopGroup</Name>
 						<Type>Group</Type>
 						<FormControlExtension
 							i:nil="true" />
@@ -1225,257 +1225,310 @@ public class RMarketStrategy extends FormRun
 				<Style>Strip</Style>
 			</AxFormControl>
 			<AxFormControl xmlns=""
-				i:type="AxFormTabControl">
-				<Name>ConditionTab</Name>
-				<Type>Tab</Type>
+				i:type="AxFormGroupControl">
+				<Name>BottomGroup</Name>
+				<Type>Group</Type>
 				<FormControlExtension
 					i:nil="true" />
 				<Controls>
 					<AxFormControl xmlns=""
-						i:type="AxFormTabPageControl">
-						<Name>ActionConditionTabPage</Name>
-						<AutoDeclaration>Yes</AutoDeclaration>
-						<Pattern>ToolbarList</Pattern>
-						<PatternVersion>1.2</PatternVersion>
-						<Type>TabPage</Type>
+						i:type="AxFormGroupControl">
+						<Name>DetailsGroup</Name>
+						<Type>Group</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
-								i:type="AxFormGridControl">
-								<Name>ActionConditionGrid</Name>
-								<Type>Grid</Type>
+								i:type="AxFormTabControl">
+								<Name>ConditionTab</Name>
+								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
-										i:type="AxFormIntegerControl">
-										<Name>ActionConditionGrid_Num</Name>
-										<Type>Integer</Type>
+										i:type="AxFormTabPageControl">
+										<Name>ActionConditionTabPage</Name>
+										<AutoDeclaration>Yes</AutoDeclaration>
+										<Pattern>ToolbarList</Pattern>
+										<PatternVersion>1.2</PatternVersion>
+										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
-										<DataField>Num</DataField>
-										<DataSource>ActionConditionTable</DataSource>
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>TreeGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormTreeControl">
+														<Name>ConditionTree</Name>
+														<AutoDeclaration>Yes</AutoDeclaration>
+														<Type>Tree</Type>
+														<FormControlExtension
+															i:nil="true" />
+													</AxFormControl>
+												</Controls>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>SplitterVBottomGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls />
+												<Style>SplitterVerticalContainer</Style>
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGroupControl">
+												<Name>ConditionGroup</Name>
+												<Type>Group</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls />
+											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>ActionConditionGrid</Name>
+												<Type>Grid</Type>
+												<Visible>No</Visible>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>ActionConditionGrid_Num</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Num</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_Source</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Source</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>ActionConditionGrid_IndicatorId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>IndicatorId</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_CandleValue</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>CandleValue</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>ActionConditionGrid_Value</Name>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Value</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>ActionConditionGrid_Shift</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Shift</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_Interval</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Interval</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_ComparisonType</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ComparisonType</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_SecondSource</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondSource</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>ActionConditionGrid_SecondIndicatorId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondIndicatorId</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_SecondCandleValue</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondCandleValue</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>ActionConditionGrid_SecondValue</Name>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondValue</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>ActionConditionGrid_SecondShift</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondShift</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>ActionConditionGrid_SecondInterval</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>SecondInterval</DataField>
+														<DataSource>ActionConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+												</Controls>
+												<DataGroup>OverviewAction</DataGroup>
+												<DataSource>ActionConditionTable</DataSource>
+											</AxFormControl>
+										</Controls>
+										<Caption>Action conditions</Caption>
 									</AxFormControl>
 									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_Source</Name>
-										<Type>ComboBox</Type>
+										i:type="AxFormTabPageControl">
+										<Name>OrdersConditionTabPage</Name>
+										<AutoDeclaration>Yes</AutoDeclaration>
+										<Type>TabPage</Type>
+										<Visible>No</Visible>
 										<FormControlExtension
 											i:nil="true" />
-										<DataField>Source</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormStringControl">
-										<Name>ActionConditionGrid_IndicatorId</Name>
-										<Type>String</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>IndicatorId</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_CandleValue</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>CandleValue</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormRealControl">
-										<Name>ActionConditionGrid_Value</Name>
-										<Type>Real</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Value</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormIntegerControl">
-										<Name>ActionConditionGrid_Shift</Name>
-										<Type>Integer</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Shift</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_Interval</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Interval</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_ComparisonType</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>ComparisonType</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_SecondSource</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondSource</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormStringControl">
-										<Name>ActionConditionGrid_SecondIndicatorId</Name>
-										<Type>String</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondIndicatorId</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_SecondCandleValue</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondCandleValue</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormRealControl">
-										<Name>ActionConditionGrid_SecondValue</Name>
-										<Type>Real</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondValue</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormIntegerControl">
-										<Name>ActionConditionGrid_SecondShift</Name>
-										<Type>Integer</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondShift</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>ActionConditionGrid_SecondInterval</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>SecondInterval</DataField>
-										<DataSource>ActionConditionTable</DataSource>
-										<Items />
+										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormGridControl">
+												<Name>OrdersConditionGrid</Name>
+												<Type>Grid</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>OrdersConditionGrid_Num</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Num</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersConditionGrid_Source</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Source</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>OrdersConditionGrid_IndicatorId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>IndicatorId</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersConditionGrid_CandleValue</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>CandleValue</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormIntegerControl">
+														<Name>OrdersConditionGrid_Shift</Name>
+														<Type>Integer</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Shift</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersConditionGrid_Interval</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Interval</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>OrdersConditionGrid_Value</Name>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Value</DataField>
+														<DataSource>OrdersConditionTable</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataGroup>OverviewOrders</DataGroup>
+												<DataSource>OrdersConditionTable</DataSource>
+											</AxFormControl>
+										</Controls>
+										<Caption>Orders conditions</Caption>
 									</AxFormControl>
 								</Controls>
-								<DataGroup>OverviewAction</DataGroup>
-								<DataSource>ActionConditionTable</DataSource>
 							</AxFormControl>
 						</Controls>
-						<Caption>Action conditions</Caption>
-					</AxFormControl>
-					<AxFormControl xmlns=""
-						i:type="AxFormTabPageControl">
-						<Name>OrdersConditionTabPage</Name>
-						<AutoDeclaration>Yes</AutoDeclaration>
-						<Type>TabPage</Type>
-						<Visible>No</Visible>
-						<FormControlExtension
-							i:nil="true" />
-						<Controls>
-							<AxFormControl xmlns=""
-								i:type="AxFormGridControl">
-								<Name>OrdersConditionGrid</Name>
-								<Type>Grid</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<Controls>
-									<AxFormControl xmlns=""
-										i:type="AxFormIntegerControl">
-										<Name>OrdersConditionGrid_Num</Name>
-										<Type>Integer</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Num</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>OrdersConditionGrid_Source</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Source</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormStringControl">
-										<Name>OrdersConditionGrid_IndicatorId</Name>
-										<Type>String</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>IndicatorId</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>OrdersConditionGrid_CandleValue</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>CandleValue</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormIntegerControl">
-										<Name>OrdersConditionGrid_Shift</Name>
-										<Type>Integer</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Shift</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormComboBoxControl">
-										<Name>OrdersConditionGrid_Interval</Name>
-										<Type>ComboBox</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Interval</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-										<Items />
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormRealControl">
-										<Name>OrdersConditionGrid_Value</Name>
-										<Type>Real</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<DataField>Value</DataField>
-										<DataSource>OrdersConditionTable</DataSource>
-									</AxFormControl>
-								</Controls>
-								<DataGroup>OverviewOrders</DataGroup>
-								<DataSource>OrdersConditionTable</DataSource>
-							</AxFormControl>
-						</Controls>
-						<Caption>Orders conditions</Caption>
 					</AxFormControl>
 				</Controls>
 			</AxFormControl>
