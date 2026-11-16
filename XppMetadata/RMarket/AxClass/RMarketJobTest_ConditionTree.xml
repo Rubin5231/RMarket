@@ -91,5 +91,40 @@
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>testValidation</Name>
+			<IsStatic>true</IsStatic>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategyAction</TypeName>
+					<Name>_action</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>_event</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>_group</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>_child</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Int32</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

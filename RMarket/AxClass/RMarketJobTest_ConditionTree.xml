@@ -153,11 +153,90 @@ internal final class RMarketJobTest_ConditionTree
 
         passed++;
 
+
+        passed += RMarketJobTest_ConditionTree::testValidation(
+            action,
+            event1,
+            groupOr,
+            groupAB);
+
+
         // Remove all test records
         ttsabort;
 
+
+
+
         info(strFmt(
-            "Condition tree tests passed: %1/5", passed));
+            "Condition tree tests passed: %1/10", passed));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>testValidation</Name>
+				<Source><![CDATA[
+    private static int testValidation(
+    RMarketStrategyAction _action,
+    RMarketConditionGroup _event,
+    RMarketConditionGroup _group,
+    RMarketConditionGroup _child)
+    {
+        RMarketConditionGroup probe;
+        RMarketStrategyAction otherAction;
+        int passed;
+
+        // 1. Valid hierarchy
+        probe = RMarketConditionGroup::find(_group.RecId);
+
+        if (!probe.validateWrite())
+        throw error("Validation test 1 failed.");
+
+        passed++;
+
+        // 2. Indirect cycle: Event -> Child -> ... -> Event
+        probe = RMarketConditionGroup::find(_event.RecId);
+        probe.ParentRecId = _child.RecId;
+
+        if (probe.validateWrite())
+        throw error("Validation test 2: indirect cycle accepted.");
+
+        passed++;
+
+        // 3. Direct cycle
+        probe = RMarketConditionGroup::find(_group.RecId);
+        probe.ParentRecId = probe.RecId;
+
+        if (probe.validateWrite())
+        throw error("Validation test 3: direct cycle accepted.");
+
+        passed++;
+
+        // 4. Nonexistent parent
+        probe = RMarketConditionGroup::find(_group.RecId);
+        probe.ParentRecId = -1;
+
+        if (probe.validateWrite())
+        throw error("Validation test 4: invalid parent accepted.");
+
+        passed++;
+
+        // 5. Parent belongs to another action
+        otherAction.StrategyId = _action.StrategyId;
+        otherAction.Num = 9998;
+        otherAction.Type = RMarketStrategyActionType::OpenLong;
+        otherAction.Active = NoYes::No;
+        otherAction.insert();
+
+        probe = RMarketConditionGroup::find(_group.RecId);
+        probe.RMarketStrategyActionRecId = otherAction.RecId;
+
+        if (probe.validateWrite())
+        throw error("Validation test 5: foreign parent accepted.");
+
+        passed++;
+
+        return passed;
     }
 
 ]]></Source>
