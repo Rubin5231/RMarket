@@ -754,6 +754,127 @@ public class RMarketStrategy extends FormRun
 			<DataSourceLinks />
 			<DerivedDataSources />
 		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>RMarketConditionGroup</Name>
+			<Table>RMarketConditionGroup</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>CreatedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>CreatedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedBy</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ModifiedDateTime</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Name</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Num</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ParentRecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RMarketConditionOperator</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RMarketStrategyActionRecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<JoinSource>RMarketStrategyAction</JoinSource>
+			<InsertIfEmpty>No</InsertIfEmpty>
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
+		<AxFormDataSource xmlns="">
+			<Name>RMarketConditionTable</Name>
+			<Table>RMarketConditionTable</Table>
+			<Fields>
+				<AxFormDataSourceField>
+					<DataField>CandleValue</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>ComparisonType</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>DataAreaId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>IndicatorId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Interval</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Num</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Partition</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>RefRecId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Relation</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondCandleValue</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondIndicatorId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondInterval</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondShift</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondSource</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>SecondValue</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Shift</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Source</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>TableId</DataField>
+				</AxFormDataSourceField>
+				<AxFormDataSourceField>
+					<DataField>Value</DataField>
+				</AxFormDataSourceField>
+			</Fields>
+			<ReferencedDataSources />
+			<JoinSource>RMarketConditionGroup</JoinSource>
+			<InsertIfEmpty>No</InsertIfEmpty>
+			<DataSourceLinks />
+			<DerivedDataSources />
+		</AxFormDataSource>
 	</DataSources>
 	<Design>
 		<Caption xmlns="">Strategy</Caption>
@@ -1294,7 +1415,29 @@ public class RMarketStrategy extends FormRun
 														<Type>Group</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<Controls />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormStringControl">
+																<Name>GroupSettingsGroup_Name</Name>
+																<Type>String</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>Name</DataField>
+																<DataSource>RMarketConditionGroup</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormComboBoxControl">
+																<Name>GroupSettingsGroup_RMarketConditionOperator</Name>
+																<Type>ComboBox</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<DataField>RMarketConditionOperator</DataField>
+																<DataSource>RMarketConditionGroup</DataSource>
+																<Items />
+															</AxFormControl>
+														</Controls>
+														<DataGroup>Settings</DataGroup>
+														<DataSource>RMarketConditionGroup</DataSource>
 													</AxFormControl>
 													<AxFormControl xmlns=""
 														i:type="AxFormGroupControl">
@@ -1302,7 +1445,166 @@ public class RMarketStrategy extends FormRun
 														<Type>Group</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<Controls />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormGroupControl">
+																<Name>What</Name>
+																<Type>Group</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>What_Source</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Source</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormStringControl">
+																		<Name>What_IndicatorId</Name>
+																		<Type>String</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>IndicatorId</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>What_CandleValue</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>CandleValue</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormRealControl">
+																		<Name>What_Value</Name>
+																		<Type>Real</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Value</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>What_Interval</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Interval</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormIntegerControl">
+																		<Name>What_Shift</Name>
+																		<Type>Integer</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Shift</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																</Controls>
+																<DataGroup>What</DataGroup>
+																<DataSource>RMarketConditionTable</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormGroupControl">
+																<Name>Comparison</Name>
+																<Type>Group</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>Comparison_ComparisonType</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>ComparisonType</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																</Controls>
+																<DataGroup>Comparison</DataGroup>
+																<DataSource>RMarketConditionTable</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormGroupControl">
+																<Name>With</Name>
+																<Type>Group</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>With_SecondSource</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondSource</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormStringControl">
+																		<Name>With_SecondIndicatorId</Name>
+																		<Type>String</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondIndicatorId</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>With_SecondCandleValue</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondCandleValue</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormRealControl">
+																		<Name>With_SecondValue</Name>
+																		<Type>Real</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondValue</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>With_SecondInterval</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondInterval</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormIntegerControl">
+																		<Name>With_SecondShift</Name>
+																		<Type>Integer</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondShift</DataField>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																</Controls>
+																<DataGroup>With</DataGroup>
+																<DataSource>RMarketConditionTable</DataSource>
+															</AxFormControl>
+														</Controls>
+														<Columns>3</Columns>
 													</AxFormControl>
 													<AxFormControl xmlns=""
 														i:type="AxFormGridControl">
