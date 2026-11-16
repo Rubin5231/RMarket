@@ -33,14 +33,13 @@ public class RMarketConditionGroup extends common
 	</SourceCode>
 	<Label>Market Condition Group</Label>
 	<TableGroup>Group</TableGroup>
-	<TitleField1>MarketConditionGroupId</TitleField1>
+	<TitleField1>Name</TitleField1>
 	<CacheLookup>Found</CacheLookup>
-	<ClusteredIndex>MarketConditionGroupIdIdx</ClusteredIndex>
+	<ClusteredIndex>ActionParentNumIdx</ClusteredIndex>
 	<CreatedBy>Yes</CreatedBy>
 	<CreatedDateTime>Yes</CreatedDateTime>
 	<ModifiedBy>Yes</ModifiedBy>
 	<ModifiedDateTime>Yes</ModifiedDateTime>
-	<PrimaryIndex>MarketConditionGroupIdIdx</PrimaryIndex>
 	<DeleteActions />
 	<FieldGroups>
 		<AxTableFieldGroup>
