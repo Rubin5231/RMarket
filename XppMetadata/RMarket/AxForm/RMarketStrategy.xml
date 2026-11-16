@@ -13,6 +13,35 @@
 				<TypeName>FormDataSource</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>buildConditionTree</Name>
+			<ReturnType>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>addConditionTreeNodes</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>_actionRecId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RefRecId</TypeName>
+					<Name>_parentRecId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>_parentIdx</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 	<DataSources>
 		<DataSource>
@@ -30,6 +59,14 @@
 						</AxMethodParameter>
 					</Parameters>
 					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+				<Method>
+					<Name>active</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<Type>Int32</Type>
 						<TypeName></TypeName>
 					</ReturnType>
 				</Method>
@@ -173,6 +210,45 @@
 		</Control>
 		<Control>
 			<Name>OrdersDeleteButton</Name>
+			<Type>Button</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>NodeDeleteButton</Name>
+			<Type>Button</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>NodeUpButton</Name>
+			<Type>Button</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>NodeDownButton</Name>
 			<Type>Button</Type>
 			<Methods>
 				<Method>

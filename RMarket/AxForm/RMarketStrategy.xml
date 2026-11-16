@@ -16,6 +16,18 @@ public class RMarketStrategy extends FormRun
     
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ]]></Source>
 			</Method>
@@ -33,6 +45,115 @@ public class RMarketStrategy extends FormRun
         else if (OrdersConditionTabPage.isActivePage())
             ret = OrdersConditionTable_DS;
         return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>buildConditionTree</Name>
+				<Source><![CDATA[
+    private void buildConditionTree()
+    {
+        RMarketStrategyAction strategyAction =
+        RMarketStrategyAction_DS.cursor();
+
+        ConditionTree.deleteAll();
+
+        if (strategyAction.RecId)
+        {
+            element.addConditionTreeNodes(
+            strategyAction.RecId,
+            0,
+            FormTreeAdd::Root);
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>addConditionTreeNodes</Name>
+				<Source><![CDATA[
+    private void addConditionTreeNodes(
+        RecId       _actionRecId,
+        RefRecId    _parentRecId,
+        TreeItemIdx _parentIdx)
+    {
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionTable condition;
+        FormTreeItem          treeItem;
+        TreeItemIdx           itemIdx;
+        str                   caption;
+        str                   nodeType;
+
+        // Root events and nested groups
+        while select conditionGroup
+        order by conditionGroup.Num
+        where conditionGroup.RMarketStrategyActionRecId == _actionRecId
+           && conditionGroup.ParentRecId == _parentRecId
+        {
+            if (_parentRecId == 0)
+            {
+                nodeType = "E";
+
+                caption = strFmt(
+                "◆ %1 (%2)",
+                conditionGroup.Name,
+                enum2Str(conditionGroup.RMarketConditionOperator));
+            }
+            else
+            {
+                nodeType = "G";
+
+                caption = strFmt(
+                "▣ %1 (%2)",
+                conditionGroup.Name,
+                enum2Str(conditionGroup.RMarketConditionOperator));
+            }
+
+            treeItem = new FormTreeItem();
+            treeItem.text(caption);
+            treeItem.data(strFmt(
+            "%1:%2",
+            nodeType,
+            conditionGroup.RecId));
+
+            itemIdx = ConditionTree.addItem(
+            _parentIdx,
+            0,
+            treeItem);
+
+            // Recursively add nested groups and conditions
+            element.addConditionTreeNodes(
+            _actionRecId,
+            conditionGroup.RecId,
+            itemIdx);
+        }
+
+        // Leaf conditions of the current group
+        if (_parentRecId)
+        {
+            while select condition
+            order by condition.Num
+            where condition.Relation ==
+                    RMarketConditionRelation::RMarketConditionGroup
+               && condition.RefRecId == _parentRecId
+            {
+                treeItem = new FormTreeItem();
+
+                treeItem.text(strFmt(
+                "● Condition %1",
+                condition.Num));
+
+                treeItem.data(strFmt(
+                "C:%1",
+                condition.RecId));
+
+                ConditionTree.addItem(
+                _parentIdx,
+                0,
+                treeItem);
+            }
+        }
     }
 
 ]]></Source>
@@ -61,6 +182,24 @@ public class RMarketStrategy extends FormRun
             RMarketStrategyAction record = this.cursor();
             //record.StrategyId = RMarketStrategy.StrategyId;
             record.Num   = action.Num + 1;
+        }
+
+]]></Source>
+					</Method>
+					<Method>
+						<Name>active</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public int active()
+        {
+            int ret = super();
+
+            element.buildConditionTree();
+        
+            return ret;
         }
 
 ]]></Source>
@@ -355,6 +494,90 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
+				<Name>NodeDeleteButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        /// Delete data project
+        /// </summary>
+        public void clicked()
+        {
+            RMarketConditionTable  condition;
+            super();
+            
+            condition = element.currentCondition_DS().cursor();
+            if (condition.RecId && condition.validateDelete())
+            {
+                try
+                {
+                    condition.delete();
+                }
+                catch
+                {
+                    //continue with other records
+                }
+            }
+            element.currentCondition_DS().research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>NodeUpButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketConditionTable  record;
+            
+            super();
+            
+            record = element.currentCondition_DS().cursor();
+            record.conditionNumDecrease();
+            element.currentCondition_DS().research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>NodeDownButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketConditionTable  record;
+            
+            super();
+            
+            record = element.currentCondition_DS().cursor();
+            record.conditionNumRaise();
+            element.currentCondition_DS().research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
 				<Name>ConditionNewButton</Name>
 				<Type>Button</Type>
 				<Methods>
@@ -427,7 +650,7 @@ public class RMarketStrategy extends FormRun
             RMarketConditionTable  record;
             
             super();
-
+    
             record = element.currentCondition_DS().cursor();
             record.conditionNumDecrease();
             element.currentCondition_DS().research();
@@ -452,7 +675,7 @@ public class RMarketStrategy extends FormRun
             RMarketConditionTable  record;
             
             super();
-
+    
             record = element.currentCondition_DS().cursor();
             record.conditionNumRaise();
             element.currentCondition_DS().research();
@@ -937,81 +1160,90 @@ public class RMarketStrategy extends FormRun
 					i:nil="true" />
 				<Controls>
 					<AxFormControl xmlns=""
-						i:type="AxFormTabControl">
-						<Name>MainTab</Name>
-						<Type>Tab</Type>
+						i:type="AxFormGroupControl">
+						<Name>FormGroupControl2</Name>
+						<Type>Group</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
-								i:type="AxFormTabPageControl">
-								<Name>MainTabPage</Name>
-								<Type>TabPage</Type>
+								i:type="AxFormTabControl">
+								<Name>MainTab</Name>
+								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
-										i:type="AxFormGridControl">
-										<Name>StrategyGrid</Name>
-										<Type>Grid</Type>
+										i:type="AxFormTabPageControl">
+										<Name>MainTabPage</Name>
+										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
 										<Controls>
 											<AxFormControl xmlns=""
-												i:type="AxFormStringControl">
-												<Name>MainGrid_StrategyId</Name>
-												<Type>String</Type>
+												i:type="AxFormGridControl">
+												<Name>StrategyGrid</Name>
+												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
-												<DataField>StrategyId</DataField>
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>MainGrid_StrategyId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>StrategyId</DataField>
+														<DataSource>RMarketStrategy</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>MainGrid_Name</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Name</DataField>
+														<DataSource>RMarketStrategy</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>MainGrid_Description</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Description</DataField>
+														<DataSource>RMarketStrategy</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>StrategyGrid_Interval</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Interval</DataField>
+														<DataSource>RMarketStrategy</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>MainGrid_Status</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Status</DataField>
+														<DataSource>RMarketStrategy</DataSource>
+														<Items />
+													</AxFormControl>
+												</Controls>
+												<DataGroup>Overview</DataGroup>
 												<DataSource>RMarketStrategy</DataSource>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormStringControl">
-												<Name>MainGrid_Name</Name>
-												<Type>String</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Name</DataField>
-												<DataSource>RMarketStrategy</DataSource>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormStringControl">
-												<Name>MainGrid_Description</Name>
-												<Type>String</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Description</DataField>
-												<DataSource>RMarketStrategy</DataSource>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>StrategyGrid_Interval</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Interval</DataField>
-												<DataSource>RMarketStrategy</DataSource>
-												<Items />
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>MainGrid_Status</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Status</DataField>
-												<DataSource>RMarketStrategy</DataSource>
-												<Items />
+												<MultiSelect>No</MultiSelect>
 											</AxFormControl>
 										</Controls>
-										<DataGroup>Overview</DataGroup>
+										<Caption>Overview</Caption>
 										<DataSource>RMarketStrategy</DataSource>
-										<MultiSelect>No</MultiSelect>
 									</AxFormControl>
 								</Controls>
-								<Caption>Overview</Caption>
-								<DataSource>RMarketStrategy</DataSource>
 							</AxFormControl>
 						</Controls>
 					</AxFormControl>
@@ -1025,243 +1257,252 @@ public class RMarketStrategy extends FormRun
 						<Style>SplitterVerticalContainer</Style>
 					</AxFormControl>
 					<AxFormControl xmlns=""
-						i:type="AxFormTabControl">
-						<Name>RightTab</Name>
-						<Type>Tab</Type>
+						i:type="AxFormGroupControl">
+						<Name>FormGroupControl1</Name>
+						<Type>Group</Type>
 						<FormControlExtension
 							i:nil="true" />
 						<Controls>
 							<AxFormControl xmlns=""
-								i:type="AxFormTabPageControl">
-								<Name>ActionTabPage</Name>
-								<AutoDeclaration>Yes</AutoDeclaration>
-								<Type>TabPage</Type>
+								i:type="AxFormTabControl">
+								<Name>RightTab</Name>
+								<Type>Tab</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls>
 									<AxFormControl xmlns=""
-										i:type="AxFormActionPaneControl">
-										<Name>ActionActionPane</Name>
-										<Type>ActionPane</Type>
+										i:type="AxFormTabPageControl">
+										<Name>ActionTabPage</Name>
+										<AutoDeclaration>Yes</AutoDeclaration>
+										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
 										<Controls>
 											<AxFormControl xmlns=""
-												i:type="AxFormButtonGroupControl">
-												<Name>ActionButtonGroup</Name>
-												<Type>ButtonGroup</Type>
+												i:type="AxFormActionPaneControl">
+												<Name>ActionActionPane</Name>
+												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ActionNewButton</Name>
-														<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-														<Type>Button</Type>
+														i:type="AxFormButtonGroupControl">
+														<Name>ActionButtonGroup</Name>
+														<Type>ButtonGroup</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<AutoRefreshData>Yes</AutoRefreshData>
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<NormalImage>New</NormalImage>
-														<Text>New</Text>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ActionDeleteButton</Name>
-														<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-														<Type>Button</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<AutoRefreshData>Yes</AutoRefreshData>
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<MultiSelect>No</MultiSelect>
-														<NormalImage>Delete</NormalImage>
-														<Text>@SYS21354</Text>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ActionUpButton</Name>
-														<Type>Button</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<NormalImage>Up</NormalImage>
-														<Text>Up</Text>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>ActionDownButton</Name>
-														<Type>Button</Type>
-														<FormControlExtension
-															i:nil="true" />
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<NormalImage>Down</NormalImage>
-														<Text>Down</Text>
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ActionNewButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>New</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ActionDeleteButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<MultiSelect>No</MultiSelect>
+																<NormalImage>Delete</NormalImage>
+																<Text>@SYS21354</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ActionUpButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Up</NormalImage>
+																<Text>Up</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ActionDownButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Down</NormalImage>
+																<Text>Down</Text>
+															</AxFormControl>
+														</Controls>
+														<DataSource>RMarketStrategyAction</DataSource>
 													</AxFormControl>
 												</Controls>
 												<DataSource>RMarketStrategyAction</DataSource>
-											</AxFormControl>
-										</Controls>
-										<DataSource>RMarketStrategyAction</DataSource>
-										<Style>Strip</Style>
-									</AxFormControl>
-									<AxFormControl xmlns=""
-										i:type="AxFormGridControl">
-										<Name>ActionGrid</Name>
-										<Type>Grid</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormIntegerControl">
-												<Name>ActionGrid_Num</Name>
-												<Type>Integer</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Num</DataField>
-												<DataSource>RMarketStrategyAction</DataSource>
+												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>IndicatorLinkTableGrid_TypeCopy1</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Type</DataField>
-												<DataSource>RMarketStrategyAction</DataSource>
-												<Items />
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormCheckBoxControl">
-												<Name>IndicatorLinkTableGrid_ActiveCopy1</Name>
-												<Type>CheckBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>Active</DataField>
-												<DataSource>RMarketStrategyAction</DataSource>
-											</AxFormControl>
-										</Controls>
-										<DataGroup>Overview</DataGroup>
-										<DataSource>RMarketStrategyAction</DataSource>
-									</AxFormControl>
-								</Controls>
-								<Caption>Actions</Caption>
-							</AxFormControl>
-							<AxFormControl xmlns=""
-								i:type="AxFormTabPageControl">
-								<Name>OrdersTabPage</Name>
-								<AutoDeclaration>Yes</AutoDeclaration>
-								<Type>TabPage</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<Controls>
-									<AxFormControl xmlns=""
-										i:type="AxFormActionPaneControl">
-										<Name>OrdersActionPane</Name>
-										<Type>ActionPane</Type>
-										<FormControlExtension
-											i:nil="true" />
-										<Controls>
-											<AxFormControl xmlns=""
-												i:type="AxFormButtonGroupControl">
-												<Name>ActionButtonGroupCopy1</Name>
-												<Type>ButtonGroup</Type>
+												i:type="AxFormGridControl">
+												<Name>ActionGrid</Name>
+												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>OrdersNewButton</Name>
-														<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-														<Type>Button</Type>
+														i:type="AxFormIntegerControl">
+														<Name>ActionGrid_Num</Name>
+														<Type>Integer</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<AutoRefreshData>Yes</AutoRefreshData>
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<NormalImage>New</NormalImage>
-														<Text>New</Text>
+														<DataField>Num</DataField>
+														<DataSource>RMarketStrategyAction</DataSource>
 													</AxFormControl>
 													<AxFormControl xmlns=""
-														i:type="AxFormButtonControl">
-														<Name>OrdersDeleteButton</Name>
-														<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-														<Type>Button</Type>
+														i:type="AxFormComboBoxControl">
+														<Name>IndicatorLinkTableGrid_TypeCopy1</Name>
+														<Type>ComboBox</Type>
 														<FormControlExtension
 															i:nil="true" />
-														<AutoRefreshData>Yes</AutoRefreshData>
-														<ButtonDisplay>ImageOnly</ButtonDisplay>
-														<MultiSelect>No</MultiSelect>
-														<NormalImage>Delete</NormalImage>
-														<Text>@SYS21354</Text>
+														<DataField>Type</DataField>
+														<DataSource>RMarketStrategyAction</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormCheckBoxControl">
+														<Name>IndicatorLinkTableGrid_ActiveCopy1</Name>
+														<Type>CheckBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>Active</DataField>
+														<DataSource>RMarketStrategyAction</DataSource>
 													</AxFormControl>
 												</Controls>
+												<DataGroup>Overview</DataGroup>
 												<DataSource>RMarketStrategyAction</DataSource>
 											</AxFormControl>
 										</Controls>
-										<DataSource>RMarketStrategyAction</DataSource>
-										<Style>Strip</Style>
+										<Caption>Actions</Caption>
 									</AxFormControl>
 									<AxFormControl xmlns=""
-										i:type="AxFormGridControl">
-										<Name>OrdersGrid</Name>
-										<Type>Grid</Type>
+										i:type="AxFormTabPageControl">
+										<Name>OrdersTabPage</Name>
+										<AutoDeclaration>Yes</AutoDeclaration>
+										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
 										<Controls>
 											<AxFormControl xmlns=""
-												i:type="AxFormStringControl">
-												<Name>OrdersGrid_StrategyId</Name>
-												<Type>String</Type>
+												i:type="AxFormActionPaneControl">
+												<Name>OrdersActionPane</Name>
+												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
-												<DataField>StrategyId</DataField>
-												<DataSource>RMarketStrategyOrders</DataSource>
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonGroupControl">
+														<Name>ActionButtonGroupCopy1</Name>
+														<Type>ButtonGroup</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>OrdersNewButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>New</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>OrdersDeleteButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<MultiSelect>No</MultiSelect>
+																<NormalImage>Delete</NormalImage>
+																<Text>@SYS21354</Text>
+															</AxFormControl>
+														</Controls>
+														<DataSource>RMarketStrategyAction</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataSource>RMarketStrategyAction</DataSource>
+												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""
-												i:type="AxFormRealControl">
-												<Name>OrdersGrid_ShareSize</Name>
-												<Type>Real</Type>
+												i:type="AxFormGridControl">
+												<Name>OrdersGrid</Name>
+												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
-												<DataField>ShareSize</DataField>
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormStringControl">
+														<Name>OrdersGrid_StrategyId</Name>
+														<Type>String</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>StrategyId</DataField>
+														<DataSource>RMarketStrategyOrders</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormRealControl">
+														<Name>OrdersGrid_ShareSize</Name>
+														<Type>Real</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>ShareSize</DataField>
+														<DataSource>RMarketStrategyOrders</DataSource>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersGrid_PositionDirection</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>PositionDirection</DataField>
+														<DataSource>RMarketStrategyOrders</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersGrid_OrderRole</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>OrderRole</DataField>
+														<DataSource>RMarketStrategyOrders</DataSource>
+														<Items />
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormComboBoxControl">
+														<Name>OrdersGrid_OrderType</Name>
+														<Type>ComboBox</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<DataField>OrderType</DataField>
+														<DataSource>RMarketStrategyOrders</DataSource>
+														<Items />
+													</AxFormControl>
+												</Controls>
+												<DataGroup>Overview</DataGroup>
 												<DataSource>RMarketStrategyOrders</DataSource>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>OrdersGrid_PositionDirection</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>PositionDirection</DataField>
-												<DataSource>RMarketStrategyOrders</DataSource>
-												<Items />
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>OrdersGrid_OrderRole</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>OrderRole</DataField>
-												<DataSource>RMarketStrategyOrders</DataSource>
-												<Items />
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormComboBoxControl">
-												<Name>OrdersGrid_OrderType</Name>
-												<Type>ComboBox</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<DataField>OrderType</DataField>
-												<DataSource>RMarketStrategyOrders</DataSource>
-												<Items />
 											</AxFormControl>
 										</Controls>
-										<DataGroup>Overview</DataGroup>
-										<DataSource>RMarketStrategyOrders</DataSource>
+										<Caption>Orders</Caption>
 									</AxFormControl>
 								</Controls>
-								<Caption>Orders</Caption>
 							</AxFormControl>
 						</Controls>
 					</AxFormControl>
@@ -1276,74 +1517,6 @@ public class RMarketStrategy extends FormRun
 					i:nil="true" />
 				<Controls />
 				<Style>SplitterHorizontalContainer</Style>
-			</AxFormControl>
-			<AxFormControl xmlns=""
-				i:type="AxFormActionPaneControl">
-				<Name>ConditionActionPane</Name>
-				<Type>ActionPane</Type>
-				<FormControlExtension
-					i:nil="true" />
-				<Controls>
-					<AxFormControl xmlns=""
-						i:type="AxFormButtonGroupControl">
-						<Name>ConditionButtonGroup</Name>
-						<Type>ButtonGroup</Type>
-						<FormControlExtension
-							i:nil="true" />
-						<Controls>
-							<AxFormControl xmlns=""
-								i:type="AxFormButtonControl">
-								<Name>ConditionNewButton</Name>
-								<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-								<Type>Button</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<AutoRefreshData>Yes</AutoRefreshData>
-								<Big>Yes</Big>
-								<ButtonDisplay>ImageOnly</ButtonDisplay>
-								<NormalImage>New</NormalImage>
-								<Text>New</Text>
-							</AxFormControl>
-							<AxFormControl xmlns=""
-								i:type="AxFormButtonControl">
-								<Name>ConditionDeleteButton</Name>
-								<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-								<Type>Button</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<AutoRefreshData>Yes</AutoRefreshData>
-								<Big>Yes</Big>
-								<ButtonDisplay>ImageOnly</ButtonDisplay>
-								<MultiSelect>No</MultiSelect>
-								<NormalImage>Delete</NormalImage>
-								<Text>@SYS21354</Text>
-							</AxFormControl>
-							<AxFormControl xmlns=""
-								i:type="AxFormButtonControl">
-								<Name>ConditionUpButton</Name>
-								<Type>Button</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<ButtonDisplay>ImageOnly</ButtonDisplay>
-								<NormalImage>Up</NormalImage>
-								<Text>Up</Text>
-							</AxFormControl>
-							<AxFormControl xmlns=""
-								i:type="AxFormButtonControl">
-								<Name>ConditionDownButton</Name>
-								<Type>Button</Type>
-								<FormControlExtension
-									i:nil="true" />
-								<ButtonDisplay>ImageOnly</ButtonDisplay>
-								<NormalImage>Down</NormalImage>
-								<Text>Down</Text>
-							</AxFormControl>
-						</Controls>
-						<DataSource>ActionConditionTable</DataSource>
-					</AxFormControl>
-				</Controls>
-				<DataSource>ActionConditionTable</DataSource>
-				<Style>Strip</Style>
 			</AxFormControl>
 			<AxFormControl xmlns=""
 				i:type="AxFormGroupControl">
@@ -1377,381 +1550,477 @@ public class RMarketStrategy extends FormRun
 											i:nil="true" />
 										<Controls>
 											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>EventTreeGroup</Name>
-												<Type>Group</Type>
+												i:type="AxFormActionPaneControl">
+												<Name>ConditionTreeActionPane</Name>
+												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
-														i:type="AxFormTreeControl">
-														<Name>ConditionTree</Name>
-														<AutoDeclaration>Yes</AutoDeclaration>
-														<Type>Tree</Type>
+														i:type="AxFormButtonGroupControl">
+														<Name>ConditionTreeButtonGroup</Name>
+														<Type>ButtonGroup</Type>
 														<FormControlExtension
 															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormMenuButtonControl">
+																<Name>NodeNewMenuButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>MenuButton</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormMenuFunctionButtonControl">
+																		<Name>NodeNewEventMenuButton</Name>
+																		<Type>MenuFunctionButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormMenuFunctionButtonControl">
+																		<Name>NodeNewGroupMenuButton</Name>
+																		<Type>MenuFunctionButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormMenuFunctionButtonControl">
+																		<Name>NodeNewConditionMenuButton</Name>
+																		<Type>MenuFunctionButton</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																	</AxFormControl>
+																</Controls>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>New</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeDeleteButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<Big>Yes</Big>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<MultiSelect>No</MultiSelect>
+																<NormalImage>Delete</NormalImage>
+																<Text>@SYS21354</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeUpButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Up</NormalImage>
+																<Text>Up</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeDownButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Down</NormalImage>
+																<Text>Down</Text>
+															</AxFormControl>
+														</Controls>
 													</AxFormControl>
 												</Controls>
 											</AxFormControl>
 											<AxFormControl xmlns=""
 												i:type="AxFormGroupControl">
-												<Name>SplitterVBottomGroup</Name>
-												<Type>Group</Type>
-												<FormControlExtension
-													i:nil="true" />
-												<Controls />
-												<Style>SplitterVerticalContainer</Style>
-											</AxFormControl>
-											<AxFormControl xmlns=""
-												i:type="AxFormGroupControl">
-												<Name>NodeSettingsGroup</Name>
+												<Name>FormGroupControl3</Name>
 												<Type>Group</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
 														i:type="AxFormGroupControl">
-														<Name>GroupSettingsGroup</Name>
+														<Name>EventTreeGroup</Name>
 														<Type>Group</Type>
 														<FormControlExtension
 															i:nil="true" />
 														<Controls>
 															<AxFormControl xmlns=""
-																i:type="AxFormStringControl">
-																<Name>GroupSettingsGroup_Name</Name>
-																<Type>String</Type>
+																i:type="AxFormTreeControl">
+																<Name>ConditionTree</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
+																<Type>Tree</Type>
 																<FormControlExtension
 																	i:nil="true" />
-																<DataField>Name</DataField>
-																<DataSource>RMarketConditionGroup</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>GroupSettingsGroup_RMarketConditionOperator</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>RMarketConditionOperator</DataField>
-																<DataSource>RMarketConditionGroup</DataSource>
-																<Items />
 															</AxFormControl>
 														</Controls>
-														<DataGroup>Settings</DataGroup>
-														<DataSource>RMarketConditionGroup</DataSource>
 													</AxFormControl>
 													<AxFormControl xmlns=""
 														i:type="AxFormGroupControl">
-														<Name>ConditionSettingsGroup</Name>
+														<Name>SplitterVBottomGroup</Name>
+														<Type>Group</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls />
+														<Style>SplitterVerticalContainer</Style>
+													</AxFormControl>
+													<AxFormControl xmlns=""
+														i:type="AxFormGroupControl">
+														<Name>NodeSettingsGroup</Name>
 														<Type>Group</Type>
 														<FormControlExtension
 															i:nil="true" />
 														<Controls>
 															<AxFormControl xmlns=""
 																i:type="AxFormGroupControl">
-																<Name>What</Name>
+																<Name>GroupSettingsGroup</Name>
 																<Type>Group</Type>
 																<FormControlExtension
 																	i:nil="true" />
 																<Controls>
 																	<AxFormControl xmlns=""
+																		i:type="AxFormStringControl">
+																		<Name>GroupSettingsGroup_Name</Name>
+																		<Type>String</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Name</DataField>
+																		<DataSource>RMarketConditionGroup</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
 																		i:type="AxFormComboBoxControl">
-																		<Name>What_Source</Name>
+																		<Name>GroupSettingsGroup_RMarketConditionOperator</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>RMarketConditionOperator</DataField>
+																		<DataSource>RMarketConditionGroup</DataSource>
+																		<Items />
+																	</AxFormControl>
+																</Controls>
+																<DataGroup>Settings</DataGroup>
+																<DataSource>RMarketConditionGroup</DataSource>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormGroupControl">
+																<Name>ConditionSettingsGroup</Name>
+																<Type>Group</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormGroupControl">
+																		<Name>What</Name>
+																		<Type>Group</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Controls>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>What_Source</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>Source</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormStringControl">
+																				<Name>What_IndicatorId</Name>
+																				<Type>String</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>IndicatorId</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>What_CandleValue</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>CandleValue</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormRealControl">
+																				<Name>What_Value</Name>
+																				<Type>Real</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>Value</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>What_Interval</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>Interval</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormIntegerControl">
+																				<Name>What_Shift</Name>
+																				<Type>Integer</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>Shift</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																		</Controls>
+																		<DataGroup>What</DataGroup>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormGroupControl">
+																		<Name>Comparison</Name>
+																		<Type>Group</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Controls>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>Comparison_ComparisonType</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>ComparisonType</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																		</Controls>
+																		<DataGroup>Comparison</DataGroup>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormGroupControl">
+																		<Name>With</Name>
+																		<Type>Group</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<Controls>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>With_SecondSource</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondSource</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormStringControl">
+																				<Name>With_SecondIndicatorId</Name>
+																				<Type>String</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondIndicatorId</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>With_SecondCandleValue</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondCandleValue</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormRealControl">
+																				<Name>With_SecondValue</Name>
+																				<Type>Real</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondValue</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormComboBoxControl">
+																				<Name>With_SecondInterval</Name>
+																				<Type>ComboBox</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondInterval</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																				<Items />
+																			</AxFormControl>
+																			<AxFormControl xmlns=""
+																				i:type="AxFormIntegerControl">
+																				<Name>With_SecondShift</Name>
+																				<Type>Integer</Type>
+																				<FormControlExtension
+																					i:nil="true" />
+																				<DataField>SecondShift</DataField>
+																				<DataSource>RMarketConditionTable</DataSource>
+																			</AxFormControl>
+																		</Controls>
+																		<DataGroup>With</DataGroup>
+																		<DataSource>RMarketConditionTable</DataSource>
+																	</AxFormControl>
+																</Controls>
+																<Columns>3</Columns>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormGridControl">
+																<Name>ActionConditionGrid</Name>
+																<Type>Grid</Type>
+																<Visible>No</Visible>
+																<FormControlExtension
+																	i:nil="true" />
+																<Controls>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormIntegerControl">
+																		<Name>ActionConditionGrid_Num</Name>
+																		<Type>Integer</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Num</DataField>
+																		<DataSource>ActionConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>ActionConditionGrid_Source</Name>
 																		<Type>ComboBox</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>Source</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																		<Items />
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormStringControl">
-																		<Name>What_IndicatorId</Name>
+																		<Name>ActionConditionGrid_IndicatorId</Name>
 																		<Type>String</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>IndicatorId</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormComboBoxControl">
-																		<Name>What_CandleValue</Name>
+																		<Name>ActionConditionGrid_CandleValue</Name>
 																		<Type>ComboBox</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>CandleValue</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																		<Items />
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormRealControl">
-																		<Name>What_Value</Name>
+																		<Name>ActionConditionGrid_Value</Name>
 																		<Type>Real</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>Value</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
-																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormComboBoxControl">
-																		<Name>What_Interval</Name>
-																		<Type>ComboBox</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<DataField>Interval</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
-																		<Items />
+																		<DataSource>ActionConditionTable</DataSource>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormIntegerControl">
-																		<Name>What_Shift</Name>
+																		<Name>ActionConditionGrid_Shift</Name>
 																		<Type>Integer</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>Shift</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																	</AxFormControl>
-																</Controls>
-																<DataGroup>What</DataGroup>
-																<DataSource>RMarketConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormGroupControl">
-																<Name>Comparison</Name>
-																<Type>Group</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<Controls>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormComboBoxControl">
-																		<Name>Comparison_ComparisonType</Name>
+																		<Name>ActionConditionGrid_Interval</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>Interval</DataField>
+																		<DataSource>ActionConditionTable</DataSource>
+																		<Items />
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>ActionConditionGrid_ComparisonType</Name>
 																		<Type>ComboBox</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>ComparisonType</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																		<Items />
 																	</AxFormControl>
-																</Controls>
-																<DataGroup>Comparison</DataGroup>
-																<DataSource>RMarketConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormGroupControl">
-																<Name>With</Name>
-																<Type>Group</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<Controls>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormComboBoxControl">
-																		<Name>With_SecondSource</Name>
+																		<Name>ActionConditionGrid_SecondSource</Name>
 																		<Type>ComboBox</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>SecondSource</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																		<Items />
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormStringControl">
-																		<Name>With_SecondIndicatorId</Name>
+																		<Name>ActionConditionGrid_SecondIndicatorId</Name>
 																		<Type>String</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>SecondIndicatorId</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormComboBoxControl">
-																		<Name>With_SecondCandleValue</Name>
+																		<Name>ActionConditionGrid_SecondCandleValue</Name>
 																		<Type>ComboBox</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>SecondCandleValue</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
 																		<Items />
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormRealControl">
-																		<Name>With_SecondValue</Name>
+																		<Name>ActionConditionGrid_SecondValue</Name>
 																		<Type>Real</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>SecondValue</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
-																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormComboBoxControl">
-																		<Name>With_SecondInterval</Name>
-																		<Type>ComboBox</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<DataField>SecondInterval</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
-																		<Items />
+																		<DataSource>ActionConditionTable</DataSource>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormIntegerControl">
-																		<Name>With_SecondShift</Name>
+																		<Name>ActionConditionGrid_SecondShift</Name>
 																		<Type>Integer</Type>
 																		<FormControlExtension
 																			i:nil="true" />
 																		<DataField>SecondShift</DataField>
-																		<DataSource>RMarketConditionTable</DataSource>
+																		<DataSource>ActionConditionTable</DataSource>
+																	</AxFormControl>
+																	<AxFormControl xmlns=""
+																		i:type="AxFormComboBoxControl">
+																		<Name>ActionConditionGrid_SecondInterval</Name>
+																		<Type>ComboBox</Type>
+																		<FormControlExtension
+																			i:nil="true" />
+																		<DataField>SecondInterval</DataField>
+																		<DataSource>ActionConditionTable</DataSource>
+																		<Items />
 																	</AxFormControl>
 																</Controls>
-																<DataGroup>With</DataGroup>
-																<DataSource>RMarketConditionTable</DataSource>
+																<DataGroup>OverviewAction</DataGroup>
+																<DataSource>ActionConditionTable</DataSource>
 															</AxFormControl>
 														</Controls>
-														<Columns>3</Columns>
-													</AxFormControl>
-													<AxFormControl xmlns=""
-														i:type="AxFormGridControl">
-														<Name>ActionConditionGrid</Name>
-														<Type>Grid</Type>
-														<Visible>No</Visible>
-														<FormControlExtension
-															i:nil="true" />
-														<Controls>
-															<AxFormControl xmlns=""
-																i:type="AxFormIntegerControl">
-																<Name>ActionConditionGrid_Num</Name>
-																<Type>Integer</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>Num</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_Source</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>Source</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormStringControl">
-																<Name>ActionConditionGrid_IndicatorId</Name>
-																<Type>String</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>IndicatorId</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_CandleValue</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>CandleValue</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormRealControl">
-																<Name>ActionConditionGrid_Value</Name>
-																<Type>Real</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>Value</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormIntegerControl">
-																<Name>ActionConditionGrid_Shift</Name>
-																<Type>Integer</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>Shift</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_Interval</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>Interval</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_ComparisonType</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>ComparisonType</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_SecondSource</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondSource</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormStringControl">
-																<Name>ActionConditionGrid_SecondIndicatorId</Name>
-																<Type>String</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondIndicatorId</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_SecondCandleValue</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondCandleValue</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormRealControl">
-																<Name>ActionConditionGrid_SecondValue</Name>
-																<Type>Real</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondValue</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormIntegerControl">
-																<Name>ActionConditionGrid_SecondShift</Name>
-																<Type>Integer</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondShift</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormComboBoxControl">
-																<Name>ActionConditionGrid_SecondInterval</Name>
-																<Type>ComboBox</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<DataField>SecondInterval</DataField>
-																<DataSource>ActionConditionTable</DataSource>
-																<Items />
-															</AxFormControl>
-														</Controls>
-														<DataGroup>OverviewAction</DataGroup>
-														<DataSource>ActionConditionTable</DataSource>
 													</AxFormControl>
 												</Controls>
+												<Columns>3</Columns>
 											</AxFormControl>
 										</Controls>
 										<Caption>Action conditions</Caption>
@@ -1765,6 +2034,74 @@ public class RMarketStrategy extends FormRun
 										<FormControlExtension
 											i:nil="true" />
 										<Controls>
+											<AxFormControl xmlns=""
+												i:type="AxFormActionPaneControl">
+												<Name>ConditionOrderActionPane</Name>
+												<Type>ActionPane</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<Controls>
+													<AxFormControl xmlns=""
+														i:type="AxFormButtonGroupControl">
+														<Name>ConditionButtonGroup</Name>
+														<Type>ButtonGroup</Type>
+														<FormControlExtension
+															i:nil="true" />
+														<Controls>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ConditionNewButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<Big>Yes</Big>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>New</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ConditionDeleteButton</Name>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<AutoRefreshData>Yes</AutoRefreshData>
+																<Big>Yes</Big>
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<MultiSelect>No</MultiSelect>
+																<NormalImage>Delete</NormalImage>
+																<Text>@SYS21354</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ConditionUpButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Up</NormalImage>
+																<Text>Up</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>ConditionDownButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Down</NormalImage>
+																<Text>Down</Text>
+															</AxFormControl>
+														</Controls>
+														<DataSource>ActionConditionTable</DataSource>
+													</AxFormControl>
+												</Controls>
+												<DataSource>ActionConditionTable</DataSource>
+												<Style>Strip</Style>
+											</AxFormControl>
 											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
 												<Name>OrdersConditionGrid</Name>
