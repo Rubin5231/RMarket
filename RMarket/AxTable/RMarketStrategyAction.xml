@@ -186,18 +186,47 @@ public class RMarketStrategyAction extends common
 				<Source><![CDATA[
     public boolean calcSignal(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
     {
+        RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;
-        boolean signal = true;
 
-        while select condition
-            where condition.RefRecId == this.RecId
+        boolean signal = false;
+        boolean groupResult;
+        boolean conditionResult;
+        boolean hasEvents = false;
+        boolean hasConditions = false;
+
+        // New model: OR between root events
+        while select conditionGroup
+            order by conditionGroup.Num
+            where conditionGroup.RMarketStrategyActionRecId == this.RecId
+               && conditionGroup.ParentRecId == 0
         {
-            signal = signal && condition.calc(_subAccount, _tsCursor);
+            hasEvents = true;
+
+            groupResult = conditionGroup.calc(_subAccount, _tsCursor);
+            signal = signal || groupResult;
         }
 
-        //TODO Record signal log
-        
-        return signal;
+        if (hasEvents)
+            return signal;
+
+        // Legacy model: AND between conditions
+        signal = true;
+
+        while select condition
+            order by condition.Num
+            where condition.Relation
+                    == RMarketConditionRelation::RMarketStrategyAction
+               && condition.RefRecId == this.RecId
+        {
+            hasConditions = true;
+
+            conditionResult = condition.calc(_subAccount, _tsCursor);
+            signal = signal && conditionResult;
+        }
+
+        // Empty action must not generate a signal
+        return hasConditions && signal;
     }
 
 ]]></Source>
