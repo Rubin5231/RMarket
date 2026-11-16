@@ -485,6 +485,9 @@ public class RMarketConditionTable extends common
 			<Name>RefRecIdNumIdx</Name>
 			<Fields>
 				<AxTableIndexField>
+					<DataField>Relation</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
 					<DataField>RefRecId</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
