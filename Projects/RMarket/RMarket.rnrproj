@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJob_EnableMarginTrade</StartupObject>
+    <StartupObject>RMarketJobTest_ConditionTree</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -184,6 +184,11 @@
       <Name>RMarketJobTest_Bybit_Wallet_Balance</Name>
       <Link>Classes\Jobs\RMarketJobTest_Bybit_Wallet_Balance</Link>
     </Content>
+    <Content Include="AxClass\RMarketJobTest_ConditionTree">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_ConditionTree</Name>
+      <Link>Classes\Jobs\RMarketJobTest_ConditionTree</Link>
+    </Content>
     <Content Include="AxClass\RMarketJobTest_Kline_Bybit">
       <SubType>Content</SubType>
       <Name>RMarketJobTest_Kline_Bybit</Name>
@@ -202,7 +207,7 @@
     <Content Include="AxClass\RMarketJob_EnableMarginTrade">
       <SubType>Content</SubType>
       <Name>RMarketJob_EnableMarginTrade</Name>
-      <Link>Classes\RMarketJob_EnableMarginTrade</Link>
+      <Link>Classes\Jobs\RMarketJob_EnableMarginTrade</Link>
     </Content>
     <Content Include="AxClass\RMarketJob_HistoryLoadCalcBatchStart">
       <SubType>Content</SubType>

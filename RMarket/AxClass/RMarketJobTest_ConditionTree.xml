@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_ConditionTree</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_ConditionTree
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>createGroup</Name>
+				<Source><![CDATA[
+    private static RMarketConditionGroup createGroup(
+        RecId _actionRecId,
+        RecId _parentRecId,
+        int _num,
+        str _name,
+        RMarketConditionOperator _operator)
+    {
+        RMarketConditionGroup conditionGroup;
+
+        conditionGroup.RMarketStrategyActionRecId = _actionRecId;
+        conditionGroup.ParentRecId = _parentRecId;
+        conditionGroup.Num = _num;
+        conditionGroup.Name = _name;
+        conditionGroup.RMarketConditionOperator = _operator;
+        conditionGroup.insert();
+
+        return conditionGroup;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createCondition</Name>
+				<Source><![CDATA[
+    private static RMarketConditionTable createCondition(
+        RecId _groupRecId,
+        int _num,
+        boolean _value)
+    {
+        RMarketConditionTable condition;
+
+        condition.Relation =
+            RMarketConditionRelation::RMarketConditionGroup;
+        condition.RefRecId = _groupRecId;
+        condition.Num = _num;
+        condition.Source = RMarketConditionValueSource::Const;
+        condition.SecondSource = RMarketConditionValueSource::Const;
+        condition.ComparisonType =
+            RMarketConditionComparisonType::Equal;
+        condition.Value = 1;
+        condition.SecondValue = _value ? 1 : 0;
+        condition.insert();
+
+        return condition;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketStrategyAction action;
+        RMarketConditionGroup event1, event2;
+        RMarketConditionGroup groupOr, groupAB, groupCD;
+        RMarketConditionTable conditionE;
+        RMarketSubAccount subAccount;
+        int passed;
+
+        ttsbegin;
+
+        // Temporary action, linked to existing strategy
+        action.StrategyId = '001';
+        action.Num = 9999;
+        action.Type = RMarketStrategyActionType::OpenLong;
+        action.Active = NoYes::No;
+        action.insert();
+
+        // Test 1: no events and no conditions
+        if (action.calcSignal(subAccount, 0))
+            throw error("Test 1 failed: empty action.");
+
+        passed++;
+
+        event1 = RMarketJobTest_ConditionTree::createGroup(
+            action.RecId, 0, 1, "Event 1",
+            RMarketConditionOperator::And);
+
+        event2 = RMarketJobTest_ConditionTree::createGroup(
+            action.RecId, 0, 2, "Event 2",
+            RMarketConditionOperator::Or);
+
+        groupOr = RMarketJobTest_ConditionTree::createGroup(
+            action.RecId, event1.RecId, 1, "OR",
+            RMarketConditionOperator::Or);
+
+        groupAB = RMarketJobTest_ConditionTree::createGroup(
+            action.RecId, groupOr.RecId, 1, "A AND B",
+            RMarketConditionOperator::And);
+
+        groupCD = RMarketJobTest_ConditionTree::createGroup(
+            action.RecId, groupOr.RecId, 2, "C AND D",
+            RMarketConditionOperator::And);
+
+        conditionE = RMarketJobTest_ConditionTree::createCondition(
+            event1.RecId, 1, true);
+
+        RMarketJobTest_ConditionTree::createCondition(
+            groupAB.RecId, 1, true);
+        RMarketJobTest_ConditionTree::createCondition(
+            groupAB.RecId, 2, true);
+
+        RMarketJobTest_ConditionTree::createCondition(
+            groupCD.RecId, 1, true);
+        RMarketJobTest_ConditionTree::createCondition(
+            groupCD.RecId, 2, false);
+
+        // Test 2: empty event returns FALSE
+        if (event2.calc(subAccount, 0))
+            throw error("Test 2 failed: empty event.");
+
+        passed++;
+
+        // Test 3: TRUE AND ((TRUE AND TRUE) OR
+        //                   (TRUE AND FALSE)) = TRUE
+        if (!action.calcSignal(subAccount, 0))
+            throw error("Test 3 failed: nested expression.");
+
+        passed++;
+
+        // Test 4: change E to FALSE
+        //select firstonly forupdate conditionE
+        //    where conditionE.RecId == conditionE.RecId;
+        conditionE.selectForUpdate(true);
+        conditionE.SecondValue = 0;
+        conditionE.update();
+
+        if (action.calcSignal(subAccount, 0))
+            throw error("Test 4 failed: false expression.");
+
+        passed++;
+
+        // Test 5: second event becomes TRUE
+        RMarketJobTest_ConditionTree::createCondition(
+            event2.RecId, 1, true);
+
+        if (!action.calcSignal(subAccount, 0))
+            throw error("Test 5 failed: alternative event.");
+
+        passed++;
+
+        // Remove all test records
+        ttsabort;
+
+        info(strFmt(
+            "Condition tree tests passed: %1/5", passed));
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
