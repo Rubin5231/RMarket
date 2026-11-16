@@ -11,9 +11,10 @@ public class RMarketConditionTable extends common
 			<Method>
 				<Name>find</Name>
 				<Source><![CDATA[
-    public static RMarketConditionTable find(RefRecId  _refRecId,
-                                             int       _num,
-                                             boolean   _forUpdate = false)
+    public static RMarketConditionTable find(RMarketConditionRelation   _relation,
+                                             RefRecId                   _refRecId,
+                                             int                        _num,
+                                             boolean                    _forUpdate = false)
     {
         RMarketConditionTable condition;
         ;
@@ -22,7 +23,8 @@ public class RMarketConditionTable extends common
         if (_refRecId)
         {
             select firstonly condition
-                where condition.RefRecId  == _refRecId
+                where condition.Relation  == _relation
+                   && condition.RefRecId  == _refRecId
                    && condition.Num       == _num;
         }
         
@@ -34,13 +36,16 @@ public class RMarketConditionTable extends common
 			<Method>
 				<Name>exists</Name>
 				<Source><![CDATA[
-    public static boolean exists(RefRecId  _refRecId,
-                                 int       _num)
+    public static boolean exists(RMarketConditionRelation   _relation,
+                                 RefRecId                   _refRecId,
+                                 int                        _num,
+                                 boolean                    _forUpdate = false)
     {
         boolean res;
         ;
         res = _refRecId && (select firstonly RecId from RMarketConditionTable
-                             where RMarketConditionTable.RefRecId  == _refRecId
+                             where RMarketConditionTable.Relation  == _relation
+                                && RMarketConditionTable.RefRecId  == _refRecId
                                 && RMarketConditionTable.Num       == _num).RecId != 0;
         
         return res;
@@ -68,7 +73,7 @@ public class RMarketConditionTable extends common
 				<Source><![CDATA[
     public void conditionNumDecrease()
     {
-        RMarketConditionTable other = RMarketConditionTable::find(this.RefRecId, this.Num - 1, true);
+        RMarketConditionTable other = RMarketConditionTable::find(this.Relation, this.RefRecId, this.Num - 1, true);
         if (other)
             RMarketConditionTable::conditionwapNum(this, other);
         else
@@ -88,7 +93,7 @@ public class RMarketConditionTable extends common
 				<Source><![CDATA[
     public void conditionNumRaise()
     {
-        RMarketConditionTable other = RMarketConditionTable::find(this.RefRecId, this.Num + 1, true);
+        RMarketConditionTable other = RMarketConditionTable::find(this.Relation, this.RefRecId, this.Num + 1, true);
         if (other)
             RMarketConditionTable::conditionwapNum(this, other);
         else

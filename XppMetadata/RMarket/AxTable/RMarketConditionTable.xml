@@ -9,6 +9,12 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketConditionRelation</TypeName>
+					<Name>_relation</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RefRecId</TypeName>
 					<Name>_refRecId</Name>
@@ -40,6 +46,12 @@
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketConditionRelation</TypeName>
+					<Name>_relation</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RefRecId</TypeName>
 					<Name>_refRecId</Name>
@@ -49,6 +61,13 @@
 					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<Name>_num</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
