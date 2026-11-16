@@ -255,7 +255,7 @@ public class RMarketConditionTable extends common
 
             case RMarketConditionValueSource::Indicator:
                 indicator = RMarketIndicatorTable::find(_indicatorId, dim.RecId, _tsCursor);
-                if (!candle) throw error(strFmt("Indicator (%1, dim %2, ts %3) wan't found!", _indicatorId, dim.RecId, _tsCursor));
+                if (!indicator) throw error(strFmt("Indicator (%1, dim %2, ts %3) wan't found!", _indicatorId, dim.RecId, _tsCursor));
                 ret = indicator.Value;
                 break;
 
