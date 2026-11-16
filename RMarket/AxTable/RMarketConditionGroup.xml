@@ -29,6 +29,149 @@ public class RMarketConditionGroup extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>calc</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+
+    public boolean calc(
+    RMarketSubAccount _subAccount,
+    RMarketTimestamp  _tsCursor)
+    {
+        RMarketConditionGroup childGroup;
+        RMarketConditionTable condition;
+        boolean result;
+        boolean childResult;
+        boolean hasChildren = false;
+
+        if (!this.RecId)
+        throw error("Condition group is not saved.");
+
+        switch (this.RMarketConditionOperator)
+        {
+            case RMarketConditionOperator::And:
+                result = true;
+                break;
+
+            case RMarketConditionOperator::Or:
+                result = false;
+                break;
+
+            default:
+                throw error("Unsupported condition group operator.");
+        }
+
+        // Child groups
+        while select childGroup
+        order by childGroup.Num
+        where childGroup.ParentRecId == this.RecId
+           && childGroup.RMarketStrategyActionRecId
+                == this.RMarketStrategyActionRecId
+        {
+            hasChildren = true;
+            childResult = childGroup.calc(_subAccount, _tsCursor);
+
+            switch (this.RMarketConditionOperator)
+            {
+                case RMarketConditionOperator::And:
+                    result = result && childResult;
+                    break;
+
+                case RMarketConditionOperator::Or:
+                    result = result || childResult;
+                    break;
+            }
+        }
+
+        // Leaf conditions
+        while select condition
+        order by condition.Num
+        where condition.Relation
+                == RMarketConditionRelation::RMarketConditionGroup
+           && condition.RefRecId == this.RecId
+        {
+            hasChildren = true;
+            childResult = condition.calc(_subAccount, _tsCursor);
+
+            switch (this.RMarketConditionOperator)
+            {
+                case RMarketConditionOperator::And:
+                    result = result && childResult;
+                    break;
+
+                case RMarketConditionOperator::Or:
+                    result = result || childResult;
+                    break;
+            }
+        }
+
+        return hasChildren && result;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateWrite</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+
+    public boolean validateWrite()
+    {
+        boolean ret = super();
+
+        RMarketConditionGroup parentGroup;
+        RefRecId parentRecId = this.ParentRecId;
+        Set visited = new Set(Types::Int64);
+
+        if (!ret)
+        return false;
+
+        if (!this.RMarketStrategyActionRecId)
+        return checkFailed("Strategy action is not specified.");
+
+        if (!RMarketStrategyAction::findRecId(
+            this.RMarketStrategyActionRecId).RecId)
+        {
+            return checkFailed("Strategy action does not exist.");
+        }
+
+        while (parentRecId)
+        {
+            // Direct or indirect reference to itself
+            if (this.RecId && parentRecId == this.RecId)
+            return checkFailed("Circular condition group reference.");
+
+            // Detect existing corrupted cycles
+            if (visited.in(parentRecId))
+            return checkFailed("Cycle detected in condition group hierarchy.");
+
+            visited.add(parentRecId);
+
+            parentGroup = RMarketConditionGroup::find(parentRecId);
+
+            if (!parentGroup.RecId)
+            return checkFailed("Parent condition group does not exist.");
+
+            if (parentGroup.RMarketStrategyActionRecId
+                != this.RMarketStrategyActionRecId)
+            {
+                return checkFailed(
+                "Parent group belongs to another strategy action.");
+            }
+
+            parentRecId = parentGroup.ParentRecId;
+        }
+
+        return true;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Market Condition Group</Label>
