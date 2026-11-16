@@ -568,6 +568,24 @@ public class RMarketConditionTable extends common
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>
+		<AxTableRelation>
+			<Name>RMarketConditionGroup</Name>
+			<RelatedTable>RMarketConditionGroup</RelatedTable>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>RefRecId</Name>
+					<Field>RefRecId</Field>
+					<RelatedField>RecId</RelatedField>
+				</AxTableRelationConstraint>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintFixed">
+					<Name>Relation</Name>
+					<Field>Relation</Field>
+					<ValueStr>RMarketConditionRelation::RMarketConditionGroup</ValueStr>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
 	</Relations>
 	<StateMachines />
 </AxTable>

@@ -794,6 +794,11 @@
       <Name>RMarketConditionComparisonType</Name>
       <Link>Base Enums\RMarketConditionComparisonType</Link>
     </Content>
+    <Content Include="AxEnum\RMarketConditionOperator">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionOperator</Name>
+      <Link>Base Enums\RMarketConditionOperator</Link>
+    </Content>
     <Content Include="AxEnum\RMarketConditionRelation">
       <SubType>Content</SubType>
       <Name>RMarketConditionRelation</Name>
@@ -1293,6 +1298,11 @@
       <SubType>Content</SubType>
       <Name>RMarketCandleTable</Name>
       <Link>Tables\RMarketCandleTable</Link>
+    </Content>
+    <Content Include="AxTable\RMarketConditionGroup">
+      <SubType>Content</SubType>
+      <Name>RMarketConditionGroup</Name>
+      <Link>Tables\RMarketConditionGroup</Link>
     </Content>
     <Content Include="AxTable\RMarketConditionTable">
       <SubType>Content</SubType>

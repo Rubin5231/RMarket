@@ -17,6 +17,10 @@
 			<Label>RMarketStrategyOrders</Label>
 			<Value>1</Value>
 		</AxEnumValue>
+		<AxEnumValue>
+			<Name>RMarketConditionGroup</Name>
+			<Value>3</Value>
+		</AxEnumValue>
 	</EnumValues>
 	<IsExtensible>true</IsExtensible>
 </AxEnum>
