@@ -10,24 +10,6 @@
 public class RMarketStrategy extends FormRun 
 {
 
-    
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 ]]></Source>
 			</Method>
@@ -93,29 +75,22 @@ public class RMarketStrategy extends FormRun
         {
             if (_parentRecId == 0)
             {
-                nodeType = "E";
-
                 caption = strFmt(
-                "◆ %1 (%2)",
-                conditionGroup.Name,
-                enum2Str(conditionGroup.RMarketConditionOperator));
+                    "◆ %1 (%2)",
+                    conditionGroup.Name,
+                    enum2Str(conditionGroup.RMarketConditionOperator));
             }
             else
             {
-                nodeType = "G";
-
                 caption = strFmt(
-                "▣ %1 (%2)",
-                conditionGroup.Name,
-                enum2Str(conditionGroup.RMarketConditionOperator));
+                    "▣ %1 (%2)",
+                    conditionGroup.Name,
+                    enum2Str(conditionGroup.RMarketConditionOperator));
             }
 
             treeItem = new FormTreeItem();
             treeItem.text(caption);
-            treeItem.data(strFmt(
-            "%1:%2",
-            nodeType,
-            conditionGroup.RecId));
+            treeItem.data([tableNum(RMarketConditionGroup), conditionGroup.RecId]);
 
             itemIdx = ConditionTree.addItem(
             _parentIdx,
@@ -141,12 +116,10 @@ public class RMarketStrategy extends FormRun
                 treeItem = new FormTreeItem();
 
                 treeItem.text(strFmt(
-                "● Condition %1",
-                condition.Num));
+                    "● Condition %1",
+                    condition.Num));
 
-                treeItem.data(strFmt(
-                "C:%1",
-                condition.RecId));
+                treeItem.data([tableNum(RMarketConditionTable), condition.RecId]);
 
                 ConditionTree.addItem(
                 _parentIdx,
@@ -154,6 +127,95 @@ public class RMarketStrategy extends FormRun
                 treeItem);
             }
         }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createConditionGroup</Name>
+				<Source><![CDATA[
+    private void createConditionGroup(TreeItemIdx _parentNode = 0)
+    {
+        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionGroup parentGroup;
+        RMarketConditionGroup lastGroup;
+        RMarketConditionTable lastCondition;
+
+        FormTreeItem treeItem;
+        container nodeData;
+        TableId     tableId;
+        RecId       recId;
+
+        RefRecId parentRecId = 0;
+        int nextNum;
+
+        if (!strategyAction.RecId)
+            return;
+
+        // Resolve parent node
+        if (_parentNode)
+        {
+            treeItem = ConditionTree.getItem(_parentNode);
+
+            if (!treeItem)
+                return;
+
+            nodeData = treeItem.data();
+
+            if (conLen(nodeData) != 2)
+                return;
+            [tableId, parentRecId] = nodeData;
+            if (tableId != tableNum(RMarketConditionGroup))
+                return;
+            
+            parentGroup = RMarketConditionGroup::find(parentRecId);
+
+            if (!parentGroup.RecId ||
+                parentGroup.RMarketStrategyActionRecId != strategyAction.RecId)
+            {
+                throw error("Invalid parent condition group.");
+            }
+        }
+
+        // Find the next sibling number
+        select maxof(Num) from lastGroup
+        where lastGroup.RMarketStrategyActionRecId
+                == strategyAction.RecId
+           && lastGroup.ParentRecId == parentRecId;
+
+        nextNum = lastGroup.Num + 1;
+
+        // Nested groups and conditions share the same order
+        if (parentRecId)
+        {
+            select maxof(Num) from lastCondition
+                where lastCondition.Relation == RMarketConditionRelation::RMarketConditionGroup
+                   && lastCondition.RefRecId == parentRecId;
+
+            if (lastCondition.Num >= nextNum)
+            nextNum = lastCondition.Num + 1;
+        }
+
+        conditionGroup.clear();
+        conditionGroup.RMarketStrategyActionRecId = strategyAction.RecId;
+        conditionGroup.ParentRecId = parentRecId;
+        conditionGroup.Num = nextNum;
+        conditionGroup.RMarketConditionOperator = RMarketConditionOperator::And;
+        conditionGroup.Name = parentRecId ? strFmt("Group %1", nextNum) : strFmt("Event %1", nextNum);
+
+        if (!conditionGroup.validateWrite())
+            return;
+
+        ttsbegin;
+        conditionGroup.insert();
+        ttscommit;
+
+        RMarketConditionGroup_DS.research(true);
+        RMarketConditionGroup_DS.findRecord(conditionGroup);
+
+        element.buildConditionTree();
     }
 
 ]]></Source>
@@ -507,10 +569,7 @@ public class RMarketStrategy extends FormRun
         {
             super();
             
-            if (element.currentCondition_DS().leaveRecord())
-            {
-                element.currentCondition_DS().create();
-            }
+            element.createConditionGroup();
         }
 
 ]]></Source>
@@ -529,12 +588,17 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
+            TreeItemIdx parentNode = ConditionTree.getSelection();
+            
             super();
             
-            if (element.currentCondition_DS().leaveRecord())
+            if (!parentNode)
             {
-                element.currentCondition_DS().create();
+                warning("Select a parent event or group.");
+                return;
             }
+
+            element.createConditionGroup(parentNode);
         }
 
 ]]></Source>
@@ -1615,8 +1679,6 @@ public class RMarketStrategy extends FormRun
 										i:type="AxFormTabPageControl">
 										<Name>ActionConditionTabPage</Name>
 										<AutoDeclaration>Yes</AutoDeclaration>
-										<Pattern>ToolbarList</Pattern>
-										<PatternVersion>1.2</PatternVersion>
 										<Type>TabPage</Type>
 										<FormControlExtension
 											i:nil="true" />
@@ -1652,9 +1714,9 @@ public class RMarketStrategy extends FormRun
 																			i:nil="true" />
 																		<AutoRefreshData>Yes</AutoRefreshData>
 																		<Big>Yes</Big>
-																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<ButtonDisplay>TextOnly</ButtonDisplay>
 																		<NormalImage>New</NormalImage>
-																		<Text>New</Text>
+																		<Text>Event</Text>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormButtonControl">
@@ -1665,9 +1727,9 @@ public class RMarketStrategy extends FormRun
 																			i:nil="true" />
 																		<AutoRefreshData>Yes</AutoRefreshData>
 																		<Big>Yes</Big>
-																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<ButtonDisplay>TextOnly</ButtonDisplay>
 																		<NormalImage>New</NormalImage>
-																		<Text>New</Text>
+																		<Text>Group</Text>
 																	</AxFormControl>
 																	<AxFormControl xmlns=""
 																		i:type="AxFormButtonControl">
@@ -1678,9 +1740,9 @@ public class RMarketStrategy extends FormRun
 																			i:nil="true" />
 																		<AutoRefreshData>Yes</AutoRefreshData>
 																		<Big>Yes</Big>
-																		<ButtonDisplay>ImageOnly</ButtonDisplay>
+																		<ButtonDisplay>TextOnly</ButtonDisplay>
 																		<NormalImage>New</NormalImage>
-																		<Text>New</Text>
+																		<Text>Condition</Text>
 																	</AxFormControl>
 																</Controls>
 																<ButtonDisplay>ImageOnly</ButtonDisplay>

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-16T14:15:55.4960611+03:00">
+  GenerationTime="2026-11-16T23:27:45.3684581+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketStrategyAction</Path>
-      <ElementType>Table</ElementType>
-      <Moniker>ModelElementWithUnparsableSource</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>The model element was saved with unparsable source code and cannot be used. Please edit the element in Visual Studio to fix the errors.</Message>
+      <Path>dynamics://Form/RMarketStrategy/Method/addConditionTreeNodes</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>ExpectedToken</Moniker>
+      <Line>69</Line>
+      <Column>83</Column>
+      <EndLine>69</EndLine>
+      <EndColumn>84</EndColumn>
+      <Message>';' expected.</Message>
     </Diagnostic>
     <Diagnostic>
-      <DiagnosticType>Unspecified</DiagnosticType>
+      <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketStrategyAction</Path>
-      <ElementType>Table</ElementType>
-      <Moniker>TableNotFoundOrUnParsable</Moniker>
-      <Message>Table 'RMarketStrategyAction' was not found or cannot be parsed.</Message>
+      <Path>dynamics://Form/RMarketStrategy/Method/addConditionTreeNodes</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>ExpectedToken</Moniker>
+      <Line>98</Line>
+      <Column>82</Column>
+      <EndLine>98</EndLine>
+      <EndColumn>83</EndColumn>
+      <Message>';' expected.</Message>
     </Diagnostic>
   </Items>
   <Aliases />
