@@ -63,7 +63,7 @@
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.5 — Human-readable condition captions.** Replace `● Condition N` with a compact, deterministic English expression combining left operand, comparison sign and right operand. Reuse one formatter for initial tree construction and live field edits. Cover Const, Candle, Indicator first; unsupported/unconfigured sources should be visibly explicit, not silently presented as valid.
+1. **A3.4.4.5 — Human-readable condition captions (code implemented in `599784d8`, integration bug under investigation).** Replace `● Condition N` with a compact, deterministic English expression combining left operand, comparison sign and right operand. Reuse one formatter for initial tree construction and live field edits. Cover Const, Candle, Indicator first; unsupported/unconfigured sources should be visibly explicit, not silently presented as valid.
 2. **A3.4.4.6 — Dynamic field visibility.** Make each operand editor show only fields relevant to its source: Const → Value; Indicator → IndicatorId, Interval, Shift; Candle → CandleValue, Interval, Shift; other future sources → their relevant controls after their semantics exist. Keep Comparison visible. Refresh on tree selection and Source/SecondSource modification. **Scope this to Actions, not the Orders expression editor.**
 3. Make tree deletion safe: leaf deletion; group/event deletion with intended child handling and selection updates. Confirm UX before implementing destructive operations.
 4. Reconcile mixed group+condition sibling `Num` ordering; implement Up/Down with shared sibling order.
@@ -95,6 +95,14 @@
 - User explicitly confirmed testing of all completed work through A3.4.4.4, including live caption refresh on both group and condition fields.
 - A3.4.4.5 is the current implementation task; no code change for that task is committed yet. Code should use existing `RMarketConditionTable` fields and `RMarketStrategy.conditionTreeNodeCaption()`.
 - User prefers Visual Studio Git UI over commands for syncing the root-level log. `Fetch` alone does not update the working tree; `Pull` must target the correct clone and `main`. The root-level Markdown file need not appear in Solution Explorer unless included as a solution item.
+
+### 2026-11-18 — A3.4.4.5 implemented; blocking UI selection bug
+
+- GitHub main commit `599784d8cc4832015327d902ef08bad135e9822c` implements `conditionOperandCaption()` and full leaf captions; user tested caption updates.
+- **Bug not resolved:** tree selection moves between condition leaves, but right-side editor remains bound to a previously selected `RMarketConditionTable_DS` record, especially for multiple leaves under the same group. Edits then do not refresh selected tree caption because record IDs differ.
+- `ConditionTree.selectionChanged()` currently invokes `RMarketConditionGroup_DS.findRecord(group)` then `RMarketConditionTable_DS.findRecord(condition)` but ignores both Boolean return values. Parent/child timing and datasource linkage are prime suspects, **not yet proven**. Diagnose by testing `findRecord()` results, avoiding redundant parent reposition and considering immediate child `LinkType=Active`. Do not mark A3.4.4.5 done until selecting arbitrary leaves shows correct data.
+- Separate warning: a lookup on `With_SecondIndicatorId` was opened when `SecondSource=Candle`; right indicator's table relation is source-qualified, so hidden irrelevant control should prevent that action. Still separately verify lookup when `SecondSource=Indicator`.
+- User confirmed Git UI successfully synchronized development log; local file is not needed as an AX solution item.
 
 ## How to use
 
