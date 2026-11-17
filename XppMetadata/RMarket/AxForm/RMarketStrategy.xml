@@ -20,12 +20,12 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>addConditionGroupTreeNode</Name>
+			<Name>addConditionTreeNode</Name>
 			<Parameters>
 				<AxMethodParameter>
 					<Type>Record</Type>
-					<TypeName>RMarketConditionGroup</TypeName>
-					<Name>_conditionGroup</Name>
+					<TypeName>Common</TypeName>
+					<Name>_common</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Type>ExtendedDataType</Type>
@@ -69,6 +69,19 @@
 					<TypeName>TreeItemIdx</TypeName>
 					<DefaultValue>0</DefaultValue>
 					<Name>_parentNode</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>createCondition</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>_selectedNode</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

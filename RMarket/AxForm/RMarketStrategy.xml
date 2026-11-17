@@ -52,31 +52,48 @@ public class RMarketStrategy extends FormRun
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>addConditionGroupTreeNode</Name>
+				<Name>addConditionTreeNode</Name>
 				<Source><![CDATA[
-    private TreeItemIdx addConditionGroupTreeNode(
-        RMarketConditionGroup _conditionGroup,
+    private TreeItemIdx addConditionTreeNode(
+        Common      _common,
+        //RMarketConditionGroup _conditionGroup,
         TreeItemIdx _parentNode)
     {
-        FormTreeItem treeItem = new FormTreeItem();
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionTable condition;
+        FormTreeItem treeItem;
         str caption;
+        RecId recId;
+        container data;
 
-        caption = strFmt(
-            "%1 %2 (%3)",
-            _conditionGroup.ParentRecId ? "▣" : "◆",
-            _conditionGroup.Name,
-            enum2Str(_conditionGroup.RMarketConditionOperator));
+        switch(_common.TableId)
+        {
+            case tableNum(RMarketConditionTable):
+                condition = _common;
+                recId = condition.RecId;
+                data  = [condition.TableId, recId];
+                caption = strFmt("● Condition %1", condition.Num);
+                break;
 
+            case tableNum(RMarketConditionGroup):
+                conditionGroup = _common;
+                recId = conditionGroup.RecId;
+                data  = [conditionGroup.TableId, recId];
+                caption = strFmt("%1 %2 (%3)",
+                    conditionGroup.ParentRecId ? "▣" : "◆",
+                    conditionGroup.Name,
+                    enum2Str(conditionGroup.RMarketConditionOperator));
+                break;
+                
+            default:
+                return _parentNode;
+        }
+        
+        treeItem = new FormTreeItem();
         treeItem.text(caption);
-        treeItem.data([
-            tableNum(RMarketConditionGroup),
-            _conditionGroup.RecId
-        ]);
+        treeItem.data(data);
 
-        return ConditionTree.addItem(
-            _parentNode,
-            0,
-            treeItem);
+        return ConditionTree.addItem(_parentNode, 0, treeItem);
     }
 
 ]]></Source>
@@ -101,7 +118,7 @@ public class RMarketStrategy extends FormRun
         where conditionGroup.RMarketStrategyActionRecId == _actionRecId
            && conditionGroup.ParentRecId == _parentRecId
         {
-            itemIdx = element.addConditionGroupTreeNode(
+            itemIdx = element.addConditionTreeNode(
                 conditionGroup,
                 _parentIdx);
 
@@ -121,7 +138,7 @@ public class RMarketStrategy extends FormRun
                     RMarketConditionRelation::RMarketConditionGroup
                && condition.RefRecId == _parentRecId
             {
-                treeItem = new FormTreeItem();
+                /*treeItem = new FormTreeItem();
 
                 treeItem.text(strFmt(
                     "● Condition %1",
@@ -132,7 +149,10 @@ public class RMarketStrategy extends FormRun
                 ConditionTree.addItem(
                 _parentIdx,
                 0,
-                treeItem);
+                treeItem);*/
+                itemIdx = element.addConditionTreeNode(
+                    condition,
+                    _parentIdx);
             }
         }
     }
@@ -223,7 +243,7 @@ public class RMarketStrategy extends FormRun
         RMarketConditionGroup_DS.findRecord(conditionGroup);
 
         // Add only the new node
-        newItemIdx = element.addConditionGroupTreeNode(
+        newItemIdx = element.addConditionTreeNode(
             conditionGroup,
             _parentNode ? _parentNode : FormTreeAdd::Root);
 
@@ -236,6 +256,122 @@ public class RMarketStrategy extends FormRun
         }
 
         // Select the newly created node
+        ConditionTree.select(newItemIdx);
+        element.updateFormDesign();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createCondition</Name>
+				<Source><![CDATA[
+    private void createCondition(TreeItemIdx _selectedNode)
+    {
+        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionGroup lastGroup;
+        RMarketConditionTable selectedCondition;
+        RMarketConditionTable lastCondition;
+        RMarketConditionTable condition;
+
+        FormTreeItem treeItem;
+        TreeItemIdx parentNodeIdx;
+        TreeItemIdx newItemIdx;
+
+        container nodeData;
+        TableId tableId;
+        RecId recId;
+        int nextNum;
+
+        if (!strategyAction.RecId || !_selectedNode)
+            return;
+
+        treeItem = ConditionTree.getItem(_selectedNode);
+
+        if (!treeItem)
+            return;
+
+        nodeData = treeItem.data();
+
+        if (conLen(nodeData) != 2)
+            return;
+
+        [tableId, recId] = nodeData;
+
+        switch (tableId)
+        {
+            case tableNum(RMarketConditionGroup):
+                // Create a child condition
+                conditionGroup = RMarketConditionGroup::findRecId(recId);
+
+                parentNodeIdx = _selectedNode;
+                break;
+
+            case tableNum(RMarketConditionTable):
+                // Create a sibling condition
+                selectedCondition = RMarketConditionTable::findRecId(recId);
+                conditionGroup = selectedCondition.RMarketConditionGroup();
+                if (!conditionGroup)
+                    return;
+
+                parentNodeIdx = ConditionTree.getParent(_selectedNode);
+                break;
+
+            default:
+                return;
+        }
+
+        if (!conditionGroup.RecId ||
+            conditionGroup.RMarketStrategyActionRecId != strategyAction.RecId ||
+            !parentNodeIdx)
+        {
+            throw error("Invalid parent condition group.");
+        }
+
+        // Find next sibling number
+        select maxof(Num) from lastGroup
+            where lastGroup.RMarketStrategyActionRecId  == strategyAction.RecId
+               && lastGroup.ParentRecId                 == conditionGroup.RecId;
+
+        select maxof(Num) from lastCondition
+            where lastCondition.Relation == RMarketConditionRelation::RMarketConditionGroup
+               && lastCondition.RefRecId == conditionGroup.RecId;
+
+        nextNum = lastGroup.Num + 1;
+
+        if (lastCondition.Num >= nextNum)
+            nextNum = lastCondition.Num + 1;
+
+        // Initialize the condition
+        condition.clear();
+        condition.initValue();
+        condition.Relation       = RMarketConditionRelation::RMarketConditionGroup;
+        condition.RefRecId       = conditionGroup.RecId;
+        condition.Num            = nextNum;
+        condition.Source         = RMarketConditionValueSource::Const;
+        condition.SecondSource   = RMarketConditionValueSource::Const;
+        // 0 < 0 is FALSE until configured
+        condition.ComparisonType = RMarketConditionComparisonType::Less;
+        condition.Interval       = RMarketStrategy.Interval;
+        condition.SecondInterval = RMarketStrategy.Interval;
+
+        if (!condition.validateWrite())
+            return;
+
+        ttsbegin;
+        condition.insert();
+        ttscommit;
+
+        // Refresh the condition editor
+        RMarketConditionGroup_DS.findRecord(conditionGroup);
+        RMarketConditionTable_DS.research(true);
+        RMarketConditionTable_DS.findRecord(condition);
+
+        // Add only the new leaf
+        newItemIdx = element.addConditionTreeNode(condition, parentNodeIdx);
+
+        ConditionTree.expand(parentNodeIdx, FormTreeExpand::Expand);
         ConditionTree.select(newItemIdx);
         element.updateFormDesign();
     }
@@ -716,10 +852,7 @@ public class RMarketStrategy extends FormRun
         {
             super();
             
-            if (element.currentCondition_DS().leaveRecord())
-            {
-                element.currentCondition_DS().create();
-            }
+            element.createCondition(ConditionTree.getSelection());
         }
 
 ]]></Source>

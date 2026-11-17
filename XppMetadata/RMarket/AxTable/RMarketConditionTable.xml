@@ -33,6 +33,13 @@
 				<Type>Record</Type>
 				<TypeName>RMarketConditionTable</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>condition</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>exists</Name>
@@ -65,6 +72,13 @@
 				<Type>Enum</Type>
 				<TypeName>boolean</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>res</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>findRecId</Name>
@@ -87,6 +101,13 @@
 				<Type>Record</Type>
 				<TypeName>RMarketConditionTable</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>condition</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>initValue</Name>
@@ -101,6 +122,13 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>other</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>conditionNumRaise</Name>
@@ -108,6 +136,13 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>other</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>conditionwapNum</Name>
@@ -128,6 +163,13 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>actionNum</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>calc</Name>
@@ -148,6 +190,23 @@
 				<Type>Enum</Type>
 				<TypeName>boolean</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>ret</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<Name>value</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<Name>value2</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>calcValue</Name>
@@ -238,6 +297,28 @@
 				<Type>Real</Type>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<Name>ret</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketDim</TypeName>
+					<Name>dim</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketCandleTable</TypeName>
+					<Name>candle</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketIndicatorTable</TypeName>
+					<Name>indicator</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 	</Methods>
 </z:anyType>
