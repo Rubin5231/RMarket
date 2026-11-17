@@ -653,6 +653,7 @@ public class RMarketConditionTable extends common
 		<AxTableRelation>
 			<Name>RMarketConditionGroup</Name>
 			<CreateNavigationPropertyMethods>Yes</CreateNavigationPropertyMethods>
+			<NavigationPropertyMethodNameOverride>RMarketConditionGroup</NavigationPropertyMethodNameOverride>
 			<RelatedTable>RMarketConditionGroup</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""

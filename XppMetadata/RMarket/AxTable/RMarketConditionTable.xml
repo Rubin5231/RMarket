@@ -8,25 +8,21 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketConditionRelation</TypeName>
 					<Name>_relation</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RefRecId</TypeName>
 					<Name>_refRecId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<Name>_num</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -34,7 +30,6 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Record</Type>
 				<TypeName>RMarketConditionTable</TypeName>
 			</ReturnType>
@@ -45,25 +40,21 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketConditionRelation</TypeName>
 					<Name>_relation</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RefRecId</TypeName>
 					<Name>_refRecId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<Name>_num</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -71,7 +62,6 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Enum</Type>
 				<TypeName>boolean</TypeName>
 			</ReturnType>
@@ -82,13 +72,11 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RecId</TypeName>
 					<Name>_recId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -96,7 +84,6 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Record</Type>
 				<TypeName>RMarketConditionTable</TypeName>
 			</ReturnType>
@@ -105,7 +92,6 @@
 			<Name>initValue</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -113,7 +99,6 @@
 			<Name>conditionNumDecrease</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -121,7 +106,6 @@
 			<Name>conditionNumRaise</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -131,20 +115,17 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketConditionTable</TypeName>
 					<Name>_condition1</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketConditionTable</TypeName>
 					<Name>_condition2</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
@@ -153,20 +134,17 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Enum</Type>
 				<TypeName>boolean</TypeName>
 			</ReturnType>
@@ -176,20 +154,17 @@
 			<Visibility>Protected</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Real</Type>
 				<TypeName></TypeName>
 			</ReturnType>
@@ -199,20 +174,17 @@
 			<Visibility>Protected</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Real</Type>
 				<TypeName></TypeName>
 			</ReturnType>
@@ -222,56 +194,47 @@
 			<Visibility>Protected</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketConditionValueSource</TypeName>
 					<Name>_src</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketIndicatorId</TypeName>
 					<Name>_indicatorId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketIndicatorBaseEnum</TypeName>
 					<Name>_candleValue</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Real</Type>
 					<TypeName></TypeName>
 					<Name>_value</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<Name>_shift</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>RMarketCandleInterval</TypeName>
 					<Name>_interval</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Real</Type>
 				<TypeName></TypeName>
 			</ReturnType>
