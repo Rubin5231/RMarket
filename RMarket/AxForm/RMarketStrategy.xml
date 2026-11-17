@@ -250,9 +250,7 @@ public class RMarketStrategy extends FormRun
         // Expand its parent
         if (_parentNode)
         {
-            ConditionTree.expand(
-                _parentNode,
-                FormTreeExpand::Expand);
+            ConditionTree.expand(_parentNode, FormTreeExpand::Expand);
         }
 
         // Select the newly created node
@@ -985,7 +983,7 @@ public class RMarketStrategy extends FormRun
                             break;
 
                         case tableNum(RMarketConditionTable):
-                            condition = RMarketConditionTable::findRecId(recId);
+                            /*condition = RMarketConditionTable::findRecId(recId);
                             conditionGroup = condition.RMarketConditionGroup();
                             if (conditionGroup.RecId)
                             {
@@ -994,7 +992,7 @@ public class RMarketStrategy extends FormRun
                                 {
                                     RMarketConditionTable_DS.findRecord(condition);
                                 }
-                            }
+                            }*/
                             break;
                     }
                 }
