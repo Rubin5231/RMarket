@@ -104,6 +104,15 @@
 - Separate warning: a lookup on `With_SecondIndicatorId` was opened when `SecondSource=Candle`; right indicator's table relation is source-qualified, so hidden irrelevant control should prevent that action. Still separately verify lookup when `SecondSource=Indicator`.
 - User confirmed Git UI successfully synchronized development log; local file is not needed as an AX solution item.
 
+### 2026-11-18 — Further datasource repro (still unresolved)
+
+- User changed `RMarketConditionTable_DS.LinkType` to `Active` and instrumented failed `findRecord()`.
+- On first opening the strategy form, selecting a real leaf reports: `Cannot position condition 5637155827. Current: 5637153576.`
+- After that startup failure, traversing leaves within/across groups and editing fields appears to work; this supports a transient child datasource query/positioning issue at first load, but it is **not yet proven**.
+- User also reported an unexpected result after editing a comparison operator on a newly created condition in another action, switching to a different action and back. Only the first screenshot (failed positioning) was available to the assistant in that turn; do **not** guess the second screenshot's contents.
+- Next diagnosis: retry failed `findRecord()` after one child datasource `research(false)`, saving pending edits with `leaveRecord()` before switching leaves/actions; separately verify comparison-field persistence after action switches. Do not re-query on every selection or assume tree captions mean DB writes succeeded.
+- A3.4.4.5 remains blocked pending reliable editing, persistence and startup positioning.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
