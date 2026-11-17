@@ -48,9 +48,9 @@
 | A3.3.1 | Implemented | `RMarketConditionGroup` table, operator enum, group relation |
 | A3.3.2 | Implemented | Recursive group `calc()`, parent/cycle `validateWrite()` |
 | A3.3.3 | Implemented | Action `calcSignal()`: root event OR; fallback legacy AND |
-| A3.3 tests | Test class present | `RMarketJobTest_ConditionTree` tests nested logic and validation; test method reports 10 checks. Test outcomes were reported in prior work, not independently rerun by assistant |
+| A3.3 tests | Test class present | `RMarketJobTest_ConditionTree` tests nested logic and validation; test method reports 10 checks. User confirms all work through A3.4.4.4 has been tested in AX; assistant has not rerun those tests |
 | A3.4.1–A3.4.4.3 | Implemented | Action tree on `RMarketStrategy`, selection/editor, creating events/groups/conditions |
-| A3.4.4.4 | Implemented in `a0b60e7` | Central caption formatter and `updateSelectedConditionTreeNode()`, `modified()` handlers for group and condition fields |
+| A3.4.4.4 | Implemented and user-tested in `a0b60e7` | Central caption formatter and `updateSelectedConditionTreeNode()`, `modified()` handlers for group and condition fields; user confirmed correct and convenient live editing on 2026-11-18 |
 
 ### Current UI code state, verified from GitHub 2026-11-18
 
@@ -86,9 +86,15 @@
 
 - User reported loss of a substantial chat segment following a computer restart. **The cause of the missing history is unknown**; do not attribute it to local code changes.
 - Recovered architecture and work milestones from conversation context and checked actual repository commits and source code. Work was preserved through `a0b60e7`.
-- User implemented updating captions when fields of groups/conditions change. Code review found correct targeted-update structure; condition text still placeholder, per-source field visibility pending.
+- User implemented updating captions when fields of groups/conditions change and confirmed live-edit testing is successful. Code review found correct targeted-update structure; condition text still placeholder, per-source field visibility pending.
 - Decision: keep this Markdown file in GitHub as a durable **decision and task log**, maintained by assistant when actively working on the project, in addition to ordinary git commits. No autonomous/background updates are implied.
 - Protocol: whenever a task concludes, record the outcome, technical decisions and exact next task here. Clearly mark `implemented` vs `tested` vs `planned`. Do not overwrite historical decisions without noting why they changed.
+
+### 2026-11-18 — Confirmed validation and A3.4.4.5 started
+
+- User explicitly confirmed testing of all completed work through A3.4.4.4, including live caption refresh on both group and condition fields.
+- A3.4.4.5 is the current implementation task; no code change for that task is committed yet. Code should use existing `RMarketConditionTable` fields and `RMarketStrategy.conditionTreeNodeCaption()`.
+- User prefers Visual Studio Git UI over commands for syncing the root-level log. `Fetch` alone does not update the working tree; `Pull` must target the correct clone and `main`. The root-level Markdown file need not appear in Solution Explorer unless included as a solution item.
 
 ## How to use
 
