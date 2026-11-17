@@ -126,6 +126,13 @@
 - Review found two omissions: selecting a group/event does not call `selectConditionForEditing(0)`, and `RMarketStrategyAction_DS.active()` rebuilds/clears the tree without clearing the now-independent editor datasource. Propose calling the helper to clear editor on both transitions, then retest.
 - Follow-up robustness: the helper returns `false` for failed `leaveRecord()` or editor cursor mismatch, but current callers ignore this. Add failure handling if reproducible; don't silently allow selection and editor to diverge. Do not close A3.4.4.5 before behavioral verification.
 
+### 2026-11-18 — Editor responsiveness observation
+
+- User reported visible 0.2–0.5 second delay when selecting a leaf: tree highlight changes before old right-side fields refresh. Current `selectConditionForEditing()` calls `leaveRecord()`, changes a `RecId` range, then `executeQuery()` on every leaf click. No profiler measurements yet, so precise cost attribution is unverified.
+- **Optimization proposal (not implemented):** load conditions for the selected **action** in one datasource query (restrict to the group records belonging to that action, preserving `Relation=RMarketConditionGroup`), then navigate among loaded rows via datasource positioning, potentially `positionToRecord()`. Refresh query only when action changes or records are added/removed. Verify that editing, save/validation, and cross-group navigation remain correct.
+- Small safe interim guard: return early from `selectConditionForEditing()` when datasource cursor already matches requested RecId, eliminating redundant `executeQuery()` after creating and selecting a new leaf. This does **not** remove the per-leaf latency for different records.
+- Do not substitute `refresh()` alone for a query change; it only redraws currently loaded data. Do not assume `setRecord()` can replace queries for ordinary persisted records without verifying edit/save semantics.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
