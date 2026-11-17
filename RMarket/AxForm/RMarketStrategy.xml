@@ -36,18 +36,47 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void buildConditionTree()
     {
-        RMarketStrategyAction strategyAction =
-        RMarketStrategyAction_DS.cursor();
+        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
 
         ConditionTree.deleteAll();
 
         if (strategyAction.RecId)
         {
             element.addConditionTreeNodes(
-            strategyAction.RecId,
-            0,
-            FormTreeAdd::Root);
+                strategyAction.RecId,
+                0,
+                FormTreeAdd::Root);
         }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>addConditionGroupTreeNode</Name>
+				<Source><![CDATA[
+    private TreeItemIdx addConditionGroupTreeNode(
+        RMarketConditionGroup _conditionGroup,
+        TreeItemIdx _parentNode)
+    {
+        FormTreeItem treeItem = new FormTreeItem();
+        str caption;
+
+        caption = strFmt(
+            "%1 %2 (%3)",
+            _conditionGroup.ParentRecId ? "▣" : "◆",
+            _conditionGroup.Name,
+            enum2Str(_conditionGroup.RMarketConditionOperator));
+
+        treeItem.text(caption);
+        treeItem.data([
+            tableNum(RMarketConditionGroup),
+            _conditionGroup.RecId
+        ]);
+
+        return ConditionTree.addItem(
+            _parentNode,
+            0,
+            treeItem);
     }
 
 ]]></Source>
@@ -65,7 +94,6 @@ public class RMarketStrategy extends FormRun
         FormTreeItem          treeItem;
         TreeItemIdx           itemIdx;
         str                   caption;
-        str                   nodeType;
 
         // Root events and nested groups
         while select conditionGroup
@@ -73,35 +101,15 @@ public class RMarketStrategy extends FormRun
         where conditionGroup.RMarketStrategyActionRecId == _actionRecId
            && conditionGroup.ParentRecId == _parentRecId
         {
-            if (_parentRecId == 0)
-            {
-                caption = strFmt(
-                    "◆ %1 (%2)",
-                    conditionGroup.Name,
-                    enum2Str(conditionGroup.RMarketConditionOperator));
-            }
-            else
-            {
-                caption = strFmt(
-                    "▣ %1 (%2)",
-                    conditionGroup.Name,
-                    enum2Str(conditionGroup.RMarketConditionOperator));
-            }
-
-            treeItem = new FormTreeItem();
-            treeItem.text(caption);
-            treeItem.data([tableNum(RMarketConditionGroup), conditionGroup.RecId]);
-
-            itemIdx = ConditionTree.addItem(
-            _parentIdx,
-            0,
-            treeItem);
+            itemIdx = element.addConditionGroupTreeNode(
+                conditionGroup,
+                _parentIdx);
 
             // Recursively add nested groups and conditions
             element.addConditionTreeNodes(
-            _actionRecId,
-            conditionGroup.RecId,
-            itemIdx);
+                _actionRecId,
+                conditionGroup.RecId,
+                itemIdx);
         }
 
         // Leaf conditions of the current group
@@ -143,13 +151,12 @@ public class RMarketStrategy extends FormRun
         RMarketConditionGroup lastGroup;
         RMarketConditionTable lastCondition;
 
-        FormTreeItem treeItem;
-        container nodeData;
-        TableId     tableId;
-        RecId       recId;
-
-        RefRecId parentRecId = 0;
-        int nextNum;
+        FormTreeItem    treeItem;
+        TreeItemIdx     newItemIdx;
+        container       nodeData;
+        TableId         tableId;
+        RefRecId        parentRecId = 0;
+        int             nextNum;
 
         if (!strategyAction.RecId)
             return;
@@ -215,7 +222,53 @@ public class RMarketStrategy extends FormRun
         RMarketConditionGroup_DS.research(true);
         RMarketConditionGroup_DS.findRecord(conditionGroup);
 
-        element.buildConditionTree();
+        // Add only the new node
+        newItemIdx = element.addConditionGroupTreeNode(
+            conditionGroup,
+            _parentNode ? _parentNode : FormTreeAdd::Root);
+
+        // Expand its parent
+        if (_parentNode)
+        {
+            ConditionTree.expand(
+                _parentNode,
+                FormTreeExpand::Expand);
+        }
+
+        // Select the newly created node
+        ConditionTree.select(newItemIdx);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateFormDesign</Name>
+				<Source><![CDATA[
+    private void updateFormDesign()
+    {
+        NodeNewEventButton.enabled(true); // Action in grid selected
+        NodeNewGroupButton.enabled(true); // Action in grid selected && root or branch in tree selected
+        NodeNewConditionButton.enabled(false); // Action in grid selected && leaf or branch in tree selected
+        NodeDeleteButton.enabled(false); // Node in tree selected and hasn't any child
+        NodeUpButton.enabled(false); // Node has Num > 1
+        NodeDownButton.enabled(false); // Node has Num < max(Num)
+
+        // any changes of elements visibility or enablity must be here
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void init()
+    {
+        super();
+
+        element.updateFormDesign();
     }
 
 ]]></Source>
@@ -260,6 +313,7 @@ public class RMarketStrategy extends FormRun
             int ret = super();
 
             element.buildConditionTree();
+            element.updateFormDesign();
         
             return ret;
         }
@@ -1702,61 +1756,61 @@ public class RMarketStrategy extends FormRun
 																<Name>NodeNewMenuButton</Name>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>MenuButton</Type>
+																<Visible>No</Visible>
 																<FormControlExtension
 																	i:nil="true" />
-																<Controls>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormButtonControl">
-																		<Name>NodeNewEventButton</Name>
-																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-																		<Type>Button</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<AutoRefreshData>Yes</AutoRefreshData>
-																		<Big>Yes</Big>
-																		<ButtonDisplay>TextOnly</ButtonDisplay>
-																		<NormalImage>New</NormalImage>
-																		<Text>Event</Text>
-																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormButtonControl">
-																		<Name>NodeNewGroupButton</Name>
-																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-																		<Type>Button</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<AutoRefreshData>Yes</AutoRefreshData>
-																		<Big>Yes</Big>
-																		<ButtonDisplay>TextOnly</ButtonDisplay>
-																		<NormalImage>New</NormalImage>
-																		<Text>Group</Text>
-																	</AxFormControl>
-																	<AxFormControl xmlns=""
-																		i:type="AxFormButtonControl">
-																		<Name>NodeNewConditionButton</Name>
-																		<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
-																		<Type>Button</Type>
-																		<FormControlExtension
-																			i:nil="true" />
-																		<AutoRefreshData>Yes</AutoRefreshData>
-																		<Big>Yes</Big>
-																		<ButtonDisplay>TextOnly</ButtonDisplay>
-																		<NormalImage>New</NormalImage>
-																		<Text>Condition</Text>
-																	</AxFormControl>
-																</Controls>
+																<Controls />
 																<ButtonDisplay>ImageOnly</ButtonDisplay>
 																<NormalImage>New</NormalImage>
 																<Text>New</Text>
 															</AxFormControl>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>NodeDeleteButton</Name>
+																<Name>NodeNewEventButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>Button</Type>
 																<FormControlExtension
 																	i:nil="true" />
-																<AutoRefreshData>Yes</AutoRefreshData>
+																<Big>Yes</Big>
+																<ButtonDisplay>TextOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>+ Event</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeNewGroupButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Big>Yes</Big>
+																<ButtonDisplay>TextOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>+ Group</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeNewConditionButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<Big>Yes</Big>
+																<ButtonDisplay>TextOnly</ButtonDisplay>
+																<NormalImage>New</NormalImage>
+																<Text>+ Condition</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>NodeDeleteButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
+																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
 																<Big>Yes</Big>
 																<ButtonDisplay>ImageOnly</ButtonDisplay>
 																<MultiSelect>No</MultiSelect>
@@ -1766,6 +1820,7 @@ public class RMarketStrategy extends FormRun
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
 																<Name>NodeUpButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
 																<Type>Button</Type>
 																<FormControlExtension
 																	i:nil="true" />
@@ -1776,6 +1831,7 @@ public class RMarketStrategy extends FormRun
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
 																<Name>NodeDownButton</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
 																<Type>Button</Type>
 																<FormControlExtension
 																	i:nil="true" />
