@@ -177,7 +177,7 @@ public class RMarketStrategy extends FormRun
             if (tableId != tableNum(RMarketConditionGroup))
                 return;
             
-            parentGroup = RMarketConditionGroup::find(parentRecId);
+            parentGroup = RMarketConditionGroup::findRecId(parentRecId);
 
             if (!parentGroup.RecId ||
                 parentGroup.RMarketStrategyActionRecId != strategyAction.RecId)
@@ -237,6 +237,38 @@ public class RMarketStrategy extends FormRun
 
         // Select the newly created node
         ConditionTree.select(newItemIdx);
+        element.updateFormDesign();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>selectedNodeData</Name>
+				<Source><![CDATA[
+    private container selectedNodeData(FormTreeControl _tree)
+    {
+        FormTreeItem treeItem;
+        TreeItemIdx nodeIdx = _tree.getSelection();
+        container nodeData;
+        TableId tableId;
+        RecId recId;
+        boolean isGroup = false;
+
+        if(!_tree)
+            return [0,0];
+
+        nodeIdx = _tree.getSelection();
+        if (nodeIdx)
+            treeItem = ConditionTree.getItem(nodeIdx);
+        else 
+            return [0,0];
+
+        if (treeItem)
+            nodeData = treeItem.data();
+        else
+            return [0,0];
+
+        return nodeData;
     }
 
 ]]></Source>
@@ -246,14 +278,25 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void updateFormDesign()
     {
-        NodeNewEventButton.enabled(true); // Action in grid selected
-        NodeNewGroupButton.enabled(true); // Action in grid selected && root or branch in tree selected
-        NodeNewConditionButton.enabled(false); // Action in grid selected && leaf or branch in tree selected
-        NodeDeleteButton.enabled(false); // Node in tree selected and hasn't any child
+        TableId tableId;
+        RecId recId;
+        [tableId, recId]        = element.selectedNodeData(ConditionTree);
+        boolean groupSelected   = tableId == tableNum(RMarketConditionGroup);
+        boolean leafSelected    = tableId == tableNum(RMarketConditionTable);
+        boolean nodeSelected    = groupSelected || leafSelected;
+        boolean actionSelected  = RMarketStrategyAction_DS.cursor().RecId != 0;
+
+        NodeNewEventButton.enabled(actionSelected); 
+        NodeNewGroupButton.enabled(actionSelected && groupSelected); 
+        NodeNewConditionButton.enabled(actionSelected && nodeSelected);
+        NodeDeleteButton.enabled(nodeSelected && false); // Node in tree selected and hasn't any child
         NodeUpButton.enabled(false); // Node has Num > 1
         NodeDownButton.enabled(false); // Node has Num < max(Num)
 
         // any changes of elements visibility or enablity must be here
+        // Node settings
+        GroupSettingsGroup.visible(groupSelected);
+        ConditionSettingsGroup.visible(leafSelected);
     }
 
 ]]></Source>
@@ -761,6 +804,70 @@ public class RMarketStrategy extends FormRun
             record = element.currentCondition_DS().cursor();
             record.conditionNumRaise();
             element.currentCondition_DS().research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>ConditionTree</Name>
+				<Type>Tree</Type>
+				<Methods>
+					<Method>
+						<Name>selectionChanged</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name = "_OldItem"></param>
+        /// <param name = "_NewItem"></param>
+        /// <param name = "_how"></param>
+        public void selectionChanged(FormTreeItem _OldItem, FormTreeItem _NewItem, FormTreeSelect _how)
+        {
+            container nodeData;
+            TableId tableId;
+            RecId recId;
+            RMarketConditionGroup conditionGroup;
+            RMarketConditionTable condition;
+
+            super(_oldItem, _newItem, _how);
+
+            if (_newItem)
+            {
+                nodeData = _newItem.data();
+
+                if (conLen(nodeData) == 2)
+                {
+                    [tableId, recId] = nodeData;
+
+                    switch(tableId)
+                    {
+                        case tableNum(RMarketConditionGroup):
+                            conditionGroup = RMarketConditionGroup::findRecId(recId);
+                            if (conditionGroup.RecId)
+                            {
+                                RMarketConditionGroup_DS.findRecord(conditionGroup);
+                            }
+                            break;
+
+                        case tableNum(RMarketConditionTable):
+                            condition = RMarketConditionTable::findRecId(recId);
+                            conditionGroup = condition.RMarketConditionGroup();
+                            if (conditionGroup.RecId)
+                            {
+                                RMarketConditionGroup_DS.findRecord(conditionGroup);
+                                if (condition.RecId)
+                                {
+                                    RMarketConditionTable_DS.findRecord(condition);
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+
+            element.updateFormDesign();
         }
 
 ]]></Source>
@@ -1886,6 +1993,7 @@ public class RMarketStrategy extends FormRun
 															<AxFormControl xmlns=""
 																i:type="AxFormGroupControl">
 																<Name>GroupSettingsGroup</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
 																<Type>Group</Type>
 																<FormControlExtension
 																	i:nil="true" />
@@ -1916,6 +2024,7 @@ public class RMarketStrategy extends FormRun
 															<AxFormControl xmlns=""
 																i:type="AxFormGroupControl">
 																<Name>ConditionSettingsGroup</Name>
+																<AutoDeclaration>Yes</AutoDeclaration>
 																<Type>Group</Type>
 																<FormControlExtension
 																	i:nil="true" />

@@ -187,7 +187,7 @@ internal final class RMarketJobTest_ConditionTree
         int passed;
 
         // 1. Valid hierarchy
-        probe = RMarketConditionGroup::find(_group.RecId);
+        probe = RMarketConditionGroup::findRecId(_group.RecId);
 
         if (!probe.validateWrite())
         throw error("Validation test 1 failed.");
@@ -195,7 +195,7 @@ internal final class RMarketJobTest_ConditionTree
         passed++;
 
         // 2. Indirect cycle: Event -> Child -> ... -> Event
-        probe = RMarketConditionGroup::find(_event.RecId);
+        probe = RMarketConditionGroup::findRecId(_event.RecId);
         probe.ParentRecId = _child.RecId;
 
         if (probe.validateWrite())
@@ -204,7 +204,7 @@ internal final class RMarketJobTest_ConditionTree
         passed++;
 
         // 3. Direct cycle
-        probe = RMarketConditionGroup::find(_group.RecId);
+        probe = RMarketConditionGroup::findRecId(_group.RecId);
         probe.ParentRecId = probe.RecId;
 
         if (probe.validateWrite())
@@ -213,7 +213,7 @@ internal final class RMarketJobTest_ConditionTree
         passed++;
 
         // 4. Nonexistent parent
-        probe = RMarketConditionGroup::find(_group.RecId);
+        probe = RMarketConditionGroup::findRecId(_group.RecId);
         probe.ParentRecId = -1;
 
         if (probe.validateWrite())
@@ -228,7 +228,7 @@ internal final class RMarketJobTest_ConditionTree
         otherAction.Active = NoYes::No;
         otherAction.insert();
 
-        probe = RMarketConditionGroup::find(_group.RecId);
+        probe = RMarketConditionGroup::findRecId(_group.RecId);
         probe.RMarketStrategyActionRecId = otherAction.RecId;
 
         if (probe.validateWrite())

@@ -77,6 +77,31 @@
 			</ReturnType>
 		</Method>
 		<Method>
+			<Name>findRecId</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>_recId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_forUpdate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketConditionTable</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
 			<Name>initValue</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
@@ -249,24 +274,6 @@
 				<Tags></Tags>
 				<Type>Real</Type>
 				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>RMarketStrategyAction</Name>
-			<Visibility>Public</Visibility>
-			<Parameters>
-				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>Enum</Type>
-					<TypeName>boolean</TypeName>
-					<DefaultValue>false</DefaultValue>
-					<Name>_forUpdate</Name>
-				</AxMethodParameter>
-			</Parameters>
-			<ReturnType>
-				<Tags></Tags>
-				<Type>Record</Type>
-				<TypeName>RMarketStrategyAction</TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>

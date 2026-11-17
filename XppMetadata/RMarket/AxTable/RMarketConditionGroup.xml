@@ -3,7 +3,7 @@
 	i:type="AxPropertyCollection" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
 	<Methods>
 		<Method>
-			<Name>find</Name>
+			<Name>findRecId</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>

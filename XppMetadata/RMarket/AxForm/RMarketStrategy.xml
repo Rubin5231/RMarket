@@ -76,6 +76,20 @@
 			</ReturnType>
 		</Method>
 		<Method>
+			<Name>selectedNodeData</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>Class</Type>
+					<TypeName>FormTreeControl</TypeName>
+					<Name>_tree</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Type>Container</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
 			<Name>updateFormDesign</Name>
 			<ReturnType>
 				<TypeName></TypeName>
@@ -339,6 +353,36 @@
 				<Method>
 					<Name>clicked</Name>
 					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+		</Control>
+		<Control>
+			<Name>ConditionTree</Name>
+			<Type>Tree</Type>
+			<Methods>
+				<Method>
+					<Name>selectionChanged</Name>
+					<Visibility>Public</Visibility>
+					<Parameters>
+						<AxMethodParameter>
+							<Type>Class</Type>
+							<TypeName>FormTreeItem</TypeName>
+							<Name>_OldItem</Name>
+						</AxMethodParameter>
+						<AxMethodParameter>
+							<Type>Class</Type>
+							<TypeName>FormTreeItem</TypeName>
+							<Name>_NewItem</Name>
+						</AxMethodParameter>
+						<AxMethodParameter>
+							<Type>Enum</Type>
+							<TypeName>FormTreeSelect</TypeName>
+							<Name>_how</Name>
+						</AxMethodParameter>
+					</Parameters>
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>

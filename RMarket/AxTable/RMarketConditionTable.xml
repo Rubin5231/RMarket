@@ -54,6 +54,27 @@ public class RMarketConditionTable extends common
 ]]></Source>
 			</Method>
 			<Method>
+				<Name>findRecId</Name>
+				<Source><![CDATA[
+    public static RMarketConditionTable findRecId(RecId      _recId,
+                                                  boolean    _forUpdate = false)
+    {
+        RMarketConditionTable condition;
+        ;
+        if (_recId)
+        {
+            condition.selectForUpdate(_forUpdate);
+            
+            select firstonly condition
+                where condition.RecId  == _recId;
+        }
+        
+        return condition;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>initValue</Name>
 				<Source><![CDATA[
     /// <summary>
@@ -276,15 +297,10 @@ public class RMarketConditionTable extends common
         return ret;
     }
 
-]]></Source>
-			</Method>
-			<Method>
-				<Name>RMarketStrategyAction</Name>
-				<Source><![CDATA[
-    public RMarketStrategyAction RMarketStrategyAction(boolean _forUpdate = false)
+    /*public RMarketStrategyAction RMarketStrategyAction(boolean _forUpdate = false)
     {
         return RMarketStrategyAction::findRecId(this.RefRecId, _forUpdate);
-    }
+    }*/
 
 ]]></Source>
 			</Method>
@@ -562,6 +578,7 @@ public class RMarketConditionTable extends common
 	<Relations>
 		<AxTableRelation>
 			<Name>RMarketStrategyAction</Name>
+			<CreateNavigationPropertyMethods>Yes</CreateNavigationPropertyMethods>
 			<OnDelete>Restricted</OnDelete>
 			<RelatedTable>RMarketStrategyAction</RelatedTable>
 			<Constraints>
@@ -635,6 +652,7 @@ public class RMarketConditionTable extends common
 		</AxTableRelation>
 		<AxTableRelation>
 			<Name>RMarketConditionGroup</Name>
+			<CreateNavigationPropertyMethods>Yes</CreateNavigationPropertyMethods>
 			<RelatedTable>RMarketConditionGroup</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""

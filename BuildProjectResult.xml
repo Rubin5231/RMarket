@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-17T16:17:25.5628395+03:00">
+  GenerationTime="2026-11-17T17:02:53.6793895+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -23,6 +23,31 @@
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
     </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/BottomGroup/FormGroupControl/DetailsGroup/FormTabControl/ConditionTab/FormTabPageControl/ActionConditionTabPage/FormGroupControl/FormGroupControl3/FormGroupControl/EventTreeGroup/FormTreeControl/ConditionTree/Method/selectionChanged</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>ClassDoesNotContainMethod</Moniker>
+      <Line>690</Line>
+      <Column>46</Column>
+      <EndLine>690</EndLine>
+      <EndColumn>79</EndColumn>
+      <Message>ClassDoesNotContainMethod: Table 'RMarketConditionTable' does not contain a definition for method 'RMarketConditionGroup' and no extension method 'RMarketConditionGroup' accepting a first argument of type 'RMarketConditionTable' is found on any extension class.</Message>
+      <ItemSpecific>
+        <OriginatorType
+          alias="0">ClassDoesNotContainMethod</OriginatorType>
+        <Fields>
+          <elementTypeName>Table</elementTypeName>
+          <elementName>RMarketConditionTable</elementName>
+          <methodName>RMarketConditionGroup</methodName>
+        </Fields>
+      </ItemSpecific>
+    </Diagnostic>
   </Items>
-  <Aliases />
+  <Aliases>
+    <Alias
+      assembly="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+      ns="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2">0</Alias>
+  </Aliases>
 </Diagnostics>

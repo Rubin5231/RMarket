@@ -9,10 +9,10 @@ public class RMarketConditionGroup extends common
 ]]></Declaration>
 		<Methods>
 			<Method>
-				<Name>find</Name>
+				<Name>findRecId</Name>
 				<Source><![CDATA[
-    public static RMarketConditionGroup find(RecId      _recId,
-                                             boolean    _forUpdate = false)
+    public static RMarketConditionGroup findRecId(RecId      _recId,
+                                                  boolean    _forUpdate = false)
     {
         RMarketConditionGroup marketConditionGroup;
         ;
@@ -152,7 +152,7 @@ public class RMarketConditionGroup extends common
 
             visited.add(parentRecId);
 
-            parentGroup = RMarketConditionGroup::find(parentRecId);
+            parentGroup = RMarketConditionGroup::findRecId(parentRecId);
 
             if (!parentGroup.RecId)
             return checkFailed("Parent condition group does not exist.");
