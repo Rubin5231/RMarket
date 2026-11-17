@@ -99,10 +99,26 @@
 ### 2026-11-18 — A3.4.4.5 implemented; blocking UI selection bug
 
 - GitHub main commit `599784d8cc4832015327d902ef08bad135e9822c` implements `conditionOperandCaption()` and full leaf captions; user tested caption updates.
-- **Bug not resolved:** tree selection moves between condition leaves, but right-side editor remains bound to a previously selected `RMarketConditionTable_DS` record, especially for multiple leaves under the same group. Edits then do not refresh selected tree caption because record IDs differ.
-- `ConditionTree.selectionChanged()` currently invokes `RMarketConditionGroup_DS.findRecord(group)` then `RMarketConditionTable_DS.findRecord(condition)` but ignores both Boolean return values. Parent/child timing and datasource linkage are prime suspects, **not yet proven**. Diagnose by testing `findRecord()` results, avoiding redundant parent reposition and considering immediate child `LinkType=Active`. Do not mark A3.4.4.5 done until selecting arbitrary leaves shows correct data.
+- **Bug confirmed with user screenshots:** tree selection can point at condition RecId `5637155827` while editor cursor is `5637153576`; on reopening an action the rebuilt tree shows `0 > 0` while selected editor shows `0 < 0`. The user committed `4c7ef3ed` and merged to `9a79b025805168ce80d38010f263f9a00b8818bb` after adding `LinkType=Active` and checking `findRecord()` results. This did not fully fix the problem.
+- Investigation narrowed to stale/mismatched editor datasource: parent/child linkage makes `RMarketConditionTable_DS.findRecord()` unreliable during tree selection even with `LinkType=Active`. **Proposed, not yet implemented:** make the editor datasource independent (remove `JoinSource`), filter its query directly by selected leaf `RecId` with `SysQuery::findOrCreateRange` and `executeQuery()`, and verify cursor `RecId` matches tree selection. Preserve edits using `leaveRecord()` before changing the query. Update `createCondition()` positioning to use the same helper. Do not mark A3.4.4.5 done until selecting arbitrary leaves and reloading actions produces matching captions/editor values.
 - Separate warning: a lookup on `With_SecondIndicatorId` was opened when `SecondSource=Candle`; right indicator's table relation is source-qualified, so hidden irrelevant control should prevent that action. Still separately verify lookup when `SecondSource=Indicator`.
 - User confirmed Git UI successfully synchronized development log; local file is not needed as an AX solution item.
+
+### 2026-11-18 — Further datasource repro (still unresolved)
+
+- User changed `RMarketConditionTable_DS.LinkType` to `Active` and instrumented failed `findRecord()`.
+- On first opening the strategy form, selecting a real leaf reports: `Cannot position condition 5637155827. Current: 5637153576.`
+- After that startup failure, traversing leaves within/across groups and editing fields appears to work; this supports a transient child datasource query/positioning issue at first load, but it is **not yet proven**.
+- User also reported an unexpected result after editing a comparison operator on a newly created condition in another action, switching to a different action and back. Only the first screenshot (failed positioning) was available to the assistant in that turn; do **not** guess the second screenshot's contents.
+- Next diagnosis: retry failed `findRecord()` after one child datasource `research(false)`, saving pending edits with `leaveRecord()` before switching leaves/actions; separately verify comparison-field persistence after action switches. Do not re-query on every selection or assume tree captions mean DB writes succeeded.
+- A3.4.4.5 remains blocked pending reliable editing, persistence and startup positioning.
+
+### 2026-11-18 — Query ownership refinement before implementing editor selection fix
+
+- User requested that **all editor datasource record selection be driven through `SysQuery::findOrCreateRange()` / `QueryBuildRange` and `executeQuery()`, not through `FormDataSource.findRecord()`**. Agreed: the tree's selected `RecId` uniquely identifies the editor record; datasource should be unlinked from `RMarketConditionGroup` and filtered directly by that `RecId`.
+- User requested initial `RecId=0` range in **`RMarketConditionTable_DS.init()` after `super()`**, not in `FormRun.init()`. Agreed: the datasource owns query initialization.
+- A form-level selection helper may apply the range and `executeQuery()`; guard unsaved changes via `leaveRecord()`. Initial state and group/no-leaf selection should select no record. Distinguish direct table `findRecId()` (read/validation) from `FormDataSource.findRecord()` (positioning) — only the latter is to be avoided.
+- This is a **revised design, not implemented yet**; user explicitly had not made changes at this point. Validate initial open, same-group leaf switching, cross-group and cross-action switching, and editing persistence.
 
 ## How to use
 
