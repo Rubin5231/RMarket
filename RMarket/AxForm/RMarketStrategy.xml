@@ -309,7 +309,7 @@ public class RMarketStrategy extends FormRun
             case tableNum(RMarketConditionTable):
                 // Create a sibling condition
                 selectedCondition = RMarketConditionTable::findRecId(recId);
-                conditionGroup = selectedCondition.RMarketConditionGroup();
+                conditionGroup = RMarketConditionGroup::findRecId(selectedCondition.RefRecId);//selectedCondition.RMarketConditionGroup();
                 if (!conditionGroup)
                     return;
 
@@ -983,8 +983,8 @@ public class RMarketStrategy extends FormRun
                             break;
 
                         case tableNum(RMarketConditionTable):
-                            /*condition = RMarketConditionTable::findRecId(recId);
-                            conditionGroup = condition.RMarketConditionGroup();
+                            condition = RMarketConditionTable::findRecId(recId);
+                            conditionGroup = RMarketConditionGroup::findRecId(condition.RefRecId);
                             if (conditionGroup.RecId)
                             {
                                 RMarketConditionGroup_DS.findRecord(conditionGroup);
@@ -992,7 +992,7 @@ public class RMarketStrategy extends FormRun
                                 {
                                     RMarketConditionTable_DS.findRecord(condition);
                                 }
-                            }*/
+                            }
                             break;
                     }
                 }
