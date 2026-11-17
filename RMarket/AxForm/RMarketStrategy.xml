@@ -1093,17 +1093,36 @@ public class RMarketStrategy extends FormRun
                             }
                             break;
 
+
                         case tableNum(RMarketConditionTable):
                             condition = RMarketConditionTable::findRecId(recId);
+
+                            if (!condition.RecId)
+                                break;
+
                             conditionGroup = RMarketConditionGroup::findRecId(condition.RefRecId);
-                            if (conditionGroup.RecId)
+
+                            if (!conditionGroup.RecId)
+                                break;
+
+                            // Avoid repositioning the parent for another
+                            // condition in the same group.
+                            if (RMarketConditionGroup_DS.cursor().RecId != conditionGroup.RecId)
                             {
-                                RMarketConditionGroup_DS.findRecord(conditionGroup);
-                                if (condition.RecId)
+                                if (!RMarketConditionGroup_DS.findRecord(conditionGroup))
                                 {
-                                    RMarketConditionTable_DS.findRecord(condition);
+                                    warning(strFmt("Cannot position condition group %1.", conditionGroup.RecId));
+                                    break;
                                 }
                             }
+
+                            if (!RMarketConditionTable_DS.findRecord(condition))
+                            {
+                                warning(strFmt("Cannot position condition %1. Current: %2.",
+                                condition.RecId,
+                                RMarketConditionTable_DS.cursor().RecId));
+                            }
+
                             break;
                     }
                 }
@@ -2008,6 +2027,7 @@ public class RMarketStrategy extends FormRun
 			</Fields>
 			<ReferencedDataSources />
 			<JoinSource>RMarketConditionGroup</JoinSource>
+			<LinkType>Active</LinkType>
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
