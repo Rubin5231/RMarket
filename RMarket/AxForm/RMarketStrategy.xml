@@ -482,8 +482,7 @@ public class RMarketStrategy extends FormRun
 
         // Refresh the condition editor
         RMarketConditionGroup_DS.findRecord(conditionGroup);
-        RMarketConditionTable_DS.research(true);
-        RMarketConditionTable_DS.findRecord(condition);
+        element.selectConditionForEditing(condition.RecId);
 
         // Add only the new leaf
         newItemIdx = element.addConditionTreeNode(condition, parentNodeIdx);
@@ -557,6 +556,29 @@ public class RMarketStrategy extends FormRun
         super();
 
         element.updateFormDesign();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>selectConditionForEditing</Name>
+				<Source><![CDATA[
+    private boolean selectConditionForEditing(RecId _recId)
+    {
+        RMarketConditionTable condition;
+
+        if (!RMarketConditionTable_DS.leaveRecord())
+        return false;
+
+        SysQuery::findOrCreateRange(
+            RMarketConditionTable_DS.queryBuildDataSource(),
+            fieldNum(RMarketConditionTable, RecId)).value(queryValue(_recId));
+
+        RMarketConditionTable_DS.executeQuery();
+
+        condition = RMarketConditionTable_DS.cursor();
+
+        return condition.RecId == _recId;
     }
 
 ]]></Source>
@@ -668,6 +690,28 @@ public class RMarketStrategy extends FormRun
             record.Relation = RMarketConditionRelation::RMarketStrategyOrders;
             record.Interval = RMarketStrategy.Interval;
             //record.SecondInterval = RMarketStrategy.Interval;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+				<Fields />
+			</DataSource>
+			<DataSource>
+				<Name>RMarketConditionTable</Name>
+				<Methods>
+					<Method>
+						<Name>init</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void init()
+        {
+            super();
+            SysQuery::findOrCreateRange(
+                this.queryBuildDataSource(),
+                fieldNum(RMarketConditionTable, RecId)).value(queryValue(0));
         }
 
 ]]></Source>
@@ -1094,6 +1138,7 @@ public class RMarketStrategy extends FormRun
                             break;
 
 
+
                         case tableNum(RMarketConditionTable):
                             condition = RMarketConditionTable::findRecId(recId);
 
@@ -1105,24 +1150,12 @@ public class RMarketStrategy extends FormRun
                             if (!conditionGroup.RecId)
                                 break;
 
-                            // Avoid repositioning the parent for another
-                            // condition in the same group.
                             if (RMarketConditionGroup_DS.cursor().RecId != conditionGroup.RecId)
                             {
-                                if (!RMarketConditionGroup_DS.findRecord(conditionGroup))
-                                {
-                                    warning(strFmt("Cannot position condition group %1.", conditionGroup.RecId));
-                                    break;
-                                }
+                                RMarketConditionGroup_DS.findRecord(conditionGroup);
                             }
 
-                            if (!RMarketConditionTable_DS.findRecord(condition))
-                            {
-                                warning(strFmt("Cannot position condition %1. Current: %2.",
-                                condition.RecId,
-                                RMarketConditionTable_DS.cursor().RecId));
-                            }
-
+                            element.selectConditionForEditing(condition.RecId);
                             break;
                     }
                 }
@@ -2026,8 +2059,6 @@ public class RMarketStrategy extends FormRun
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
-			<JoinSource>RMarketConditionGroup</JoinSource>
-			<LinkType>Active</LinkType>
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
