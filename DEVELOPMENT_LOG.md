@@ -113,6 +113,13 @@
 - Next diagnosis: retry failed `findRecord()` after one child datasource `research(false)`, saving pending edits with `leaveRecord()` before switching leaves/actions; separately verify comparison-field persistence after action switches. Do not re-query on every selection or assume tree captions mean DB writes succeeded.
 - A3.4.4.5 remains blocked pending reliable editing, persistence and startup positioning.
 
+### 2026-11-18 — Query ownership refinement before implementing editor selection fix
+
+- User requested that **all editor datasource record selection be driven through `SysQuery::findOrCreateRange()` / `QueryBuildRange` and `executeQuery()`, not through `FormDataSource.findRecord()`**. Agreed: the tree's selected `RecId` uniquely identifies the editor record; datasource should be unlinked from `RMarketConditionGroup` and filtered directly by that `RecId`.
+- User requested initial `RecId=0` range in **`RMarketConditionTable_DS.init()` after `super()`**, not in `FormRun.init()`. Agreed: the datasource owns query initialization.
+- A form-level selection helper may apply the range and `executeQuery()`; guard unsaved changes via `leaveRecord()`. Initial state and group/no-leaf selection should select no record. Distinguish direct table `findRecId()` (read/validation) from `FormDataSource.findRecord()` (positioning) — only the latter is to be avoided.
+- This is a **revised design, not implemented yet**; user explicitly had not made changes at this point. Validate initial open, same-group leaf switching, cross-group and cross-action switching, and editing persistence.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
