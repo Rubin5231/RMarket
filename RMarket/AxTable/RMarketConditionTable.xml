@@ -578,7 +578,6 @@ public class RMarketConditionTable extends common
 	<Relations>
 		<AxTableRelation>
 			<Name>RMarketStrategyAction</Name>
-			<CreateNavigationPropertyMethods>Yes</CreateNavigationPropertyMethods>
 			<OnDelete>Restricted</OnDelete>
 			<RelatedTable>RMarketStrategyAction</RelatedTable>
 			<Constraints>
@@ -652,8 +651,6 @@ public class RMarketConditionTable extends common
 		</AxTableRelation>
 		<AxTableRelation>
 			<Name>RMarketConditionGroup</Name>
-			<CreateNavigationPropertyMethods>Yes</CreateNavigationPropertyMethods>
-			<NavigationPropertyMethodNameOverride>RMarketConditionGroup</NavigationPropertyMethodNameOverride>
 			<RelatedTable>RMarketConditionGroup</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""

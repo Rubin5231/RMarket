@@ -12,12 +12,26 @@
 				<Type>Class</Type>
 				<TypeName>FormDataSource</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormDataSource</TypeName>
+					<Name>ret</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>buildConditionTree</Name>
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategyAction</TypeName>
+					<Name>strategyAction</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>addConditionTreeNode</Name>
@@ -37,6 +51,38 @@
 				<Type>ExtendedDataType</Type>
 				<TypeName>TreeItemIdx</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>conditionGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>condition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormTreeItem</TypeName>
+					<Name>treeItem</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>caption</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>recId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Container</Type>
+					<TypeName></TypeName>
+					<Name>data</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>addConditionTreeNodes</Name>
@@ -60,6 +106,33 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>conditionGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>condition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormTreeItem</TypeName>
+					<Name>treeItem</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>itemIdx</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>caption</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>createConditionGroup</Name>
@@ -74,6 +147,63 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategyAction</TypeName>
+					<Name>strategyAction</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>conditionGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>parentGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>lastGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>lastCondition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormTreeItem</TypeName>
+					<Name>treeItem</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>newItemIdx</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Container</Type>
+					<TypeName></TypeName>
+					<Name>nodeData</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TableId</TypeName>
+					<Name>tableId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RefRecId</TypeName>
+					<Name>parentRecId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>nextNum</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>createCondition</Name>
@@ -87,6 +217,73 @@
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategyAction</TypeName>
+					<Name>strategyAction</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>conditionGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionGroup</TypeName>
+					<Name>lastGroup</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>selectedCondition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>lastCondition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketConditionTable</TypeName>
+					<Name>condition</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormTreeItem</TypeName>
+					<Name>treeItem</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>parentNodeIdx</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>newItemIdx</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Container</Type>
+					<TypeName></TypeName>
+					<Name>nodeData</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TableId</TypeName>
+					<Name>tableId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>recId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>nextNum</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>selectedNodeData</Name>
@@ -101,12 +298,56 @@
 				<Type>Container</Type>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>FormTreeItem</TypeName>
+					<Name>treeItem</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>nodeIdx</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>updateFormDesign</Name>
 			<ReturnType>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TableId</TypeName>
+					<Name>tableId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>recId</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>groupSelected</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>leafSelected</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>nodeSelected</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>actionSelected</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>init</Name>
@@ -134,6 +375,18 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyAction</TypeName>
+							<Name>action</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyAction</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 				<Method>
 					<Name>active</Name>
@@ -142,6 +395,13 @@
 						<Type>Int32</Type>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Int32</Type>
+							<TypeName></TypeName>
+							<Name>ret</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -163,6 +423,18 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>condition</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -184,6 +456,18 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>condition</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 			<Fields />
@@ -226,6 +510,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyAction</TypeName>
+							<Name>action</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -239,6 +530,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyAction</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -252,6 +550,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyAction</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -291,6 +596,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketStrategyOrders</TypeName>
+							<Name>orders</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -317,6 +629,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>ExtendedDataType</Type>
+							<TypeName>TreeItemIdx</TypeName>
+							<Name>parentNode</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -343,6 +662,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>condition</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -356,6 +682,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -369,6 +702,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -399,6 +739,33 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Container</Type>
+							<TypeName></TypeName>
+							<Name>nodeData</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>ExtendedDataType</Type>
+							<TypeName>TableId</TypeName>
+							<Name>tableId</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>ExtendedDataType</Type>
+							<TypeName>RecId</TypeName>
+							<Name>recId</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionGroup</TypeName>
+							<Name>conditionGroup</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>condition</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -425,6 +792,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>condition</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -438,6 +812,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -451,6 +832,13 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>RMarketConditionTable</TypeName>
+							<Name>record</Name>
+						</AxMethodVariable>
+					</Variables>
 				</Method>
 			</Methods>
 		</Control>

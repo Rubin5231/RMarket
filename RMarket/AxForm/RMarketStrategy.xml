@@ -309,8 +309,8 @@ public class RMarketStrategy extends FormRun
             case tableNum(RMarketConditionTable):
                 // Create a sibling condition
                 selectedCondition = RMarketConditionTable::findRecId(recId);
-                conditionGroup = RMarketConditionGroup::findRecId(selectedCondition.RefRecId);//selectedCondition.RMarketConditionGroup();
-                if (!conditionGroup)
+                conditionGroup = RMarketConditionGroup::findRecId(selectedCondition.RefRecId);
+                if (!conditionGroup.RecId)
                     return;
 
                 parentNodeIdx = ConditionTree.getParent(_selectedNode);
@@ -382,27 +382,19 @@ public class RMarketStrategy extends FormRun
     private container selectedNodeData(FormTreeControl _tree)
     {
         FormTreeItem treeItem;
-        TreeItemIdx nodeIdx = _tree.getSelection();
-        container nodeData;
-        TableId tableId;
-        RecId recId;
-        boolean isGroup = false;
+        TreeItemIdx nodeIdx;
 
-        if(!_tree)
-            return [0,0];
+        if (!_tree)
+            return [0, 0];
 
         nodeIdx = _tree.getSelection();
-        if (nodeIdx)
-            treeItem = ConditionTree.getItem(nodeIdx);
-        else 
-            return [0,0];
 
-        if (treeItem)
-            nodeData = treeItem.data();
-        else
-            return [0,0];
+        if (!nodeIdx)
+            return [0, 0];
 
-        return nodeData;
+        treeItem = _tree.getItem(nodeIdx);
+
+        return treeItem ? treeItem.data() : [0, 0];
     }
 
 ]]></Source>
