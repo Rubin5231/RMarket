@@ -55,43 +55,21 @@ public class RMarketStrategy extends FormRun
 				<Name>addConditionTreeNode</Name>
 				<Source><![CDATA[
     private TreeItemIdx addConditionTreeNode(
-        Common      _common,
-        //RMarketConditionGroup _conditionGroup,
+        Common      _record,
         TreeItemIdx _parentNode)
     {
-        RMarketConditionGroup conditionGroup;
-        RMarketConditionTable condition;
         FormTreeItem treeItem;
-        str caption;
-        RecId recId;
-        container data;
 
-        switch(_common.TableId)
+        if (_record.TableId != tableNum(RMarketConditionGroup)
+            && _record.TableId != tableNum(RMarketConditionTable))
         {
-            case tableNum(RMarketConditionTable):
-                condition = _common;
-                recId = condition.RecId;
-                data  = [condition.TableId, recId];
-                caption = strFmt("● Condition %1", condition.Num);
-                break;
-
-            case tableNum(RMarketConditionGroup):
-                conditionGroup = _common;
-                recId = conditionGroup.RecId;
-                data  = [conditionGroup.TableId, recId];
-                caption = strFmt("%1 %2 (%3)",
-                    conditionGroup.ParentRecId ? "▣" : "◆",
-                    conditionGroup.Name,
-                    enum2Str(conditionGroup.RMarketConditionOperator));
-                break;
-                
-            default:
-                return _parentNode;
+            return _parentNode;
         }
-        
+
         treeItem = new FormTreeItem();
-        treeItem.text(caption);
-        treeItem.data(data);
+
+        treeItem.text(element.conditionTreeNodeCaption(_record));
+        treeItem.data([_record.TableId, _record.RecId]);
 
         return ConditionTree.addItem(_parentNode, 0, treeItem);
     }
@@ -138,23 +116,76 @@ public class RMarketStrategy extends FormRun
                     RMarketConditionRelation::RMarketConditionGroup
                && condition.RefRecId == _parentRecId
             {
-                /*treeItem = new FormTreeItem();
-
-                treeItem.text(strFmt(
-                    "● Condition %1",
-                    condition.Num));
-
-                treeItem.data([tableNum(RMarketConditionTable), condition.RecId]);
-
-                ConditionTree.addItem(
-                _parentIdx,
-                0,
-                treeItem);*/
                 itemIdx = element.addConditionTreeNode(
                     condition,
                     _parentIdx);
             }
         }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>conditionTreeNodeCaption</Name>
+				<Source><![CDATA[
+    private str conditionTreeNodeCaption(Common _record)
+    {
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionTable condition;
+
+        switch (_record.TableId)
+        {
+            case tableNum(RMarketConditionGroup):
+                conditionGroup = _record;
+
+                return strFmt(
+                    "%1 %2 (%3)",
+                    conditionGroup.ParentRecId ? "▣" : "◆",
+                    conditionGroup.Name,
+                    enum2Str(conditionGroup.RMarketConditionOperator));
+
+            case tableNum(RMarketConditionTable):
+                condition = _record;
+
+                return strFmt("● Condition %1", condition.Num);
+        }
+
+        return "";
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>updateSelectedConditionTreeNode</Name>
+				<Source><![CDATA[
+    private void updateSelectedConditionTreeNode(Common _record)
+    {
+        TreeItemIdx nodeIdx = ConditionTree.getSelection();
+        FormTreeItem treeItem;
+        container nodeData;
+        TableId tableId;
+        RecId recId;
+
+        if (!nodeIdx || !_record.RecId)
+            return;
+
+        treeItem = ConditionTree.getItem(nodeIdx);
+
+        if (!treeItem)
+            return;
+
+        nodeData = treeItem.data();
+
+        if (conLen(nodeData) != 2)
+            return;
+
+        [tableId, recId] = nodeData;
+
+        if (tableId != _record.TableId || recId != _record.RecId)
+            return;
+
+        treeItem.text(element.conditionTreeNodeCaption(_record));
+        ConditionTree.setItem(treeItem);
     }
 
 ]]></Source>
@@ -273,14 +304,14 @@ public class RMarketStrategy extends FormRun
         RMarketConditionTable lastCondition;
         RMarketConditionTable condition;
 
-        FormTreeItem treeItem;
-        TreeItemIdx parentNodeIdx;
-        TreeItemIdx newItemIdx;
+        FormTreeItem    treeItem;
+        TreeItemIdx     parentNodeIdx;
+        TreeItemIdx     newItemIdx;
 
-        container nodeData;
-        TableId tableId;
-        RecId recId;
-        int nextNum;
+        container   nodeData;
+        TableId     tableId;
+        RecId       recId;
+        int         nextNum;
 
         if (!strategyAction.RecId || !_selectedNode)
             return;
@@ -991,6 +1022,381 @@ public class RMarketStrategy extends FormRun
             }
 
             element.updateFormDesign();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>GroupSettingsGroup_Name</Name>
+				<Type>String</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionGroup_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>GroupSettingsGroup_RMarketConditionOperator</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionGroup_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_Source</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_IndicatorId</Name>
+				<Type>String</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_CandleValue</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_Value</Name>
+				<Type>Real</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_Interval</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>What_Shift</Name>
+				<Type>Integer</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>Comparison_ComparisonType</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondSource</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondIndicatorId</Name>
+				<Type>String</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondCandleValue</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondValue</Name>
+				<Type>Real</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondInterval</Name>
+				<Type>ComboBox</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>With_SecondShift</Name>
+				<Type>Integer</Type>
+				<Methods>
+					<Method>
+						<Name>modified</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean modified()
+        {
+            boolean ret = super();
+
+            if (ret)
+                element.updateSelectedConditionTreeNode(RMarketConditionTable_DS.cursor());
+    
+            return ret;
         }
 
 ]]></Source>
