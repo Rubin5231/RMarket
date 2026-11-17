@@ -1,32 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-17T17:02:53.6813865+03:00">
+  GenerationTime="2026-11-18T00:53:20.5248778+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/BottomGroup/FormGroupControl/DetailsGroup/FormTabControl/ConditionTab/FormTabPageControl/ActionConditionTabPage/FormGroupControl/FormGroupControl3/FormGroupControl/EventTreeGroup/FormTreeControl/ConditionTree/Method/selectionChanged</Path>
-      <ElementType>Form Control Method</ElementType>
-      <Moniker>ClassDoesNotContainMethod</Moniker>
-      <Line>690</Line>
-      <Column>46</Column>
-      <EndLine>690</EndLine>
-      <EndColumn>79</EndColumn>
-      <Message>ClassDoesNotContainMethod: Table 'RMarketConditionTable' does not contain a definition for method 'RMarketConditionGroup' and no extension method 'RMarketConditionGroup' accepting a first argument of type 'RMarketConditionTable' is found on any extension class.</Message>
-      <ItemSpecific>
-        <OriginatorType
-          alias="0">ClassDoesNotContainMethod</OriginatorType>
-        <Fields>
-          <elementTypeName>Table</elementTypeName>
-          <elementName>RMarketConditionTable</elementName>
-          <methodName>RMarketConditionGroup</methodName>
-        </Fields>
-      </ItemSpecific>
+      <Path>dynamics://Form/RMarketStrategy/Method/conditionTreeNodeCaption</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>178</Line>
+      <Column>17</Column>
+      <EndLine>178</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>'leftOperand' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/conditionTreeNodeCaption</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>186</Line>
+      <Column>17</Column>
+      <EndLine>186</EndLine>
+      <EndColumn>29</EndColumn>
+      <Message>'rightOperand' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/conditionTreeNodeCaption</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>196</Line>
+      <Column>21</Column>
+      <EndLine>196</EndLine>
+      <EndColumn>32</EndColumn>
+      <Message>'leftOperand' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/conditionTreeNodeCaption</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>198</Line>
+      <Column>21</Column>
+      <EndLine>198</EndLine>
+      <EndColumn>33</EndColumn>
+      <Message>'rightOperand' is not declared.</Message>
     </Diagnostic>
   </Items>
-  <Aliases>
-    <Alias
-      assembly="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-      ns="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2">0</Alias>
-  </Aliases>
+  <Aliases />
 </Diagnostics>

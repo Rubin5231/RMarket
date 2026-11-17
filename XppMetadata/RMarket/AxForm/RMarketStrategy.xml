@@ -62,6 +62,45 @@
 			</ReturnType>
 		</Method>
 		<Method>
+			<Name>conditionOperandCaption</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>Enum</Type>
+					<TypeName>RMarketConditionValueSource</TypeName>
+					<Name>_source</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketIndicatorId</TypeName>
+					<Name>_indicatorId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>Enum</Type>
+					<TypeName>RMarketIndicatorBaseEnum</TypeName>
+					<Name>_candleValue</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<Name>_value</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>Enum</Type>
+					<TypeName>RMarketCandleInterval</TypeName>
+					<Name>_interval</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>_shift</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
 			<Name>conditionTreeNodeCaption</Name>
 			<Parameters>
 				<AxMethodParameter>

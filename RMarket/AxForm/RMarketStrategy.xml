@@ -126,12 +126,80 @@ public class RMarketStrategy extends FormRun
 ]]></Source>
 			</Method>
 			<Method>
+				<Name>conditionOperandCaption</Name>
+				<Source><![CDATA[
+    private str conditionOperandCaption(
+        RMarketConditionValueSource _source,
+        RMarketIndicatorId          _indicatorId,
+        RMarketIndicatorBaseEnum    _candleValue,
+        real                        _value,
+        RMarketCandleInterval       _interval,
+        int                         _shift)
+    {
+        str caption;
+        str intervalText;
+
+        switch (_source)
+        {
+            case RMarketConditionValueSource::Const:
+                caption = num2Str(
+                    _value, 0, 16,
+                    DecimalSeparator::Dot,
+                    ThousandSeparator::None);
+
+                // Remove trailing fractional zeroes.
+                if (strScan(caption, ".", 1, strLen(caption)))
+                {
+                    while (subStr(caption, strLen(caption), 1) == "0")
+                    {
+                        caption = subStr(caption, 1, strLen(caption) - 1);
+                    }
+
+                    if (subStr(caption, strLen(caption), 1) == ".")
+                    {
+                        caption = subStr(caption, 1, strLen(caption) - 1);
+                    }
+                }
+
+                return caption;
+
+            case RMarketConditionValueSource::Indicator:
+                caption = _indicatorId != ""
+                    ? _indicatorId
+                    : "Indicator(?)";
+                break;
+
+            case RMarketConditionValueSource::Candle:
+                caption = _candleValue != RMarketIndicatorBaseEnum::None
+                    ? enum2Str(_candleValue)
+                    : "Candle(?)";
+                break;
+
+            case RMarketConditionValueSource::LosingTradesInARow:
+            case RMarketConditionValueSource::DepositPercentDrawdown:
+                return strFmt("%1 [not implemented]", enum2Str(_source));
+
+            default:
+                return "Unknown source";
+        }
+
+        intervalText = _interval != RMarketCandleInterval::None
+            ? strUpr(enum2Str(_interval))
+            : "?";
+
+        return strFmt("%1 %2 [%3]", caption, intervalText, _shift);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
 				<Name>conditionTreeNodeCaption</Name>
 				<Source><![CDATA[
     private str conditionTreeNodeCaption(Common _record)
     {
         RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;
+        str                   leftOperand, rightOperand;
 
         switch (_record.TableId)
         {
@@ -147,7 +215,27 @@ public class RMarketStrategy extends FormRun
             case tableNum(RMarketConditionTable):
                 condition = _record;
 
-                return strFmt("● Condition %1", condition.Num);
+                leftOperand = element.conditionOperandCaption(
+                    condition.Source,
+                    condition.IndicatorId,
+                    condition.CandleValue,
+                    condition.Value,
+                    condition.Interval,
+                    condition.Shift);
+
+                rightOperand = element.conditionOperandCaption(
+                    condition.SecondSource,
+                    condition.SecondIndicatorId,
+                    condition.SecondCandleValue,
+                    condition.SecondValue,
+                    condition.SecondInterval,
+                    condition.SecondShift);
+
+                return strFmt(
+                    "● %1 %2 %3",
+                    leftOperand,
+                    enum2Str(condition.ComparisonType),
+                    rightOperand);
         }
 
         return "";
