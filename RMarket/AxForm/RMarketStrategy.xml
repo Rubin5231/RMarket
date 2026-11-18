@@ -622,6 +622,7 @@ public class RMarketStrategy extends FormRun
         {
             int ret = super();
 
+            element.selectConditionForEditing(0);
             element.buildConditionTree();
             element.updateFormDesign();
         
@@ -1135,6 +1136,7 @@ public class RMarketStrategy extends FormRun
                             {
                                 RMarketConditionGroup_DS.findRecord(conditionGroup);
                             }
+                            element.selectConditionForEditing(0);
                             break;
 
 
