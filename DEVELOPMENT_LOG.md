@@ -133,6 +133,13 @@
 - Small safe interim guard: return early from `selectConditionForEditing()` when datasource cursor already matches requested RecId, eliminating redundant `executeQuery()` after creating and selecting a new leaf. This does **not** remove the per-leaf latency for different records.
 - Do not substitute `refresh()` alone for a query change; it only redraws currently loaded data. Do not assume `setRecord()` can replace queries for ordinary persisted records without verifying edit/save semantics.
 
+### 2026-11-18 — A3.4.4.6 starts; performance improvement deferred
+
+- User explicitly classified the 0.2–0.5-second per-leaf `executeQuery()` delay as **optional / backlog** and requested work to proceed. Do not block main A3 UI development on this optimization.
+- Current next task: **A3.4.4.6 dynamic visibility of condition operand fields**, Actions editor only. `What` and `With` source independently control field visibility: Const -> Value; Indicator -> IndicatorId, Interval, Shift; Candle -> CandleValue, Interval, Shift; LosingTradesInARow/DepositPercentDrawdown -> Source only (calculation not implemented). Comparison operator remains visible.
+- Implement visibility centrally in existing `RMarketStrategy.updateFormDesign()`, called on tree selection and on successful `What_Source.modified()` and `With_SecondSource.modified()`. For direct control references, source form metadata currently lacks `AutoDeclaration=Yes` on operand controls; ensure visibility-controlled controls are declared or resolved explicitly. Do not change Orders tab.
+- **Proposed and not yet committed by user**; verify after implementation by switching source types on both sides, switching leaves/groups/actions, and reopening the form.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
