@@ -567,8 +567,11 @@ public class RMarketStrategy extends FormRun
     {
         RMarketConditionTable condition;
 
+        if (RMarketConditionTable_DS.cursor().RecId == _recId)
+            return true;    
+        
         if (!RMarketConditionTable_DS.leaveRecord())
-        return false;
+            return false;
 
         SysQuery::findOrCreateRange(
             RMarketConditionTable_DS.queryBuildDataSource(),
