@@ -201,6 +201,43 @@
 				<TypeName>boolean</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>conditionTreeNodeForUpdate</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>TreeItemIdx</TypeName>
+					<Name>_nodeIdx</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>_actionRecId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RecId</TypeName>
+					<Name>_parentRecId</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Type>Record</Type>
+				<TypeName>Common</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>moveConditionTreeNode</Name>
+			<Parameters>
+				<AxMethodParameter>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>_up</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 	<DataSources>
 		<DataSource>

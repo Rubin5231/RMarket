@@ -542,12 +542,16 @@ public class RMarketStrategy extends FormRun
         NodeNewEventButton.enabled(actionSelected);
         NodeNewGroupButton.enabled(actionSelected && groupSelected);
         NodeNewConditionButton.enabled(actionSelected && nodeSelected);
-        NodeDeleteButton.enabled(actionSelected 
-                              && nodeSelected 
-                              && !ConditionTree.getChild(ConditionTree.getSelection()));
-        NodeUpButton.enabled(false);
-        NodeDownButton.enabled(false);
+        NodeDeleteButton.enabled(actionSelected && 
+                                nodeSelected && 
+                                !ConditionTree.getChild(ConditionTree.getSelection()));
+        NodeUpButton.enabled(actionSelected &&
+                             nodeSelected &&
+                             ConditionTree.getPrevSibling(ConditionTree.getSelection()) != 0);
 
+        NodeDownButton.enabled(actionSelected &&
+                               nodeSelected &&
+                               ConditionTree.getNextSibling(ConditionTree.getSelection()) != 0);
         // Node settings
         GroupSettingsGroup.visible(groupSelected);
         ConditionSettingsGroup.visible(leafSelected);
@@ -725,6 +729,235 @@ public class RMarketStrategy extends FormRun
         condition = RMarketConditionTable_DS.cursor();
 
         return condition.RecId == _recId;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>conditionTreeNodeForUpdate</Name>
+				<Source><![CDATA[
+    private Common conditionTreeNodeForUpdate(
+        TreeItemIdx _nodeIdx,
+        RecId       _actionRecId,
+        RecId       _parentRecId)
+    {
+        RMarketConditionGroup   conditionGroup;
+        RMarketConditionTable   condition;
+        FormTreeItem            treeItem;
+        container               nodeData;
+        TableId                 tableId;
+        RecId                   recId;
+
+        treeItem = ConditionTree.getItem(_nodeIdx);
+
+        if (!treeItem)
+            throw error("Invalid tree node.");
+
+        nodeData = treeItem.data();
+
+        if (conLen(nodeData) != 2)
+            throw error("Invalid tree node data.");
+
+        [tableId, recId] = nodeData;
+
+        switch (tableId)
+        {
+            case tableNum(RMarketConditionGroup):
+                conditionGroup = RMarketConditionGroup::findRecId(recId, true);
+
+                if (conditionGroup.RecId &&
+                    conditionGroup.RMarketStrategyActionRecId == _actionRecId &&
+                    conditionGroup.ParentRecId == _parentRecId)
+                {
+                    return conditionGroup;
+                }
+                break;
+
+            case tableNum(RMarketConditionTable):
+                condition = RMarketConditionTable::findRecId(recId, true);
+
+                if (condition.RecId &&
+                    _parentRecId &&
+                    condition.Relation == RMarketConditionRelation::RMarketConditionGroup &&
+                    condition.RefRecId == _parentRecId)
+                {
+                    conditionGroup = RMarketConditionGroup::findRecId(_parentRecId);
+
+                    if (conditionGroup.RecId &&
+                        conditionGroup.RMarketStrategyActionRecId == _actionRecId)
+                    {
+                        return condition;
+                    }
+                }
+                break;
+        }
+
+        throw error("Invalid condition tree node reference.");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>moveConditionTreeNode</Name>
+				<Source><![CDATA[
+    private void moveConditionTreeNode(boolean _up)
+    {
+        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionTable condition;
+
+        TreeItemIdx nodeIdx = ConditionTree.getSelection();
+        TreeItemIdx siblingIdx;
+        TreeItemIdx parentIdx;
+        TreeItemIdx movedIdx;
+
+        Common nodeRecord;
+        Common siblingRecord;
+
+        TableId parentTableId;
+        RecId parentRecId;
+        RecId selectedRecId;
+
+        FieldId nodeNumFieldId;
+        FieldId siblingNumFieldId;
+
+        int nodeNum;
+        int siblingNum;
+        int tempNum = maxInt();
+
+        int64 cnt;
+
+        if (!strategyAction.RecId || !nodeIdx)
+            return;
+
+        siblingIdx = _up ? ConditionTree.getPrevSibling(nodeIdx)
+                         : ConditionTree.getNextSibling(nodeIdx);
+
+        if (!siblingIdx)
+            return;
+
+        // Resolve the common parent.
+        parentIdx = ConditionTree.getParent(nodeIdx);
+
+        if (parentIdx)
+        {
+            [parentTableId, parentRecId] = ConditionTree.getItem(parentIdx).data();
+
+            if (parentTableId != tableNum(RMarketConditionGroup))
+                throw error("Invalid parent node.");
+        }
+
+        // Save pending editor changes.
+        if (!RMarketConditionTable_DS.leaveRecord())
+            return;
+
+        if (!RMarketConditionGroup_DS.leaveRecord())
+            return;
+
+        ttsbegin;
+
+        nodeRecord = element.conditionTreeNodeForUpdate(nodeIdx, strategyAction.RecId, parentRecId);
+        siblingRecord = element.conditionTreeNodeForUpdate(siblingIdx, strategyAction.RecId, parentRecId);
+        selectedRecId = nodeRecord.RecId;
+        nodeNumFieldId = fieldName2Id(nodeRecord.TableId, "Num");
+        siblingNumFieldId = fieldName2Id(siblingRecord.TableId, "Num");
+
+        nodeNum = nodeRecord.(nodeNumFieldId);
+        siblingNum = siblingRecord.(siblingNumFieldId);
+
+        if (nodeNum == siblingNum ||
+            nodeNum == tempNum ||
+            siblingNum == tempNum)
+        {
+            throw error("Invalid sibling numbering.");
+        }
+
+        // Verify that the affected numbers are unique.
+        select count(RecId) from conditionGroup
+            where conditionGroup.RMarketStrategyActionRecId == strategyAction.RecId
+               && conditionGroup.ParentRecId                == parentRecId
+               && (conditionGroup.Num == nodeNum ||
+                   conditionGroup.Num == siblingNum ||
+                   conditionGroup.Num == tempNum);
+
+        cnt = conditionGroup.RecId;
+
+        if (parentRecId)
+        {
+            select count(RecId) from condition
+                where condition.Relation == RMarketConditionRelation::RMarketConditionGroup
+                   && condition.RefRecId == parentRecId
+                   && (condition.Num == nodeNum ||
+                       condition.Num == siblingNum ||
+                       condition.Num == tempNum);
+
+            cnt += condition.RecId;
+        }
+
+        if (cnt != 2)
+            throw error("Conflicting sibling numbering.");
+
+        // Swap numbers without violating unique indexes.
+        nodeRecord.(nodeNumFieldId) = tempNum;
+
+        if (!nodeRecord.validateWrite())
+            throw Exception::Error;
+
+        nodeRecord.update();
+
+        siblingRecord.(siblingNumFieldId) = nodeNum;
+
+        if (!siblingRecord.validateWrite())
+            throw Exception::Error;
+
+        siblingRecord.update();
+
+        nodeRecord.(nodeNumFieldId) = siblingNum;
+
+        if (!nodeRecord.validateWrite())
+            throw Exception::Error;
+
+        nodeRecord.update();
+
+        ttscommit;
+
+        // Refresh affected datasource records.
+        if (nodeRecord.TableId == tableNum(RMarketConditionGroup) ||
+            siblingRecord.TableId == tableNum(RMarketConditionGroup))
+        {
+            RMarketConditionGroup_DS.research(true);
+        }
+
+        if (RMarketConditionTable_DS.cursor().RecId)
+        {
+            RMarketConditionTable_DS.reread();
+            RMarketConditionTable_DS.refresh();
+        }
+
+        // Move tree items without rebuilding the tree.
+        if (_up)
+        {
+            movedIdx = ConditionTree.moveItem(siblingIdx, parentIdx, nodeIdx);
+        }
+        else
+        {
+            movedIdx = ConditionTree.moveItem(nodeIdx, parentIdx, siblingIdx);
+
+            if (movedIdx)
+                nodeIdx = movedIdx;
+        }
+
+        if (movedIdx)
+        {
+            ConditionTree.select(nodeIdx);
+        }
+        else
+        {
+            warning("Cannot move tree item. Rebuilding tree.");
+            element.buildConditionTree();
+        }
+
+        element.updateFormDesign();
     }
 
 ]]></Source>
@@ -1192,13 +1425,9 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketConditionTable  record;
-            
             super();
             
-            record = element.currentCondition_DS().cursor();
-            record.conditionNumDecrease();
-            element.currentCondition_DS().research();
+            element.moveConditionTreeNode(true);
         }
 
 ]]></Source>
@@ -1217,13 +1446,9 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketConditionTable  record;
-            
             super();
             
-            record = element.currentCondition_DS().cursor();
-            record.conditionNumRaise();
-            element.currentCondition_DS().research();
+            element.moveConditionTreeNode(false);
         }
 
 ]]></Source>
