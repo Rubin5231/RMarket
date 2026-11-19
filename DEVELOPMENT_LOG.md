@@ -176,6 +176,11 @@
 - Next: Up/Down only exchanges positions of adjacent siblings (including groups with descendants, leaves, and root events); no cross-parent changes. Enable buttons based on actual previous/next siblings, not Num arithmetic. Use clicked handlers calling one form method. Validate node identities and ownership and save pending edits; swap Num atomically in a transaction using a free temporary number where necessary. Guard duplicate sibling Num and reserved temporary-number conflicts; normalization of corrupted legacy numbers is separate if needed. No change to Orders or calculation sequence.
 - UI proposal: use documented three-argument `FormTreeControl.moveItem(idx, newParent, insertAfter)`; moving down moves selected node after next sibling, moving up moves previous sibling after selected node. Keep selected logical record and refresh affected datasource records. Test preservation of expanded subtrees and root-level moves in AX; not yet implemented or compiled.
 
+### 2026-11-19 — Root-level Up/Down issue
+
+- User reports root events (no parent) trigger `Cannot move tree item. Rebuilding tree.` and lose expansion state. A3.4.4.9 remains open.
+- Proposed minimal test: after database transaction, before `moveItem`, substitute `FormTreeAdd::Root` for zero UI parent index. Keep database ParentRecId=0. Microsoft documents moveItem's new-parent parameter but not root sentinel behavior; fix not yet verified in AX. If unsupported, consider state-preserving rebuild or a UI-only common root, without changing database hierarchy.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
