@@ -921,6 +921,9 @@ public class RMarketStrategy extends FormRun
 
         ttscommit;
 
+        if (!parentIdx)
+            parentIdx = FormTreeAdd::Root;
+
         // Refresh affected datasource records.
         if (nodeRecord.TableId == tableNum(RMarketConditionGroup) ||
             siblingRecord.TableId == tableNum(RMarketConditionGroup))
