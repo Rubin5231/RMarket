@@ -2,7 +2,7 @@
 
 > A durable project memory alongside Git history. Updated by the assistant during RMarket development sessions; not a transcript. Source of truth for implemented code is the `main` branch. Items labelled "planned" have not been verified as implemented.
 >
-> Last reconciliation: 2026-11-18, repository head before this document: `a0b60e7a1a5c321fba5a028e74c7eaadae96dd5c` (A3.4.4.4).
+> Last reconciliation: 2026-11-19, code reviewed at `df1fb61ebf19b31bf1a959f38f6c1952a8188c65` (A3.4.4.6).
 
 ## Product goal and working principles
 
@@ -51,25 +51,34 @@
 | A3.3 tests | Test class present | `RMarketJobTest_ConditionTree` tests nested logic and validation; test method reports 10 checks. User confirms all work through A3.4.4.4 has been tested in AX; assistant has not rerun those tests |
 | A3.4.1–A3.4.4.3 | Implemented | Action tree on `RMarketStrategy`, selection/editor, creating events/groups/conditions |
 | A3.4.4.4 | Implemented and user-tested in `a0b60e7` | Central caption formatter and `updateSelectedConditionTreeNode()`, `modified()` handlers for group and condition fields; user confirmed correct and convenient live editing on 2026-11-18 |
+| A3.4.4.5 | Implemented; normal editor use accepted | Human-readable operand captions; independent condition datasource filtered by RecId. User deferred latency optimization to backlog; explicit full regression results not recorded |
+| A3.4.4.6 | Implemented and user-tested in `c77a24ff` | Independent source-dependent visibility in What/With; user confirmed it works excellently on 2026-11-19 |
 
-### Current UI code state, verified from GitHub 2026-11-18
+### Current UI code state, verified from GitHub 2026-11-19
 
-- `RMarketStrategy.conditionTreeNodeCaption(Common)` formats group names as root/event or nested group, including AND/OR; condition captions currently show only `● Condition N`.
+- `RMarketStrategy.conditionTreeNodeCaption(Common)` formats group names as root/event or nested group, including AND/OR; condition captions display English operand expressions with comparison, interval and shift; missing indicator/candle selection is displayed explicitly with `?`.
 - `RMarketStrategy.updateSelectedConditionTreeNode(Common)` checks the selected tree item's table/record identity and updates its text through `FormTreeControl.setItem()`.
 - `modified()` controls cover group name/operator, and condition source, indicator, candle value, value, interval, shift, comparison, and mirrored right-side fields.
-- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, and disables deletion and Up/Down. Conditional visibility of individual What/With fields is not yet implemented.
+- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, and disables deletion and Up/Down. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
 - `RMarketStrategy.addConditionTreeNodes()` currently enumerates nested groups and leaves in **separate loops**, so mixed children do not yet display in a single global `Num` order.
-- Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-18 00:26 MSK. It is not a substitute for functional form testing.
+- Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-18 14:57 MSK. It is not a substitute for functional form testing.
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.5 — Human-readable condition captions (code implemented in `599784d8`, integration bug under investigation).** Replace `● Condition N` with a compact, deterministic English expression combining left operand, comparison sign and right operand. Reuse one formatter for initial tree construction and live field edits. Cover Const, Candle, Indicator first; unsupported/unconfigured sources should be visibly explicit, not silently presented as valid.
-2. **A3.4.4.6 — Dynamic field visibility.** Make each operand editor show only fields relevant to its source: Const → Value; Indicator → IndicatorId, Interval, Shift; Candle → CandleValue, Interval, Shift; other future sources → their relevant controls after their semantics exist. Keep Comparison visible. Refresh on tree selection and Source/SecondSource modification. **Scope this to Actions, not the Orders expression editor.**
-3. Make tree deletion safe: leaf deletion; group/event deletion with intended child handling and selection updates. Confirm UX before implementing destructive operations.
-4. Reconcile mixed group+condition sibling `Num` ordering; implement Up/Down with shared sibling order.
-5. Improve validation for changing source, invalid indicator IDs, missing data and parent ownership changes.
-6. Exercise the UI with a nested expression and verify that captions, selection, persistence, and computation agree.
-7. Finish A3 strategy signaling and subsequent analytic integration before touching live operational trading.
+1. **A3.4.4.7 — Tree node deletion (current task).** Permanently prohibit cascade deletion; only leaf conditions and empty groups/events may be deleted. Protect in UI and at table level (`hasChildren`, `validateDelete`, `delete`). Delete by selected tree node identity, not legacy `currentCondition_DS()`. Preserve expanded branches and select parent or adjacent root after successful deletion. Do not renumber siblings in this task.
+2. Reconcile mixed group+condition sibling `Num` ordering; implement Up/Down with shared sibling order.
+3. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
+4. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
+
+## Backlog
+
+- **Optional / low priority — condition editor responsiveness.** User accepted the current per-leaf query approach despite approximately 0.2–0.5 second delay. Potential future optimization: action-scoped preload and local positioning. Do not block current UI work.
+- **Deferred, mandatory before operational trading — incomplete/invalid configuration in an active action.** User explicitly wants to permit incomplete draft conditions in the editor for now, leaving responsibility to the user during configuration. Screenshot on 2026-11-19 shows action OpenLong marked Active with a condition caption `Candle(?) H4 [0] > 0` (Candle source with CandleValue=None). This is a concrete risk, not cosmetic: current `RMarketConditionTable.calcValueW()` invokes `RMarketCandleTable.getValue(_candleValue)`; its default branch returns Close, including for None, so this incomplete condition can silently evaluate as Close > 0. No evidence of any actual order here.
+  - Plan a strategy/action readiness check before start/activation (recursively check every applicable active-action root event, nested group and leaf; validate both operands; distinguish configuration errors from missing runtime market data). Do not confuse Active on an action with a validated/running strategy.
+  - Check CandleValue=None or unsupported base (Range/Median also currently lack explicit supported cases), missing/unknown IndicatorId, Interval=None or unavailable interval, unsupported source types, invalid hierarchy, and other incomplete required parameters according to source. Do not validate hidden irrelevant stale fields. Define allowable shift semantics to avoid lookahead in evaluation.
+  - At runtime, invalid/unavailable operands must not be silently substituted with Close or zero, treated as a valid false condition, or allow another OR branch to trigger an affected invalid action. Fail closed for the affected signal/action, log diagnostics with strategy/action/group/condition identity and cause; integration design must address safe handling of already-open positions separately.
+  - Keep existing UI behavior for now. Do not introduce table-wide restrictions that break the shared Orders arithmetic configuration; design validation for each semantic context.
+  - Add tests for an incomplete condition within an otherwise true OR expression and for legitimate zero/false values, so invalid is distinguished from an ordinary false/zero result.
 
 ## Open risks and deferred questions
 
@@ -139,6 +148,20 @@
 - Current next task: **A3.4.4.6 dynamic visibility of condition operand fields**, Actions editor only. `What` and `With` source independently control field visibility: Const -> Value; Indicator -> IndicatorId, Interval, Shift; Candle -> CandleValue, Interval, Shift; LosingTradesInARow/DepositPercentDrawdown -> Source only (calculation not implemented). Comparison operator remains visible.
 - Implement visibility centrally in existing `RMarketStrategy.updateFormDesign()`, called on tree selection and on successful `What_Source.modified()` and `With_SecondSource.modified()`. For direct control references, source form metadata currently lacks `AutoDeclaration=Yes` on operand controls; ensure visibility-controlled controls are declared or resolved explicitly. Do not change Orders tab.
 - **Proposed and not yet committed by user**; verify after implementation by switching source types on both sides, switching leaves/groups/actions, and reopening the form.
+
+### 2026-11-19 — A3.4.4.6 completed; incomplete active action risk deferred
+
+- User confirmed dynamic operand visibility works excellently; code committed in `c77a24ffddb868594318637cc2fea871d17f4cba` and merged into `df1fb61ebf19b31bf1a959f38f6c1952a8188c65`. Verified `updateFormDesign()` and the two source-control modified() handlers.
+- User highlighted active OpenLong action with an incomplete candle operand (`Candle(?) H4 [0]`). Agreed to allow draft configuration for now and make handling invalid active-action conditions a pre-operational requirement; see Backlog. Source review confirmed `getValue(None)` falls through to Close, so the risk is real.
+- Next task: A3.4.4.7 tree node deletion; clarify deletion policy before implementing. No further X++ changes made by assistant.
+
+### 2026-11-19 — A3.4.4.7 deletion policy and implementation proposal
+
+- User explicitly rejected cascading deletion entirely, not merely for this release. **Only nodes with no children may be deleted**, including empty root events and empty nested groups. This is an architectural decision, not a backlog item.
+- Proposed `RMarketConditionGroup.hasChildren()` checks both direct child groups (by ParentRecId, intentionally regardless of action ownership for safety) and conditions (Relation=RMarketConditionGroup + RefRecId). `validateDelete()` and ordinary `delete()` guard nonempty groups. No cascading delete action.
+- UI Delete enabled only with a selected valid leaf/empty group/event and no tree child (getChild). Database deletion uses selected node TableId/RecId, verifies action ownership, validates, deletes within transaction, updates editor and deletes only the single item from tree; select parent if available, otherwise an adjacent root. Do not reuse legacy `currentCondition_DS()` for the tree.
+- No Num renumbering at this stage; gaps can be handled in shared sibling ordering task. Confirm deletion UX via a Yes/No confirmation; verify leaves, empty groups/events, and nonempty groups including collapsed branches.
+- Proposal only: actual implementation and test are pending. Table checks apply to ordinary X++ delete paths, not raw SQL or deliberate doDelete/skip-method overrides; concurrent configuration editing and trading will need a separate consistency policy.
 
 ## How to use
 
