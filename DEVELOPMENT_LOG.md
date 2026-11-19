@@ -73,6 +73,8 @@
 
 ## Backlog
 
+- **Optional / low priority — root-event Up/Down UI state.** Root-level moveItem fails with the observed parent index and FormTreeAdd::Root; rebuilding after Num swap works as a fallback but collapses branches and can lose selection. User explicitly rejected complex expansion-state preservation; one focused public search found no verified standard fix. Keep simple fallback, no warning for known root case. Revisit only if worthwhile; standard EConDesigner and tutorial_Form_TreeControl may offer local examples.
+
 - **Optional / low priority — condition editor responsiveness.** User accepted the current per-leaf query approach despite approximately 0.2–0.5 second delay. Potential future optimization: action-scoped preload and local positioning. Do not block current UI work.
 - **Deferred, mandatory before operational trading — incomplete/invalid configuration in an active action.** User explicitly wants to permit incomplete draft conditions in the editor for now, leaving responsibility to the user during configuration. Screenshot on 2026-11-19 shows action OpenLong marked Active with a condition caption `Candle(?) H4 [0] > 0` (Candle source with CandleValue=None). This is a concrete risk, not cosmetic: current `RMarketConditionTable.calcValueW()` invokes `RMarketCandleTable.getValue(_candleValue)`; its default branch returns Close, including for None, so this incomplete condition can silently evaluate as Close > 0. No evidence of any actual order here.
   - Plan a strategy/action readiness check before start/activation (recursively check every applicable active-action root event, nested group and leaf; validate both operands; distinguish configuration errors from missing runtime market data). Do not confuse Active on an action with a validated/running strategy.
@@ -175,6 +177,23 @@
 - User confirmed successful behavior of mixed sibling order. Verified actual merged-stream implementation in `d3ba36367d38e69d4b827c2b9f52234f7c853fa3` (main merge `c1ca0d99fc02b1ae13954b24d9de918af807f0ea`).
 - Next: Up/Down only exchanges positions of adjacent siblings (including groups with descendants, leaves, and root events); no cross-parent changes. Enable buttons based on actual previous/next siblings, not Num arithmetic. Use clicked handlers calling one form method. Validate node identities and ownership and save pending edits; swap Num atomically in a transaction using a free temporary number where necessary. Guard duplicate sibling Num and reserved temporary-number conflicts; normalization of corrupted legacy numbers is separate if needed. No change to Orders or calculation sequence.
 - UI proposal: use documented three-argument `FormTreeControl.moveItem(idx, newParent, insertAfter)`; moving down moves selected node after next sibling, moving up moves previous sibling after selected node. Keep selected logical record and refresh affected datasource records. Test preservation of expanded subtrees and root-level moves in AX; not yet implemented or compiled.
+
+### 2026-11-19 — Root-level Up/Down issue
+
+- User reports root events (no parent) trigger `Cannot move tree item. Rebuilding tree.` and lose expansion state. A3.4.4.9 remains open.
+- Proposed minimal test: after database transaction, before `moveItem`, substitute `FormTreeAdd::Root` for zero UI parent index. Keep database ParentRecId=0. Microsoft documents moveItem's new-parent parameter but not root sentinel behavior; fix not yet verified in AX. If unsupported, consider state-preserving rebuild or a UI-only common root, without changing database hierarchy.
+
+### 2026-11-19 — Root move sentinel test failed
+
+- User tested substituting FormTreeAdd::Root for zero UI parent in moveItem(); same failure and collapsed tree. Do not repeat this hypothesis. Root-level API limitation is suspected, not established by documentation.
+- Proposed fix: keep successful nested moveItem path; for root event swaps rebuild from database order while preserving expanded group RecIds (capture using FormTreeItem.stateExpanded(), traverse all siblings and descendants) and selected event RecId. Map group RecId to new tree index during reconstruction; restore expansion and selection using new indices. No artificial root, no hierarchy/schema change. Root swap is normal behavior, not a warning. No compile/runtime confirmation yet.
+- A3.4.4.9 still open pending root moves with nested expansion and selected event preserved.
+
+### 2026-11-19 — Root event expansion preservation deferred by user
+
+- User rejected the state-preserving rebuild proposal as disproportionate complexity for a minor UI feature and requested one focused search for a standard solution, otherwise backlog.
+- Search covered Microsoft Learn, Dynamics Community, AXForum, Stack Overflow and AX developer blogs. Aman Nain's Up Down Sequence Logic (https://amannain.blogspot.com/2013/02/) references standard EConDesigner and uses the same three-argument moveItem with getParent; no verified root-level workaround found. Microsoft API docs (https://learn.microsoft.com/en-us/dotnet/api/dynamics.ax.application.formtreecontrol.moveitem?view=dyn-finops-dotnet) do not specify root handling.
+- **Decision:** do not implement collectExpandedGroups, group-index Map or state-preserving rebuild. Keep working nested moveItem; for root moves use simple rebuild after committed Num swap, without a warning for the known case. Remove unsuccessful FormTreeAdd::Root experiment. Optional UX issue: root move collapses branches and may lose selection. Defer to backlog; not a blocker for A3.4.4.9 after final implementation/verification. No code changes by assistant.
 
 ## How to use
 
