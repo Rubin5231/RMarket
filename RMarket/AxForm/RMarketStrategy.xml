@@ -2474,6 +2474,7 @@ public class RMarketStrategy extends FormRun
 										<Type>MenuFunctionButton</Type>
 										<FormControlExtension
 											i:nil="true" />
+										<DataSource>RMarketStrategyAction</DataSource>
 										<MenuItemName>RMarketJobTest_ConfiguredSignal</MenuItemName>
 										<MenuItemType>Action</MenuItemType>
 									</AxFormControl>

@@ -5,6 +5,7 @@
 		<Declaration><![CDATA[
 internal final class RMarketJobTest_ConfiguredSignal
 {
+
 }
 ]]></Declaration>
 		<Methods>
@@ -13,29 +14,35 @@ internal final class RMarketJobTest_ConfiguredSignal
 				<Source><![CDATA[
     public static void main(Args _args)
     {
-        RMarketStrategyId strategyId = "DAT-STR00001";
-        int actionNum = 1;
-
         RMarketStrategyAction action;
         RMarketSubAccount subAccount;
         boolean signal;
 
-        action = RMarketStrategyAction::find(
-            strategyId, actionNum);
+        if (!_args ||
+        _args.dataset() != tableNum(RMarketStrategyAction))
+        {
+            throw error("Strategy action must be selected.");
+        }
+
+        action = _args.record();
+
+        // Read the persisted action.
+        action = RMarketStrategyAction::findRecId(action.RecId);
 
         if (!action.RecId)
-            throw error("Test action not found.");
+        throw error("Test action not found.");
 
         if (action.Active)
-            throw error("Test action must be inactive.");
+        throw error("Test action must be inactive.");
 
         signal = action.calcSignal(subAccount, 0);
 
         info(strFmt(
-            "Strategy: %1, Action: %2, Signal: %3",
-            action.StrategyId,
-            action.Num,
-            signal ? "TRUE" : "FALSE"));
+        "Strategy: %1, Action: %2 (%3), Signal: %4",
+        action.StrategyId,
+        action.Num,
+        enum2Str(action.Type),
+        signal ? "TRUE" : "FALSE"));
     }
 
 ]]></Source>
