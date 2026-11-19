@@ -69,8 +69,9 @@
 
 ## Next work (ordered, incremental)
 
-1. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
-2. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
+1. **A3.4.5.1 — UI-to-evaluator integration, constant operands (current task).** Configure an inactive test action via the form, save/reopen, call calcSignal from a small test job. Test all five comparison operators, nested AND/OR, and alternative root events.
+2. **A3.4.5.2 — UI-to-evaluator integration, market operands.** Test real historical candles/indicators, both operand sides, interval and shift semantics using a real subaccount context; select expected values independently from stored data.
+3. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
 
 ## Backlog
 
@@ -202,6 +203,13 @@
 - User explained a flexible coding-style preference based on extensive debugging and reverse engineering of others' code: avoid a lone early return buried inside a long routine when structured branching is clearer. This is not a strict single-exit rule; visible patterns of guard returns or multiple deliberate exits can be preferable. Record in working principles and apply to future proposed code.
 - Minor cleanup noted during review: selectedRecId in moveConditionTreeNode is now assigned but unused, a remnant of the abandoned selection-restoration approach. No need for a separate commit.
 - Next step: integrated verification of editor configuration and evaluation for a nested expression before subsequent analytics work.
+
+### 2026-11-19 — A3.4.5 integration testing started
+
+- User accepted removal of unused selectedRecId in next commit and requested next task. No separate refactor needed.
+- Reopened current code: existing RMarketJobTest_ConditionTree creates records programmatically and checks nested Boolean logic/parent validation (10 checks); no need to repeat it. New test should exercise records configured through the UI and saved to DB.
+- A3.4.5.1 plan: separate inactive OpenLong test action, preferably a separate test strategy. Event1 AND: 10>5 and OR(AND(1=1,2<=3),AND(4>=4,5<3)); Event2 AND: 0>1. Initial result TRUE. Read saved action via RMarketStrategyAction::find(strategyId,num); reject missing or active test action; invoke calcSignal with empty subaccount and timestamp zero (valid only for constant-only test). Change AB comparison to false -> FALSE; change CD last comparison to true -> TRUE; change Event1 gate to false -> FALSE; change Event2 comparison to true -> TRUE. Reopen form to confirm stored tree and operands; test job does not call trading engine. No test result yet.
+- A3.4.5.2 follows with historical data. Defer actual account/market/timestamp selection until that step. Do not run RMarketAutoTrade.
 
 ## How to use
 
