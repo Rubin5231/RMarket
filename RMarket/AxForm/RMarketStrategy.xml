@@ -86,39 +86,39 @@ public class RMarketStrategy extends FormRun
     {
         RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;
-        FormTreeItem          treeItem;
         TreeItemIdx           itemIdx;
-        str                   caption;
 
-        // Root events and nested groups
-        while select conditionGroup
-        order by conditionGroup.Num
-        where conditionGroup.RMarketStrategyActionRecId == _actionRecId
-           && conditionGroup.ParentRecId == _parentRecId
-        {
-            itemIdx = element.addConditionTreeNode(
-                conditionGroup,
-                _parentIdx);
+        // Select root events or nested groups.
+        select conditionGroup
+        order by conditionGroup.Num, conditionGroup.RecId
+            where conditionGroup.RMarketStrategyActionRecId == _actionRecId
+               && conditionGroup.ParentRecId                == _parentRecId;
 
-            // Recursively add nested groups and conditions
-            element.addConditionTreeNodes(
-                _actionRecId,
-                conditionGroup.RecId,
-                itemIdx);
-        }
-
-        // Leaf conditions of the current group
+        // Root level contains events only.
         if (_parentRecId)
         {
-            while select condition
-            order by condition.Num
-            where condition.Relation ==
-                    RMarketConditionRelation::RMarketConditionGroup
-               && condition.RefRecId == _parentRecId
+            select condition
+                order by condition.Num, condition.RecId
+                where condition.Relation == RMarketConditionRelation::RMarketConditionGroup
+                   && condition.RefRecId == _parentRecId;
+        }
+
+        // Merge groups and conditions into a single ordered sequence.
+        while (conditionGroup.RecId || condition.RecId)
+        {
+            if (conditionGroup.RecId &&
+                (!condition.RecId || conditionGroup.Num <= condition.Num))
             {
-                itemIdx = element.addConditionTreeNode(
-                    condition,
-                    _parentIdx);
+                itemIdx = element.addConditionTreeNode(conditionGroup, _parentIdx);
+                element.addConditionTreeNodes(_actionRecId, conditionGroup.RecId, itemIdx);
+
+                next conditionGroup;
+            }
+            else
+            {
+                element.addConditionTreeNode(condition, _parentIdx);
+
+                next condition;
             }
         }
     }
