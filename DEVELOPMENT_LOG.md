@@ -57,6 +57,7 @@
 | A3.4.4.7 | Implemented and user-tested in `8e1960b9` | Leaf/empty group deletion; group table guards; user confirms all proposed UI test cases pass |
 | A3.4.4.8 | Implemented and user-tested in `d3ba3636` | Merged sorted group and condition streams; user confirms successful behavior |
 | A3.4.4.9 | Implemented; user confirmed completion in `71a2479a` | Transactional sibling Num swap; nested moveItem; simple root rebuild, known expansion loss deferred |
+| A3.4.5.1 | User confirms all tests successful | UI-configured constant conditions, nested AND/OR and alternative root events evaluated via RMarketJobTest_ConfiguredSignal |
 
 ### Current UI code state, verified from GitHub 2026-11-19
 
@@ -69,9 +70,8 @@
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.5.1 — UI-to-evaluator integration, constant operands (current task).** Configure an inactive test action via the form, save/reopen, call calcSignal from a small test job. Test all five comparison operators, nested AND/OR, and alternative root events.
-2. **A3.4.5.2 — UI-to-evaluator integration, market operands.** Test real historical candles/indicators, both operand sides, interval and shift semantics using a real subaccount context; select expected values independently from stored data.
-3. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
+1. **A3.4.5.2 — UI-to-evaluator integration, market operands (next task).** Test real historical candles/indicators, both operand sides, interval and shift semantics using a real subaccount context; select expected values independently from stored data.
+2. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
 
 ## Backlog
 
@@ -210,6 +210,12 @@
 - Reopened current code: existing RMarketJobTest_ConditionTree creates records programmatically and checks nested Boolean logic/parent validation (10 checks); no need to repeat it. New test should exercise records configured through the UI and saved to DB.
 - A3.4.5.1 plan: separate inactive OpenLong test action, preferably a separate test strategy. Event1 AND: 10>5 and OR(AND(1=1,2<=3),AND(4>=4,5<3)); Event2 AND: 0>1. Initial result TRUE. Read saved action via RMarketStrategyAction::find(strategyId,num); reject missing or active test action; invoke calcSignal with empty subaccount and timestamp zero (valid only for constant-only test). Change AB comparison to false -> FALSE; change CD last comparison to true -> TRUE; change Event1 gate to false -> FALSE; change Event2 comparison to true -> TRUE. Reopen form to confirm stored tree and operands; test job does not call trading engine. No test result yet.
 - A3.4.5.2 follows with historical data. Defer actual account/market/timestamp selection until that step. Do not run RMarketAutoTrade.
+
+### A3.4.5.1 completed; test jobs launched from strategy form
+
+- User confirmed all five configured constant-expression integration scenarios worked. Reviewed current source: RMarketJobTest_ConfiguredSignal uses hardcoded DAT-STR00001/action 1; strategy form now contains Action MenuFunctionButtons for ConditionTree and ConfiguredSignal tests.
+- User wants the configured-signal job to use current strategy/action selection. Proposed standard menu button DataSource=RMarketStrategyAction, SaveRecord=Yes, pass selected action through Args.record(), validate dataset and RecId, re-read saved action using findRecId. StrategyId and Num are available from the same action record, no caller-form coupling necessary. Keep inactive-action guard for this test stage and empty subaccount/zero timestamp for constants only. Ensure pending group/leaf edits are saved before invocation; SaveRecord on the menu button alone is not a guarantee for independent editor datasources. Proposed change not yet verified in AX.
+- Next: A3.4.5.2 real historical candle/indicator operands. No trading execution.
 
 ## How to use
 
