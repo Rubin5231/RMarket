@@ -2,7 +2,7 @@
 
 > A durable project memory alongside Git history. Updated by the assistant during RMarket development sessions; not a transcript. Source of truth for implemented code is the `main` branch. Items labelled "planned" have not been verified as implemented.
 >
-> Last reconciliation: 2026-11-19, code reviewed at `9fc51dc29c5ff6cec6580bc982284d5e30f4fcc3` (A3.4.4.7).
+> Last reconciliation: 2026-11-19, code reviewed at `c1ca0d99fc02b1ae13954b24d9de918af807f0ea` (A3.4.4.8).
 
 ## Product goal and working principles
 
@@ -54,6 +54,7 @@
 | A3.4.4.5 | Implemented; normal editor use accepted | Human-readable operand captions; independent condition datasource filtered by RecId. User deferred latency optimization to backlog; explicit full regression results not recorded |
 | A3.4.4.6 | Implemented and user-tested in `c77a24ff` | Independent source-dependent visibility in What/With; user confirmed it works excellently on 2026-11-19 |
 | A3.4.4.7 | Implemented and user-tested in `8e1960b9` | Leaf/empty group deletion; group table guards; user confirms all proposed UI test cases pass |
+| A3.4.4.8 | Implemented and user-tested in `d3ba3636` | Merged sorted group and condition streams; user confirms successful behavior |
 
 ### Current UI code state, verified from GitHub 2026-11-19
 
@@ -61,15 +62,14 @@
 - `RMarketStrategy.updateSelectedConditionTreeNode(Common)` checks the selected tree item's table/record identity and updates its text through `FormTreeControl.setItem()`.
 - `modified()` controls cover group name/operator, and condition source, indicator, candle value, value, interval, shift, comparison, and mirrored right-side fields.
 - `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, enables deletion only for childless nodes, and disables Up/Down. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
-- `RMarketStrategy.addConditionTreeNodes()` currently enumerates nested groups and leaves in **separate loops**, so mixed children do not yet display in a single global `Num` order.
+- `RMarketStrategy.addConditionTreeNodes()` merges sorted group and condition streams by Num (group first on ties, RecId within each type). Creation already appends using a shared max Num.
 - Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-19 20:29 MSK. It is not a substitute for functional form testing.
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.8 — Shared sibling display order (current task).** Merge ordered group and condition selections in `addConditionTreeNodes()` by their shared Num. Gaps allowed; deterministic ties (groups first, then RecId within each type). Root events only. No schema changes or reorder buttons in this task.
-2. Implement Up/Down within the same parent; retain shared order across group and condition types. Decide how to handle duplicate Num when moving; no cross-parent moves.
-3. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
-4. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
+1. **A3.4.4.9 — Move tree nodes Up/Down (current task).** Swap Num of adjacent siblings including mixed node types within one action/parent; preserve hierarchy and update tree via FormTreeControl.moveItem. Handle gaps; reject conflicting Num safely rather than silently reorder other nodes.
+2. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
+3. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
 
 ## Backlog
 
@@ -169,6 +169,12 @@
 - User confirmed successful build, commit, push, and all deletion cases tested. Code reviewed at `8e1960b9f906cf40287329c987e7f8f17dac3859` (merge `9fc51dc29c5ff6cec6580bc982284d5e30f4fcc3`): `hasChildren()`, `validateDelete()`, `delete()`, `deleteConditionTreeNode()` and button enablement implemented. Build at 20:29 MSK contains 0 errors and 3 existing external assembly warnings.
 - Permanent no-cascade policy stands; ordinary X++ deletion guarded, not direct SQL or deliberate overrides. Existing ignored failure cases and concurrent edits remain separate robustness concerns.
 - **A3.4.4.8 proposed:** replace separate group-first/leaf-second loops in `addConditionTreeNodes()` with a merge of two ordered X++ select/next streams, comparing Num. Sort each stream by Num and RecId; for equal Num choose group first. Handle gaps and root events. Existing create methods already use shared max(Num)+1; no changes there. Do not change calculation order or Orders. Up/Down follows separately. Not yet implemented/tested.
+
+### 2026-11-19 — A3.4.4.8 accepted; A3.4.4.9 started
+
+- User confirmed successful behavior of mixed sibling order. Verified actual merged-stream implementation in `d3ba36367d38e69d4b827c2b9f52234f7c853fa3` (main merge `c1ca0d99fc02b1ae13954b24d9de918af807f0ea`).
+- Next: Up/Down only exchanges positions of adjacent siblings (including groups with descendants, leaves, and root events); no cross-parent changes. Enable buttons based on actual previous/next siblings, not Num arithmetic. Use clicked handlers calling one form method. Validate node identities and ownership and save pending edits; swap Num atomically in a transaction using a free temporary number where necessary. Guard duplicate sibling Num and reserved temporary-number conflicts; normalization of corrupted legacy numbers is separate if needed. No change to Orders or calculation sequence.
+- UI proposal: use documented three-argument `FormTreeControl.moveItem(idx, newParent, insertAfter)`; moving down moves selected node after next sibling, moving up moves previous sibling after selected node. Keep selected logical record and refresh affected datasource records. Test preservation of expanded subtrees and root-level moves in AX; not yet implemented or compiled.
 
 ## How to use
 
