@@ -65,7 +65,7 @@
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.7 — Tree node deletion.** Confirm intended deletion UX first: leaf deletion, group/event deletion policy (only empty groups vs confirmed subtree deletion), correct selection and editor refresh. Do not use the existing legacy `currentCondition_DS()` selection for tree node deletion.
+1. **A3.4.4.7 — Tree node deletion (current task).** Permanently prohibit cascade deletion; only leaf conditions and empty groups/events may be deleted. Protect in UI and at table level (`hasChildren`, `validateDelete`, `delete`). Delete by selected tree node identity, not legacy `currentCondition_DS()`. Preserve expanded branches and select parent or adjacent root after successful deletion. Do not renumber siblings in this task.
 2. Reconcile mixed group+condition sibling `Num` ordering; implement Up/Down with shared sibling order.
 3. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
 4. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
@@ -154,6 +154,14 @@
 - User confirmed dynamic operand visibility works excellently; code committed in `c77a24ffddb868594318637cc2fea871d17f4cba` and merged into `df1fb61ebf19b31bf1a959f38f6c1952a8188c65`. Verified `updateFormDesign()` and the two source-control modified() handlers.
 - User highlighted active OpenLong action with an incomplete candle operand (`Candle(?) H4 [0]`). Agreed to allow draft configuration for now and make handling invalid active-action conditions a pre-operational requirement; see Backlog. Source review confirmed `getValue(None)` falls through to Close, so the risk is real.
 - Next task: A3.4.4.7 tree node deletion; clarify deletion policy before implementing. No further X++ changes made by assistant.
+
+### 2026-11-19 — A3.4.4.7 deletion policy and implementation proposal
+
+- User explicitly rejected cascading deletion entirely, not merely for this release. **Only nodes with no children may be deleted**, including empty root events and empty nested groups. This is an architectural decision, not a backlog item.
+- Proposed `RMarketConditionGroup.hasChildren()` checks both direct child groups (by ParentRecId, intentionally regardless of action ownership for safety) and conditions (Relation=RMarketConditionGroup + RefRecId). `validateDelete()` and ordinary `delete()` guard nonempty groups. No cascading delete action.
+- UI Delete enabled only with a selected valid leaf/empty group/event and no tree child (getChild). Database deletion uses selected node TableId/RecId, verifies action ownership, validates, deletes within transaction, updates editor and deletes only the single item from tree; select parent if available, otherwise an adjacent root. Do not reuse legacy `currentCondition_DS()` for the tree.
+- No Num renumbering at this stage; gaps can be handled in shared sibling ordering task. Confirm deletion UX via a Yes/No confirmation; verify leaves, empty groups/events, and nonempty groups including collapsed branches.
+- Proposal only: actual implementation and test are pending. Table checks apply to ordinary X++ delete paths, not raw SQL or deliberate doDelete/skip-method overrides; concurrent configuration editing and trading will need a separate consistency policy.
 
 ## How to use
 
