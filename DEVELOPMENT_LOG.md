@@ -2,7 +2,7 @@
 
 > A durable project memory alongside Git history. Updated by the assistant during RMarket development sessions; not a transcript. Source of truth for implemented code is the `main` branch. Items labelled "planned" have not been verified as implemented.
 >
-> Last reconciliation: 2026-11-19, code reviewed at `df1fb61ebf19b31bf1a959f38f6c1952a8188c65` (A3.4.4.6).
+> Last reconciliation: 2026-11-19, code reviewed at `9fc51dc29c5ff6cec6580bc982284d5e30f4fcc3` (A3.4.4.7).
 
 ## Product goal and working principles
 
@@ -53,20 +53,21 @@
 | A3.4.4.4 | Implemented and user-tested in `a0b60e7` | Central caption formatter and `updateSelectedConditionTreeNode()`, `modified()` handlers for group and condition fields; user confirmed correct and convenient live editing on 2026-11-18 |
 | A3.4.4.5 | Implemented; normal editor use accepted | Human-readable operand captions; independent condition datasource filtered by RecId. User deferred latency optimization to backlog; explicit full regression results not recorded |
 | A3.4.4.6 | Implemented and user-tested in `c77a24ff` | Independent source-dependent visibility in What/With; user confirmed it works excellently on 2026-11-19 |
+| A3.4.4.7 | Implemented and user-tested in `8e1960b9` | Leaf/empty group deletion; group table guards; user confirms all proposed UI test cases pass |
 
 ### Current UI code state, verified from GitHub 2026-11-19
 
 - `RMarketStrategy.conditionTreeNodeCaption(Common)` formats group names as root/event or nested group, including AND/OR; condition captions display English operand expressions with comparison, interval and shift; missing indicator/candle selection is displayed explicitly with `?`.
 - `RMarketStrategy.updateSelectedConditionTreeNode(Common)` checks the selected tree item's table/record identity and updates its text through `FormTreeControl.setItem()`.
 - `modified()` controls cover group name/operator, and condition source, indicator, candle value, value, interval, shift, comparison, and mirrored right-side fields.
-- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, and disables deletion and Up/Down. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
+- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, enables deletion only for childless nodes, and disables Up/Down. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
 - `RMarketStrategy.addConditionTreeNodes()` currently enumerates nested groups and leaves in **separate loops**, so mixed children do not yet display in a single global `Num` order.
-- Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-18 14:57 MSK. It is not a substitute for functional form testing.
+- Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-19 20:29 MSK. It is not a substitute for functional form testing.
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.7 — Tree node deletion (current task).** Permanently prohibit cascade deletion; only leaf conditions and empty groups/events may be deleted. Protect in UI and at table level (`hasChildren`, `validateDelete`, `delete`). Delete by selected tree node identity, not legacy `currentCondition_DS()`. Preserve expanded branches and select parent or adjacent root after successful deletion. Do not renumber siblings in this task.
-2. Reconcile mixed group+condition sibling `Num` ordering; implement Up/Down with shared sibling order.
+1. **A3.4.4.8 — Shared sibling display order (current task).** Merge ordered group and condition selections in `addConditionTreeNodes()` by their shared Num. Gaps allowed; deterministic ties (groups first, then RecId within each type). Root events only. No schema changes or reorder buttons in this task.
+2. Implement Up/Down within the same parent; retain shared order across group and condition types. Decide how to handle duplicate Num when moving; no cross-parent moves.
 3. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
 4. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
 
@@ -162,6 +163,12 @@
 - UI Delete enabled only with a selected valid leaf/empty group/event and no tree child (getChild). Database deletion uses selected node TableId/RecId, verifies action ownership, validates, deletes within transaction, updates editor and deletes only the single item from tree; select parent if available, otherwise an adjacent root. Do not reuse legacy `currentCondition_DS()` for the tree.
 - No Num renumbering at this stage; gaps can be handled in shared sibling ordering task. Confirm deletion UX via a Yes/No confirmation; verify leaves, empty groups/events, and nonempty groups including collapsed branches.
 - Proposal only: actual implementation and test are pending. Table checks apply to ordinary X++ delete paths, not raw SQL or deliberate doDelete/skip-method overrides; concurrent configuration editing and trading will need a separate consistency policy.
+
+### 2026-11-19 — A3.4.4.7 completed; shared sibling order started
+
+- User confirmed successful build, commit, push, and all deletion cases tested. Code reviewed at `8e1960b9f906cf40287329c987e7f8f17dac3859` (merge `9fc51dc29c5ff6cec6580bc982284d5e30f4fcc3`): `hasChildren()`, `validateDelete()`, `delete()`, `deleteConditionTreeNode()` and button enablement implemented. Build at 20:29 MSK contains 0 errors and 3 existing external assembly warnings.
+- Permanent no-cascade policy stands; ordinary X++ deletion guarded, not direct SQL or deliberate overrides. Existing ignored failure cases and concurrent edits remain separate robustness concerns.
+- **A3.4.4.8 proposed:** replace separate group-first/leaf-second loops in `addConditionTreeNodes()` with a merge of two ordered X++ select/next streams, comparing Num. Sort each stream by Num and RecId; for equal Num choose group first. Handle gaps and root events. Existing create methods already use shared max(Num)+1; no changes there. Do not change calculation order or Orders. Up/Down follows separately. Not yet implemented/tested.
 
 ## How to use
 
