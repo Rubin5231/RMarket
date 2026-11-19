@@ -1019,6 +1019,16 @@
       <Name>RMarketIndicatorCalc</Name>
       <Link>Action Menu Items\RMarketIndicatorCalc</Link>
     </Content>
+    <Content Include="AxMenuItemAction\RMarketJobTest_ConditionTree">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_ConditionTree</Name>
+      <Link>Action Menu Items\RMarketJobTest_ConditionTree</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketJobTest_ConfiguredSignal">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_ConfiguredSignal</Name>
+      <Link>Action Menu Items\RMarketJobTest_ConfiguredSignal</Link>
+    </Content>
     <Content Include="AxMenuItemAction\RMarketSymbolPropertyUpdate">
       <SubType>Content</SubType>
       <Name>RMarketSymbolPropertyUpdate</Name>
