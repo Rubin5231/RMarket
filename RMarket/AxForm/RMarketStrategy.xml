@@ -921,44 +921,46 @@ public class RMarketStrategy extends FormRun
 
         ttscommit;
 
-        if (!parentIdx)
-            parentIdx = FormTreeAdd::Root;
+        if (parentIdx)
+        {
+            // Refresh affected datasource records.
+            if (nodeRecord.TableId == tableNum(RMarketConditionGroup) ||
+                siblingRecord.TableId == tableNum(RMarketConditionGroup))
+            {
+                RMarketConditionGroup_DS.research(true);
+            }
 
-        // Refresh affected datasource records.
-        if (nodeRecord.TableId == tableNum(RMarketConditionGroup) ||
-            siblingRecord.TableId == tableNum(RMarketConditionGroup))
-        {
-            RMarketConditionGroup_DS.research(true);
-        }
+            if (RMarketConditionTable_DS.cursor().RecId)
+            {
+                RMarketConditionTable_DS.reread();
+                RMarketConditionTable_DS.refresh();
+            }
 
-        if (RMarketConditionTable_DS.cursor().RecId)
-        {
-            RMarketConditionTable_DS.reread();
-            RMarketConditionTable_DS.refresh();
-        }
+            // Move tree items without rebuilding the tree.
+            if (_up)
+            {
+                movedIdx = ConditionTree.moveItem(siblingIdx, parentIdx, nodeIdx);
+            }
+            else
+            {
+                movedIdx = ConditionTree.moveItem(nodeIdx, parentIdx, siblingIdx);
 
-        // Move tree items without rebuilding the tree.
-        if (_up)
-        {
-            movedIdx = ConditionTree.moveItem(siblingIdx, parentIdx, nodeIdx);
-        }
-        else
-        {
-            movedIdx = ConditionTree.moveItem(nodeIdx, parentIdx, siblingIdx);
+                if (movedIdx)
+                    nodeIdx = movedIdx;
+            }
 
             if (movedIdx)
-                nodeIdx = movedIdx;
-        }
-
-        if (movedIdx)
-        {
-            ConditionTree.select(nodeIdx);
+            {
+                ConditionTree.select(nodeIdx);
+            }
+            else
+            {
+                warning("Cannot move tree item. Rebuilding tree.");
+                element.buildConditionTree();
+            }
         }
         else
-        {
-            warning("Cannot move tree item. Rebuilding tree.");
             element.buildConditionTree();
-        }
 
         element.updateFormDesign();
     }
