@@ -2,7 +2,7 @@
 
 > A durable project memory alongside Git history. Updated by the assistant during RMarket development sessions; not a transcript. Source of truth for implemented code is the `main` branch. Items labelled "planned" have not been verified as implemented.
 >
-> Last reconciliation: 2026-11-19, code reviewed at `c1ca0d99fc02b1ae13954b24d9de918af807f0ea` (A3.4.4.8).
+> Last reconciliation: 2026-11-19, code reviewed at `8fd4416665ccd095f41a965134275fc5dbcd2d63` (A3.4.4.9).
 
 ## Product goal and working principles
 
@@ -13,6 +13,7 @@
 - Workflow: one small task, implement and test locally, commit/push, then next task. User owns local AX environment and builds; assistant reviews GitHub sources and proposes X++/SQL.
 - Keep SQL for business data scoped to `Partition = 5637144576` and `DataAreaId = 'dat'`; resolve X++ enum numeric values through `ENUMIDTABLE` + `ENUMVALUETABLE`, rather than hardcoding enum numbers.
 - X++ code comments in English. English labels/captions are acceptable temporarily. Preserve the user's chosen form structure instead of imposing Microsoft standard layout.
+- Coding style: prioritize clarity, consistency, maintainability, and debuggability. Early returns are acceptable guard clauses, not forbidden; avoid isolated mid-method returns in long methods when a clear if/else structure and common tail suffice. Multiple exits are acceptable when they form an obvious, deliberate pattern. Avoid disproportionate workarounds for minor UX issues.
 - Important: **Orders tab uses `RMarketConditionTable` for arithmetic price expressions**, not the new boolean event-tree model. Do not change that logic incidentally.
 
 ## Architecture and decisions (retain even when chat context is lost)
@@ -55,20 +56,21 @@
 | A3.4.4.6 | Implemented and user-tested in `c77a24ff` | Independent source-dependent visibility in What/With; user confirmed it works excellently on 2026-11-19 |
 | A3.4.4.7 | Implemented and user-tested in `8e1960b9` | Leaf/empty group deletion; group table guards; user confirms all proposed UI test cases pass |
 | A3.4.4.8 | Implemented and user-tested in `d3ba3636` | Merged sorted group and condition streams; user confirms successful behavior |
+| A3.4.4.9 | Implemented; user confirmed completion in `71a2479a` | Transactional sibling Num swap; nested moveItem; simple root rebuild, known expansion loss deferred |
 
 ### Current UI code state, verified from GitHub 2026-11-19
 
 - `RMarketStrategy.conditionTreeNodeCaption(Common)` formats group names as root/event or nested group, including AND/OR; condition captions display English operand expressions with comparison, interval and shift; missing indicator/candle selection is displayed explicitly with `?`.
 - `RMarketStrategy.updateSelectedConditionTreeNode(Common)` checks the selected tree item's table/record identity and updates its text through `FormTreeControl.setItem()`.
 - `modified()` controls cover group name/operator, and condition source, indicator, candle value, value, interval, shift, comparison, and mirrored right-side fields.
-- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, enables deletion only for childless nodes, and disables Up/Down. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
+- `RMarketStrategy.updateFormDesign()` currently toggles the group vs leaf editor, enables deletion only for childless nodes, and enables Up/Down based on adjacent siblings. Individual What/With field visibility now follows the selected operand sources, and both source modified() handlers refresh the form. Condition editor uses an independent RecId-filtered datasource.
 - `RMarketStrategy.addConditionTreeNodes()` merges sorted group and condition streams by Num (group first on ties, RecId within each type). Creation already appends using a shared max Num.
 - Latest committed `BuildProjectResult.xml` shows no compile errors and three existing warnings about external assemblies, generated 2026-11-19 20:29 MSK. It is not a substitute for functional form testing.
 
 ## Next work (ordered, incremental)
 
-1. **A3.4.4.9 — Move tree nodes Up/Down (current task).** Swap Num of adjacent siblings including mixed node types within one action/parent; preserve hierarchy and update tree via FormTreeControl.moveItem. Handle gaps; reject conflicting Num safely rather than silently reorder other nodes.
-2. Exercise the UI with a nested expression and verify captions, selection, persistence, and computation agree.
+1. **A3.4.5.1 — UI-to-evaluator integration, constant operands (current task).** Configure an inactive test action via the form, save/reopen, call calcSignal from a small test job. Test all five comparison operators, nested AND/OR, and alternative root events.
+2. **A3.4.5.2 — UI-to-evaluator integration, market operands.** Test real historical candles/indicators, both operand sides, interval and shift semantics using a real subaccount context; select expected values independently from stored data.
 3. Finish A3 strategy signaling and subsequent analytic integration. Complete safety-critical configuration validation and runtime fault handling (backlog below) before enabling actual trading.
 
 ## Backlog
@@ -194,6 +196,20 @@
 - User rejected the state-preserving rebuild proposal as disproportionate complexity for a minor UI feature and requested one focused search for a standard solution, otherwise backlog.
 - Search covered Microsoft Learn, Dynamics Community, AXForum, Stack Overflow and AX developer blogs. Aman Nain's Up Down Sequence Logic (https://amannain.blogspot.com/2013/02/) references standard EConDesigner and uses the same three-argument moveItem with getParent; no verified root-level workaround found. Microsoft API docs (https://learn.microsoft.com/en-us/dotnet/api/dynamics.ax.application.formtreecontrol.moveitem?view=dyn-finops-dotnet) do not specify root handling.
 - **Decision:** do not implement collectExpandedGroups, group-index Map or state-preserving rebuild. Keep working nested moveItem; for root moves use simple rebuild after committed Num swap, without a warning for the known case. Remove unsuccessful FormTreeAdd::Root experiment. Optional UX issue: root move collapses branches and may lose selection. Defer to backlog; not a blocker for A3.4.4.9 after final implementation/verification. No code changes by assistant.
+
+### 2026-11-19 — A3.4.4.9 completed and coding style clarified
+
+- User confirmed completion; source checked at `71a2479a0b1481e07f4745d5dc08e3b0e5ea7aeb` (merge `8fd4416665ccd095f41a965134275fc5dbcd2d63`). The final method uses an if/else for nested moveItem versus root rebuild and calls updateFormDesign once at the common end. Known root expansion loss is accepted as optional backlog. Full final regression matrix was not explicitly reported.
+- User explained a flexible coding-style preference based on extensive debugging and reverse engineering of others' code: avoid a lone early return buried inside a long routine when structured branching is clearer. This is not a strict single-exit rule; visible patterns of guard returns or multiple deliberate exits can be preferable. Record in working principles and apply to future proposed code.
+- Minor cleanup noted during review: selectedRecId in moveConditionTreeNode is now assigned but unused, a remnant of the abandoned selection-restoration approach. No need for a separate commit.
+- Next step: integrated verification of editor configuration and evaluation for a nested expression before subsequent analytics work.
+
+### 2026-11-19 — A3.4.5 integration testing started
+
+- User accepted removal of unused selectedRecId in next commit and requested next task. No separate refactor needed.
+- Reopened current code: existing RMarketJobTest_ConditionTree creates records programmatically and checks nested Boolean logic/parent validation (10 checks); no need to repeat it. New test should exercise records configured through the UI and saved to DB.
+- A3.4.5.1 plan: separate inactive OpenLong test action, preferably a separate test strategy. Event1 AND: 10>5 and OR(AND(1=1,2<=3),AND(4>=4,5<3)); Event2 AND: 0>1. Initial result TRUE. Read saved action via RMarketStrategyAction::find(strategyId,num); reject missing or active test action; invoke calcSignal with empty subaccount and timestamp zero (valid only for constant-only test). Change AB comparison to false -> FALSE; change CD last comparison to true -> TRUE; change Event1 gate to false -> FALSE; change Event2 comparison to true -> TRUE. Reopen form to confirm stored tree and operands; test job does not call trading engine. No test result yet.
+- A3.4.5.2 follows with historical data. Defer actual account/market/timestamp selection until that step. Do not run RMarketAutoTrade.
 
 ## How to use
 
