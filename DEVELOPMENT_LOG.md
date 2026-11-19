@@ -181,6 +181,12 @@
 - User reports root events (no parent) trigger `Cannot move tree item. Rebuilding tree.` and lose expansion state. A3.4.4.9 remains open.
 - Proposed minimal test: after database transaction, before `moveItem`, substitute `FormTreeAdd::Root` for zero UI parent index. Keep database ParentRecId=0. Microsoft documents moveItem's new-parent parameter but not root sentinel behavior; fix not yet verified in AX. If unsupported, consider state-preserving rebuild or a UI-only common root, without changing database hierarchy.
 
+### 2026-11-19 — Root move sentinel test failed
+
+- User tested substituting FormTreeAdd::Root for zero UI parent in moveItem(); same failure and collapsed tree. Do not repeat this hypothesis. Root-level API limitation is suspected, not established by documentation.
+- Proposed fix: keep successful nested moveItem path; for root event swaps rebuild from database order while preserving expanded group RecIds (capture using FormTreeItem.stateExpanded(), traverse all siblings and descendants) and selected event RecId. Map group RecId to new tree index during reconstruction; restore expansion and selection using new indices. No artificial root, no hierarchy/schema change. Root swap is normal behavior, not a warning. No compile/runtime confirmation yet.
+- A3.4.4.9 still open pending root moves with nested expansion and selected event preserved.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
