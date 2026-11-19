@@ -15,8 +15,8 @@
     <ProjectGuid>{ef9030f0-bc69-4d6f-94c4-58e10c7a4f27}</ProjectGuid>
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
-    <StartupType>Form</StartupType>
-    <StartupObject>RMarketStrategy</StartupObject>
+    <StartupType>Class</StartupType>
+    <StartupObject>RMarketJobTest_ConfiguredSignal</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -188,6 +188,11 @@
       <SubType>Content</SubType>
       <Name>RMarketJobTest_ConditionTree</Name>
       <Link>Classes\Jobs\RMarketJobTest_ConditionTree</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_ConfiguredSignal">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_ConfiguredSignal</Name>
+      <Link>Classes\Jobs\RMarketJobTest_ConfiguredSignal</Link>
     </Content>
     <Content Include="AxClass\RMarketJobTest_Kline_Bybit">
       <SubType>Content</SubType>

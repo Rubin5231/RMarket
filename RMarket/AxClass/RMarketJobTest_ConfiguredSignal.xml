@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_ConfiguredSignal</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_ConfiguredSignal
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketStrategyId strategyId = "DAT-STR00001";
+        int actionNum = 1;
+
+        RMarketStrategyAction action;
+        RMarketSubAccount subAccount;
+        boolean signal;
+
+        action = RMarketStrategyAction::find(
+            strategyId, actionNum);
+
+        if (!action.RecId)
+            throw error("Test action not found.");
+
+        if (action.Active)
+            throw error("Test action must be inactive.");
+
+        signal = action.calcSignal(subAccount, 0);
+
+        info(strFmt(
+            "Strategy: %1, Action: %2, Signal: %3",
+            action.StrategyId,
+            action.Num,
+            signal ? "TRUE" : "FALSE"));
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

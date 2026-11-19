@@ -816,7 +816,6 @@ public class RMarketStrategy extends FormRun
 
         TableId parentTableId;
         RecId parentRecId;
-        RecId selectedRecId;
 
         FieldId nodeNumFieldId;
         FieldId siblingNumFieldId;
@@ -858,7 +857,6 @@ public class RMarketStrategy extends FormRun
 
         nodeRecord = element.conditionTreeNodeForUpdate(nodeIdx, strategyAction.RecId, parentRecId);
         siblingRecord = element.conditionTreeNodeForUpdate(siblingIdx, strategyAction.RecId, parentRecId);
-        selectedRecId = nodeRecord.RecId;
         nodeNumFieldId = fieldName2Id(nodeRecord.TableId, "Num");
         siblingNumFieldId = fieldName2Id(siblingRecord.TableId, "Num");
 
