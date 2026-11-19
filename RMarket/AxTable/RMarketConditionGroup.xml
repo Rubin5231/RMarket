@@ -172,6 +172,69 @@ public class RMarketConditionGroup extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>hasChildren</Name>
+				<Source><![CDATA[
+    public boolean hasChildren()
+    {
+        RMarketConditionGroup childGroup;
+        RMarketConditionTable condition;
+
+        if (!this.RecId)
+            return false;
+
+        select firstonly RecId from childGroup
+            where childGroup.ParentRecId == this.RecId;
+
+        if (childGroup.RecId)
+            return true;
+
+        select firstonly RecId from condition
+            where condition.Relation == RMarketConditionRelation::RMarketConditionGroup
+               && condition.RefRecId == this.RecId;
+
+        return condition.RecId != 0;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateDelete</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public boolean validateDelete()
+    {
+        boolean ret;
+    
+        ret = super();
+
+        if (this.hasChildren())
+            ret = ret && checkFailed("Cannot delete a condition group containing child nodes.");
+    
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>delete</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void delete()
+    {
+        if (this.hasChildren())
+            throw error("Cannot delete a condition group containing child nodes.");
+
+        super();
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Market Condition Group</Label>

@@ -542,7 +542,9 @@ public class RMarketStrategy extends FormRun
         NodeNewEventButton.enabled(actionSelected);
         NodeNewGroupButton.enabled(actionSelected && groupSelected);
         NodeNewConditionButton.enabled(actionSelected && nodeSelected);
-        NodeDeleteButton.enabled(false);
+        NodeDeleteButton.enabled(actionSelected 
+                              && nodeSelected 
+                              && !ConditionTree.getChild(ConditionTree.getSelection()));
         NodeUpButton.enabled(false);
         NodeDownButton.enabled(false);
 
@@ -576,6 +578,112 @@ public class RMarketStrategy extends FormRun
         With_SecondValue.visible(condition.SecondSource == RMarketConditionValueSource::Const);
         With_SecondInterval.visible(rightMarketData);
         With_SecondShift.visible(rightMarketData);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>deleteConditionTreeNode</Name>
+				<Source><![CDATA[
+    private void deleteConditionTreeNode()
+    {
+        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketConditionGroup conditionGroup;
+        RMarketConditionTable condition;
+
+        TreeItemIdx nodeIdx = ConditionTree.getSelection();
+        TreeItemIdx nextNodeIdx;
+        TableId tableId;
+        RecId recId;
+        boolean deleted;
+
+        if (!strategyAction.RecId || !nodeIdx)
+            return;
+
+        if (ConditionTree.getChild(nodeIdx))
+            throw error("Cannot delete a node containing child nodes.");
+
+        [tableId, recId] = element.selectedNodeData(ConditionTree);
+
+        if (!recId)
+            return;
+
+        if (Box::yesNo("Delete the selected node?", DialogButton::No) != DialogButton::Yes)
+            return;
+
+        // Select the parent after deletion.
+        // For root events, select an adjacent event.
+        nextNodeIdx = ConditionTree.getParent(nodeIdx);
+
+        if (!nextNodeIdx)
+            nextNodeIdx = ConditionTree.getNextSibling(nodeIdx);
+
+        if (!nextNodeIdx)
+            nextNodeIdx = ConditionTree.getPrevSibling(nodeIdx);
+
+        // Save pending changes and clear the condition editor.
+        if (!element.selectConditionForEditing(0))
+            return;
+
+        if (RMarketConditionGroup_DS.cursor().RecId && !RMarketConditionGroup_DS.leaveRecord())
+            return;
+
+        ttsbegin;
+
+        switch (tableId)
+        {
+            case tableNum(RMarketConditionTable):
+                condition = RMarketConditionTable::findRecId(recId, true);
+
+                if (condition.RecId && condition.Relation == RMarketConditionRelation::RMarketConditionGroup)
+                {
+                    conditionGroup = RMarketConditionGroup::findRecId(condition.RefRecId);
+
+                    if (conditionGroup.RecId && 
+                        conditionGroup.RMarketStrategyActionRecId == strategyAction.RecId &&
+                        condition.validateDelete())
+                    {
+                        condition.delete();
+                        deleted = true;
+                    }
+                }
+                break;
+
+            case tableNum(RMarketConditionGroup):
+                conditionGroup = RMarketConditionGroup::findRecId(recId, true);
+
+                if (conditionGroup.RecId &&
+                    conditionGroup.RMarketStrategyActionRecId ==strategyAction.RecId &&
+                    conditionGroup.validateDelete())
+                {
+                    conditionGroup.delete();
+                    deleted = true;
+                }
+                break;
+        }
+
+        ttscommit;
+
+        if (!deleted)
+        {
+            if (tableId == tableNum(RMarketConditionTable))
+            element.selectConditionForEditing(recId);
+
+            element.updateFormDesign();
+            return;
+        }
+
+        // Refresh the group datasource after deleting a group.
+        if (tableId == tableNum(RMarketConditionGroup))
+            RMarketConditionGroup_DS.research(true);
+
+        // Remove only the deleted tree node.
+        ConditionTree.delete(nodeIdx);
+
+        if (nextNodeIdx)
+            ConditionTree.select(nextNodeIdx);
+
+        element.updateFormDesign();
     }
 
 ]]></Source>
@@ -1063,22 +1171,9 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketConditionTable  condition;
             super();
             
-            condition = element.currentCondition_DS().cursor();
-            if (condition.RecId && condition.validateDelete())
-            {
-                try
-                {
-                    condition.delete();
-                }
-                catch
-                {
-                    //continue with other records
-                }
-            }
-            element.currentCondition_DS().research();
+            element.deleteConditionTreeNode();
         }
 
 ]]></Source>
