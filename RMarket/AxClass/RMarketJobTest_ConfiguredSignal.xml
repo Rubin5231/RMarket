@@ -59,7 +59,7 @@ internal final class RMarketJobTest_ConfiguredSignal
             if (!tsCursor)
                 throw error("Timestamp must be specified.");
 
-            signal = action.calcSignal(subAccount, tsCursor);
+            signal = action.calcSignal(subAccount, tsCursor, true);
 
             info(strFmt("Strategy: %1, Action: %2 (%3)",
                 action.StrategyId,

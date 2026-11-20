@@ -179,6 +179,13 @@
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<DefaultValue>false</DefaultValue>
+					<Name>_trace</Name>
+				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
 				<Tags></Tags>

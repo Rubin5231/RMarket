@@ -36,9 +36,7 @@ public class RMarketConditionGroup extends common
     ///
     /// </summary>
 
-    public boolean calc(
-    RMarketSubAccount _subAccount,
-    RMarketTimestamp  _tsCursor)
+    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp  _tsCursor, boolean _trace = false)
     {
         RMarketConditionGroup childGroup;
         RMarketConditionTable condition;

@@ -184,7 +184,7 @@ public class RMarketStrategyAction extends common
 			<Method>
 				<Name>calcSignal</Name>
 				<Source><![CDATA[
-    public boolean calcSignal(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
+    public boolean calcSignal(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor, boolean _trace = false)
     {
         RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;

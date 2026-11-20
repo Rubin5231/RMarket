@@ -157,7 +157,7 @@ public class RMarketConditionTable extends common
 			<Method>
 				<Name>calc</Name>
 				<Source><![CDATA[
-    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor)
+    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor, boolean _trace = false)
     {
         boolean ret;
         real value  = this.calcValue(_subAccount, _tsCursor);
