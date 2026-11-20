@@ -331,5 +331,14 @@
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>validateWrite</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

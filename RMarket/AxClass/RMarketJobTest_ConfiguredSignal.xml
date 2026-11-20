@@ -44,7 +44,7 @@ internal final class RMarketJobTest_ConfiguredSignal
         dlgSubAccountId = dialog.addField(
         extendedTypeStr(RMarketSubAccountId));
 
-        dlgTsCursor = dialog.addFieldValue(extendedTypeStr(RMarketTimestamp), 1795107600, "Cursor (Unix seconds)");
+        dlgTsCursor = dialog.addFieldValue(extendedTypeStr(RMarketTimestamp), 1795104300, "Cursor (Unix seconds)");
 
         if (dialog.run())
         {

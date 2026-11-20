@@ -84,7 +84,8 @@ public class RMarketConditionTable extends common
     {
         super();
 
-        //this.Type = RMarketStrategyActionType::StopTrade;
+        this.Shift       = -1;
+        this.SecondShift = -1;
     }
 
 ]]></Source>
@@ -284,6 +285,12 @@ public class RMarketConditionTable extends common
         if (_src == RMarketConditionValueSource::Candle ||
             _src == RMarketConditionValueSource::Indicator)
         {
+            if (_shift >= 0)
+            {
+                throw error(strFmt("Condition %1: Shift %2 refers to an unclosed or future candle.",
+                    this.Num,
+                    _shift));
+            }
             _tsCursor = RMarketUtil::calculateCandleTimestamp(_tsCursor, _interval, _shift);
             dim = RMarketDim::findOrCreateDims(
                 _subAccount.RMarketAccount().MarketId, 
@@ -367,10 +374,44 @@ public class RMarketConditionTable extends common
 
         return ret;
     }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateWrite</Name>
+				<Source><![CDATA[
     /*public RMarketStrategyAction RMarketStrategyAction(boolean _forUpdate = false)
     {
         return RMarketStrategyAction::findRecId(this.RefRecId, _forUpdate);
     }*/
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+
+    public boolean validateWrite()
+    {
+        boolean ret = super();
+
+        if (ret &&
+        (this.Source == RMarketConditionValueSource::Candle ||
+         this.Source == RMarketConditionValueSource::Indicator) &&
+            this.Shift >= 0)
+        {
+            ret = checkFailed("First operand must refer to a closed candle (Shift < 0).");
+        }
+
+        if (ret &&
+        (this.SecondSource == RMarketConditionValueSource::Candle ||
+         this.SecondSource == RMarketConditionValueSource::Indicator) &&
+            this.SecondShift >= 0)
+        {
+            ret = checkFailed("Second operand must refer to a closed candle (Shift < 0).");
+        }
+
+        return ret;
+    }
 
 ]]></Source>
 			</Method>
