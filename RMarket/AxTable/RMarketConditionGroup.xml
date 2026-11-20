@@ -69,7 +69,7 @@ public class RMarketConditionGroup extends common
                 == this.RMarketStrategyActionRecId
         {
             hasChildren = true;
-            childResult = childGroup.calc(_subAccount, _tsCursor);
+            childResult = childGroup.calc(_subAccount, _tsCursor, _trace);
 
             switch (this.RMarketConditionOperator)
             {
@@ -91,7 +91,7 @@ public class RMarketConditionGroup extends common
            && condition.RefRecId == this.RecId
         {
             hasChildren = true;
-            childResult = condition.calc(_subAccount, _tsCursor);
+            childResult = condition.calc(_subAccount, _tsCursor, _trace);
 
             switch (this.RMarketConditionOperator)
             {

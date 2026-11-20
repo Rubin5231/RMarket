@@ -203,7 +203,7 @@ public class RMarketStrategyAction extends common
         {
             hasEvents = true;
 
-            groupResult = conditionGroup.calc(_subAccount, _tsCursor);
+            groupResult = conditionGroup.calc(_subAccount, _tsCursor, _trace);
             signal = signal || groupResult;
         }
 
@@ -221,7 +221,7 @@ public class RMarketStrategyAction extends common
         {
             hasConditions = true;
 
-            conditionResult = condition.calc(_subAccount, _tsCursor);
+            conditionResult = condition.calc(_subAccount, _tsCursor, _trace);
             signal = signal && conditionResult;
         }
 
