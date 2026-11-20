@@ -10,12 +10,66 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Class</Type>
 					<TypeName>Args</TypeName>
 					<Name>_args</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>check</Name>
+			<IsStatic>true</IsStatic>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>_testNum</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSubAccountId</TypeName>
+					<Name>_subAccountId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RefRecId</TypeName>
+					<Name>_actionRecId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketTimestamp</TypeName>
+					<Name>_timestamp</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Int64</Type>
+					<TypeName></TypeName>
+					<Name>_expectedErrors</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketSignalResult</TypeName>
+					<Name>_expectedResult</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>_expectedCanCalculate</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
 				<TypeName></TypeName>
 			</ReturnType>
 		</Method>

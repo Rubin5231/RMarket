@@ -63,9 +63,7 @@ internal final class RMarketJobTest_ConfiguredSignal
             if (!tsCursor)
                 throw error("Timestamp must be specified.");
 
-            ttsbegin;
             signalLog = RMarketSignalCalc::calculate(subAccount, action, tsCursor);
-            ttscommit;
 
             info(strFmt("Signal log: %1, %2",
                 signalLog.RecId,

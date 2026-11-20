@@ -5,19 +5,137 @@
 		<Declaration><![CDATA[
 internal final class RMarketJobTest_SignalLog
 {
+    /// <summary>
+    /// Class entry point. The system will call this method when a designated menu 
+    /// is selected or when execution starts and this class is set as the startup class.
+    /// </summary>
+    /// <param name = "_args">The specified arguments.</param>
+
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
-    /// <summary>
-    /// Class entry point. The system will call this method when a designated menu 
-    /// is selected or when execution starts and this class is set as the startup class.
-    /// </summary>
-    /// <param name = "_args">The specified arguments.</param>
     public static void main(Args _args)
     {
+        RMarketSubAccountId subAccountId1 = 'DAT-SA000009';
+        RMarketSubAccountId subAccountId2 = 'DAT-SA000006';
+        RefRecId actionRecId1 = 5637149827;
+        RefRecId actionRecId2 = 5637146076;
+        RMarketTimestamp ts1 = 1795104000;
+        RMarketTimestamp ts2 = 1795100400;
+
+        if (RMarketSignalLog::exists(subAccountId1, actionRecId1, ts1) ||
+            RMarketSignalLog::exists(subAccountId1, actionRecId1, ts2) ||
+            RMarketSignalLog::exists(subAccountId1, actionRecId2, ts1) ||
+            RMarketSignalLog::exists(subAccountId2, actionRecId1, ts1))
+        {
+            throw error("Test signal log records already exist.");
+        }
+
+        ttsbegin;
+
+        // 1. No attempts
+        RMarketJobTest_SignalLog::check(1, subAccountId1, actionRecId1, ts1, 0, RMarketSignalResult::None, true);
+
+        // 2. First error
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId1, ts1, RMarketSignalResult::Error);
+
+        RMarketJobTest_SignalLog::check(2, subAccountId1, actionRecId1, ts1, 1, RMarketSignalResult::None, true);
+
+        // 3. Second error
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId1, ts1, RMarketSignalResult::Error);
+
+        RMarketJobTest_SignalLog::check(3, subAccountId1, actionRecId1, ts1, 2, RMarketSignalResult::None, true);
+
+        // 4. Third error: attempt limit reached
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId1, ts1, RMarketSignalResult::Error);
+
+        RMarketJobTest_SignalLog::check(4, subAccountId1, actionRecId1, ts1, 3, RMarketSignalResult::None, false);
+
+        // 5. Another timestamp
+        RMarketJobTest_SignalLog::check(5, subAccountId1, actionRecId1, ts2, 0, RMarketSignalResult::None, true);
+
+        // 6. Another action
+        RMarketJobTest_SignalLog::check(6, subAccountId1, actionRecId2, ts1, 0, RMarketSignalResult::None, true);
+
+        // 7. Another subaccount
+        RMarketJobTest_SignalLog::check(7, subAccountId2, actionRecId1, ts1, 0, RMarketSignalResult::None, true);
+
+        // 8. Error on another timestamp
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId1, ts2, RMarketSignalResult::Error);
+
+        RMarketJobTest_SignalLog::check(8, subAccountId1, actionRecId1, ts2, 1, RMarketSignalResult::None, true);
+
+        // 9. Successful retry: triggered
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId1, ts2, RMarketSignalResult::Triggered);
+
+        RMarketJobTest_SignalLog::check(9, subAccountId1, actionRecId1, ts2, 1, RMarketSignalResult::Triggered, false);
+
+        // 10. Successful first attempt: not triggered
+        RMarketSignalLog::putRecord(subAccountId1, actionRecId2, ts1, RMarketSignalResult::NotTriggered);
+
+        RMarketJobTest_SignalLog::check(10, subAccountId1, actionRecId2, ts1, 0, RMarketSignalResult::NotTriggered, false);
+
+        // 11. Successful third attempt: not triggered
+        RMarketSignalLog::putRecord(subAccountId2, actionRecId1, ts1, RMarketSignalResult::Error);
+
+        RMarketSignalLog::putRecord(subAccountId2, actionRecId1, ts1, RMarketSignalResult::Error);
+
+        RMarketSignalLog::putRecord(subAccountId2, actionRecId1, ts1, RMarketSignalResult::NotTriggered);
+
+        RMarketJobTest_SignalLog::check(11, subAccountId2, actionRecId1, ts1, 2, RMarketSignalResult::NotTriggered, false);
+
+        // 12. Original action remains blocked
+        RMarketJobTest_SignalLog::check(12, subAccountId1, actionRecId1, ts1, 3, RMarketSignalResult::None, false);
+
+        ttsabort;
+
+        info("Signal log tests passed: 12/12");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>check</Name>
+				<Source><![CDATA[
+    private static void check(
+        int                 _testNum,
+        RMarketSubAccountId _subAccountId,
+        RefRecId            _actionRecId,
+        RMarketTimestamp    _timestamp,
+        int64               _expectedErrors,
+        RMarketSignalResult _expectedResult,
+        boolean             _expectedCanCalculate)
+    {
+        RMarketSignalLog signalLog;
+        int64 errorCount;
+        boolean canCalculate;
+
+        signalLog = RMarketSignalLog::findCompleted(_subAccountId, _actionRecId, _timestamp);
+
+        errorCount = RMarketSignalLog::countErrors(_subAccountId, _actionRecId, _timestamp);
+
+        canCalculate = RMarketSignalCalc::canCalculate(_subAccountId, _actionRecId, _timestamp);
+
+        if (errorCount != _expectedErrors ||
+            signalLog.Result != _expectedResult ||
+            canCalculate != _expectedCanCalculate ||
+            (signalLog.RecId != 0) != (_expectedResult != RMarketSignalResult::None))
+        {
+            throw error(strFmt("Test %1 failed: Errors=%2, Result=%3, CanCalculate=%4",
+                _testNum,
+                errorCount,
+                enum2Str(signalLog.Result),
+                canCalculate));
+        }
+
+        info(strFmt("Test %1: Errors=%2, Result=%3, CanCalculate=%4 - PASS",
+            _testNum,
+            errorCount,
+            enum2Str(signalLog.Result),
+            canCalculate));
     }
 
 ]]></Source>

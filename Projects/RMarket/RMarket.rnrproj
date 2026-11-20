@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJobTest_ConfiguredSignal</StartupObject>
+    <StartupObject>RMarketJobTest_SignalLog</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
