@@ -120,6 +120,58 @@ public final class RMarketSignalCalc
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>calculateSubAccount</Name>
+				<Source><![CDATA[
+    public static int calculateSubAccount(
+        RMarketSubAccount _subAccount,
+        RMarketTimestamp  _tsCursor)
+    {
+        RMarketStrategy       strategy;
+        RMarketStrategyAction action;
+        RMarketTimestamp      signalTimestamp;
+        int                   calculated;
+
+        if (appl.ttsLevel())
+            throw error("Signal calculation requires TTS level 0.");
+
+        if (!_subAccount.RecId)
+            throw error("Subaccount must be specified.");
+
+        if (!_tsCursor)
+            throw error("Timestamp must be specified.");
+
+        strategy = RMarketStrategy::find(_subAccount.StrategyId);
+
+        if (!strategy.RecId)
+            throw error(strFmt("Strategy %1 not found.", _subAccount.StrategyId));
+
+        signalTimestamp = RMarketUtil::calculateCandleTimestamp(_tsCursor, strategy.Interval);
+
+        while select action
+            order by action.Num
+            where action.StrategyId == strategy.StrategyId
+               && action.Active     == NoYes::Yes
+        {
+            if (RMarketSignalCalc::canCalculate(
+                _subAccount.SubAccountId,
+                action.RecId,
+                signalTimestamp))
+            {
+                RMarketSignalCalc::calculate(
+                    _subAccount,
+                    action,
+                    signalTimestamp);
+
+                calculated++;
+            }
+        }
+
+        return calculated;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 </AxClass>

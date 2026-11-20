@@ -209,6 +209,11 @@
       <Name>RMarketJobTest_SignalLog</Name>
       <Link>Classes\Jobs\RMarketJobTest_SignalLog</Link>
     </Content>
+    <Content Include="AxClass\RMarketJobTest_SubAccountSignals">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_SubAccountSignals</Name>
+      <Link>Classes\Jobs\RMarketJobTest_SubAccountSignals</Link>
+    </Content>
     <Content Include="AxClass\RMarketJob_ApiMethods">
       <SubType>Content</SubType>
       <Name>RMarketJob_ApiMethods</Name>
@@ -1058,6 +1063,11 @@
       <SubType>Content</SubType>
       <Name>RMarketJobTest_ConfiguredSignal</Name>
       <Link>Action Menu Items\RMarketJobTest_ConfiguredSignal</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketJobTest_SubAccountSignals">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_SubAccountSignals</Name>
+      <Link>Action Menu Items\RMarketJobTest_SubAccountSignals</Link>
     </Content>
     <Content Include="AxMenuItemAction\RMarketSymbolPropertyUpdate">
       <SubType>Content</SubType>

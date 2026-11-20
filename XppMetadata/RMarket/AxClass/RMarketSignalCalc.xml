@@ -81,5 +81,29 @@
 				<TypeName>boolean</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>calculateSubAccount</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketSubAccount</TypeName>
+					<Name>_subAccount</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketTimestamp</TypeName>
+					<Name>_tsCursor</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Int32</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

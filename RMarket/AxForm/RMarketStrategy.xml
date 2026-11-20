@@ -2487,6 +2487,15 @@ public class RMarketStrategy extends FormRun
 										<MenuItemName>RMarketJobTest_CandleTimestamp</MenuItemName>
 										<MenuItemType>Action</MenuItemType>
 									</AxFormControl>
+									<AxFormControl xmlns=""
+										i:type="AxFormMenuFunctionButtonControl">
+										<Name>MenuButtonTest_SubAccountSignals</Name>
+										<Type>MenuFunctionButton</Type>
+										<FormControlExtension
+											i:nil="true" />
+										<MenuItemName>RMarketJobTest_SubAccountSignals</MenuItemName>
+										<MenuItemType>Action</MenuItemType>
+									</AxFormControl>
 								</Controls>
 								<Text>Test jobs</Text>
 							</AxFormControl>
