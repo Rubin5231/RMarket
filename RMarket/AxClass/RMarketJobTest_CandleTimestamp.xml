@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_CandleTimestamp</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_CandleTimestamp
+{
+
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>checkTimestamp</Name>
+				<Source><![CDATA[
+    private static void checkTimestamp(
+        RMarketTimestamp      _tsCursor,
+        RMarketCandleInterval _interval,
+        int                   _shift,
+        RMarketTimestamp      _expected)
+    {
+        RMarketTimestamp actual;
+
+        actual = RMarketUtil::calculateCandleTimestamp(_tsCursor, _interval, _shift);
+
+        if (actual != _expected)
+        {
+            throw error(strFmt("%1 [%2]: expected %3, actual %4.",
+                enum2Str(_interval),
+                _shift,
+                _expected,
+                actual));
+        }
+
+        info(strFmt("%1 [%2]: %3 (%4 UTC) - PASS",
+            enum2Str(_interval),
+            _shift,
+            actual,
+            RMarketUtil::timestamp2dateTimeUTC(actual)));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Class entry point. The system will call this method when a designated menu 
+    /// is selected or when execution starts and this class is set as the startup class.
+    /// </summary>
+    /// <param name = "_args">The specified arguments.</param>
+    
+    public static void main(Args _args)
+    {
+        RMarketTimestamp tsCursor = 1795104300;
+
+        // Cursor: 19.11.2026 16:05 UTC
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::m1, 0, 1795104300);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::m15, 0, 1795104000);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h1, 0, 1795104000);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h3, 0, 1795100400);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h4, 0, 1795104000);
+
+        // Previous closed candles
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::m15, -1, 1795103100);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h1, -1, 1795100400);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h3, -1, 1795089600);
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h4, -1, 1795089600);
+
+        // Next decision timestamp
+
+        RMarketJobTest_CandleTimestamp::checkTimestamp(
+        tsCursor, RMarketCandleInterval::h1, 1, 1795107600);
+
+        info("Candle timestamp tests passed: 10/10");
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

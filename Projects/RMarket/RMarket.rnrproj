@@ -184,6 +184,11 @@
       <Name>RMarketJobTest_Bybit_Wallet_Balance</Name>
       <Link>Classes\Jobs\RMarketJobTest_Bybit_Wallet_Balance</Link>
     </Content>
+    <Content Include="AxClass\RMarketJobTest_CandleTimestamp">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_CandleTimestamp</Name>
+      <Link>Classes\Jobs\RMarketJobTest_CandleTimestamp</Link>
+    </Content>
     <Content Include="AxClass\RMarketJobTest_ConditionTree">
       <SubType>Content</SubType>
       <Name>RMarketJobTest_ConditionTree</Name>
@@ -1018,6 +1023,11 @@
       <SubType>Content</SubType>
       <Name>RMarketIndicatorCalc</Name>
       <Link>Action Menu Items\RMarketIndicatorCalc</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\RMarketJobTest_CandleTimestamp">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_CandleTimestamp</Name>
+      <Link>Action Menu Items\RMarketJobTest_CandleTimestamp</Link>
     </Content>
     <Content Include="AxMenuItemAction\RMarketJobTest_ConditionTree">
       <SubType>Content</SubType>

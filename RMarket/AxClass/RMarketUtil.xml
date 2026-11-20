@@ -124,6 +124,7 @@ public class RMarketUtil
             case RMarketCandleInterval::m30:
             case RMarketCandleInterval::h1:
             case RMarketCandleInterval::h2:
+            case RMarketCandleInterval::h3:
             case RMarketCandleInterval::h4:
             case RMarketCandleInterval::h6:
             case RMarketCandleInterval::h8:
@@ -150,6 +151,8 @@ public class RMarketUtil
                 _dt = DateTimeUtil::addDays(_dt, 1 - (DateTimeUtil::day(_dt)));
                 _dt = DateTimeUtil::addMonths(_dt, _shift);
                 break;
+            default:
+                throw error(strFmt("Unsupported candle interval: %1.", enum2Str(_interval)));
         }
         return _dt;
     }
