@@ -183,6 +183,35 @@ public class RMarketConditionTable extends common
             default:
                 throw error(strFmt("Comparison type %1 isn't implemented yet!", enum2Str(this.ComparisonType)));
         }
+
+        
+        if (_trace)
+        {
+            info(strFmt("Condition %1: %2 %3 %4",
+                this.Num,
+                RMarketConditionTable::operand2Str(
+                    this.Source,
+                    this.IndicatorId,
+                    this.CandleValue,
+                    this.Value,
+                    this.Shift,
+                    this.Interval),
+                enum2Str(this.ComparisonType),
+                RMarketConditionTable::operand2Str(
+                    this.SecondSource,
+                    this.SecondIndicatorId,
+                    this.SecondCandleValue,
+                    this.SecondValue,
+                    this.SecondShift,
+                    this.SecondInterval)));
+
+            info(strFmt("    %1 %2 %3 = %4",
+                num2Str(value, 0, 6, 1, 0),
+                enum2Str(this.ComparisonType),
+                num2Str(value2, 0, 6, 1, 0),
+                ret ? "TRUE" : "FALSE"));
+        }
+
         return ret;
     }
 
@@ -297,6 +326,47 @@ public class RMarketConditionTable extends common
         return ret;
     }
 
+]]></Source>
+			</Method>
+			<Method>
+				<Name>operand2Str</Name>
+				<Source><![CDATA[
+    protected static str operand2Str(
+        RMarketConditionValueSource _source,
+        RMarketIndicatorId          _indicatorId,
+        RMarketIndicatorBaseEnum    _candleValue,
+        real                        _value,
+        int                         _shift,
+        RMarketCandleInterval       _interval)
+    {
+        str ret;
+
+        switch (_source)
+        {
+            case RMarketConditionValueSource::Const:
+                ret = num2Str(_value, 0, 6, 1, 0);
+                break;
+
+            case RMarketConditionValueSource::Candle:
+            ret = strFmt("%1(%2, %3)",
+                enum2Str(_candleValue),
+                enum2Str(_interval),
+                _shift);
+                break;
+
+            case RMarketConditionValueSource::Indicator:
+            ret = strFmt("%1(%2, %3)",
+                _indicatorId,
+                enum2Str(_interval),
+                _shift);
+                break;
+
+            default:
+                ret = enum2Str(_source);
+        }
+
+        return ret;
+    }
     /*public RMarketStrategyAction RMarketStrategyAction(boolean _forUpdate = false)
     {
         return RMarketStrategyAction::findRecId(this.RefRecId, _forUpdate);

@@ -105,7 +105,18 @@ public class RMarketConditionGroup extends common
             }
         }
 
-        return hasChildren && result;
+        result = hasChildren && result;
+
+        if (_trace)
+        {
+            info(strFmt("Group %1: %2 (%3) = %4",
+                this.Num,
+                this.Name,
+                enum2Str(this.RMarketConditionOperator),
+                result ? "TRUE" : "FALSE"));
+        }
+
+        return result;
     }
 
 ]]></Source>
