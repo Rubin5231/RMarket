@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxEnum xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>RMarketSignalResult</Name>
-	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
 			<Name>None</Name>
 			<Label>None</Label>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>False</Name>
-			<Label>False</Label>
+			<Name>NotTriggered</Name>
+			<Label>NotTriggered</Label>
 			<Value>1</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>True</Name>
-			<Label>True</Label>
+			<Name>Triggered</Name>
+			<Label>Triggered</Label>
 			<Value>2</Value>
 		</AxEnumValue>
 		<AxEnumValue>
@@ -23,5 +22,4 @@
 			<Value>3</Value>
 		</AxEnumValue>
 	</EnumValues>
-	<IsExtensible>true</IsExtensible>
 </AxEnum>
