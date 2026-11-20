@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketSignalCalc</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public final class RMarketSignalCalc
+{
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>calculate</Name>
+				<Source><![CDATA[
+    public static RMarketSignalLog calculate(
+        RMarketSubAccount     _subAccount,
+        RMarketStrategyAction _action,
+        RMarketTimestamp      _tsCursor)
+    {
+        RMarketSignalTrace signalTrace = new RMarketSignalTrace();
+        RMarketSignalResult result;
+        str description;
+        boolean signal;
+        int infologStartLine;
+
+        if (appl.ttsLevel())
+            throw error("Signal calculation requires TTS level 0.");
+
+        infologStartLine = infologLine();
+
+        try
+        {
+            ttsbegin;
+
+            signal = _action.calcSignal(
+            _subAccount, _tsCursor, signalTrace);
+
+            ttscommit;
+
+            result = signal ? RMarketSignalResult::Triggered : RMarketSignalResult::NotTriggered;
+
+            description = signalTrace.description();
+        }
+        catch (Exception::Error)
+        {
+            result = RMarketSignalResult::Error;
+
+            description = RMarketSignalCalc::getInfologText(infologStartLine)
+                + '\n'
+                + signalTrace.description();
+        }
+
+        return RMarketSignalLog::putRecord(
+            _subAccount.SubAccountId,
+            _action.RecId,
+            _tsCursor,
+            result,
+            description);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getInfologText</Name>
+				<Source><![CDATA[
+    private static str getInfologText(int _startLine)
+    {
+        SysInfologEnumerator enumerator;
+        SysInfologMessageStruct messageStruct;
+        int endLine = infologLine();
+        str ret;
+
+        if (endLine > _startLine)
+        {
+            enumerator = SysInfologEnumerator::newData(infolog.copy(_startLine + 1, endLine));
+
+            while (enumerator.moveNext())
+            {
+                messageStruct = new SysInfologMessageStruct(enumerator.currentMessage());
+
+                if (ret)
+                    ret += '\n';
+
+                ret += messageStruct.message();
+            }
+        }
+
+        if (!ret)
+            ret = "Signal calculation failed.";
+
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

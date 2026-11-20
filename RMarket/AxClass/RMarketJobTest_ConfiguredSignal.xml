@@ -63,48 +63,13 @@ internal final class RMarketJobTest_ConfiguredSignal
             if (!tsCursor)
                 throw error("Timestamp must be specified.");
 
-            signal = action.calcSignal(subAccount, tsCursor, signalTrace);
+            signalLog = RMarketSignalCalc::calculate(subAccount, action, tsCursor);
 
-            info(strFmt("Strategy: %1, Action: %2 (%3)",
-                action.StrategyId,
-                action.Num,
-                enum2Str(action.Type)));
+            info(strFmt("Signal log: %1, %2",
+                signalLog.RecId,
+                enum2Str(signalLog.Result)));
 
-            info(strFmt("Subaccount: %1, Market: %2, Symbol: %3",
-                subAccount.SubAccountId,
-                subAccount.RMarketAccount().MarketId,
-                subAccount.SymbolId));
-
-            info(strFmt("Cursor: %1 (%2 UTC)",
-                tsCursor,
-                RMarketUtil::timestamp2dateTimeUTC(tsCursor)));
-
-            info(strFmt("Signal: %1", signal ? "TRUE" : "FALSE"));
-
-            info(strFmt("Accumulated description:\n%1", signalTrace.description()));
-
-            //---->>
-            ttsbegin;
-
-            signalLog = RMarketSignalLog::putRecord(
-                subAccount.SubAccountId,
-                action.RecId,
-                tsCursor,
-                signal ? RMarketSignalResult::None : RMarketSignalResult::NotTriggered,
-                signalTrace.description());
-            
-            select firstonly probe
-                where probe.RecId == signalLog.RecId;
-
-            info(strFmt("Signal log: %1, %2, %3 characters",
-                probe.RecId,
-                enum2Str(probe.Result),
-                strLen(probe.Description)));
-
-            info(probe.Description);
-
-            ttsabort;
-            //----<<
+            info(signalLog.Description);
         }
     }
 
