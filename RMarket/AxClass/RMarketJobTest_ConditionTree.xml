@@ -42,6 +42,7 @@ internal final class RMarketJobTest_ConditionTree
     {
         RMarketConditionTable condition;
 
+        condition.initValue();
         condition.Relation =
             RMarketConditionRelation::RMarketConditionGroup;
         condition.RefRecId = _groupRecId;
