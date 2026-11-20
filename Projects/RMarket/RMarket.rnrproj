@@ -879,6 +879,11 @@
       <Name>RMarketPositionStatus</Name>
       <Link>Base Enums\RMarketPositionStatus</Link>
     </Content>
+    <Content Include="AxEnum\RMarketSignalResult">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalResult</Name>
+      <Link>Base Enums\RMarketSignalResult</Link>
+    </Content>
     <Content Include="AxEnum\RMarketStrategyActionType">
       <SubType>Content</SubType>
       <Name>RMarketStrategyActionType</Name>
@@ -1388,6 +1393,11 @@
       <SubType>Content</SubType>
       <Name>RMarketPosition</Name>
       <Link>Tables\RMarketPosition</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSignalLog">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalLog</Name>
+      <Link>Tables\RMarketSignalLog</Link>
     </Content>
     <Content Include="AxTable\RMarketStrategy">
       <SubType>Content</SubType>
