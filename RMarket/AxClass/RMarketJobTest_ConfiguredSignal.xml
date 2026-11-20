@@ -6,6 +6,8 @@
 internal final class RMarketJobTest_ConfiguredSignal
 {
 
+    
+
 }
 ]]></Declaration>
 		<Methods>
@@ -15,34 +17,66 @@ internal final class RMarketJobTest_ConfiguredSignal
     public static void main(Args _args)
     {
         RMarketStrategyAction action;
-        RMarketSubAccount subAccount;
-        boolean signal;
+        RMarketSubAccount     subAccount;
+        RMarketTimestamp      tsCursor;
+        Dialog                dialog;
+        DialogField           dlgSubAccountId;
+        DialogField           dlgTsCursor;
+        boolean               signal;
 
         if (!_args ||
-        _args.dataset() != tableNum(RMarketStrategyAction))
+            _args.dataset() != tableNum(RMarketStrategyAction))
         {
             throw error("Strategy action must be selected.");
         }
 
         action = _args.record();
-
-        // Read the persisted action.
         action = RMarketStrategyAction::findRecId(action.RecId);
 
         if (!action.RecId)
-        throw error("Test action not found.");
+            throw error("Test action not found.");
 
         if (action.Active)
-        throw error("Test action must be inactive.");
+            throw error("Test action must be inactive.");
 
-        signal = action.calcSignal(subAccount, 0);
+        dialog = new Dialog("Test configured signal");
 
-        info(strFmt(
-        "Strategy: %1, Action: %2 (%3), Signal: %4",
-        action.StrategyId,
-        action.Num,
-        enum2Str(action.Type),
-        signal ? "TRUE" : "FALSE"));
+        dlgSubAccountId = dialog.addField(
+        extendedTypeStr(RMarketSubAccountId));
+
+        dlgTsCursor = dialog.addFieldValue(extendedTypeStr(RMarketTimestamp), 1795107600, "Cursor (Unix seconds)");
+
+        if (dialog.run())
+        {
+            subAccount = RMarketSubAccount::find(
+            dlgSubAccountId.value());
+
+            tsCursor = dlgTsCursor.value();
+
+            if (!subAccount.RecId)
+                throw error("Subaccount not found.");
+
+            if (!tsCursor)
+                throw error("Timestamp must be specified.");
+
+            signal = action.calcSignal(subAccount, tsCursor);
+
+            info(strFmt("Strategy: %1, Action: %2 (%3)",
+                action.StrategyId,
+                action.Num,
+                enum2Str(action.Type)));
+
+            info(strFmt("Subaccount: %1, Market: %2, Symbol: %3",
+                subAccount.SubAccountId,
+                subAccount.RMarketAccount().MarketId,
+                subAccount.SymbolId));
+
+            info(strFmt("Cursor: %1 (%2 UTC)",
+                tsCursor,
+                RMarketUtil::timestamp2dateTimeUTC(tsCursor)));
+
+            info(strFmt("Signal: %1", signal ? "TRUE" : "FALSE"));
+        }
     }
 
 ]]></Source>

@@ -107,8 +107,22 @@ public class RMarketSubAccount extends common
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoLookup</Name>
+			<IsManuallyUpdated>Yes</IsManuallyUpdated>
 			<IsSystemGenerated>Yes</IsSystemGenerated>
-			<Fields />
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>SubAccountId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Description</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>AccountId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>SymbolId</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoIdentification</Name>
