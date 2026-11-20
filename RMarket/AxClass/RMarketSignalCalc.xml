@@ -5,6 +5,7 @@
 		<Declaration><![CDATA[
 public final class RMarketSignalCalc
 {
+    #define.MaxAttempts(3)
 
 }
 ]]></Declaration>
@@ -87,6 +88,32 @@ public final class RMarketSignalCalc
 
         if (!ret)
             ret = "Signal calculation failed.";
+
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>canCalculate</Name>
+				<Source><![CDATA[
+    public static boolean canCalculate(
+        RMarketSubAccountId _subAccountId,
+        RefRecId            _actionRecId,
+        RMarketTimestamp    _timestamp)
+    {
+        RMarketSignalLog signalLog;
+        boolean ret = false;
+
+        signalLog = RMarketSignalLog::findCompleted(_subAccountId, _actionRecId, _timestamp);
+
+        if (!signalLog.RecId)
+        {
+            ret = RMarketSignalLog::countErrors(
+                _subAccountId,
+                _actionRecId,
+                _timestamp) < #MaxAttempts;
+        }
 
         return ret;
     }

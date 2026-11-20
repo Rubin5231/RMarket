@@ -204,6 +204,11 @@
       <Name>RMarketJobTest_Kline_Bybit</Name>
       <Link>Classes\Jobs\RMarketJobTest_Kline_Bybit</Link>
     </Content>
+    <Content Include="AxClass\RMarketJobTest_SignalLog">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_SignalLog</Name>
+      <Link>Classes\Jobs\RMarketJobTest_SignalLog</Link>
+    </Content>
     <Content Include="AxClass\RMarketJob_ApiMethods">
       <SubType>Content</SubType>
       <Name>RMarketJob_ApiMethods</Name>

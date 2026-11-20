@@ -104,6 +104,49 @@ public class RMarketSignalLog extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>findCompleted</Name>
+				<Source><![CDATA[
+    public static RMarketSignalLog findCompleted(
+        RMarketSubAccountId _subAccountId,
+        RefRecId            _actionRecId,
+        RMarketTimestamp    _timestamp)
+    {
+        RMarketSignalLog signalLog;
+
+        select firstonly signalLog
+            where signalLog.SubAccountId               == _subAccountId
+               && signalLog.RMarketStrategyActionRecId == _actionRecId
+               && signalLog.Timestamp                  == _timestamp
+               && (signalLog.Result == RMarketSignalResult::Triggered
+                || signalLog.Result == RMarketSignalResult::NotTriggered);
+
+        return signalLog;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>countErrors</Name>
+				<Source><![CDATA[
+    public static int64 countErrors(
+        RMarketSubAccountId _subAccountId,
+        RefRecId            _actionRecId,
+        RMarketTimestamp    _timestamp)
+    {
+        RMarketSignalLog signalLog;
+
+        select count(RecId) from signalLog
+            where signalLog.SubAccountId               == _subAccountId
+               && signalLog.RMarketStrategyActionRecId == _actionRecId
+               && signalLog.Timestamp                  == _timestamp
+               && signalLog.Result                     == RMarketSignalResult::Error;
+
+        return signalLog.RecId;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Signal calculation log</Label>
