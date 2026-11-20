@@ -158,7 +158,7 @@ public class RMarketConditionTable extends common
 			<Method>
 				<Name>calc</Name>
 				<Source><![CDATA[
-    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor, boolean _trace = false)
+    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp _tsCursor, RMarketSignalTrace _trace = null)
     {
         boolean ret;
         real value  = this.calcValue(_subAccount, _tsCursor);
@@ -188,7 +188,7 @@ public class RMarketConditionTable extends common
         
         if (_trace)
         {
-            info(strFmt("Condition %1: %2 %3 %4",
+            _trace.add(strFmt("Condition %1: %2 %3 %4",
                 this.Num,
                 RMarketConditionTable::operand2Str(
                     this.Source,
@@ -206,7 +206,7 @@ public class RMarketConditionTable extends common
                     this.SecondShift,
                     this.SecondInterval)));
 
-            info(strFmt("    %1 %2 %3 = %4",
+            _trace.add(strFmt("    %1 %2 %3 = %4",
                 num2Str(value, 0, 6, 1, 0),
                 enum2Str(this.ComparisonType),
                 num2Str(value2, 0, 6, 1, 0),

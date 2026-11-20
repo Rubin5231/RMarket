@@ -624,6 +624,11 @@
       <Name>RMarketNumberSequenceRegisterJob</Name>
       <Link>Classes\Jobs\RMarketNumberSequenceRegisterJob</Link>
     </Content>
+    <Content Include="AxClass\RMarketSignalTrace">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalTrace</Name>
+      <Link>Classes\RMarketSignalTrace</Link>
+    </Content>
     <Content Include="AxClass\RMarketSymbolPropertyUpdate">
       <SubType>Content</SubType>
       <Name>RMarketSymbolPropertyUpdate</Name>

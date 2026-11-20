@@ -166,9 +166,9 @@
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
-					<Type>Enum</Type>
-					<TypeName>boolean</TypeName>
-					<DefaultValue>false</DefaultValue>
+					<Type>Class</Type>
+					<TypeName>RMarketSignalTrace</TypeName>
+					<DefaultValue>null</DefaultValue>
 					<Name>_trace</Name>
 				</AxMethodParameter>
 			</Parameters>

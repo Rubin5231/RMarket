@@ -69,5 +69,57 @@
 				<TypeName>boolean</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>putRecord</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketSubAccountId</TypeName>
+					<Name>_subAccountId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RefRecId</TypeName>
+					<Name>_actionRecId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketTimestamp</TypeName>
+					<Name>_timestamp</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketSignalResult</TypeName>
+					<Name>_result</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<DefaultValue>""</DefaultValue>
+					<Name>_description</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Record</Type>
+				<TypeName>RMarketSignalLog</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>validateWrite</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

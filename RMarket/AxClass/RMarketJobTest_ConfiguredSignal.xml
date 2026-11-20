@@ -19,10 +19,14 @@ internal final class RMarketJobTest_ConfiguredSignal
         RMarketStrategyAction action;
         RMarketSubAccount     subAccount;
         RMarketTimestamp      tsCursor;
+        RMarketSignalTrace    signalTrace = new RMarketSignalTrace(false);
         Dialog                dialog;
         DialogField           dlgSubAccountId;
         DialogField           dlgTsCursor;
         boolean               signal;
+
+        RMarketSignalLog signalLog;
+        RMarketSignalLog probe;
 
         if (!_args ||
             _args.dataset() != tableNum(RMarketStrategyAction))
@@ -44,7 +48,7 @@ internal final class RMarketJobTest_ConfiguredSignal
         dlgSubAccountId = dialog.addField(
         extendedTypeStr(RMarketSubAccountId));
 
-        dlgTsCursor = dialog.addFieldValue(extendedTypeStr(RMarketTimestamp), 1795104300, "Cursor (Unix seconds)");
+        dlgTsCursor = dialog.addFieldValue(extendedTypeStr(RMarketTimestamp), 1795107600, "Cursor (Unix seconds)");
 
         if (dialog.run())
         {
@@ -59,7 +63,7 @@ internal final class RMarketJobTest_ConfiguredSignal
             if (!tsCursor)
                 throw error("Timestamp must be specified.");
 
-            signal = action.calcSignal(subAccount, tsCursor, true);
+            signal = action.calcSignal(subAccount, tsCursor, signalTrace);
 
             info(strFmt("Strategy: %1, Action: %2 (%3)",
                 action.StrategyId,
@@ -76,6 +80,31 @@ internal final class RMarketJobTest_ConfiguredSignal
                 RMarketUtil::timestamp2dateTimeUTC(tsCursor)));
 
             info(strFmt("Signal: %1", signal ? "TRUE" : "FALSE"));
+
+            info(strFmt("Accumulated description:\n%1", signalTrace.description()));
+
+            //---->>
+            ttsbegin;
+
+            signalLog = RMarketSignalLog::putRecord(
+                subAccount.SubAccountId,
+                action.RecId,
+                tsCursor,
+                signal ? RMarketSignalResult::None : RMarketSignalResult::NotTriggered,
+                signalTrace.description());
+            
+            select firstonly probe
+                where probe.RecId == signalLog.RecId;
+
+            info(strFmt("Signal log: %1, %2, %3 characters",
+                probe.RecId,
+                enum2Str(probe.Result),
+                strLen(probe.Description)));
+
+            info(probe.Description);
+
+            ttsabort;
+            //----<<
         }
     }
 

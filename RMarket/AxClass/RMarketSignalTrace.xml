@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketSignalTrace</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public final class RMarketSignalTrace
+{
+    str     traceText;
+    boolean showInfolog;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new(boolean _showInfolog = false)
+    {
+        showInfolog = _showInfolog;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>add</Name>
+				<Source><![CDATA[
+    public void add(str _text)
+    {
+        if (traceText)
+            traceText += '\n';
+
+        traceText += _text;
+
+        if (showInfolog)
+            info(_text);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>description</Name>
+				<Source><![CDATA[
+    public str description()
+    {
+        return traceText;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

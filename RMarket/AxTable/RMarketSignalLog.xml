@@ -50,6 +50,60 @@ public class RMarketSignalLog extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>putRecord</Name>
+				<Source><![CDATA[
+    public static RMarketSignalLog putRecord(
+        RMarketSubAccountId _subAccountId,
+        RefRecId            _actionRecId,
+        RMarketTimestamp    _timestamp,
+        RMarketSignalResult _result,
+        str                 _description = "")
+    {
+        RMarketSignalLog signalLog;
+
+        ttsbegin;
+
+        signalLog.clear();
+        signalLog.initValue();
+
+        signalLog.SubAccountId               = _subAccountId;
+        signalLog.RMarketStrategyActionRecId = _actionRecId;
+        signalLog.Timestamp                  = _timestamp;
+        signalLog.Result                     = _result;
+        signalLog.Description                = _description;
+
+        if (signalLog.validateWrite())
+            signalLog.insert();
+        else
+            throw error("Cannot write signal log.");
+
+        ttscommit;
+
+        return signalLog;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateWrite</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public boolean validateWrite()
+    {
+        boolean ret = super();
+
+        if (ret && this.Result == RMarketSignalResult::None)
+            ret = checkFailed("Signal result must be specified.");
+    
+        return ret;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Signal calculation log</Label>
@@ -183,7 +237,7 @@ public class RMarketSignalLog extends common
 					i:type="AxTableRelationConstraintField">
 					<Name>Timestamp</Name>
 					<Field>Timestamp</Field>
-					<RelatedField>RecId</RelatedField>
+					<RelatedField>Timestamp</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>
 			<Index>RecId</Index>

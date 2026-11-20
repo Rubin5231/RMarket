@@ -2,7 +2,6 @@
 <AxEdt xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns=""
 	i:type="AxEdtInt64">
 	<Name>RMarketTimestamp</Name>
-	<Extends>RefRecId</Extends>
 	<Label>Timestamp, ms</Label>
 	<ReferenceTable>RMarketTimestampTable</ReferenceTable>
 	<ArrayElements />

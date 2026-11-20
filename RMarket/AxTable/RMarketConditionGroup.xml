@@ -36,7 +36,7 @@ public class RMarketConditionGroup extends common
     ///
     /// </summary>
 
-    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp  _tsCursor, boolean _trace = false)
+    public boolean calc(RMarketSubAccount _subAccount, RMarketTimestamp  _tsCursor, RMarketSignalTrace _trace = null)
     {
         RMarketConditionGroup childGroup;
         RMarketConditionTable condition;
@@ -45,7 +45,7 @@ public class RMarketConditionGroup extends common
         boolean hasChildren = false;
 
         if (!this.RecId)
-        throw error("Condition group is not saved.");
+            throw error("Condition group is not saved.");
 
         switch (this.RMarketConditionOperator)
         {
@@ -63,10 +63,9 @@ public class RMarketConditionGroup extends common
 
         // Child groups
         while select childGroup
-        order by childGroup.Num
-        where childGroup.ParentRecId == this.RecId
-           && childGroup.RMarketStrategyActionRecId
-                == this.RMarketStrategyActionRecId
+            order by childGroup.Num
+            where childGroup.ParentRecId                == this.RecId
+               && childGroup.RMarketStrategyActionRecId == this.RMarketStrategyActionRecId
         {
             hasChildren = true;
             childResult = childGroup.calc(_subAccount, _tsCursor, _trace);
@@ -85,10 +84,9 @@ public class RMarketConditionGroup extends common
 
         // Leaf conditions
         while select condition
-        order by condition.Num
-        where condition.Relation
-                == RMarketConditionRelation::RMarketConditionGroup
-           && condition.RefRecId == this.RecId
+            order by condition.Num
+            where condition.Relation == RMarketConditionRelation::RMarketConditionGroup
+               && condition.RefRecId == this.RecId
         {
             hasChildren = true;
             childResult = condition.calc(_subAccount, _tsCursor, _trace);
@@ -109,7 +107,7 @@ public class RMarketConditionGroup extends common
 
         if (_trace)
         {
-            info(strFmt("Group %1: %2 (%3) = %4",
+            _trace.add(strFmt("Group %1: %2 (%3) = %4",
                 this.Num,
                 this.Name,
                 enum2Str(this.RMarketConditionOperator),
