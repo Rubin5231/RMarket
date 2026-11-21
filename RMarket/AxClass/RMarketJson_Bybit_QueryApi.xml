@@ -2,15 +2,19 @@
 <AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
 	<Name>RMarketJson_Bybit_QueryApi</Name>
 	<SourceCode>
-		<Methods />
-		<UnparsableSource><![CDATA[
+		<Declaration><![CDATA[
 [DataContractAttribute]
-public class RMarketMethod_Bybit_QueryApi
-    extends RMarketMethod
-    implements RMarketMethodInterface_GetApiKeyInfo
+public class RMarketJson_Bybit_QueryApi
+    extends RMarketJson_Bybit_Response
 {
     private RMarketJson_Bybit_QueryApi_Result result;
 
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmResult</Name>
+				<Source><![CDATA[
     [DataMemberAttribute('result')]
     public RMarketJson_Bybit_QueryApi_Result parmResult(
         RMarketJson_Bybit_QueryApi_Result _result = result)
@@ -19,35 +23,8 @@ public class RMarketMethod_Bybit_QueryApi
         return result;
     }
 
-    public str getExchangeUid()
-    {
-        return int642Str(responseContract.parmResult().parmUserID());
-    }
-
-    public str getParentUid()
-    {
-        return responseContract.parmResult().parmParentUid();
-    }
-
-    public boolean isMaster()
-    {
-        return responseContract.parmResult().parmIsMaster();
-    }
-
-    public boolean isReadOnly()
-    {
-        return responseContract.parmResult().parmReadOnly() == 1;
-    }
-
-    public utcdatetime getExpirationDateTime()
-    {
-        str value = responseContract.parmResult().parmExpiredAt();
-
-        return value
-        ? RMarketJsonSerializer::deserializeDateTime(value)
-        : DateTimeUtil::minValue();
-    }
-}
-]]></UnparsableSource>
+]]></Source>
+			</Method>
+		</Methods>
 	</SourceCode>
 </AxClass>

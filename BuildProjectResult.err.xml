@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-21T17:30:14.5162005+03:00">
+  GenerationTime="2026-11-21T17:33:35.8079059+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
@@ -48,7 +48,7 @@
       <Moniker>InterfaceMethodNotImplemented</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getParentUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isReadOnly' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
@@ -68,7 +68,7 @@
       <Moniker>InterfaceMethodNotImplemented</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isReadOnly' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExpirationDateTime' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
@@ -78,7 +78,7 @@
       <Moniker>InterfaceMethodNotImplemented</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExpirationDateTime' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getParentUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

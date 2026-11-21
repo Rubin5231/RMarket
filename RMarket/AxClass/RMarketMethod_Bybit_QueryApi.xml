@@ -3,7 +3,9 @@
 	<Name>RMarketMethod_Bybit_QueryApi</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class RMarketMethod_Bybit_QueryApi extends RMarketMethod
+public class RMarketMethod_Bybit_QueryApi
+    extends RMarketMethod
+    implements RMarketMethodInterface_GetApiKeyInfo
 {
     protected RMarketJson_Bybit_QueryApi responseContract;
 
@@ -29,7 +31,8 @@ public class RMarketMethod_Bybit_QueryApi extends RMarketMethod
     {
         RMarketAPIMethodLog logRecord;
 
-        // Do not persist the API key returned in response JSON.
+        // API response contains sensitive key information.
+        // Do not save the response body in the API log.
         logRecord = apiClient.parmLogRecord();
         logRecord.Response = '[Redacted]';
         apiClient.parmLogRecord(logRecord);
@@ -67,6 +70,61 @@ public class RMarketMethod_Bybit_QueryApi extends RMarketMethod
     public RMarketJson_Bybit_QueryApi_Result getResult()
     {
         return responseContract.parmResult();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getExchangeUid</Name>
+				<Source><![CDATA[
+    public str getExchangeUid()
+    {
+        return int642Str(
+            responseContract.parmResult().parmUserID());
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getParentUid</Name>
+				<Source><![CDATA[
+    public str getParentUid()
+    {
+        return responseContract.parmResult().parmParentUid();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isMaster</Name>
+				<Source><![CDATA[
+    public boolean isMaster()
+    {
+        return responseContract.parmResult().parmIsMaster();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isReadOnly</Name>
+				<Source><![CDATA[
+    public boolean isReadOnly()
+    {
+        return responseContract.parmResult().parmReadOnly() == 1;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getExpirationDateTime</Name>
+				<Source><![CDATA[
+    public utcdatetime getExpirationDateTime()
+    {
+        str value = responseContract.parmResult().parmExpiredAt();
+
+        return value
+            ? RMarketJsonSerializer::deserializeDateTime(value)
+            : DateTimeUtil::minValue();
     }
 
 ]]></Source>

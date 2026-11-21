@@ -3,6 +3,9 @@
 	i:type="AxCompilerMetadata" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
 	<Extends>RMarketMethod</Extends>
 	<IsPublic>true</IsPublic>
+	<Implements xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+		<d2p1:string>RMarketMethodInterface_GetApiKeyInfo</d2p1:string>
+	</Implements>
 	<Members>
 		<AxClassMemberVariable>
 			<Tags></Tags>
@@ -36,6 +39,51 @@
 				<Tags></Tags>
 				<Type>Class</Type>
 				<TypeName>RMarketJson_Bybit_QueryApi_Result</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>getExchangeUid</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>getParentUid</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>String</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>isMaster</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>isReadOnly</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Enum</Type>
+				<TypeName>boolean</TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>getExpirationDateTime</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>DateTime</Type>
+				<TypeName></TypeName>
 			</ReturnType>
 		</Method>
 	</Methods>
