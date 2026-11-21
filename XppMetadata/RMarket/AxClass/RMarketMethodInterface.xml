@@ -129,5 +129,23 @@
 				<TypeName>RMarketMethodInterface_CreateOrder</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>createMethod_GetApiKeyInfo</Name>
+			<IsStatic>true</IsStatic>
+			<Visibility>Public</Visibility>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Record</Type>
+					<TypeName>RMarketTable</TypeName>
+					<Name>_market</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Class</Type>
+				<TypeName>RMarketMethodInterface_GetApiKeyInfo</TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

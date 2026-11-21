@@ -5,6 +5,7 @@
 		<Declaration><![CDATA[
 internal final class RMarketJobTest_Bybit_QueryApi
 {
+    
 }
 ]]></Declaration>
 		<Methods>
@@ -14,13 +15,12 @@ internal final class RMarketJobTest_Bybit_QueryApi
     public static void main(Args _args)
     {
         RMarketAccount account;
-        RMarketMethod_Bybit_QueryApi apiMethod;
-        RMarketJson_Bybit_QueryApi_Result result;
+        RMarketMethodInterface_GetApiKeyInfo apiMethod;
 
         Dialog dialog;
         DialogField dlgAccountId;
 
-        dialog = new Dialog("Test Bybit API key");
+        dialog = new Dialog("Test API key");
         dlgAccountId = dialog.addFieldValue(extendedTypeStr(RMarketAccountId), 'DAT-ACC00011');
 
         if (dialog.run())
@@ -30,24 +30,17 @@ internal final class RMarketJobTest_Bybit_QueryApi
             if (!account.RecId)
                 throw error("Account not found.");
 
-            if (account.RMarketTable().ApiType != RMarketApiType::Bybit)
-                throw error("Bybit account expected.");
+            apiMethod = RMarketMethodInterface::createMethod_GetApiKeyInfo(account.RMarketTable());
 
-            apiMethod = new RMarketMethod_Bybit_QueryApi();
-
-            apiMethod.initMarket(account.RMarketTable());
             apiMethod.setApiKey(account.RMarketApiKey());
             apiMethod.execute();
 
-            result = apiMethod.getResult();
-
             info(strFmt("Account: %1", account.AccountId));
-            info(strFmt("Exchange UID: %1", result.parmUserID()));
-            info(strFmt("Parent UID: %1", result.parmParentUid()));
-            info(strFmt("Is master: %1", result.parmIsMaster()));
-            info(strFmt("Read-only: %1", result.parmReadOnly()));
-            info(strFmt("UTA: %1", result.parmUta()));
-            info(strFmt("Expires: %1", result.parmExpiredAt()));
+            info(strFmt("Exchange UID: %1", apiMethod.getExchangeUid()));
+            info(strFmt("Parent UID: %1", apiMethod.getParentUid()));
+            info(strFmt("Is master: %1", apiMethod.isMaster()));
+            info(strFmt("Read-only: %1", apiMethod.isReadOnly()));
+            info(strFmt("Expires: %1", apiMethod.getExpirationDateTime()));
         }
     }
 

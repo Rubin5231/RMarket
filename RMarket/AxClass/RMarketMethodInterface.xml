@@ -183,6 +183,29 @@ public class RMarketMethodInterface
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>createMethod_GetApiKeyInfo</Name>
+				<Source><![CDATA[
+    public static RMarketMethodInterface_GetApiKeyInfo createMethod_GetApiKeyInfo(RMarketTable _market)
+    {
+        RMarketMethod method;
+
+        switch (_market.ApiType)
+        {
+            case RMarketApiType::Bybit:
+                method = new RMarketMethod_Bybit_QueryApi();
+                break;
+
+            default:
+                throw error(strFmt("GetApiKeyInfo is not implemented for API type %1.", enum2Str(_market.ApiType)));
+        }
+
+        method.initMarket(_market);
+        return method as RMarketMethodInterface_GetApiKeyInfo;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 </AxClass>

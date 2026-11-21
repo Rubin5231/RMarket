@@ -1,58 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-21T17:16:47.0605344+03:00">
+  GenerationTime="2026-11-21T17:27:44.5986859+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Fatal</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi_Result</Path>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
       <ElementType>Class</ElementType>
-      <Moniker>IllegalToken</Moniker>
-      <Line>33</Line>
-      <Column>42</Column>
-      <EndLine>33</EndLine>
-      <EndColumn>50</EndColumn>
-      <Message>Invalid token 'readOnly'.</Message>
+      <Moniker>ModelElementWithUnparsableSource</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>The model element was saved with unparsable source code and cannot be used. Please edit the element in Visual Studio to fix the errors.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi_Result/Method/parmUserID</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ImplicitConversionNotAllowed</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Cannot implicitly convert from type 'str' to type 'int64'.</Message>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>ElementNameMismatch</Moniker>
+      <Message>The name in the source code declaration 'RMarketMethod_Bybit_QueryApi' does not match the artifact name 'RMarketJson_Bybit_QueryApi'.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi_Result/Method/parmIsMaster</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ImplicitConversionNotAllowed</Moniker>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>AlreadyDefined</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Cannot implicitly convert from type 'str' to type 'boolean'.</Message>
+      <Message>An item with same name as field 'result' has already been defined.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi_Result/Method/parmReadOnly</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ImplicitConversionNotAllowed</Moniker>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Cannot implicitly convert from type 'str' to type 'int'.</Message>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExchangeUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi_Result/Method/parmUta</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ImplicitConversionNotAllowed</Moniker>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
       <Line>0</Line>
       <Column>0</Column>
-      <Message>Cannot implicitly convert from type 'str' to type 'int'.</Message>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getParentUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isMaster' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isReadOnly' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExpirationDateTime' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

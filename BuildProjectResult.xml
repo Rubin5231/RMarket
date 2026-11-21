@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-21T17:17:53.8781323+03:00">
+  GenerationTime="2026-11-21T17:27:44.5966908+03:00">
   <Items>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>ModelElementWithUnparsableSource</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>The model element was saved with unparsable source code and cannot be used. Please edit the element in Visual Studio to fix the errors.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>ElementNameMismatch</Moniker>
+      <Message>The name in the source code declaration 'RMarketMethod_Bybit_QueryApi' does not match the artifact name 'RMarketJson_Bybit_QueryApi'.</Message>
+    </Diagnostic>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
       <Severity>Warning</Severity>
@@ -25,15 +43,63 @@
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Warning</Severity>
-      <Path>dynamics://Class/RMarketMethod_Bybit_QueryApi/Method/new</Path>
-      <ElementType>Class Method</ElementType>
-      <Moniker>ConstructorMustCallSuper</Moniker>
-      <Line>5</Line>
-      <Column>5</Column>
-      <EndLine>5</EndLine>
-      <EndColumn>20</EndColumn>
-      <Message>Not all paths in the constructor call 'super()'.</Message>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>AlreadyDefined</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>An item with same name as field 'result' has already been defined.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExchangeUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getParentUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isMaster' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isReadOnly' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
+      <ElementType>Class</ElementType>
+      <Moniker>InterfaceMethodNotImplemented</Moniker>
+      <Line>0</Line>
+      <Column>0</Column>
+      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExpirationDateTime' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

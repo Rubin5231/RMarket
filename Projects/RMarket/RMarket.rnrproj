@@ -529,6 +529,11 @@
       <Name>RMarketMethodInterface_GetAccountBalance</Name>
       <Link>Classes\ApiMethodInterface\RMarketMethodInterface_GetAccountBalance</Link>
     </Content>
+    <Content Include="AxClass\RMarketMethodInterface_GetApiKeyInfo">
+      <SubType>Content</SubType>
+      <Name>RMarketMethodInterface_GetApiKeyInfo</Name>
+      <Link>Classes\ApiMethodInterface\RMarketMethodInterface_GetApiKeyInfo</Link>
+    </Content>
     <Content Include="AxClass\RMarketMethodInterface_GetTradeHistory">
       <SubType>Content</SubType>
       <Name>RMarketMethodInterface_GetTradeHistory</Name>

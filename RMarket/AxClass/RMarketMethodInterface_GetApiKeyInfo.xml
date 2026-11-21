@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketMethodInterface_GetApiKeyInfo</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+interface RMarketMethodInterface_GetApiKeyInfo
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>setApiKey</Name>
+				<Source><![CDATA[
+    void setApiKey(RMarketApiKey _apiKey)
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>execute</Name>
+				<Source><![CDATA[
+    void execute()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getExchangeUid</Name>
+				<Source><![CDATA[
+    str getExchangeUid()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getParentUid</Name>
+				<Source><![CDATA[
+    str getParentUid()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isMaster</Name>
+				<Source><![CDATA[
+    boolean isMaster()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>isReadOnly</Name>
+				<Source><![CDATA[
+    boolean isReadOnly()
+    {
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getExpirationDateTime</Name>
+				<Source><![CDATA[
+    utcdatetime getExpirationDateTime()
+    {
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
