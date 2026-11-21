@@ -50,9 +50,9 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
-					<TypeName>RMarketTimestamp</TypeName>
+					<TypeName>RMarketTimestampMs</TypeName>
 					<DefaultValue>0</DefaultValue>
-					<Name>_timestamp</Name>
+					<Name>_timestampMs</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
@@ -112,9 +112,9 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
-					<TypeName>RMarketTimestamp</TypeName>
+					<TypeName>RMarketTimestampMs</TypeName>
 					<DefaultValue>0</DefaultValue>
-					<Name>_timestamp</Name>
+					<Name>_timestampMs</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>

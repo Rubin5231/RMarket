@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJobTest_Bybit_Wallet_Balance</StartupObject>
+    <StartupObject>RMarketJobTest_AccountSetup</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -178,6 +178,11 @@
       <SubType>Content</SubType>
       <Name>RMarketJobTest</Name>
       <Link>Classes\Jobs\RMarketJobTest</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_AccountSetup">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_AccountSetup</Name>
+      <Link>Classes\Jobs\RMarketJobTest_AccountSetup</Link>
     </Content>
     <Content Include="AxClass\RMarketJobTest_Bybit_Wallet_Balance">
       <SubType>Content</SubType>

@@ -24,13 +24,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Class</Type>
-							<TypeName>QueryBuildDataSource</TypeName>
-							<Name>qbds</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 			<Fields />

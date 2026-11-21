@@ -54,7 +54,7 @@ public class RMarketTrans extends common
 				<Source><![CDATA[
     public static boolean postTrans(
         RMarketTransId      _transId,
-        RMarketTimestamp    _timestamp = 0,
+        RMarketTimestampMs  _timestampMs = 0,
         utcdatetime         _datetime  = DateTimeUtil::minValue())
     {
         RMarketTrans trans;
@@ -64,7 +64,7 @@ public class RMarketTrans extends common
         while select forupdate trans
             where trans.TransId == _transId
         {
-            trans.Timestamp     = _timestamp;
+            trans.TimestampMs   = _timestampMs;
             trans.DateTime      = _datetime;
             trans.Status        = RMarketTransStatus::Posted;
             if (trans.validateWrite())
@@ -87,7 +87,7 @@ public class RMarketTrans extends common
         RMarketTransOriginId   _originId,
         AmountCur              _amount,
         RMarketCryptoCode      _currencyCode,
-        RMarketTimestamp       _timestamp = 0,
+        RMarketTimestampMs     _timestampMs = 0,
         utcdatetime            _datetime  = DateTimeUtil::minValue()
         )
     {
@@ -102,7 +102,7 @@ public class RMarketTrans extends common
         trans.SubAccountId  = _subAccount.SubAccountId;
         trans.OriginType    = _originType;
         trans.OriginId      = _originId;
-        //trans.Timestamp     = _timestamp;
+        //trans.TimestampMs   = _timestampMs;
         //trans.DateTime      = _datetime;
         trans.Status        = RMarketTransStatus::Reserved;
         trans.Amount        = _amount;
@@ -211,7 +211,7 @@ public class RMarketTrans extends common
 					<DataField>OriginId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>Timestamp</DataField>
+					<DataField>TimestampMs</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>DateTime</DataField>
@@ -262,8 +262,8 @@ public class RMarketTrans extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt64">
-			<Name>Timestamp</Name>
-			<ExtendedDataType>RMarketTimestamp</ExtendedDataType>
+			<Name>TimestampMs</Name>
+			<ExtendedDataType>RMarketTimestampMs</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
@@ -339,8 +339,8 @@ public class RMarketTrans extends common
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
-					<Name>Timestamp</Name>
-					<Field>Timestamp</Field>
+					<Name>TimestampMs</Name>
+					<Field>TimestampMs</Field>
 					<RelatedField>RecId</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>

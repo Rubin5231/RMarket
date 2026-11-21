@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-21T11:37:34.1603221+03:00">
+  GenerationTime="2026-11-21T11:55:42.1771269+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketTrans/Method/createTransAdjustment</Path>
-      <ElementType>Table Method</ElementType>
-      <Moniker>ParameterMissing</Moniker>
-      <Line>87</Line>
-      <Column>19</Column>
-      <EndLine>87</EndLine>
-      <EndColumn>26</EndColumn>
-      <Message>'Global.error' is missing argument 1 of type 'str(SysInfoLogStr)'.</Message>
+      <Path>dynamics://Class/RMarketJobTest_AccountSetup/Method/checkDeposit</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TableDoesNotContainField</Moniker>
+      <Line>98</Line>
+      <Column>15</Column>
+      <EndLine>98</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Table 'RMarketTrans' does not contain a field named 'Timestamp'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

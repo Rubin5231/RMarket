@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_AccountSetup</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_AccountSetup extends RMarketAutoTrade_Test
+{
+    /// <summary>
+    /// Class entry point. The system will call this method when a designated menu 
+    /// is selected or when execution starts and this class is set as the startup class.
+    /// </summary>
+    /// <param name = "_args">The specified arguments.</param>
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketJobTest_AccountSetup test = new RMarketJobTest_AccountSetup();
+        RMarketAccount account, accountPos, accountNeg;
+        RMarketSubAccount subAccount;
+        RMarketTrans trans;
+        Dialog dialog;
+        DialogField dlgAccountId;
+        int64 countMain, countPos, countNeg;
+        RMarketAccountId testAccountId;
+
+        dialog = new Dialog("Test account preparation");
+        dlgAccountId = dialog.addField(extendedTypeStr(RMarketAccountId));
+
+        if (!dialog.run())
+            return;
+
+        testAccountId = dlgAccountId.value();
+        account = RMarketAccount::find(testAccountId);
+
+        if (!account.RecId ||
+            account.AccountType != RMarketAccountType::Test ||
+            account.AccountTestType != RMarketAccountTestType::Common ||
+            account.MainAccountId != account.AccountId)
+        {
+            throw error("Main test account expected.");
+        }
+
+        if (!account.TestStartDeposit ||
+            account.NextActionDateTime == DateTimeUtil::minValue())
+        {
+            throw error("Test deposit and start datetime must be specified.");
+        }
+
+        ttsbegin;
+
+        test.prepareAccount(account);
+
+        accountPos = account.getShadow(RMarketAccountTestType::Optimistic);
+
+        accountNeg = account.getShadow(RMarketAccountTestType::Pessimistic);
+
+        if (!accountPos.RecId ||
+            !accountNeg.RecId ||
+            accountPos.AccountId == accountNeg.AccountId)
+        {
+            throw error("Shadow accounts were not created correctly.");
+        }
+
+        select count(RecId) from subAccount
+            where subAccount.AccountId == account.AccountId;
+            countMain = subAccount.RecId;
+
+        select count(RecId) from subAccount
+            where subAccount.AccountId == accountPos.AccountId;
+            countPos = subAccount.RecId;
+
+        select count(RecId) from subAccount
+            where subAccount.AccountId == accountNeg.AccountId;
+            countNeg = subAccount.RecId;
+
+        if (countMain != countPos || countMain != countNeg)
+            throw error("Shadow subaccount counts do not match.");
+
+        RMarketJobTest_AccountSetup::checkDeposit(account);
+        RMarketJobTest_AccountSetup::checkDeposit(accountPos);
+        RMarketJobTest_AccountSetup::checkDeposit(accountNeg);
+
+        ttsabort;
+
+        info(strFmt("Account setup PASS: Main=%1, Optimistic=%2, Pessimistic=%3 subaccounts.",
+            countMain, countPos, countNeg));
+
+        info("Transaction rolled back. Original test data preserved.");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>checkDeposit</Name>
+				<Source><![CDATA[
+    private static void checkDeposit(RMarketAccount _account)
+    {
+        RMarketTrans trans;
+        RMarketTimestampMs expectedTimestampMs;
+
+        expectedTimestampMs = RMarketUtil::dateTime2Timestamp(_account.NextActionDateTime) * 1000;
+
+        select firstonly trans
+        where trans.AccountId   == _account.AccountId
+           && trans.OriginType  == RMarketTransOriginType::Account
+           && trans.Status      == RMarketTransStatus::Posted
+           && trans.Amount      == _account.TestStartDeposit
+           && trans.CryptoCode  == _account.CryptoCode
+           && trans.TimestampMs == expectedTimestampMs
+           && trans.DateTime    == _account.NextActionDateTime;
+
+        if (!trans.RecId)
+        {
+            throw error(strFmt("Start deposit not found for account %1.", _account.AccountId));
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

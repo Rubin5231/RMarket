@@ -256,13 +256,13 @@ public class RMarketTrans extends FormRun
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormReferenceGroupControl">
-								<Name>Overview_Timestamp</Name>
+								<Name>Overview_TimestampMs</Name>
 								<Type>ReferenceGroup</Type>
 								<FormControlExtension
 									i:nil="true" />
 								<Controls />
 								<DataSource>RMarketTrans</DataSource>
-								<ReferenceField>Timestamp</ReferenceField>
+								<ReferenceField>TimestampMs</ReferenceField>
 							</AxFormControl>
 							<AxFormControl xmlns=""
 								i:type="AxFormDateTimeControl">
