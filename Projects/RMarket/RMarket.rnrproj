@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJobTest_SignalLog</StartupObject>
+    <StartupObject>RMarketJobTest_Bybit_Wallet_Balance</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -773,6 +773,11 @@
       <SubType>Content</SubType>
       <Name>RMarketTimestamp</Name>
       <Link>EDT Integer64s\RMarketTimestamp</Link>
+    </Content>
+    <Content Include="AxEdt\RMarketTimestampMs">
+      <SubType>Content</SubType>
+      <Name>RMarketTimestampMs</Name>
+      <Link>EDT Integer64s\RMarketTimestampMs</Link>
     </Content>
     <Content Include="AxEdt\RMarketTransId">
       <SubType>Content</SubType>

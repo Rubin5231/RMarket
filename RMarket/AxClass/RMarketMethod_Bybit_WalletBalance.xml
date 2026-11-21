@@ -87,6 +87,15 @@ public class RMarketMethod_Bybit_WalletBalance extends RMarketMethod implements 
         responseContract = RMarketJsonSerializer::deserializeObject(
             classNum(RMarketJson_Bybit_WalletBalance),
             responseStr) as RMarketJson_Bybit_WalletBalance;
+
+        if (!responseContract)
+            throw error("Invalid Bybit wallet balance response.");
+
+        if (!responseContract.isSuccess())
+            throw error(responseContract.getErrorDetails());
+
+        if (!responseContract.parmResult())
+            throw error("Bybit wallet balance result is missing.");
     }
 
 ]]></Source>

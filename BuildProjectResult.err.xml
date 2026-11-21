@@ -1,42 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-20T19:26:04.0876651+03:00">
+  GenerationTime="2026-11-21T11:37:34.1603221+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketConditionGroup/Method/calc</Path>
+      <Path>dynamics://Table/RMarketTrans/Method/createTransAdjustment</Path>
       <ElementType>Table Method</ElementType>
-      <Moniker>InconsistentAccessibilityParameterType</Moniker>
-      <Line>23</Line>
-      <Column>85</Column>
-      <EndLine>23</EndLine>
-      <EndColumn>117</EndColumn>
-      <Message>Parameter type 'RMarketSignalTrace' is less accessible than method 'calc'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketStrategyAction/Method/calcSignal</Path>
-      <ElementType>Table Method</ElementType>
-      <Moniker>InconsistentAccessibilityParameterType</Moniker>
-      <Line>131</Line>
-      <Column>90</Column>
-      <EndLine>131</EndLine>
-      <EndColumn>122</EndColumn>
-      <Message>Parameter type 'RMarketSignalTrace' is less accessible than method 'calcSignal'.</Message>
-    </Diagnostic>
-    <Diagnostic>
-      <DiagnosticType>Compile</DiagnosticType>
-      <Severity>Error</Severity>
-      <Path>dynamics://Table/RMarketConditionTable/Method/calc</Path>
-      <ElementType>Table Method</ElementType>
-      <Moniker>InconsistentAccessibilityParameterType</Moniker>
-      <Line>115</Line>
-      <Column>84</Column>
-      <EndLine>115</EndLine>
-      <EndColumn>116</EndColumn>
-      <Message>Parameter type 'RMarketSignalTrace' is less accessible than method 'calc'.</Message>
+      <Moniker>ParameterMissing</Moniker>
+      <Line>87</Line>
+      <Column>19</Column>
+      <EndLine>87</EndLine>
+      <EndColumn>26</EndColumn>
+      <Message>'Global.error' is missing argument 1 of type 'str(SysInfoLogStr)'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

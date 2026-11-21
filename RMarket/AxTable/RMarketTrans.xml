@@ -96,6 +96,7 @@ public class RMarketTrans extends common
 
         ttsbegin;
         trans.clear();
+        trans.initValue();
         trans.TransId       = transId;
         trans.AccountId     = _account.AccountId;
         trans.SubAccountId  = _subAccount.SubAccountId;
@@ -108,6 +109,8 @@ public class RMarketTrans extends common
         trans.CryptoCode    = _currencyCode;
         if (trans.validateWrite())
             trans.insert();
+        else
+            throw error("");
         ttscommit;
 
         if(!trans)

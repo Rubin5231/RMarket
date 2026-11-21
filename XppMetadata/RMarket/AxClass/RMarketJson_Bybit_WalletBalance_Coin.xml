@@ -121,6 +121,22 @@
 			<Attributes />
 			<Visibility>Private</Visibility>
 		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Real</Type>
+			<TypeName></TypeName>
+			<Name>spotBorrow</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
+		<AxClassMemberVariable>
+			<Tags></Tags>
+			<Type>Real</Type>
+			<TypeName></TypeName>
+			<Name>locked</Name>
+			<Attributes />
+			<Visibility>Private</Visibility>
+		</AxClassMemberVariable>
 	</Members>
 	<Methods>
 		<Method>
@@ -521,6 +537,64 @@
 					<TypeName></TypeName>
 					<DefaultValue>bonus</DefaultValue>
 					<Name>_bonus</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Real</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmSpotBorrow</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'spotBorrow'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<DefaultValue>spotBorrow</DefaultValue>
+					<Name>_spotBorrow</Name>
+				</AxMethodParameter>
+			</Parameters>
+			<ReturnType>
+				<Tags></Tags>
+				<Type>Real</Type>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
+		<Method>
+			<Name>parmLocked</Name>
+			<Visibility>Public</Visibility>
+			<Attributes>
+				<AxAttribute>
+					<Name>DataMember</Name>
+					<Parameters>
+						<AxAttributeParameter>
+							<TypeValue>'locked'</TypeValue>
+							<AdditionalData />
+						</AxAttributeParameter>
+					</Parameters>
+				</AxAttribute>
+			</Attributes>
+			<Parameters>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Real</Type>
+					<TypeName></TypeName>
+					<DefaultValue>locked</DefaultValue>
+					<Name>_locked</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

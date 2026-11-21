@@ -20,7 +20,8 @@ public class RMarketJson_Bybit_WalletBalance_Coin
     private real unrealisedPnl;
     private real cumRealisedPnl;
     private real bonus;
-
+    private real spotBorrow;
+    private real locked;
 }
 ]]></Declaration>
 		<Methods>
@@ -302,6 +303,30 @@ public class RMarketJson_Bybit_WalletBalance_Coin
     {
         bonus = _bonus;
         return bonus;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmSpotBorrow</Name>
+				<Source><![CDATA[
+    [DataMember('spotBorrow')]
+    public real parmSpotBorrow(real _spotBorrow = spotBorrow)
+    {
+        spotBorrow = _spotBorrow;
+        return spotBorrow;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmLocked</Name>
+				<Source><![CDATA[
+    [DataMember('locked')]
+    public real parmLocked(real _locked = locked)
+    {
+        locked = _locked;
+        return locked;
     }
 
 ]]></Source>

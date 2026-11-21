@@ -5,26 +5,98 @@
 		<Declaration><![CDATA[
 internal final class RMarketJobTest_Bybit_Wallet_Balance
 {
+    /// <summary>
+    /// Class entry point. The system will call this method when a designated menu 
+    /// is selected or when execution starts and this class is set as the startup class.
+    /// </summary>
+    /// <param name = "_args">The specified arguments.</param>
+
 }
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>main</Name>
 				<Source><![CDATA[
-    /// <summary>
-    /// Class entry point. The system will call this method when a designated menu 
-    /// is selected or when execution starts and this class is set as the startup class.
-    /// </summary>
-    /// <param name = "_args">The specified arguments.</param>
     public static void main(Args _args)
     {
-        //RMarketAPIEng_Kline apiClient = RMarketAPIEng::construct(_marketDim.MarketId, RMarketAPIMethodEnum::GetKline);
-        //apiClient.parmSymbolId(_marketDim.SymbolId);
-        //apiClient.parmInterval(_marketDim.Interval);
-        //apiClient.init();
+        RMarketAccount account;
+        RMarketMethod_Bybit_WalletBalance apiMethod;
 
-        //RMarketJsonAccountBalance_Bybit balance = apiClient.fetchData(currentStart, currentEnd);
-        //balance.getAccountBalances();
+        RMarketJson_Bybit_WalletBalance_Account wallet;
+        RMarketJson_Bybit_WalletBalance_Coin coin;
+
+        List accounts;
+        List coins;
+        ListEnumerator accountEnum;
+        ListEnumerator coinEnum;
+
+        Dialog dialog;
+        DialogField dlgAccountId;
+
+        dialog = new Dialog("Test Bybit wallet balance");
+
+        dlgAccountId = dialog.addFieldValue(extendedTypeStr(RMarketAccountId), 'DAT-ACC00011');
+
+        if (dialog.run())
+        {
+            account = RMarketAccount::find(dlgAccountId.value());
+
+            if (!account.RecId)
+                throw error("Account not found.");
+
+            if (account.RMarketTable().ApiType != RMarketApiType::Bybit)
+                throw error("Bybit account must be selected.");
+
+            apiMethod = new RMarketMethod_Bybit_WalletBalance();
+
+            apiMethod.setBaseUrl(account.RMarketTable().ApiUrl);
+            apiMethod.setApiKey(account.RMarketApiKey());
+            apiMethod.execute();
+
+            accounts = apiMethod.getResultList();
+
+            if (!accounts || !accounts.elements())
+                throw error("Wallet balance list is empty.");
+
+            accountEnum = accounts.getEnumerator();
+
+            while (accountEnum.moveNext())
+            {
+                wallet = accountEnum.current();
+
+                info(strFmt("Account type: %1", wallet.parmAccountType()));
+
+                info(strFmt("Total equity: %1", wallet.parmTotalEquity()));
+
+                info(strFmt("Total wallet balance: %1", wallet.parmTotalWalletBalance()));
+
+                info(strFmt("Total margin balance: %1", wallet.parmTotalMarginBalance()));
+
+                info(strFmt("Total available balance: %1", wallet.parmTotalAvailableBalance()));
+
+                coins = wallet.parmCoin();
+
+                if (coins)
+                {
+                    coinEnum = coins.getEnumerator();
+
+                    while (coinEnum.moveNext())
+                    {
+                        coin = coinEnum.current();
+
+                        info(strFmt("%1: Wallet=%2, Equity=%3, USD=%4, Locked=%5, Borrow=%6, SpotBorrow=%7, Interest=%8",
+                            coin.parmCoin(),
+                            coin.parmWalletBalance(),
+                            coin.parmEquity(),
+                            coin.parmUsdValue(),
+                            coin.parmLocked(),
+                            coin.parmBorrowAmount(),
+                            coin.parmSpotBorrow(),
+                            coin.parmAccruedInterest()));
+                    }
+                }
+            }
+        }
     }
 
 ]]></Source>

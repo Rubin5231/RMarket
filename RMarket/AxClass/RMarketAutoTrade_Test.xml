@@ -105,45 +105,100 @@ public class RMarketAutoTrade_Test extends RMarketAutoTrade
     /// <summary>
     /// STEP 1.1 - delete previous test data
     /// </summary>
+    
     protected void deletePreviousRecords(RMarketAccount _account)
     {
-        RMarketTrans trans;
-        RMarketOrder orders;
-        RMarketPosition position;
-        RMarketSubAccount subaccount;
-        RMarketAccount account;
+        RMarketAccount     account;
+        RMarketSubAccount  subAccount;
+        RMarketTrans       trans;
+        RMarketOrder       orders;
+        RMarketPosition    position;
+        RMarketSum         balanceSum;
+        RMarketSignalLog   signalLog;
+        RMarketEventLog    eventLog;
 
+        if (!_account.RecId ||
+            _account.AccountType     != RMarketAccountType::Test ||
+            _account.AccountTestType != RMarketAccountTestType::Common ||
+            _account.MainAccountId   != _account.AccountId)
+        {
+            throw error("Main test account expected.");
+        }
+
+        ttsbegin;
+
+        // Signal calculation history
+        delete_from signalLog
+            exists join subAccount
+                where subAccount.SubAccountId == signalLog.SubAccountId
+            exists join account
+                where account.AccountId      == subAccount.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Events linked to subaccounts
+        delete_from eventLog
+            exists join subAccount
+                where subAccount.SubAccountId == eventLog.SubAccountId
+            exists join account
+                where account.AccountId      == subAccount.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Account-level events (including events without SubAccountId)
+        delete_from eventLog
+            exists join account
+                where account.AccountId      == eventLog.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Financial transactions
         delete_from trans
             exists join account
-                where account.AccountId     == trans.AccountId
-                   && account.MainAccountId == accountId;
-        
+                where account.AccountId      == trans.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Aggregated subaccount balances
+        delete_from balanceSum
+            exists join subAccount
+                where subAccount.SubAccountId == balanceSum.SubAccountId
+            exists join account
+                where account.AccountId      == subAccount.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Orders
         delete_from orders
             exists join position
                 where position.PositionId == orders.PositionId
-            exists join subaccount
-                where subaccount.SubAccountId == position.SubAccountId
             exists join account
-                where account.AccountId     == subaccount.AccountId
-                   && account.MainAccountId == accountId;
-        
+                where account.AccountId      == position.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Positions
         delete_from position
-            exists join subaccount
-                where subaccount.SubAccountId == position.SubAccountId
             exists join account
-                where account.AccountId     == subaccount.AccountId
-                   && account.MainAccountId == accountId;
-        
-        delete_from subaccount
+                where account.AccountId      == position.AccountId
+                   && account.MainAccountId  == _account.AccountId
+                   && account.AccountType    == RMarketAccountType::Test;
+
+        // Shadow subaccounts only
+        delete_from subAccount
             exists join account
-                where account.AccountId       == subaccount.AccountId
-                   && account.MainAccountId   == accountId
-                   && account.AccountTestType != RMarketAccountTestType::Common;
-        
+                where account.AccountId        == subAccount.AccountId
+                   && account.MainAccountId    == _account.AccountId
+                   && account.AccountType      == RMarketAccountType::Test
+                   && account.AccountTestType  != RMarketAccountTestType::Common;
+
+        // Shadow accounts only
         delete_from account
-            where account.AccountId       == subaccount.AccountId
-               && account.MainAccountId   == accountId
+            where account.MainAccountId   == _account.AccountId
+               && account.AccountType     == RMarketAccountType::Test
                && account.AccountTestType != RMarketAccountTestType::Common;
+
+        ttscommit;
     }
 
 ]]></Source>
@@ -176,9 +231,9 @@ public class RMarketAutoTrade_Test extends RMarketAutoTrade
         
         accountNeg.clear();
         accountNeg.data(_account);
-        accountPos.initValue();
-        accountPos.MainAccountId   = _account.AccountId;
-        accountPos.AccountTestType = RMarketAccountTestType::Pessimistic;
+        accountNeg.initValue();
+        accountNeg.MainAccountId   = _account.AccountId;
+        accountNeg.AccountTestType = RMarketAccountTestType::Pessimistic;
         if (accountNeg.validateWrite())
             accountNeg.insert();
         else

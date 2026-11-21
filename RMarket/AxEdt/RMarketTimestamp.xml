@@ -2,7 +2,7 @@
 <AxEdt xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns=""
 	i:type="AxEdtInt64">
 	<Name>RMarketTimestamp</Name>
-	<Label>Timestamp, ms</Label>
+	<Label>Timestamp, s</Label>
 	<ReferenceTable>RMarketTimestampTable</ReferenceTable>
 	<ArrayElements />
 	<Relations />
@@ -12,4 +12,5 @@
 			<Table>RMarketTimestampTable</Table>
 		</AxEdtTableReference>
 	</TableReferences>
+	<AllowNegative>No</AllowNegative>
 </AxEdt>
