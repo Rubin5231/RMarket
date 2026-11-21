@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJobTest_AccountSetup</StartupObject>
+    <StartupObject>RMarketJobTest_Bybit_QueryApi</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -183,6 +183,11 @@
       <SubType>Content</SubType>
       <Name>RMarketJobTest_AccountSetup</Name>
       <Link>Classes\Jobs\RMarketJobTest_AccountSetup</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_Bybit_QueryApi">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_Bybit_QueryApi</Name>
+      <Link>Classes\Jobs\RMarketJobTest_Bybit_QueryApi</Link>
     </Content>
     <Content Include="AxClass\RMarketJobTest_Bybit_Wallet_Balance">
       <SubType>Content</SubType>
@@ -429,6 +434,16 @@
       <Name>RMarketJson_Bybit_Order_Result</Name>
       <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_Order_Result</Link>
     </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_QueryApi">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_QueryApi</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_QueryApi</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJson_Bybit_QueryApi_Result">
+      <SubType>Content</SubType>
+      <Name>RMarketJson_Bybit_QueryApi_Result</Name>
+      <Link>Classes\API Bybit Contracts\RMarketJson_Bybit_QueryApi_Result</Link>
+    </Content>
     <Content Include="AxClass\RMarketJson_Bybit_Response">
       <SubType>Content</SubType>
       <Name>RMarketJson_Bybit_Response</Name>
@@ -608,6 +623,11 @@
       <SubType>Content</SubType>
       <Name>RMarketMethod_Bybit_Klines</Name>
       <Link>Classes\ApiMethod\RMarketMethod_Bybit_Klines</Link>
+    </Content>
+    <Content Include="AxClass\RMarketMethod_Bybit_QueryApi">
+      <SubType>Content</SubType>
+      <Name>RMarketMethod_Bybit_QueryApi</Name>
+      <Link>Classes\ApiMethod\RMarketMethod_Bybit_QueryApi</Link>
     </Content>
     <Content Include="AxClass\RMarketMethod_Bybit_SetCollateral">
       <SubType>Content</SubType>

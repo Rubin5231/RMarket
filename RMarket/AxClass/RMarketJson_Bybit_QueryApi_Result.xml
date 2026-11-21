@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJson_Bybit_QueryApi_Result</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[DataContractAttribute]
+public class RMarketJson_Bybit_QueryApi_Result
+{
+    private int64 userID;
+    private str parentUid;
+    private boolean isMaster;
+    private int readOnly_;
+    private int uta;
+    private str expiredAt;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>parmUserID</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('userID')]
+    public int64 parmUserID(int64 _value = userID)
+    {
+        userID = _value;
+        return userID;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmParentUid</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('parentUid')]
+    public str parmParentUid(str _value = parentUid)
+    {
+        parentUid = _value;
+        return parentUid;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmIsMaster</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('isMaster')]
+    public boolean parmIsMaster(boolean _value = isMaster)
+    {
+        isMaster = _value;
+        return isMaster;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmReadOnly</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('readOnly')]
+    public int parmReadOnly(int _value = readOnly_)
+    {
+        readOnly_ = _value;
+        return readOnly_;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmUta</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('uta')]
+    public int parmUta(int _value = uta)
+    {
+        uta = _value;
+        return uta;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmExpiredAt</Name>
+				<Source><![CDATA[
+    [DataMemberAttribute('expiredAt')]
+    public str parmExpiredAt(str _value = expiredAt)
+    {
+        expiredAt = _value;
+        return expiredAt;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

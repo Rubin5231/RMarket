@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketMethod_Bybit_QueryApi</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketMethod_Bybit_QueryApi extends RMarketMethod
+{
+    protected RMarketJson_Bybit_QueryApi responseContract;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    public void new()
+    {
+        apiClient = new RMarketApiClientBybit();
+        apiClient.parmHttpMethod(RMarketAPIHttpMethod::GET);
+        apiClient.parmMethodUrl('/v5/user/query-api');
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>processResponse</Name>
+				<Source><![CDATA[
+    public void processResponse()
+    {
+        RMarketAPIMethodLog logRecord;
+
+        // Do not persist the API key returned in response JSON.
+        logRecord = apiClient.parmLogRecord();
+        logRecord.Response = '[Redacted]';
+        apiClient.parmLogRecord(logRecord);
+
+        super();
+
+        if (apiClient.getHttpStatus() != System.Net.HttpStatusCode::OK)
+        {
+            throw error(strFmt(
+                "Bybit Query API: HTTP %1",
+                apiClient.getHttpStatus()));
+        }
+
+        responseContract =
+            RMarketJsonSerializer::deserializeObjectStrict(
+                classNum(RMarketJson_Bybit_QueryApi),
+                apiClient.getResponseBody())
+                    as RMarketJson_Bybit_QueryApi;
+
+        if (!responseContract)
+            throw error("Invalid Bybit Query API response.");
+
+        if (!responseContract.isSuccess())
+            throw error(responseContract.getErrorDetails());
+
+        if (!responseContract.parmResult())
+            throw error("Bybit Query API result is missing.");
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getResult</Name>
+				<Source><![CDATA[
+    public RMarketJson_Bybit_QueryApi_Result getResult()
+    {
+        return responseContract.parmResult();
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

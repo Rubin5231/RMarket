@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_Bybit_QueryApi</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_Bybit_QueryApi
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketAccount account;
+        RMarketMethod_Bybit_QueryApi apiMethod;
+        RMarketJson_Bybit_QueryApi_Result result;
+
+        Dialog dialog;
+        DialogField dlgAccountId;
+
+        dialog = new Dialog("Test Bybit API key");
+        dlgAccountId = dialog.addFieldValue(extendedTypeStr(RMarketAccountId), 'DAT-ACC00011');
+
+        if (dialog.run())
+        {
+            account = RMarketAccount::find(dlgAccountId.value());
+
+            if (!account.RecId)
+                throw error("Account not found.");
+
+            if (account.RMarketTable().ApiType != RMarketApiType::Bybit)
+                throw error("Bybit account expected.");
+
+            apiMethod = new RMarketMethod_Bybit_QueryApi();
+
+            apiMethod.initMarket(account.RMarketTable());
+            apiMethod.setApiKey(account.RMarketApiKey());
+            apiMethod.execute();
+
+            result = apiMethod.getResult();
+
+            info(strFmt("Account: %1", account.AccountId));
+            info(strFmt("Exchange UID: %1", result.parmUserID()));
+            info(strFmt("Parent UID: %1", result.parmParentUid()));
+            info(strFmt("Is master: %1", result.parmIsMaster()));
+            info(strFmt("Read-only: %1", result.parmReadOnly()));
+            info(strFmt("UTA: %1", result.parmUta()));
+            info(strFmt("Expires: %1", result.parmExpiredAt()));
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
