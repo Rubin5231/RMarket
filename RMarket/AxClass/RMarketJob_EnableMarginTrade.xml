@@ -22,7 +22,7 @@ internal final class RMarketJob_EnableMarginTrade
         _account.clear();
         _account.AccountId = "TEST";
         _account.MarketId  = RMarketTable::find('TestBybit').MarketId;
-        _account.ApiKey    = RMarketApiKey::find('BybitTest-2025-07-11').KeyName;
+        _account.ApiKey    = RMarketApiKey::find('BybitTest-2025-07-11', _account.MarketId).KeyName;
         //RMarketAutoTrade_Bybit.prepareAccount(RMarketAccount _account)
         RMarketJob_EnableMarginTrade runClass = new RMarketJob_EnableMarginTrade();
         runClass.run(_account);

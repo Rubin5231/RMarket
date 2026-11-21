@@ -6,26 +6,77 @@
 public class RMarketApiKey extends common
 {
 }
-
 ]]></Declaration>
 		<Methods>
 			<Method>
 				<Name>find</Name>
 				<Source><![CDATA[
     public static RMarketApiKey find(RMarketApiKeyName  _keyName,
+                                     RMarketId          _marketId,
                                      boolean            _forUpdate = false)
     {
         RMarketApiKey key;
         ;
-        if (_keyName)
+        if (_keyName && _marketId)
         {
             key.selectForUpdate(_forUpdate);
             
             select firstonly key
-                where key.KeyName  == _keyName;
+                where key.KeyName  == _keyName
+                   && key.MarketId == _marketId;
         }
         
         return key;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>refreshExchangeInfo</Name>
+				<Source><![CDATA[
+    public void refreshExchangeInfo()
+    {
+        RMarketApiKey key;
+        RMarketTable market;
+        RMarketMethodInterface_GetApiKeyInfo apiMethod;
+
+        RMarketExchangeUid exchangeUid;
+        utcdatetime expirationDateTime;
+
+        if (!this.RecId)
+            throw error("API key record not found.");
+
+        market = RMarketTable::find(this.MarketId);
+
+        if (!market.RecId)
+            throw error("Market not found.");
+
+        apiMethod = RMarketMethodInterface::createMethod_GetApiKeyInfo(market);
+
+        apiMethod.setApiKey(this);
+        apiMethod.execute();
+
+        exchangeUid        = apiMethod.getExchangeUid();
+        expirationDateTime = apiMethod.getExpirationDateTime();
+
+        if (!exchangeUid)
+            throw error("Exchange account UID not received.");
+
+        ttsbegin;
+
+        select firstonly forupdate key
+            where key.RecId == this.RecId;
+
+        if (key.ExchangeUid && key.ExchangeUid != exchangeUid)
+        {
+            throw error(strFmt("API key belongs to another exchange account: %1.", exchangeUid));
+        }
+
+        key.ExchangeUid        = exchangeUid;
+        key.ExpirationDateTime = expirationDateTime;
+        key.update();
+
+        ttscommit;
     }
 
 ]]></Source>
@@ -111,6 +162,12 @@ public class RMarketApiKey extends common
 					<DataField>KeyName</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
+					<DataField>ExpirationDateTime</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>ExchangeUid</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
 					<DataField>ApiKey</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
@@ -151,6 +208,16 @@ public class RMarketApiKey extends common
 			<Name>Secret</Name>
 			<ExtendedDataType>Description</ExtendedDataType>
 			<Label>Secret</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>ExchangeUid</Name>
+			<ExtendedDataType>RMarketExchangeUid</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldUtcDateTime">
+			<Name>ExpirationDateTime</Name>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

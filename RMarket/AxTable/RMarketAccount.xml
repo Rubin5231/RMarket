@@ -44,7 +44,7 @@ public class RMarketAccount extends common
 				<Source><![CDATA[
     public RMarketApiKey RMarketApiKey(boolean _forUpdate = false)
     {
-        return RMarketApiKey::find(this.ApiKey, _forUpdate);
+        return RMarketApiKey::find(this.ApiKey, this.MarketId, _forUpdate);
     }
 
 ]]></Source>
@@ -285,6 +285,12 @@ public class RMarketAccount extends common
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">
 			<Name>Leverage</Name>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>ExchangeUid</Name>
+			<ExtendedDataType>RMarketExchangeUid</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

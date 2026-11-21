@@ -8,11 +8,19 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketApiKeyName</TypeName>
 					<Name>_keyName</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketId</TypeName>
+					<Name>_marketId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
 					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
@@ -20,16 +28,18 @@
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
+				<Tags></Tags>
 				<Type>Record</Type>
 				<TypeName>RMarketApiKey</TypeName>
 			</ReturnType>
-			<Variables>
-				<AxMethodVariable>
-					<Type>Record</Type>
-					<TypeName>RMarketApiKey</TypeName>
-					<Name>key</Name>
-				</AxMethodVariable>
-			</Variables>
+		</Method>
+		<Method>
+			<Name>refreshExchangeInfo</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
 		</Method>
 	</Methods>
 </z:anyType>

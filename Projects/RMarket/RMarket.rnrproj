@@ -754,6 +754,11 @@
       <Name>RMarketDurationMs</Name>
       <Link>EDT Integer64s\RMarketDurationMs</Link>
     </Content>
+    <Content Include="AxEdt\RMarketExchangeUid">
+      <SubType>Content</SubType>
+      <Name>RMarketExchangeUid</Name>
+      <Link>EDT Strings\RMarketExchangeUid</Link>
+    </Content>
     <Content Include="AxEdt\RMarketId">
       <SubType>Content</SubType>
       <Name>RMarketId</Name>

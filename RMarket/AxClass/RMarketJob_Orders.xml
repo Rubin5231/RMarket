@@ -19,7 +19,7 @@ internal final class RMarketJob_Orders
     public static void main(Args _args)
     {
         RMarketTable market = RMarketTable::find('TestBybit');
-        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11');
+        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11', market.MarketId);
         RMarketSymbolId symbolId = "BTCUSDT";
         RMarketOrderSide side = RMarketOrderSide::Sell;
         RMarketOrderType type = RMarketOrderType::Market;

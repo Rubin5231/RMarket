@@ -35,6 +35,8 @@ internal final class RMarketJobTest_Bybit_QueryApi
             apiMethod.setApiKey(account.RMarketApiKey());
             apiMethod.execute();
 
+            account.RMarketApiKey().refreshExchangeInfo();
+
             info(strFmt("Account: %1", account.AccountId));
             info(strFmt("Exchange UID: %1", apiMethod.getExchangeUid()));
             info(strFmt("Parent UID: %1", apiMethod.getParentUid()));

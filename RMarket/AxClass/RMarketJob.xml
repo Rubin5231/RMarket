@@ -20,7 +20,7 @@ internal final class RMarketJob
     {
         // Инициализация биржи
         RMarketTable market = RMarketTable::find('TestBybit');
-        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11');
+        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11', market.MarketId);
 
         str orderId;
         

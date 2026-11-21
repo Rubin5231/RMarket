@@ -16,7 +16,7 @@ public class RMarketJob_Collateral
         RMarketSymbol symbol;
         // Инициализация биржи
         RMarketTable market = RMarketTable::find('TestBybit');
-        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11');
+        RMarketApiKey key = RMarketApiKey::find('BybitTest-2025-07-11', market.MarketId);
         str s;
 
         while select symbol
