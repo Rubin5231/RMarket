@@ -16,7 +16,7 @@
     <Name>RMarket</Name>
     <RootNamespace>RMarket</RootNamespace>
     <StartupType>Class</StartupType>
-    <StartupObject>RMarketJobTest_Bybit_QueryApi</StartupObject>
+    <StartupObject>RMarketJobTest_AccountBinding</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <Configuration>Debug</Configuration>
@@ -178,6 +178,11 @@
       <SubType>Content</SubType>
       <Name>RMarketJobTest</Name>
       <Link>Classes\Jobs\RMarketJobTest</Link>
+    </Content>
+    <Content Include="AxClass\RMarketJobTest_AccountBinding">
+      <SubType>Content</SubType>
+      <Name>RMarketJobTest_AccountBinding</Name>
+      <Link>Classes\Jobs\RMarketJobTest_AccountBinding</Link>
     </Content>
     <Content Include="AxClass\RMarketJobTest_AccountSetup">
       <SubType>Content</SubType>

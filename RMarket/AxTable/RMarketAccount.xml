@@ -104,6 +104,73 @@ public class RMarketAccount extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>bindExchangeAccount</Name>
+				<Source><![CDATA[
+    public void bindExchangeAccount()
+    {
+        RMarketAccount account, otherAccount;
+        RMarketApiKey apiKey;
+
+        if (!this.RecId)
+            throw error("Account not found.");
+
+        if (this.AccountType != RMarketAccountType::Real)
+            throw error("Real account expected.");
+
+        apiKey = this.RMarketApiKey();
+
+        if (!apiKey.RecId)
+            throw error("API key not found.");
+
+        // Refresh exchange identity before binding.
+        apiKey.refreshExchangeInfo();
+
+        apiKey = this.RMarketApiKey();
+
+        if (!apiKey.ExchangeUid)
+            throw error("Exchange UID is missing.");
+
+        ttsbegin;
+
+        select firstonly forupdate account
+            where account.RecId == this.RecId;
+
+        if (account.ApiKey   != apiKey.KeyName ||
+            account.MarketId != apiKey.MarketId)
+        {
+            throw error("Account API key was changed.");
+        }
+
+        if (account.ExchangeUid &&
+            account.ExchangeUid != apiKey.ExchangeUid)
+        {
+            throw error(strFmt("Account %1 is already bound to exchange UID %2.",
+                account.AccountId,
+                account.ExchangeUid));
+        }
+
+        select firstonly otherAccount
+            where otherAccount.MarketId    == account.MarketId
+               && otherAccount.AccountType == RMarketAccountType::Real
+               && otherAccount.ExchangeUid == apiKey.ExchangeUid
+               && otherAccount.RecId       != account.RecId;
+
+        if (otherAccount.RecId)
+        {
+            throw error(strFmt("Exchange UID %1 is already bound to account %2.",
+                apiKey.ExchangeUid,
+                otherAccount.AccountId));
+        }
+
+        account.ExchangeUid = apiKey.ExchangeUid;
+        account.update();
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Market accounts</Label>

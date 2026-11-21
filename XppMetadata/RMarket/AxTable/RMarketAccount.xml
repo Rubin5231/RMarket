@@ -95,5 +95,13 @@
 				<TypeName>RMarketAccount</TypeName>
 			</ReturnType>
 		</Method>
+		<Method>
+			<Name>bindExchangeAccount</Name>
+			<Visibility>Public</Visibility>
+			<ReturnType>
+				<Tags></Tags>
+				<TypeName></TypeName>
+			</ReturnType>
+		</Method>
 	</Methods>
 </z:anyType>

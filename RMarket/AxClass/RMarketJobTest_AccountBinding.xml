@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketJobTest_AccountBinding</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class RMarketJobTest_AccountBinding
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    public static void main(Args _args)
+    {
+        RMarketAccount account;
+        Dialog dialog;
+        DialogField dlgAccountId;
+        RMarketAccountId accountId;
+
+        dialog = new Dialog("Test exchange account binding");
+
+        dlgAccountId = dialog.addFieldValue(extendedTypeStr(RMarketAccountId), 'DAT-ACC00011');
+
+        if (dialog.run())
+        {
+            accountId = dlgAccountId.value();
+            account = RMarketAccount::find(accountId);
+
+            if (!account.RecId)
+                throw error("Account not found.");
+
+            account.bindExchangeAccount();
+
+            account = RMarketAccount::find(accountId);
+
+            info(strFmt("Account binding PASS: %1 -> %2",
+                account.AccountId,
+                account.ExchangeUid));
+        }
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
