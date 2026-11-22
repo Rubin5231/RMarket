@@ -17,6 +17,7 @@ internal final class RMarketJobTest_AccountBinding
         Dialog dialog;
         DialogField dlgAccountId;
         RMarketAccountId accountId;
+        RMarketApiKey apiKey;
 
         dialog = new Dialog("Test exchange account binding");
 
@@ -37,6 +38,14 @@ internal final class RMarketJobTest_AccountBinding
             info(strFmt("Account binding PASS: %1 -> %2",
                 account.AccountId,
                 account.ExchangeUid));
+
+            //account = RMarketAccount::find(accountId);
+            apiKey = account.getValidatedApiKey();
+
+            info(strFmt("API access PASS: %1, UID=%2, expires=%3",
+                apiKey.KeyName,
+                apiKey.ExchangeUid,
+                apiKey.ExpirationDateTime));
         }
     }
 

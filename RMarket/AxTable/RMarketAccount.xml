@@ -172,6 +172,52 @@ public class RMarketAccount extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>getValidatedApiKey</Name>
+				<Source><![CDATA[
+    public RMarketApiKey getValidatedApiKey()
+    {
+        RMarketApiKey apiKey;
+
+        if (!this.RecId)
+            throw error("Account not found.");
+
+        if (!this.ApiKey)
+            throw error("API key is not specified.");
+
+        if (!this.ExchangeUid)
+            throw error("Exchange account is not bound.");
+
+        apiKey = this.RMarketApiKey();
+
+        if (!apiKey.RecId)
+            throw error("API key not found.");
+
+        if (apiKey.MarketId != this.MarketId)
+            throw error("API key market mismatch.");
+
+        if (!apiKey.ExchangeUid ||
+            apiKey.ExchangeUid != this.ExchangeUid)
+        {
+            throw error(strFmt("API key %1 does not belong to exchange account %2.",
+                apiKey.KeyName,
+                this.ExchangeUid));
+        }
+
+        if (!apiKey.ApiKey || !apiKey.Secret)
+            throw error("API key credentials are incomplete.");
+
+        if (apiKey.ExpirationDateTime != DateTimeUtil::minValue() &&
+            apiKey.ExpirationDateTime <= DateTimeUtil::utcNow())
+        {
+            throw error(strFmt("API key %1 has expired.", apiKey.KeyName));
+        }
+
+        return apiKey;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Market accounts</Label>
