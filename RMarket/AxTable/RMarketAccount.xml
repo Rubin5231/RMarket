@@ -115,8 +115,8 @@ public class RMarketAccount extends common
         if (!this.RecId)
             throw error("Account not found.");
 
-        if (this.AccountType != RMarketAccountType::Real)
-            throw error("Real account expected.");
+        if (this.AccountId != this.MainAccountId)
+            throw error("Main account expected.");
 
         apiKey = this.RMarketApiKey();
 
@@ -150,17 +150,18 @@ public class RMarketAccount extends common
                 account.ExchangeUid));
         }
 
-        select firstonly otherAccount
-            where otherAccount.MarketId    == account.MarketId
-               && otherAccount.AccountType == RMarketAccountType::Real
-               && otherAccount.ExchangeUid == apiKey.ExchangeUid
-               && otherAccount.RecId       != account.RecId;
-
-        if (otherAccount.RecId)
+        if (account.AccountType == RMarketAccountType::Real)
         {
-            throw error(strFmt("Exchange UID %1 is already bound to account %2.",
-                apiKey.ExchangeUid,
-                otherAccount.AccountId));
+            select firstonly otherAccount
+                where otherAccount.MarketId    == account.MarketId
+                   && otherAccount.AccountType == RMarketAccountType::Real
+                   && otherAccount.ExchangeUid == apiKey.ExchangeUid
+                   && otherAccount.RecId       != account.RecId;
+
+            if (otherAccount.RecId)
+                throw error(strFmt("Exchange UID %1 is already bound to account %2.",
+                    apiKey.ExchangeUid,
+                    otherAccount.AccountId));
         }
 
         account.ExchangeUid = apiKey.ExchangeUid;
@@ -257,6 +258,9 @@ public class RMarketAccount extends common
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>Leverage</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>ExchangeUid</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>NextActionDateTime</DataField>
