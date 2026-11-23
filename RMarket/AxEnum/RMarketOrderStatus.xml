@@ -4,8 +4,18 @@
 	<UseEnumValue>No</UseEnumValue>
 	<EnumValues>
 		<AxEnumValue>
+			<Name>Created</Name>
+			<Label>Created</Label>
+			<Value>3</Value>
+		</AxEnumValue>
+		<AxEnumValue>
 			<Name>Active</Name>
 			<Label>Active</Label>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>PartExecuted</Name>
+			<Label>PartExecuted</Label>
+			<Value>4</Value>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>Executed</Name>
@@ -16,6 +26,11 @@
 			<Name>Canceled</Name>
 			<Label>Canceled</Label>
 			<Value>2</Value>
+		</AxEnumValue>
+		<AxEnumValue>
+			<Name>Rejected</Name>
+			<Label>Rejected</Label>
+			<Value>5</Value>
 		</AxEnumValue>
 	</EnumValues>
 	<IsExtensible>true</IsExtensible>

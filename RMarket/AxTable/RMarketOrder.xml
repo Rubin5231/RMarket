@@ -29,6 +29,32 @@ public class RMarketOrder extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>initValue</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+
+    public void initValue()
+    {
+        NumberSequenceReference numberSequenceReference;
+
+        super();
+
+        numberSequenceReference = NumberSeqReference::findReference(extendedTypeNum(RMarketOrderId));
+
+        if (numberSequenceReference)
+        {
+            this.OrderId = NumberSeq::newGetNum(numberSequenceReference).num();
+        }
+
+        this.Status     = RMarketOrderStatus::Created;
+        this.SyncStatus = RMarketOrderSyncStatus::Pending;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Market orders</Label>
@@ -82,7 +108,7 @@ public class RMarketOrder extends common
 					<DataField>OrderId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>OrderType</DataField>
+					<DataField>Type</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>OrderPrice</DataField>
@@ -106,7 +132,7 @@ public class RMarketOrder extends common
 					<DataField>OrderId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>OrderType</DataField>
+					<DataField>Type</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>OrderPrice</DataField>
@@ -142,7 +168,7 @@ public class RMarketOrder extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
-			<Name>OrderType</Name>
+			<Name>Type</Name>
 			<EnumType>RMarketOrderType</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
@@ -161,6 +187,27 @@ public class RMarketOrder extends common
 			i:type="AxTableFieldEnum">
 			<Name>Status</Name>
 			<EnumType>RMarketOrderStatus</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Role</Name>
+			<EnumType>RMarketOrderRole</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Side</Name>
+			<EnumType>RMarketOrderSide</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>SyncStatus</Name>
+			<EnumType>RMarketOrderSyncStatus</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldInt64">
+			<Name>ExchangeOrderId</Name>
+			<ExtendedDataType>RMarketExchangeOrderId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 	</Fields>
 	<FullTextIndexes />

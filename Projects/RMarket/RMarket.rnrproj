@@ -759,6 +759,11 @@
       <Name>RMarketDurationMs</Name>
       <Link>EDT Integer64s\RMarketDurationMs</Link>
     </Content>
+    <Content Include="AxEdt\RMarketExchangeOrderId">
+      <SubType>Content</SubType>
+      <Name>RMarketExchangeOrderId</Name>
+      <Link>EDT Integer64s\RMarketExchangeOrderId</Link>
+    </Content>
     <Content Include="AxEdt\RMarketExchangeUid">
       <SubType>Content</SubType>
       <Name>RMarketExchangeUid</Name>
@@ -928,6 +933,11 @@
       <SubType>Content</SubType>
       <Name>RMarketOrderStatus</Name>
       <Link>Base Enums\RMarketOrderStatus</Link>
+    </Content>
+    <Content Include="AxEnum\RMarketOrderSyncStatus">
+      <SubType>Content</SubType>
+      <Name>RMarketOrderSyncStatus</Name>
+      <Link>Base Enums\RMarketOrderSyncStatus</Link>
     </Content>
     <Content Include="AxEnum\RMarketOrderType">
       <SubType>Content</SubType>
