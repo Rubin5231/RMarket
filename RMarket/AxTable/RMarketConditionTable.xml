@@ -379,9 +379,9 @@ public class RMarketConditionTable extends common
 			<Method>
 				<Name>validateWrite</Name>
 				<Source><![CDATA[
-    /*public RMarketStrategyAction RMarketStrategyAction(boolean _forUpdate = false)
+    /*public RMarketStrategySignal RMarketStrategySignal(boolean _forUpdate = false)
     {
-        return RMarketStrategyAction::findRecId(this.RefRecId, _forUpdate);
+        return RMarketStrategySignal::findRecId(this.RefRecId, _forUpdate);
     }*/
 
     /// <summary>
@@ -712,9 +712,9 @@ public class RMarketConditionTable extends common
 	<Mappings />
 	<Relations>
 		<AxTableRelation>
-			<Name>RMarketStrategyAction</Name>
+			<Name>RMarketStrategySignal</Name>
 			<OnDelete>Restricted</OnDelete>
-			<RelatedTable>RMarketStrategyAction</RelatedTable>
+			<RelatedTable>RMarketStrategySignal</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
@@ -726,7 +726,7 @@ public class RMarketConditionTable extends common
 					i:type="AxTableRelationConstraintFixed">
 					<Name>Relation</Name>
 					<Field>Relation</Field>
-					<ValueStr>RMarketConditionRelation::RMarketStrategyAction</ValueStr>
+					<ValueStr>RMarketConditionRelation::RMarketStrategySignal</ValueStr>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>

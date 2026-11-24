@@ -959,10 +959,10 @@
       <Name>RMarketSignalResult</Name>
       <Link>Base Enums\RMarketSignalResult</Link>
     </Content>
-    <Content Include="AxEnum\RMarketStrategyActionType">
+    <Content Include="AxEnum\RMarketSignalType">
       <SubType>Content</SubType>
-      <Name>RMarketStrategyActionType</Name>
-      <Link>Base Enums\RMarketStrategyActionType</Link>
+      <Name>RMarketSignalType</Name>
+      <Link>Base Enums\RMarketSignalType</Link>
     </Content>
     <Content Include="AxEnum\RMarketStrategyStatus">
       <SubType>Content</SubType>
@@ -1484,15 +1484,15 @@
       <Name>RMarketStrategy</Name>
       <Link>Tables\RMarketStrategy</Link>
     </Content>
-    <Content Include="AxTable\RMarketStrategyAction">
-      <SubType>Content</SubType>
-      <Name>RMarketStrategyAction</Name>
-      <Link>Tables\RMarketStrategyAction</Link>
-    </Content>
     <Content Include="AxTable\RMarketStrategyOrders">
       <SubType>Content</SubType>
       <Name>RMarketStrategyOrders</Name>
       <Link>Tables\RMarketStrategyOrders</Link>
+    </Content>
+    <Content Include="AxTable\RMarketStrategySignal">
+      <SubType>Content</SubType>
+      <Name>RMarketStrategySignal</Name>
+      <Link>Tables\RMarketStrategySignal</Link>
     </Content>
     <Content Include="AxTable\RMarketSubAccount">
       <SubType>Content</SubType>

@@ -15,7 +15,7 @@ public final class RMarketSignalCalc
 				<Source><![CDATA[
     public static RMarketSignalLog calculate(
         RMarketSubAccount     _subAccount,
-        RMarketStrategyAction _action,
+        RMarketStrategySignal _action,
         RMarketTimestamp      _tsCursor)
     {
         RMarketSignalTrace signalTrace = new RMarketSignalTrace();
@@ -128,7 +128,7 @@ public final class RMarketSignalCalc
         RMarketTimestamp  _tsCursor)
     {
         RMarketStrategy       strategy;
-        RMarketStrategyAction action;
+        RMarketStrategySignal action;
         RMarketTimestamp      signalTimestamp;
         int                   calculated;
 

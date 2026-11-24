@@ -1,84 +1,774 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-21T17:33:35.8079059+03:00">
+  GenerationTime="2026-11-24T17:02:23.7251798+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>ModelElementWithUnparsableSource</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>The model element was saved with unparsable source code and cannot be used. Please edit the element in Visual Studio to fix the errors.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal</Path>
+      <ElementType>Table</ElementType>
+      <Moniker>UnderlyingFieldTypeNotFound</Moniker>
+      <Line>1</Line>
+      <Column>14</Column>
+      <EndLine>1</EndLine>
+      <EndColumn>35</EndColumn>
+      <Message>The underlying type 'RMarketStrategyActionType ' or its base type for table 'RMarketStrategySignal' field 'Type' does not exist.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>ElementNameMismatch</Moniker>
-      <Message>The name in the source code declaration 'RMarketMethod_Bybit_QueryApi' does not match the artifact name 'RMarketJson_Bybit_QueryApi'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/findRecId</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>28</Line>
+      <Column>5</Column>
+      <EndLine>29</EndLine>
+      <EndColumn>78</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>AlreadyDefined</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>An item with same name as field 'result' has already been defined.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/find</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>10</Line>
+      <Column>5</Column>
+      <EndLine>12</EndLine>
+      <EndColumn>84</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExchangeUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>111</Line>
+      <Column>38</Column>
+      <EndLine>111</EndLine>
+      <EndColumn>68</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isReadOnly' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>111</Line>
+      <Column>70</Column>
+      <EndLine>111</EndLine>
+      <EndColumn>100</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'isMaster' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/find</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>14</Line>
+      <Column>9</Column>
+      <EndLine>14</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getExpirationDateTime' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/find</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>20</Line>
+      <Column>13</Column>
+      <EndLine>22</EndLine>
+      <EndColumn>49</EndColumn>
+      <Message>'action' is not declared.</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>Compile</DiagnosticType>
       <Severity>Error</Severity>
-      <Path>dynamics://Class/RMarketJson_Bybit_QueryApi</Path>
-      <ElementType>Class</ElementType>
-      <Moniker>InterfaceMethodNotImplemented</Moniker>
-      <Line>0</Line>
-      <Column>0</Column>
-      <Message>Class 'RMarketJson_Bybit_QueryApi' does not implement the method 'getParentUid' from the interface 'RMarketMethodInterface_GetApiKeyInfo'.</Message>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/findRecId</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>31</Line>
+      <Column>9</Column>
+      <EndLine>31</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/findRecId</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>37</Line>
+      <Column>13</Column>
+      <EndLine>38</EndLine>
+      <EndColumn>45</EndColumn>
+      <Message>'action' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/exists</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TableNotFound</Moniker>
+      <Line>54</Line>
+      <Column>31</Column>
+      <EndLine>56</EndLine>
+      <EndColumn>79</EndColumn>
+      <Message>Table 'RMarketStrategyAction' is not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/initValue</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>68</Line>
+      <Column>9</Column>
+      <EndLine>68</EndLine>
+      <EndColumn>18</EndColumn>
+      <Message>The name 'RMarketStrategyActionType' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/initValue</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>68</Line>
+      <Column>21</Column>
+      <EndLine>68</EndLine>
+      <EndColumn>57</EndColumn>
+      <Message>The qualifier 'RMarketStrategyActionType' is not valid for field 'StopTrade'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumDecrease</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>83</Line>
+      <Column>9</Column>
+      <EndLine>83</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumDecrease</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>ClassOrTableNotFound</Moniker>
+      <Line>83</Line>
+      <Column>39</Column>
+      <EndLine>83</EndLine>
+      <EndColumn>103</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not designate a class or table.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumDecrease</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>ClassOrTableNotFound</Moniker>
+      <Line>85</Line>
+      <Column>13</Column>
+      <EndLine>85</EndLine>
+      <EndColumn>62</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not designate a class or table.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumRaise</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>98</Line>
+      <Column>9</Column>
+      <EndLine>98</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumRaise</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>ClassOrTableNotFound</Moniker>
+      <Line>98</Line>
+      <Column>39</Column>
+      <EndLine>98</EndLine>
+      <EndColumn>103</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not designate a class or table.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionNumRaise</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>ClassOrTableNotFound</Moniker>
+      <Line>100</Line>
+      <Column>13</Column>
+      <EndLine>100</EndLine>
+      <EndColumn>62</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not designate a class or table.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>113</Line>
+      <Column>25</Column>
+      <EndLine>113</EndLine>
+      <EndColumn>33</EndColumn>
+      <Message>The qualifier '_action1' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>116</Line>
+      <Column>9</Column>
+      <EndLine>116</EndLine>
+      <EndColumn>21</EndColumn>
+      <Message>The qualifier '_action1' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>116</Line>
+      <Column>24</Column>
+      <EndLine>116</EndLine>
+      <EndColumn>32</EndColumn>
+      <Message>The qualifier '_action2' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>118</Line>
+      <Column>9</Column>
+      <EndLine>118</EndLine>
+      <EndColumn>21</EndColumn>
+      <Message>The qualifier '_action2' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/RMarketStrategySignal/Method/actionSwapNum</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>121</Line>
+      <Column>9</Column>
+      <EndLine>121</EndLine>
+      <EndColumn>21</EndColumn>
+      <Message>The qualifier '_action2' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>237</Line>
+      <Column>9</Column>
+      <EndLine>237</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>237</Line>
+      <Column>48</Column>
+      <EndLine>237</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>251</Line>
+      <Column>14</Column>
+      <EndLine>251</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>273</Line>
+      <Column>59</Column>
+      <EndLine>273</EndLine>
+      <EndColumn>73</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>282</Line>
+      <Column>20</Column>
+      <EndLine>282</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createConditionGroup</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>299</Line>
+      <Column>53</Column>
+      <EndLine>299</EndLine>
+      <EndColumn>67</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createCondition</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>333</Line>
+      <Column>9</Column>
+      <EndLine>333</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createCondition</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>333</Line>
+      <Column>48</Column>
+      <EndLine>333</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createCondition</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>350</Line>
+      <Column>14</Column>
+      <EndLine>350</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createCondition</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>389</Line>
+      <Column>58</Column>
+      <EndLine>389</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/createCondition</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>397</Line>
+      <Column>60</Column>
+      <EndLine>397</EndLine>
+      <EndColumn>74</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/updateFormDesign</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>476</Line>
+      <Column>26</Column>
+      <EndLine>476</EndLine>
+      <EndColumn>50</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/updateFormDesign</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>476</Line>
+      <Column>26</Column>
+      <EndLine>476</EndLine>
+      <EndColumn>59</EndColumn>
+      <Message>The qualifier 'RMarketStrategyAction_DS.cursor()' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/deleteConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>525</Line>
+      <Column>9</Column>
+      <EndLine>525</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/deleteConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>525</Line>
+      <Column>48</Column>
+      <EndLine>525</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/deleteConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>535</Line>
+      <Column>14</Column>
+      <EndLine>535</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/deleteConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>578</Line>
+      <Column>70</Column>
+      <EndLine>578</EndLine>
+      <EndColumn>84</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/deleteConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>591</Line>
+      <Column>65</Column>
+      <EndLine>591</EndLine>
+      <EndColumn>79</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>716</Line>
+      <Column>9</Column>
+      <EndLine>716</EndLine>
+      <EndColumn>30</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>716</Line>
+      <Column>48</Column>
+      <EndLine>716</EndLine>
+      <EndColumn>72</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>740</Line>
+      <Column>14</Column>
+      <EndLine>740</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>769</Line>
+      <Column>66</Column>
+      <EndLine>769</EndLine>
+      <EndColumn>80</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>770</Line>
+      <Column>72</Column>
+      <EndLine>770</EndLine>
+      <EndColumn>86</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/Method/moveConditionTreeNode</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>786</Line>
+      <Column>64</Column>
+      <EndLine>786</EndLine>
+      <EndColumn>78</EndColumn>
+      <Message>The qualifier 'strategyAction' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/RMarketStrategySignal/Method/create</Path>
+      <ElementType>Form DataSource Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>886</Line>
+      <Column>13</Column>
+      <EndLine>886</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/RMarketStrategySignal/Method/create</Path>
+      <ElementType>Form DataSource Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>890</Line>
+      <Column>13</Column>
+      <EndLine>891</EndLine>
+      <EndColumn>70</EndColumn>
+      <Message>'action' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/RMarketStrategySignal/Method/create</Path>
+      <ElementType>Form DataSource Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>893</Line>
+      <Column>13</Column>
+      <EndLine>893</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/RMarketStrategySignal/Method/create</Path>
+      <ElementType>Form DataSource Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>895</Line>
+      <Column>13</Column>
+      <EndLine>895</EndLine>
+      <EndColumn>23</EndColumn>
+      <Message>The qualifier 'record' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDataSourceRoot/RMarketStrategySignal/Method/create</Path>
+      <ElementType>Form DataSource Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>895</Line>
+      <Column>28</Column>
+      <EndLine>895</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The qualifier 'action' is not valid for field 'Num'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalNewButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>1012</Line>
+      <Column>17</Column>
+      <EndLine>1012</EndLine>
+      <EndColumn>41</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalNewButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>VariableNotFound</Moniker>
+      <Line>1014</Line>
+      <Column>17</Column>
+      <EndLine>1014</EndLine>
+      <EndColumn>42</EndColumn>
+      <Message>Variable 'RMarketStrategyAction_DS' is not found in scope.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDeleteButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>1028</Line>
+      <Column>13</Column>
+      <EndLine>1028</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDeleteButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>1031</Line>
+      <Column>22</Column>
+      <EndLine>1031</EndLine>
+      <EndColumn>46</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDeleteButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>InvalidQualifier</Moniker>
+      <Line>1032</Line>
+      <Column>17</Column>
+      <EndLine>1032</EndLine>
+      <EndColumn>23</EndColumn>
+      <Message>The qualifier 'action' is not valid for field 'RecId'.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDeleteButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>VariableNotFound</Moniker>
+      <Line>1043</Line>
+      <Column>13</Column>
+      <EndLine>1043</EndLine>
+      <EndColumn>38</EndColumn>
+      <Message>Variable 'RMarketStrategyAction_DS' is not found in scope.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalUpButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>1056</Line>
+      <Column>13</Column>
+      <EndLine>1056</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalUpButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>1060</Line>
+      <Column>22</Column>
+      <EndLine>1060</EndLine>
+      <EndColumn>46</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalUpButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>VariableNotFound</Moniker>
+      <Line>1062</Line>
+      <Column>13</Column>
+      <EndLine>1062</EndLine>
+      <EndColumn>38</EndColumn>
+      <Message>Variable 'RMarketStrategyAction_DS' is not found in scope.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDownButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>1075</Line>
+      <Column>13</Column>
+      <EndLine>1075</EndLine>
+      <EndColumn>34</EndColumn>
+      <Message>The name 'RMarketStrategyAction' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDownButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>NotDeclared</Moniker>
+      <Line>1079</Line>
+      <Column>22</Column>
+      <EndLine>1079</EndLine>
+      <EndColumn>46</EndColumn>
+      <Message>'RMarketStrategyAction_DS' is not declared.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/RMarketStrategy/FormDesign/AxFormDesign/FormGroupControl/TopGroup/FormGroupControl/FormGroupControl1/FormTabControl/RightTab/FormTabPageControl/SignalTabPage/FormActionPaneControl/SignalActionPane/FormButtonGroupControl/StrategySignalButtonGroup/FormButtonControl/StrategySignalDownButton/Method/clicked</Path>
+      <ElementType>Form Control Method</ElementType>
+      <Moniker>VariableNotFound</Moniker>
+      <Line>1081</Line>
+      <Column>13</Column>
+      <EndLine>1081</EndLine>
+      <EndColumn>38</EndColumn>
+      <Message>Variable 'RMarketStrategyAction_DS' is not found in scope.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

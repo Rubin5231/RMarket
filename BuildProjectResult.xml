@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-22T16:46:57.5861052+03:00">
+  GenerationTime="2026-11-24T17:21:46.7709135+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -15,6 +15,18 @@
       <Path>dynamics://Reference/Microsoft.Dynamics___vices.PricingEngine</Path>
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'Microsoft.Dynamics.Commerce.Runtime.Entities.AttributeBasedPricing, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>TaskListItem</DiagnosticType>
+      <Severity>Informational</Severity>
+      <Path>dynamics://Class/RMarketAutoTrade/Method/makeAccountActions</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>TaskListItem</Moniker>
+      <Line>223</Line>
+      <Column>17</Column>
+      <EndLine>223</EndLine>
+      <EndColumn>48</EndColumn>
+      <Message>TODO notexists join actionLog</Message>
     </Diagnostic>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>

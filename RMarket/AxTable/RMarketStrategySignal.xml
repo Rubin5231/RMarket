@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Name>RMarketStrategyAction</Name>
+	<Name>RMarketStrategySignal</Name>
 	<SourceCode>
 		<Declaration><![CDATA[
-public class RMarketStrategyAction extends common
+public class RMarketStrategySignal extends common
 {
 
 }
@@ -13,16 +13,16 @@ public class RMarketStrategyAction extends common
 				<Name>find</Name>
 				<Source><![CDATA[
     /// <summary>
-    /// Find record in the table <t>RMarketStrategyAction</t>
+    /// Find record in the table <t>RMarketStrategySignal</t>
     /// </summary>
     /// <param name = "_strategyId">a strategyId</param>
     /// <param name = "_forUpdate">if its updatable</param>
-    /// <returns>a table <t>RMarketStrategyAction</t></returns>
-    public static RMarketStrategyAction find(RMarketStrategyId  _strategyId,
+    /// <returns>a table <t>RMarketStrategySignal</t></returns>
+    public static RMarketStrategySignal find(RMarketStrategyId  _strategyId,
                                              int                _num,
                                              boolean            _forUpdate = false)
     {
-        RMarketStrategyAction action;
+        RMarketStrategySignal action;
         ;
         action.selectForUpdate(_forUpdate);
 
@@ -41,10 +41,10 @@ public class RMarketStrategyAction extends common
 			<Method>
 				<Name>findRecId</Name>
 				<Source><![CDATA[
-    public static RMarketStrategyAction findRecId(RecId   _recId,
+    public static RMarketStrategySignal findRecId(RecId   _recId,
                                                   boolean _forUpdate = false)
     {
-        RMarketStrategyAction action;
+        RMarketStrategySignal action;
         ;
         action.selectForUpdate(_forUpdate);
 
@@ -63,18 +63,18 @@ public class RMarketStrategyAction extends common
 				<Name>exists</Name>
 				<Source><![CDATA[
     /// <summary>
-    /// Check if exists a record in the table <t>RMarketStrategyAction</t> with the given parameters
+    /// Check if exists a record in the table <t>RMarketStrategySignal</t> with the given parameters
     /// </summary>
     /// <param name = "_strategyId">a strategyId</param>
-    /// <returns>a table <t>RMarketStrategyAction</t></returns>
+    /// <returns>a table <t>RMarketStrategySignal</t></returns>
     public static boolean exists(RMarketStrategyId  _strategyId,
                                  int                _num)
     {
         boolean res;
         ;
-        res = _strategyId && (select firstonly RecId from RMarketStrategyAction
-                               where RMarketStrategyAction.StrategyId  == _strategyId
-                                  && RMarketStrategyAction.Num         == _num).RecId != 0;
+        res = _strategyId && (select firstonly RecId from RMarketStrategySignal
+                               where RMarketStrategySignal.StrategyId  == _strategyId
+                                  && RMarketStrategySignal.Num         == _num).RecId != 0;
         
         return res;
     }
@@ -91,7 +91,7 @@ public class RMarketStrategyAction extends common
     {
         super();
 
-        this.Type = RMarketStrategyActionType::StopTrade;
+        this.Type = RMarketSignalType::StopTrade;
     }
 
 ]]></Source>
@@ -117,13 +117,13 @@ public class RMarketStrategyAction extends common
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>actionNumDecrease</Name>
+				<Name>signalNumDecrease</Name>
 				<Source><![CDATA[
-    public void actionNumDecrease()
+    public void signalNumDecrease()
     {
-        RMarketStrategyAction other = RMarketStrategyAction::find(this.StrategyId, this.Num - 1, true);
+        RMarketStrategySignal other = RMarketStrategySignal::find(this.StrategyId, this.Num - 1, true);
         if (other)
-            RMarketStrategyAction::actionSwapNum(this, other);
+            RMarketStrategySignal::signalSwapNum(this, other);
         else
         {
             ttsbegin;
@@ -137,13 +137,13 @@ public class RMarketStrategyAction extends common
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>actionNumRaise</Name>
+				<Name>signalNumRaise</Name>
 				<Source><![CDATA[
-    public void actionNumRaise()
+    public void signalNumRaise()
     {
-        RMarketStrategyAction other = RMarketStrategyAction::find(this.StrategyId, this.Num + 1, true);
+        RMarketStrategySignal other = RMarketStrategySignal::find(this.StrategyId, this.Num + 1, true);
         if (other)
-            RMarketStrategyAction::actionSwapNum(this, other);
+            RMarketStrategySignal::signalSwapNum(this, other);
         else
         {
             ttsbegin;
@@ -157,25 +157,25 @@ public class RMarketStrategyAction extends common
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>actionSwapNum</Name>
+				<Name>signalSwapNum</Name>
 				<Source><![CDATA[
-    public static void actionSwapNum(RMarketStrategyAction _action1, RMarketStrategyAction _action2)
+    public static void signalSwapNum(RMarketStrategySignal _signal1, RMarketStrategySignal _signal2)
     {
-        int actionNum = _action1.Num;
+        int actionNum = _signal1.Num;
 
         ttsbegin;
-        _action1.Num = _action2.Num;
+        _signal1.Num = _signal2.Num;
 
-        _action2.Num = maxInt();
-        if (_action2.validateWrite())
-            _action2.Update();
-        _action2.Num = actionNum;
+        _signal2.Num = maxInt();
+        if (_signal2.validateWrite())
+            _signal2.Update();
+        _signal2.Num = actionNum;
 
-        if (_action1.validateWrite())
-            _action1.update();
+        if (_signal1.validateWrite())
+            _signal1.update();
 
-        if (_action2.validateWrite())
-            _action2.update();
+        if (_signal2.validateWrite())
+            _signal2.update();
         ttscommit;
     }
 
@@ -198,7 +198,7 @@ public class RMarketStrategyAction extends common
         // New model: OR between root events
         while select conditionGroup
             order by conditionGroup.Num
-            where conditionGroup.RMarketStrategyActionRecId == this.RecId
+            where conditionGroup.RMarketStrategySignalRecId == this.RecId
                && conditionGroup.ParentRecId == 0
         {
             hasEvents = true;
@@ -216,7 +216,7 @@ public class RMarketStrategyAction extends common
         while select condition
             order by condition.Num
             where condition.Relation
-                    == RMarketConditionRelation::RMarketStrategyAction
+                    == RMarketConditionRelation::RMarketStrategySignal
                && condition.RefRecId == this.RecId
         {
             hasConditions = true;
@@ -297,7 +297,7 @@ public class RMarketStrategyAction extends common
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
 			<Name>Type</Name>
-			<EnumType>RMarketStrategyActionType</EnumType>
+			<EnumType>RMarketSignalType</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">

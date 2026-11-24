@@ -26,7 +26,7 @@ public class RMarketSignalLog extends common
         {
             select firstonly signalLog
                 where signalLog.SubAccountId               == _subAccountId
-                   && signalLog.RMarketStrategyActionRecId == _actionRecId
+                   && signalLog.RMarketStrategySignalRecId == _actionRecId
                    && signalLog.Timestamp                  == _timestamp;
         }
 
@@ -68,7 +68,7 @@ public class RMarketSignalLog extends common
         signalLog.initValue();
 
         signalLog.SubAccountId               = _subAccountId;
-        signalLog.RMarketStrategyActionRecId = _actionRecId;
+        signalLog.RMarketStrategySignalRecId = _actionRecId;
         signalLog.Timestamp                  = _timestamp;
         signalLog.Result                     = _result;
         signalLog.Description                = _description;
@@ -116,7 +116,7 @@ public class RMarketSignalLog extends common
 
         select firstonly signalLog
             where signalLog.SubAccountId               == _subAccountId
-               && signalLog.RMarketStrategyActionRecId == _actionRecId
+               && signalLog.RMarketStrategySignalRecId == _actionRecId
                && signalLog.Timestamp                  == _timestamp
                && (signalLog.Result == RMarketSignalResult::Triggered
                 || signalLog.Result == RMarketSignalResult::NotTriggered);
@@ -138,7 +138,7 @@ public class RMarketSignalLog extends common
 
         select count(RecId) from signalLog
             where signalLog.SubAccountId               == _subAccountId
-               && signalLog.RMarketStrategyActionRecId == _actionRecId
+               && signalLog.RMarketStrategySignalRecId == _actionRecId
                && signalLog.Timestamp                  == _timestamp
                && signalLog.Result                     == RMarketSignalResult::Error;
 
@@ -187,7 +187,7 @@ public class RMarketSignalLog extends common
 					<DataField>SubAccountId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>RMarketStrategyActionRecId</DataField>
+					<DataField>RMarketStrategySignalRecId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>Timestamp</DataField>
@@ -214,7 +214,7 @@ public class RMarketSignalLog extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt64">
-			<Name>RMarketStrategyActionRecId</Name>
+			<Name>RMarketStrategySignalRecId</Name>
 			<ExtendedDataType>RefRecId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 			<Mandatory>Yes</Mandatory>
@@ -248,7 +248,7 @@ public class RMarketSignalLog extends common
 					<DataField>SubAccountId</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
-					<DataField>RMarketStrategyActionRecId</DataField>
+					<DataField>RMarketStrategySignalRecId</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>Timestamp</DataField>
@@ -259,14 +259,14 @@ public class RMarketSignalLog extends common
 	<Mappings />
 	<Relations>
 		<AxTableRelation>
-			<Name>RMarketStrategyAction</Name>
+			<Name>RMarketStrategySignal</Name>
 			<OnDelete>Restricted</OnDelete>
-			<RelatedTable>RMarketStrategyAction</RelatedTable>
+			<RelatedTable>RMarketStrategySignal</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
-					<Name>RMarketStrategyActionRecId</Name>
-					<Field>RMarketStrategyActionRecId</Field>
+					<Name>RMarketStrategySignalRecId</Name>
+					<Field>RMarketStrategySignalRecId</Field>
 					<RelatedField>RecId</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>

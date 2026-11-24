@@ -296,7 +296,7 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
     {
         RMarketSubAccount subAccount;
         RMarketStrategy strategy;
-        RMarketStrategyAction action;
+        RMarketStrategySignal strategySignal;
         RMarketConditionTable condition;
         boolean signal;
 
@@ -306,26 +306,26 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
                && subAccount.Active    == NoYes::Yes
         {
             // Loop actions of related strategy
-            while select action
-                where action.Active    == NoYes::Yes
+            while select strategySignal
+                where strategySignal.Active    == NoYes::Yes
                 join strategy
-                    where strategy.StrategyId == action.StrategyId
+                    where strategy.StrategyId == strategySignal.StrategyId
                        && strategy.StrategyId == subAccount.StrategyId
                 //TODO notexists join actionLog
             {
                 ttsbegin;
 
-                // calculate signal for action
-                signal = action.calcSignal(subAccount, tsCursor);
+                // calculate signal for strategySignal
+                signal = strategySignal.calcSignal(subAccount, tsCursor);
 
-                // If signal exists then execute action
+                // If signal exists then execute strategySignal
                 if (signal)
                 {
                     RMarketEventLog::putRecord(subAccount.AccountId, subAccount.SubaccountId, 
                         RMarketLogLevel::Info, RMarketEventType::SignalDetected,
-                        strFmt("%1: %2 #%3", dtCursor, enum2Str(action.Type), action.Num));
+                        strFmt("%1: %2 #%3", dtCursor, enum2Str(strategySignal.Type), strategySignal.Num));
                     
-                    this.executeAction(subAccount, action);
+                    this.executeAction(subAccount, strategySignal);
                 }
 
                 ttscommit;
@@ -338,11 +338,11 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
 			<Method>
 				<Name>executeAction</Name>
 				<Source><![CDATA[
-    protected void executeAction(RMarketSubAccount _subAccount, RMarketStrategyAction _action)
+    protected void executeAction(RMarketSubAccount _subAccount, RMarketStrategySignal _signal)
     {
-        switch (_action.type)
+        switch (_signal.type)
         {
-            case RMarketStrategyActionType::StopTrade:
+            case RMarketSignalType::StopTrade:
                 ttsbegin;
                 _subAccount.Active = NoYes::No;
                 _subAccount.update();
@@ -352,26 +352,26 @@ public class RMarketAutoTrade extends RunBaseBatch implements BatchRetryable
                         strFmt("Trade is stopped!"));
                 break;
 
-            case RMarketStrategyActionType::CloseLong:
+            case RMarketSignalType::CloseLong:
                 // Close long position by MarketOrder
                 this.closePosition(_subAccount, RMarketPositionDirection::Long);
                 break;
-            case RMarketStrategyActionType::CloseShort:
+            case RMarketSignalType::CloseShort:
                 // Close short position by MarketOrder
                 this.closePosition(_subAccount, RMarketPositionDirection::Short);
                 break;
-            case RMarketStrategyActionType::OpenLong:
+            case RMarketSignalType::OpenLong:
                 // Create new long position if long position not exists
                 this.openPosition(_subAccount, RMarketPositionDirection::Long);
                 break;
-            case RMarketStrategyActionType::OpenShort:
+            case RMarketSignalType::OpenShort:
                 // Create new short position if short position not exists
                 this.openPosition(_subAccount, RMarketPositionDirection::Short);
                 break;
-            case RMarketStrategyActionType::TrailOrder:
+            case RMarketSignalType::TrailOrder:
                 // Not understand yet
             default:
-                throw error(strFmt("Action type %1 isn't implemented yet!", enum2Str(_action.type)));
+                throw error(strFmt("Action type %1 isn't implemented yet!", enum2Str(_signal.type)));
         }
     }
 

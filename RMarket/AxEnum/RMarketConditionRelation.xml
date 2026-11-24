@@ -9,8 +9,8 @@
 			<Value>2</Value>
 		</AxEnumValue>
 		<AxEnumValue>
-			<Name>RMarketStrategyAction</Name>
-			<Label>RMarketStrategyAction</Label>
+			<Name>RMarketStrategySignal</Name>
+			<Label>RMarketStrategySignal</Label>
 		</AxEnumValue>
 		<AxEnumValue>
 			<Name>RMarketStrategyOrders</Name>

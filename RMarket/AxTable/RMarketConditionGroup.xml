@@ -65,7 +65,7 @@ public class RMarketConditionGroup extends common
         while select childGroup
             order by childGroup.Num
             where childGroup.ParentRecId                == this.RecId
-               && childGroup.RMarketStrategyActionRecId == this.RMarketStrategyActionRecId
+               && childGroup.RMarketStrategySignalRecId == this.RMarketStrategySignalRecId
         {
             hasChildren = true;
             childResult = childGroup.calc(_subAccount, _tsCursor, _trace);
@@ -138,13 +138,13 @@ public class RMarketConditionGroup extends common
         if (!ret)
         return false;
 
-        if (!this.RMarketStrategyActionRecId)
-        return checkFailed("Strategy action is not specified.");
+        if (!this.RMarketStrategySignalRecId)
+        return checkFailed("Strategy Signal is not specified.");
 
-        if (!RMarketStrategyAction::findRecId(
-            this.RMarketStrategyActionRecId).RecId)
+        if (!RMarketStrategySignal::findRecId(
+            this.RMarketStrategySignalRecId).RecId)
         {
-            return checkFailed("Strategy action does not exist.");
+            return checkFailed("Strategy Signal does not exist.");
         }
 
         while (parentRecId)
@@ -164,11 +164,11 @@ public class RMarketConditionGroup extends common
             if (!parentGroup.RecId)
             return checkFailed("Parent condition group does not exist.");
 
-            if (parentGroup.RMarketStrategyActionRecId
-                != this.RMarketStrategyActionRecId)
+            if (parentGroup.RMarketStrategySignalRecId
+                != this.RMarketStrategySignalRecId)
             {
                 return checkFailed(
-                "Parent group belongs to another strategy action.");
+                "Parent group belongs to another strategy Signal.");
             }
 
             parentRecId = parentGroup.ParentRecId;
@@ -313,7 +313,7 @@ public class RMarketConditionGroup extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt64">
-			<Name>RMarketStrategyActionRecId</Name>
+			<Name>RMarketStrategySignalRecId</Name>
 			<ExtendedDataType>RefRecId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
@@ -340,7 +340,7 @@ public class RMarketConditionGroup extends common
 			<AllowDuplicates>Yes</AllowDuplicates>
 			<Fields>
 				<AxTableIndexField>
-					<DataField>RMarketStrategyActionRecId</DataField>
+					<DataField>RMarketStrategySignalRecId</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>ParentRecId</DataField>
@@ -354,14 +354,14 @@ public class RMarketConditionGroup extends common
 	<Mappings />
 	<Relations>
 		<AxTableRelation>
-			<Name>RMarketStrategyAction</Name>
+			<Name>RMarketStrategySignal</Name>
 			<OnDelete>Restricted</OnDelete>
-			<RelatedTable>RMarketStrategyAction</RelatedTable>
+			<RelatedTable>RMarketStrategySignal</RelatedTable>
 			<Constraints>
 				<AxTableRelationConstraint xmlns=""
 					i:type="AxTableRelationConstraintField">
-					<Name>RMarketStrategyActionRecId</Name>
-					<Field>RMarketStrategyActionRecId</Field>
+					<Name>RMarketStrategySignalRecId</Name>
+					<Field>RMarketStrategySignalRecId</Field>
 					<RelatedField>RecId</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>

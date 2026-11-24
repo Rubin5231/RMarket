@@ -10,46 +10,89 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketStrategyAction</TypeName>
+					<TypeName>RMarketStrategySignal</TypeName>
 					<Name>_action</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Record</Type>
 				<TypeName>RMarketSignalLog</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>RMarketSignalTrace</TypeName>
+					<Name>signalTrace</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>RMarketSignalResult</TypeName>
+					<Name>result</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>description</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>signal</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>infologStartLine</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>getInfologText</Name>
 			<IsStatic>true</IsStatic>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Int32</Type>
 					<TypeName></TypeName>
 					<Name>_startLine</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>String</Type>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>SysInfologEnumerator</TypeName>
+					<Name>enumerator</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Class</Type>
+					<TypeName>SysInfologMessageStruct</TypeName>
+					<Name>messageStruct</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>endLine</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>String</Type>
+					<TypeName></TypeName>
+					<Name>ret</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>canCalculate</Name>
@@ -57,29 +100,37 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketSubAccountId</TypeName>
 					<Name>_subAccountId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RefRecId</TypeName>
 					<Name>_actionRecId</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_timestamp</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Enum</Type>
 				<TypeName>boolean</TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketSignalLog</TypeName>
+					<Name>signalLog</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Enum</Type>
+					<TypeName>boolean</TypeName>
+					<Name>ret</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 		<Method>
 			<Name>calculateSubAccount</Name>
@@ -87,23 +138,42 @@
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>Record</Type>
 					<TypeName>RMarketSubAccount</TypeName>
 					<Name>_subAccount</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
-					<Tags></Tags>
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketTimestamp</TypeName>
 					<Name>_tsCursor</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>
-				<Tags></Tags>
 				<Type>Int32</Type>
 				<TypeName></TypeName>
 			</ReturnType>
+			<Variables>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategy</TypeName>
+					<Name>strategy</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Record</Type>
+					<TypeName>RMarketStrategySignal</TypeName>
+					<Name>action</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>ExtendedDataType</Type>
+					<TypeName>RMarketTimestamp</TypeName>
+					<Name>signalTimestamp</Name>
+				</AxMethodVariable>
+				<AxMethodVariable>
+					<Type>Int32</Type>
+					<TypeName></TypeName>
+					<Name>calculated</Name>
+				</AxMethodVariable>
+			</Variables>
 		</Method>
 	</Methods>
 </z:anyType>

@@ -20,7 +20,7 @@ internal final class RMarketJobTest_ConditionTree
     {
         RMarketConditionGroup conditionGroup;
 
-        conditionGroup.RMarketStrategyActionRecId = _actionRecId;
+        conditionGroup.RMarketStrategySignalRecId = _actionRecId;
         conditionGroup.ParentRecId = _parentRecId;
         conditionGroup.Num = _num;
         conditionGroup.Name = _name;
@@ -65,7 +65,7 @@ internal final class RMarketJobTest_ConditionTree
 				<Source><![CDATA[
     public static void main(Args _args)
     {
-        RMarketStrategyAction action;
+        RMarketStrategySignal action;
         RMarketConditionGroup event1, event2;
         RMarketConditionGroup groupOr, groupAB, groupCD;
         RMarketConditionTable conditionE;
@@ -77,7 +77,7 @@ internal final class RMarketJobTest_ConditionTree
         // Temporary action, linked to existing strategy
         action.StrategyId = '001';
         action.Num = 9999;
-        action.Type = RMarketStrategyActionType::OpenLong;
+        action.Type = RMarketSignalType::OpenLong;
         action.Active = NoYes::No;
         action.insert();
 
@@ -178,13 +178,13 @@ internal final class RMarketJobTest_ConditionTree
 				<Name>testValidation</Name>
 				<Source><![CDATA[
     private static int testValidation(
-    RMarketStrategyAction _action,
+    RMarketStrategySignal _signal,
     RMarketConditionGroup _event,
     RMarketConditionGroup _group,
     RMarketConditionGroup _child)
     {
         RMarketConditionGroup probe;
-        RMarketStrategyAction otherAction;
+        RMarketStrategySignal otherAction;
         int passed;
 
         // 1. Valid hierarchy
@@ -223,14 +223,14 @@ internal final class RMarketJobTest_ConditionTree
         passed++;
 
         // 5. Parent belongs to another action
-        otherAction.StrategyId = _action.StrategyId;
+        otherAction.StrategyId = _signal.StrategyId;
         otherAction.Num = 9998;
-        otherAction.Type = RMarketStrategyActionType::OpenLong;
+        otherAction.Type = RMarketSignalType::OpenLong;
         otherAction.Active = NoYes::No;
         otherAction.insert();
 
         probe = RMarketConditionGroup::findRecId(_group.RecId);
-        probe.RMarketStrategyActionRecId = otherAction.RecId;
+        probe.RMarketStrategySignalRecId = otherAction.RecId;
 
         if (probe.validateWrite())
         throw error("Validation test 5: foreign parent accepted.");

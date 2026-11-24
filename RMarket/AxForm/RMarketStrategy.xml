@@ -36,14 +36,14 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void buildConditionTree()
     {
-        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketStrategySignal strategySignal = RMarketStrategySignal_DS.cursor();
 
         ConditionTree.deleteAll();
 
-        if (strategyAction.RecId)
+        if (strategySignal.RecId)
         {
             element.addConditionTreeNodes(
-                strategyAction.RecId,
+                strategySignal.RecId,
                 0,
                 FormTreeAdd::Root);
         }
@@ -91,7 +91,7 @@ public class RMarketStrategy extends FormRun
         // Select root events or nested groups.
         select conditionGroup
         order by conditionGroup.Num, conditionGroup.RecId
-            where conditionGroup.RMarketStrategyActionRecId == _actionRecId
+            where conditionGroup.RMarketStrategySignalRecId == _actionRecId
                && conditionGroup.ParentRecId                == _parentRecId;
 
         // Root level contains events only.
@@ -283,7 +283,7 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void createConditionGroup(TreeItemIdx _parentNode = 0)
     {
-        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketStrategySignal strategySignal = RMarketStrategySignal_DS.cursor();
 
         RMarketConditionGroup conditionGroup;
         RMarketConditionGroup parentGroup;
@@ -297,7 +297,7 @@ public class RMarketStrategy extends FormRun
         RefRecId        parentRecId = 0;
         int             nextNum;
 
-        if (!strategyAction.RecId)
+        if (!strategySignal.RecId)
             return;
 
         // Resolve parent node
@@ -319,7 +319,7 @@ public class RMarketStrategy extends FormRun
             parentGroup = RMarketConditionGroup::findRecId(parentRecId);
 
             if (!parentGroup.RecId ||
-                parentGroup.RMarketStrategyActionRecId != strategyAction.RecId)
+                parentGroup.RMarketStrategySignalRecId != strategySignal.RecId)
             {
                 throw error("Invalid parent condition group.");
             }
@@ -327,8 +327,7 @@ public class RMarketStrategy extends FormRun
 
         // Find the next sibling number
         select maxof(Num) from lastGroup
-        where lastGroup.RMarketStrategyActionRecId
-                == strategyAction.RecId
+        where lastGroup.RMarketStrategySignalRecId == strategySignal.RecId
            && lastGroup.ParentRecId == parentRecId;
 
         nextNum = lastGroup.Num + 1;
@@ -345,7 +344,7 @@ public class RMarketStrategy extends FormRun
         }
 
         conditionGroup.clear();
-        conditionGroup.RMarketStrategyActionRecId = strategyAction.RecId;
+        conditionGroup.RMarketStrategySignalRecId = strategySignal.RecId;
         conditionGroup.ParentRecId = parentRecId;
         conditionGroup.Num = nextNum;
         conditionGroup.RMarketConditionOperator = RMarketConditionOperator::And;
@@ -384,7 +383,7 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void createCondition(TreeItemIdx _selectedNode)
     {
-        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketStrategySignal strategySignal = RMarketStrategySignal_DS.cursor();
 
         RMarketConditionGroup conditionGroup;
         RMarketConditionGroup lastGroup;
@@ -401,7 +400,7 @@ public class RMarketStrategy extends FormRun
         RecId       recId;
         int         nextNum;
 
-        if (!strategyAction.RecId || !_selectedNode)
+        if (!strategySignal.RecId || !_selectedNode)
             return;
 
         treeItem = ConditionTree.getItem(_selectedNode);
@@ -440,7 +439,7 @@ public class RMarketStrategy extends FormRun
         }
 
         if (!conditionGroup.RecId ||
-            conditionGroup.RMarketStrategyActionRecId != strategyAction.RecId ||
+            conditionGroup.RMarketStrategySignalRecId != strategySignal.RecId ||
             !parentNodeIdx)
         {
             throw error("Invalid parent condition group.");
@@ -448,7 +447,7 @@ public class RMarketStrategy extends FormRun
 
         // Find next sibling number
         select maxof(Num) from lastGroup
-            where lastGroup.RMarketStrategyActionRecId  == strategyAction.RecId
+            where lastGroup.RMarketStrategySignalRecId  == strategySignal.RecId
                && lastGroup.ParentRecId                 == conditionGroup.RecId;
 
         select maxof(Num) from lastCondition
@@ -537,7 +536,7 @@ public class RMarketStrategy extends FormRun
         groupSelected  = tableId == tableNum(RMarketConditionGroup);
         leafSelected   = tableId == tableNum(RMarketConditionTable);
         nodeSelected   = groupSelected || leafSelected;
-        actionSelected = RMarketStrategyAction_DS.cursor().RecId != 0;
+        actionSelected = RMarketStrategySignal_DS.cursor().RecId != 0;
 
         NodeNewEventButton.enabled(actionSelected);
         NodeNewGroupButton.enabled(actionSelected && groupSelected);
@@ -591,7 +590,7 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void deleteConditionTreeNode()
     {
-        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketStrategySignal strategySignal = RMarketStrategySignal_DS.cursor();
         RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;
 
@@ -601,7 +600,7 @@ public class RMarketStrategy extends FormRun
         RecId recId;
         boolean deleted;
 
-        if (!strategyAction.RecId || !nodeIdx)
+        if (!strategySignal.RecId || !nodeIdx)
             return;
 
         if (ConditionTree.getChild(nodeIdx))
@@ -644,7 +643,7 @@ public class RMarketStrategy extends FormRun
                     conditionGroup = RMarketConditionGroup::findRecId(condition.RefRecId);
 
                     if (conditionGroup.RecId && 
-                        conditionGroup.RMarketStrategyActionRecId == strategyAction.RecId &&
+                        conditionGroup.RMarketStrategySignalRecId == strategySignal.RecId &&
                         condition.validateDelete())
                     {
                         condition.delete();
@@ -657,7 +656,7 @@ public class RMarketStrategy extends FormRun
                 conditionGroup = RMarketConditionGroup::findRecId(recId, true);
 
                 if (conditionGroup.RecId &&
-                    conditionGroup.RMarketStrategyActionRecId ==strategyAction.RecId &&
+                    conditionGroup.RMarketStrategySignalRecId ==strategySignal.RecId &&
                     conditionGroup.validateDelete())
                 {
                     conditionGroup.delete();
@@ -766,7 +765,7 @@ public class RMarketStrategy extends FormRun
                 conditionGroup = RMarketConditionGroup::findRecId(recId, true);
 
                 if (conditionGroup.RecId &&
-                    conditionGroup.RMarketStrategyActionRecId == _actionRecId &&
+                    conditionGroup.RMarketStrategySignalRecId == _actionRecId &&
                     conditionGroup.ParentRecId == _parentRecId)
                 {
                     return conditionGroup;
@@ -784,7 +783,7 @@ public class RMarketStrategy extends FormRun
                     conditionGroup = RMarketConditionGroup::findRecId(_parentRecId);
 
                     if (conditionGroup.RecId &&
-                        conditionGroup.RMarketStrategyActionRecId == _actionRecId)
+                        conditionGroup.RMarketStrategySignalRecId == _actionRecId)
                     {
                         return condition;
                     }
@@ -802,7 +801,7 @@ public class RMarketStrategy extends FormRun
 				<Source><![CDATA[
     private void moveConditionTreeNode(boolean _up)
     {
-        RMarketStrategyAction strategyAction = RMarketStrategyAction_DS.cursor();
+        RMarketStrategySignal strategySignal = RMarketStrategySignal_DS.cursor();
         RMarketConditionGroup conditionGroup;
         RMarketConditionTable condition;
 
@@ -826,7 +825,7 @@ public class RMarketStrategy extends FormRun
 
         int64 cnt;
 
-        if (!strategyAction.RecId || !nodeIdx)
+        if (!strategySignal.RecId || !nodeIdx)
             return;
 
         siblingIdx = _up ? ConditionTree.getPrevSibling(nodeIdx)
@@ -855,8 +854,8 @@ public class RMarketStrategy extends FormRun
 
         ttsbegin;
 
-        nodeRecord = element.conditionTreeNodeForUpdate(nodeIdx, strategyAction.RecId, parentRecId);
-        siblingRecord = element.conditionTreeNodeForUpdate(siblingIdx, strategyAction.RecId, parentRecId);
+        nodeRecord = element.conditionTreeNodeForUpdate(nodeIdx, strategySignal.RecId, parentRecId);
+        siblingRecord = element.conditionTreeNodeForUpdate(siblingIdx, strategySignal.RecId, parentRecId);
         nodeNumFieldId = fieldName2Id(nodeRecord.TableId, "Num");
         siblingNumFieldId = fieldName2Id(siblingRecord.TableId, "Num");
 
@@ -872,7 +871,7 @@ public class RMarketStrategy extends FormRun
 
         // Verify that the affected numbers are unique.
         select count(RecId) from conditionGroup
-            where conditionGroup.RMarketStrategyActionRecId == strategyAction.RecId
+            where conditionGroup.RMarketStrategySignalRecId == strategySignal.RecId
                && conditionGroup.ParentRecId                == parentRecId
                && (conditionGroup.Num == nodeNum ||
                    conditionGroup.Num == siblingNum ||
@@ -968,7 +967,7 @@ public class RMarketStrategy extends FormRun
 		</Methods>
 		<DataSources xmlns="">
 			<DataSource>
-				<Name>RMarketStrategyAction</Name>
+				<Name>RMarketStrategySignal</Name>
 				<Methods>
 					<Method>
 						<Name>create</Name>
@@ -979,16 +978,16 @@ public class RMarketStrategy extends FormRun
         /// <param name = "_append"></param>
         public void create(boolean _append = false)
         {
-            RMarketStrategyAction action;
+            RMarketStrategySignal strategySignal;
 
             super(_append);
 
-            select maxof(Num) from action
-                where action.StrategyId == RMarketStrategy.StrategyId;
+            select maxof(Num) from strategySignal
+                where strategySignal.StrategyId == RMarketStrategy.StrategyId;
 
-            RMarketStrategyAction record = this.cursor();
+            RMarketStrategySignal record = this.cursor();
             //record.StrategyId = RMarketStrategy.StrategyId;
-            record.Num   = action.Num + 1;
+            record.Num   = strategySignal.Num + 1;
         }
 
 ]]></Source>
@@ -1036,9 +1035,9 @@ public class RMarketStrategy extends FormRun
                 where condition.RefRecId == ActionConditionTable.RefRecId;
             
             RMarketConditionTable record = this.cursor();
-            //record.RefRecId = RMarketStrategyAction.RecId;
+            //record.RefRecId = RMarketStrategySignal.RecId;
             record.Num   = condition.Num + 1;
-            record.Relation = RMarketConditionRelation::RMarketStrategyAction;
+            record.Relation = RMarketConditionRelation::RMarketStrategySignal;
             record.Interval = RMarketStrategy.Interval;
             record.SecondInterval = RMarketStrategy.Interval;
         }
@@ -1068,7 +1067,7 @@ public class RMarketStrategy extends FormRun
                 where condition.RefRecId == OrdersConditionTable.RefRecId;
             
             RMarketConditionTable record = this.cursor();
-            //record.RefRecId = RMarketStrategyAction.RecId;
+            //record.RefRecId = RMarketStrategySignal.RecId;
             record.Num   = condition.Num + 1;
             record.Relation = RMarketConditionRelation::RMarketStrategyOrders;
             record.Interval = RMarketStrategy.Interval;
@@ -1105,7 +1104,7 @@ public class RMarketStrategy extends FormRun
 		</DataSources>
 		<DataControls xmlns="">
 			<Control>
-				<Name>ActionTabPage</Name>
+				<Name>SignalTabPage</Name>
 				<Type>TabPage</Type>
 				<Methods>
 					<Method>
@@ -1119,8 +1118,8 @@ public class RMarketStrategy extends FormRun
             OrdersConditionTabPage.visible(false);
             ActionConditionTabPage.visible(true);
             ActionConditionTabPage.activatePage();
-            /*RMarketConditionTable_DS.joinSource(RMarketStrategyAction_DS);
-            RMarketConditionTable_DS.joinRelation("RMarketStrategyAction");
+            /*RMarketConditionTable_DS.joinSource(RMarketStrategySignal_DS);
+            RMarketConditionTable_DS.joinRelation("RMarketStrategySignal");
             RMarketConditionTable_DS.research();*/
             super();
         }
@@ -1130,7 +1129,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>ActionNewButton</Name>
+				<Name>StrategySignalNewButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1143,9 +1142,9 @@ public class RMarketStrategy extends FormRun
         {
             super();
             
-            if (RMarketStrategyAction_DS.leaveRecord())
+            if (RMarketStrategySignal_DS.leaveRecord())
             {
-                RMarketStrategyAction_DS.create();
+                RMarketStrategySignal_DS.create();
             }
         }
 
@@ -1154,7 +1153,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>ActionDeleteButton</Name>
+				<Name>StrategySignalDeleteButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1165,10 +1164,10 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketStrategyAction  action;
+            RMarketStrategySignal  action;
             super();
             
-            action = RMarketStrategyAction_DS.cursor();
+            action = RMarketStrategySignal_DS.cursor();
             if (action.RecId && action.validateDelete())
             {
                 try
@@ -1180,7 +1179,7 @@ public class RMarketStrategy extends FormRun
                     //continue with other records
                 }
             }
-            RMarketStrategyAction_DS.research();
+            RMarketStrategySignal_DS.research();
         }
 
 ]]></Source>
@@ -1188,7 +1187,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>ActionUpButton</Name>
+				<Name>StrategySignalUpButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1199,13 +1198,13 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketStrategyAction  record;
+            RMarketStrategySignal  record;
             
             super();
 
-            record = RMarketStrategyAction_DS.cursor();
-            record.actionNumDecrease();
-            RMarketStrategyAction_DS.research();
+            record = RMarketStrategySignal_DS.cursor();
+            record.signalNumDecrease();
+            RMarketStrategySignal_DS.research();
         }
 
 ]]></Source>
@@ -1213,7 +1212,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>ActionDownButton</Name>
+				<Name>StrategySignalDownButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1224,13 +1223,13 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketStrategyAction  record;
+            RMarketStrategySignal  record;
             
             super();
 
-            record = RMarketStrategyAction_DS.cursor();
-            record.actionNumRaise();
-            RMarketStrategyAction_DS.research();
+            record = RMarketStrategySignal_DS.cursor();
+            record.signalNumRaise();
+            RMarketStrategySignal_DS.research();
         }
 
 ]]></Source>
@@ -2074,8 +2073,8 @@ public class RMarketStrategy extends FormRun
 			<DerivedDataSources />
 		</AxFormDataSource>
 		<AxFormDataSource xmlns="">
-			<Name>RMarketStrategyAction</Name>
-			<Table>RMarketStrategyAction</Table>
+			<Name>RMarketStrategySignal</Name>
+			<Table>RMarketStrategySignal</Table>
 			<Fields>
 				<AxFormDataSourceField>
 					<DataField>Active</DataField>
@@ -2116,7 +2115,6 @@ public class RMarketStrategy extends FormRun
 			</Fields>
 			<ReferencedDataSources />
 			<JoinSource>RMarketStrategy</JoinSource>
-			<Index>MainIdx</Index>
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
@@ -2236,7 +2234,7 @@ public class RMarketStrategy extends FormRun
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
-			<JoinSource>RMarketStrategyAction</JoinSource>
+			<JoinSource>RMarketStrategySignal</JoinSource>
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
@@ -2357,7 +2355,7 @@ public class RMarketStrategy extends FormRun
 				</AxFormDataSourceField>
 			</Fields>
 			<ReferencedDataSources />
-			<JoinSource>RMarketStrategyAction</JoinSource>
+			<JoinSource>RMarketStrategySignal</JoinSource>
 			<InsertIfEmpty>No</InsertIfEmpty>
 			<DataSourceLinks />
 			<DerivedDataSources />
@@ -2474,7 +2472,7 @@ public class RMarketStrategy extends FormRun
 										<Type>MenuFunctionButton</Type>
 										<FormControlExtension
 											i:nil="true" />
-										<DataSource>RMarketStrategyAction</DataSource>
+										<DataSource>RMarketStrategySignal</DataSource>
 										<MenuItemName>RMarketJobTest_ConfiguredSignal</MenuItemName>
 										<MenuItemType>Action</MenuItemType>
 									</AxFormControl>
@@ -2663,7 +2661,7 @@ public class RMarketStrategy extends FormRun
 								<Controls>
 									<AxFormControl xmlns=""
 										i:type="AxFormTabPageControl">
-										<Name>ActionTabPage</Name>
+										<Name>SignalTabPage</Name>
 										<AutoDeclaration>Yes</AutoDeclaration>
 										<Type>TabPage</Type>
 										<FormControlExtension
@@ -2671,21 +2669,21 @@ public class RMarketStrategy extends FormRun
 										<Controls>
 											<AxFormControl xmlns=""
 												i:type="AxFormActionPaneControl">
-												<Name>ActionActionPane</Name>
+												<Name>SignalActionPane</Name>
 												<Type>ActionPane</Type>
 												<FormControlExtension
 													i:nil="true" />
 												<Controls>
 													<AxFormControl xmlns=""
 														i:type="AxFormButtonGroupControl">
-														<Name>ActionButtonGroup</Name>
+														<Name>StrategySignalButtonGroup</Name>
 														<Type>ButtonGroup</Type>
 														<FormControlExtension
 															i:nil="true" />
 														<Controls>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>ActionNewButton</Name>
+																<Name>StrategySignalNewButton</Name>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>Button</Type>
 																<FormControlExtension
@@ -2697,7 +2695,7 @@ public class RMarketStrategy extends FormRun
 															</AxFormControl>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>ActionDeleteButton</Name>
+																<Name>StrategySignalDeleteButton</Name>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>Button</Type>
 																<FormControlExtension
@@ -2710,7 +2708,7 @@ public class RMarketStrategy extends FormRun
 															</AxFormControl>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>ActionUpButton</Name>
+																<Name>StrategySignalUpButton</Name>
 																<Type>Button</Type>
 																<FormControlExtension
 																	i:nil="true" />
@@ -2720,7 +2718,7 @@ public class RMarketStrategy extends FormRun
 															</AxFormControl>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>ActionDownButton</Name>
+																<Name>StrategySignalDownButton</Name>
 																<Type>Button</Type>
 																<FormControlExtension
 																	i:nil="true" />
@@ -2729,15 +2727,15 @@ public class RMarketStrategy extends FormRun
 																<Text>Down</Text>
 															</AxFormControl>
 														</Controls>
-														<DataSource>RMarketStrategyAction</DataSource>
+														<DataSource>RMarketStrategySignal</DataSource>
 													</AxFormControl>
 												</Controls>
-												<DataSource>RMarketStrategyAction</DataSource>
+												<DataSource>RMarketStrategySignal</DataSource>
 												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
-												<Name>ActionGrid</Name>
+												<Name>StrategySignalGrid</Name>
 												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
@@ -2749,7 +2747,7 @@ public class RMarketStrategy extends FormRun
 														<FormControlExtension
 															i:nil="true" />
 														<DataField>Num</DataField>
-														<DataSource>RMarketStrategyAction</DataSource>
+														<DataSource>RMarketStrategySignal</DataSource>
 													</AxFormControl>
 													<AxFormControl xmlns=""
 														i:type="AxFormComboBoxControl">
@@ -2758,7 +2756,7 @@ public class RMarketStrategy extends FormRun
 														<FormControlExtension
 															i:nil="true" />
 														<DataField>Type</DataField>
-														<DataSource>RMarketStrategyAction</DataSource>
+														<DataSource>RMarketStrategySignal</DataSource>
 														<Items />
 													</AxFormControl>
 													<AxFormControl xmlns=""
@@ -2768,11 +2766,11 @@ public class RMarketStrategy extends FormRun
 														<FormControlExtension
 															i:nil="true" />
 														<DataField>Active</DataField>
-														<DataSource>RMarketStrategyAction</DataSource>
+														<DataSource>RMarketStrategySignal</DataSource>
 													</AxFormControl>
 												</Controls>
 												<DataGroup>Overview</DataGroup>
-												<DataSource>RMarketStrategyAction</DataSource>
+												<DataSource>RMarketStrategySignal</DataSource>
 											</AxFormControl>
 										</Controls>
 										<Caption>Actions</Caption>
@@ -2825,10 +2823,10 @@ public class RMarketStrategy extends FormRun
 																<Text>@SYS21354</Text>
 															</AxFormControl>
 														</Controls>
-														<DataSource>RMarketStrategyAction</DataSource>
+														<DataSource>RMarketStrategySignal</DataSource>
 													</AxFormControl>
 												</Controls>
-												<DataSource>RMarketStrategyAction</DataSource>
+												<DataSource>RMarketStrategySignal</DataSource>
 												<Style>Strip</Style>
 											</AxFormControl>
 											<AxFormControl xmlns=""

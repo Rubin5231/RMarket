@@ -265,8 +265,8 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketStrategyAction</TypeName>
-					<Name>_action</Name>
+					<TypeName>RMarketStrategySignal</TypeName>
+					<Name>_signal</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

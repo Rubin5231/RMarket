@@ -30,7 +30,7 @@
 			<ReturnType>
 				<Tags></Tags>
 				<Type>Record</Type>
-				<TypeName>RMarketStrategyAction</TypeName>
+				<TypeName>RMarketStrategySignal</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
@@ -55,7 +55,7 @@
 			<ReturnType>
 				<Tags></Tags>
 				<Type>Record</Type>
-				<TypeName>RMarketStrategyAction</TypeName>
+				<TypeName>RMarketStrategySignal</TypeName>
 			</ReturnType>
 		</Method>
 		<Method>
@@ -125,7 +125,7 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>actionNumDecrease</Name>
+			<Name>signalNumDecrease</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
 				<Tags></Tags>
@@ -133,7 +133,7 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>actionNumRaise</Name>
+			<Name>signalNumRaise</Name>
 			<Visibility>Public</Visibility>
 			<ReturnType>
 				<Tags></Tags>
@@ -141,21 +141,21 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>actionSwapNum</Name>
+			<Name>signalSwapNum</Name>
 			<IsStatic>true</IsStatic>
 			<Visibility>Public</Visibility>
 			<Parameters>
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketStrategyAction</TypeName>
-					<Name>_action1</Name>
+					<TypeName>RMarketStrategySignal</TypeName>
+					<Name>_signal1</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Record</Type>
-					<TypeName>RMarketStrategyAction</TypeName>
-					<Name>_action2</Name>
+					<TypeName>RMarketStrategySignal</TypeName>
+					<Name>_signal2</Name>
 				</AxMethodParameter>
 			</Parameters>
 			<ReturnType>

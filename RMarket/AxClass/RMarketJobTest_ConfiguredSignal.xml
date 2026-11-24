@@ -16,7 +16,7 @@ internal final class RMarketJobTest_ConfiguredSignal
 				<Source><![CDATA[
     public static void main(Args _args)
     {
-        RMarketStrategyAction action;
+        RMarketStrategySignal action;
         RMarketSubAccount     subAccount;
         RMarketTimestamp      tsCursor;
         RMarketSignalTrace    signalTrace = new RMarketSignalTrace(false);
@@ -29,13 +29,13 @@ internal final class RMarketJobTest_ConfiguredSignal
         RMarketSignalLog probe;
 
         if (!_args ||
-            _args.dataset() != tableNum(RMarketStrategyAction))
+            _args.dataset() != tableNum(RMarketStrategySignal))
         {
             throw error("Strategy action must be selected.");
         }
 
         action = _args.record();
-        action = RMarketStrategyAction::findRecId(action.RecId);
+        action = RMarketStrategySignal::findRecId(action.RecId);
 
         if (!action.RecId)
             throw error("Test action not found.");
