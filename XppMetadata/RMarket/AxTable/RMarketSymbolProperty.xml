@@ -22,6 +22,12 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Enum</Type>
+					<TypeName>RMarketCategory</TypeName>
+					<Name>_category</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
 					<TypeName>boolean</TypeName>
 					<DefaultValue>false</DefaultValue>
 					<Name>_forUpdate</Name>
@@ -49,6 +55,12 @@
 					<Type>ExtendedDataType</Type>
 					<TypeName>RMarketSymbolId</TypeName>
 					<Name>_symbolId</Name>
+				</AxMethodParameter>
+				<AxMethodParameter>
+					<Tags></Tags>
+					<Type>Enum</Type>
+					<TypeName>RMarketCategory</TypeName>
+					<Name>_category</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>

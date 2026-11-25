@@ -273,6 +273,13 @@
 						<TypeName></TypeName>
 					</ReturnType>
 				</Method>
+				<Method>
+					<Name>write</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
 			</Methods>
 			<Fields />
 		</DataSource>

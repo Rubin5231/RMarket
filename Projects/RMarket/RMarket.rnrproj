@@ -874,6 +874,11 @@
       <Name>RMarketCandleLoadMode</Name>
       <Link>Base Enums\RMarketCandleLoadMode</Link>
     </Content>
+    <Content Include="AxEnum\RMarketCategory">
+      <SubType>Content</SubType>
+      <Name>RMarketCategory</Name>
+      <Link>Base Enums\RMarketCategory</Link>
+    </Content>
     <Content Include="AxEnum\RMarketConditionComparisonType">
       <SubType>Content</SubType>
       <Name>RMarketConditionComparisonType</Name>

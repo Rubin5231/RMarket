@@ -21,6 +21,7 @@ public class RMarketDim extends common
     /// <returns>a table <t>RMarketDim</t></returns>
     public static RMarketDim find(RMarketId              _marketId,
                                   RMarketSymbolId        _symbolId,
+                                  RMarketCategory        _category,
                                   RMarketCandleInterval  _interval,
                                   boolean                _forUpdate = false)
     {
@@ -31,6 +32,7 @@ public class RMarketDim extends common
         select firstonly marketDim
             where marketDim.MarketId  == _marketId &&
                   marketDim.SymbolId  == _symbolId &&
+                  marketDim.Category  == _category &&
                   marketDim.Interval  == _interval;
         
         return marketDim;
@@ -75,16 +77,14 @@ public class RMarketDim extends common
     /// <returns>a table <t>RMarketDim</t></returns>
     public static boolean exists(RMarketId              _marketId,
                                  RMarketSymbolId        _symbolId,
+                                 RMarketCategory        _category,
                                  RMarketCandleInterval  _interval)
     {
-        boolean res;
+        boolean ret;
         ;
-        res = (select firstonly RecId from RMarketDim
-                where RMarketDim.MarketId  == _marketId &&
-                      RMarketDim.SymbolId  == _symbolId &&
-                      RMarketDim.Interval  == _interval).RecId != 0;
+        ret = RMarketDim::find(_marketId, _symbolId, _category, _interval).RecId != 0;
         
-        return res;
+        return ret;
     }
 
 ]]></Source>
@@ -101,9 +101,10 @@ public class RMarketDim extends common
     /// <returns>if exists a record in the table <t>RMarketDim</t> with the given parameters</returns>
     public static boolean checkExists(RMarketId              _marketId,
                                       RMarketSymbolId        _symbolId,
+                                      RMarketCategory        _category,
                                       RMarketCandleInterval  _interval)
     {
-        return RMarketDim::exists(_marketId, _symbolId, _interval);
+        return RMarketDim::exists(_marketId, _symbolId, _category, _interval);
     }
 
 ]]></Source>
@@ -113,12 +114,14 @@ public class RMarketDim extends common
 				<Source><![CDATA[
     static public RMarketDim findOrCreateDims(RMarketId              _marketId,
                                               RMarketSymbolId        _symbolId,
+                                              RMarketCategory        _category,
                                               RMarketCandleInterval  _interval)
     {
         RMarketDim marketDim;
         marketDim.clear();
         marketDim.MarketId = _marketId;
         marketDim.SymbolId = _symbolId;
+        marketDim.Category = _category;
         marketDim.Interval = _interval;
         marketDim = RMarketDim::findOrCreate(marketDim);
         return marketDim;
@@ -131,7 +134,10 @@ public class RMarketDim extends common
 				<Source><![CDATA[
     static public RMarketDim findOrCreate(RMarketDim _marketDim)
     {
-        RMarketDim marketDim = RMarketDim::find(_marketDim.MarketId, _marketDim.SymbolId, _marketDim.Interval);
+        RMarketDim marketDim = RMarketDim::find(_marketDim.MarketId, 
+                                                _marketDim.SymbolId, 
+                                                _marketDim.Category,
+                                                _marketDim.Interval);
 
         if (!marketDim)
         {
@@ -141,6 +147,7 @@ public class RMarketDim extends common
             marketDim.clear();
             marketDim.MarketId = _marketDim.MarketId;
             marketDim.SymbolId = _marketDim.SymbolId;
+            marketDim.Category = _marketDim.Category;
             marketDim.Interval = _marketDim.Interval;
             if (marketDim.validateWrite())
                 marketDim.insert();
@@ -229,6 +236,9 @@ public class RMarketDim extends common
 					<DataField>SymbolId</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
 					<DataField>Interval</DataField>
 				</AxTableFieldGroupField>
 			</Fields>
@@ -270,6 +280,11 @@ public class RMarketDim extends common
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
+			<Name>Category</Name>
+			<EnumType>RMarketCategory</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
 			<Name>Interval</Name>
 			<AllowEdit>No</AllowEdit>
 			<EnumType>RMarketCandleInterval</EnumType>
@@ -291,6 +306,9 @@ public class RMarketDim extends common
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>SymbolId</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
+					<DataField>Category</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>Interval</DataField>

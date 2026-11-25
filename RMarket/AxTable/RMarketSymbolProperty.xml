@@ -21,6 +21,7 @@ public class RMarketSymbolProperty extends common
     /// <returns>a table <t>RMarketSymbolProperty</t></returns>
     public static RMarketSymbolProperty find(RMarketId        _marketId,
                                              RMarketSymbolId  _symbolId,
+                                             RMarketCategory  _category,
                                              boolean          _forUpdate = false)
     {
         RMarketSymbolProperty property;
@@ -30,8 +31,9 @@ public class RMarketSymbolProperty extends common
         if (_symbolId && _marketId)
         {
             select firstonly property
-                where property.SymbolId  == _symbolId &&
-                      property.MarketId  == _marketId;
+                where property.SymbolId  == _symbolId 
+                   && property.Category  == _category
+                   && property.MarketId  == _marketId;
         }
         
         return property;
@@ -44,9 +46,10 @@ public class RMarketSymbolProperty extends common
 				<Source><![CDATA[
     public static void insertOrUpdate(RMarketId        _marketId,
                                       RMarketSymbolId  _symbolId,
+                                      RMarketCategory  _category,
                                       container        _dataCon)
     {
-        RMarketSymbolProperty property = RMarketSymbolProperty::find(_marketId, _symbolId, true);
+        RMarketSymbolProperty property = RMarketSymbolProperty::find(_marketId, _symbolId, _category, true);
         ttsbegin;
         if (!property)
         {
@@ -54,23 +57,24 @@ public class RMarketSymbolProperty extends common
             property.initValue();
             property.MarketId = _marketId;
             property.SymbolId = _symbolId;
+            property.Category = _category;
         }
-        [
-            property.BasePrecision,
-            property.QuotePrecision,
-            property.MinPrice,
-            property.MaxPrice,
-            property.StepPrice,
-            property.MinMarketQty,
-            property.MaxMarketQty,
-            property.StepMarketQty,
-            property.MinLimitQty,
-            property.MaxLimitQty,
-            property.StepLimitQty,
-            property.MinLimitAmount,
-            property.MaxLimitAmount,
-            property.MinMarketAmount,
-            property.MaxMarketAmount
+            [
+                property.BasePrecision,
+                property.QuotePrecision,
+                property.MinPrice,
+                property.MaxPrice,
+                property.StepPrice,
+                property.MinMarketQty,
+                property.MaxMarketQty,
+                property.StepMarketQty,
+                property.MinLimitQty,
+                property.MaxLimitQty,
+                property.StepLimitQty,
+                property.MinLimitAmount,
+                property.MaxLimitAmount,
+                property.MinMarketAmount,
+                property.MaxMarketAmount
             ] = _dataCon;
 
         if (property.validateWrite())
@@ -96,7 +100,17 @@ public class RMarketSymbolProperty extends common
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoLookup</Name>
-			<Fields />
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>SymbolId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>MarketId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
 		</AxTableFieldGroup>
 		<AxTableFieldGroup>
 			<Name>AutoIdentification</Name>
@@ -117,6 +131,9 @@ public class RMarketSymbolProperty extends common
 			<Fields>
 				<AxTableFieldGroupField>
 					<DataField>SymbolId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>BasePrecision</DataField>
@@ -178,6 +195,11 @@ public class RMarketSymbolProperty extends common
 			<Name>MarketId</Name>
 			<ExtendedDataType>RMarketId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Category</Name>
+			<EnumType>RMarketCategory</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldReal">
@@ -267,6 +289,9 @@ public class RMarketSymbolProperty extends common
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>MarketId</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
+					<DataField>Category</DataField>
 				</AxTableIndexField>
 			</Fields>
 		</AxTableIndex>

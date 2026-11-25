@@ -14,6 +14,7 @@ public class RMarketSymbolIntervals extends common
     public static RMarketSymbolIntervals find(RMarketId             _marketId,
                                               RMarketSymbolId       _symbolId,
                                               RMarketCandleInterval _interval,
+                                              RMarketCategory       _category,
                                               boolean               _forUpdate = false)
     {
         RMarketSymbolIntervals RMarketSymbolIntervals;
@@ -23,9 +24,10 @@ public class RMarketSymbolIntervals extends common
             RMarketSymbolIntervals.selectForUpdate(_forUpdate);
             
             select firstonly RMarketSymbolIntervals
-            where RMarketSymbolIntervals.MarketId     == _marketId
-               && RMarketSymbolIntervals.SymbolId     == _symbolId
-               && RMarketSymbolIntervals.Interval    == _interval;
+            where RMarketSymbolIntervals.MarketId == _marketId
+               && RMarketSymbolIntervals.SymbolId == _symbolId
+               && RMarketSymbolIntervals.Interval == _interval
+               && RMarketSymbolIntervals.Category == _category;
         }
         
         return RMarketSymbolIntervals;
@@ -68,6 +70,9 @@ public class RMarketSymbolIntervals extends common
 				<AxTableFieldGroupField>
 					<DataField>SymbolId</DataField>
 				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
 			</Fields>
 		</AxTableFieldGroup>
 	</FieldGroups>
@@ -83,6 +88,11 @@ public class RMarketSymbolIntervals extends common
 			<Name>SymbolId</Name>
 			<ExtendedDataType>RMarketSymbolId</ExtendedDataType>
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Category</Name>
+			<EnumType>RMarketCategory</EnumType>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
@@ -103,6 +113,9 @@ public class RMarketSymbolIntervals extends common
 				</AxTableIndexField>
 				<AxTableIndexField>
 					<DataField>SymbolId</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
+					<DataField>Category</DataField>
 				</AxTableIndexField>
 			</Fields>
 		</AxTableIndex>
@@ -172,6 +185,12 @@ public class RMarketSymbolIntervals extends common
 					<Name>Interval</Name>
 					<Field>Interval</Field>
 					<RelatedField>Interval</RelatedField>
+				</AxTableRelationConstraint>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>Category</Name>
+					<Field>Category</Field>
+					<RelatedField>Category</RelatedField>
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>

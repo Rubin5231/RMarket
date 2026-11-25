@@ -978,7 +978,9 @@ public class RMarketStrategy extends FormRun
         /// <param name = "_append"></param>
         public void create(boolean _append = false)
         {
-            super(_append);
+            this.last();
+            
+            super(true);
 
             this.forceWrite(true);
         }
@@ -1018,6 +1020,22 @@ public class RMarketStrategy extends FormRun
             this.queryBuildDataSource().addSortField(
                 fieldNum(RMarketSignalSetup, Priority),
                 SortOrder::Ascending);
+        }
+
+]]></Source>
+					</Method>
+					<Method>
+						<Name>write</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void write()
+        {
+            super();
+
+            //this.research(true);
+            this.executeQuery();
         }
 
 ]]></Source>
