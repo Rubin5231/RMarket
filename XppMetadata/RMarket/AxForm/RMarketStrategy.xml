@@ -366,32 +366,6 @@
 			</Methods>
 		</Control>
 		<Control>
-			<Name>SignalUpButton</Name>
-			<Type>Button</Type>
-			<Methods>
-				<Method>
-					<Name>clicked</Name>
-					<Visibility>Public</Visibility>
-					<ReturnType>
-						<TypeName></TypeName>
-					</ReturnType>
-				</Method>
-			</Methods>
-		</Control>
-		<Control>
-			<Name>SignalDownButton</Name>
-			<Type>Button</Type>
-			<Methods>
-				<Method>
-					<Name>clicked</Name>
-					<Visibility>Public</Visibility>
-					<ReturnType>
-						<TypeName></TypeName>
-					</ReturnType>
-				</Method>
-			</Methods>
-		</Control>
-		<Control>
 			<Name>OrdersTabPage</Name>
 			<Type>TabPage</Type>
 			<Methods>

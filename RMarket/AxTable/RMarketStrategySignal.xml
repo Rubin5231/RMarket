@@ -7,19 +7,15 @@ public class RMarketStrategySignal extends common
 {
 
 
-}
-]]></Declaration>
-		<Methods>
-			<Method>
-				<Name>find</Name>
-				<Source><![CDATA[
+    
+
     /// <summary>
     /// Find record in the table <t>RMarketStrategySignal</t>
     /// </summary>
     /// <param name = "_strategyId">a strategyId</param>
     /// <param name = "_forUpdate">if its updatable</param>
     /// <returns>a table <t>RMarketStrategySignal</t></returns>
-    public static RMarketStrategySignal find(RMarketStrategyId  _strategyId,
+    /*public static RMarketStrategySignal find(RMarketStrategyId  _strategyId,
                                              int                _num,
                                              boolean            _forUpdate = false)
     {
@@ -35,10 +31,11 @@ public class RMarketStrategySignal extends common
         }
         
         return action;
-    }
+    }*/
 
-]]></Source>
-			</Method>
+}
+]]></Declaration>
+		<Methods>
 			<Method>
 				<Name>findRecId</Name>
 				<Source><![CDATA[
@@ -61,14 +58,14 @@ public class RMarketStrategySignal extends common
 ]]></Source>
 			</Method>
 			<Method>
-				<Name>exists</Name>
+				<Name>initValue</Name>
 				<Source><![CDATA[
     /// <summary>
     /// Check if exists a record in the table <t>RMarketStrategySignal</t> with the given parameters
     /// </summary>
     /// <param name = "_strategyId">a strategyId</param>
     /// <returns>a table <t>RMarketStrategySignal</t></returns>
-    public static boolean exists(RMarketStrategyId  _strategyId,
+    /*public static boolean exists(RMarketStrategyId  _strategyId,
                                  int                _num)
     {
         boolean res;
@@ -78,13 +75,8 @@ public class RMarketStrategySignal extends common
                                   && RMarketStrategySignal.Num         == _num).RecId != 0;
         
         return res;
-    }
+    }*/
 
-]]></Source>
-			</Method>
-			<Method>
-				<Name>initValue</Name>
-				<Source><![CDATA[
     /// <summary>
     ///
     /// </summary>
@@ -165,65 +157,6 @@ public class RMarketStrategySignal extends common
 
 ]]></Source>
 			</Method>
-			<Method>
-				<Name>signalNumDecrease</Name>
-				<Source><![CDATA[
-    public void signalNumDecrease()
-    {
-        RMarketStrategySignal other;
-        
-        select firstonly other
-            order by Num desc
-            where other.Num < this.Num;
-
-        if (other.RecId)
-            RMarketStrategySignal::signalSwapNum(this, other);
-    }
-
-]]></Source>
-			</Method>
-			<Method>
-				<Name>signalNumRaise</Name>
-				<Source><![CDATA[
-    public void signalNumRaise()
-    {
-        RMarketStrategySignal other;
-        
-        select firstonly other
-            order by Num
-            where other.Num > this.Num;
-
-        if (other.RecId)
-            RMarketStrategySignal::signalSwapNum(this, other);
-    }
-
-]]></Source>
-			</Method>
-			<Method>
-				<Name>signalSwapNum</Name>
-				<Source><![CDATA[
-    public static void signalSwapNum(RMarketStrategySignal _signal1, RMarketStrategySignal _signal2)
-    {
-        int num = _signal1.Num;
-
-        ttsbegin;
-        _signal1.Num = _signal2.Num;
-
-        _signal2.Num = maxInt();
-        if (_signal2.validateWrite())
-            _signal2.Update();
-        _signal2.Num = num;
-
-        if (_signal1.validateWrite())
-            _signal1.update();
-
-        if (_signal2.validateWrite())
-            _signal2.update();
-        ttscommit;
-    }
-
-]]></Source>
-			</Method>
 		</Methods>
 	</SourceCode>
 	<SubscriberAccessLevel>
@@ -280,10 +213,6 @@ public class RMarketStrategySignal extends common
 			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
 		</AxTableField>
 		<AxTableField xmlns=""
-			i:type="AxTableFieldInt">
-			<Name>Num</Name>
-		</AxTableField>
-		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
 			<Name>Type</Name>
 			<EnumType>RMarketSignalType</EnumType>
@@ -298,12 +227,16 @@ public class RMarketStrategySignal extends common
 	<Indexes>
 		<AxTableIndex>
 			<Name>MainIdx</Name>
+			<AllowDuplicates>Yes</AllowDuplicates>
 			<Fields>
 				<AxTableIndexField>
 					<DataField>StrategyId</DataField>
 				</AxTableIndexField>
 				<AxTableIndexField>
-					<DataField>Num</DataField>
+					<DataField>Type</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
+					<DataField>Active</DataField>
 				</AxTableIndexField>
 			</Fields>
 		</AxTableIndex>
