@@ -128,8 +128,9 @@ public final class RMarketSignalCalc
         RMarketTimestamp  _tsCursor)
     {
         RMarketStrategy       strategy;
-        RMarketStrategySignal action;
+        RMarketStrategySignal signal;
         RMarketTimestamp      signalTimestamp;
+        RMarketSignalSetup    signalSetup;
         int                   calculated;
 
         if (appl.ttsLevel())
@@ -148,19 +149,21 @@ public final class RMarketSignalCalc
 
         signalTimestamp = RMarketUtil::calculateCandleTimestamp(_tsCursor, strategy.Interval);
 
-        while select action
-            order by action.Num
-            where action.StrategyId == strategy.StrategyId
-               && action.Active     == NoYes::Yes
+        while select signalSetup
+            order by Priority
+            join signal
+                where signal.Type       == signalSetup.SignalType
+                   && signal.StrategyId == strategy.StrategyId
+                   && signal.Active     == NoYes::Yes
         {
             if (RMarketSignalCalc::canCalculate(
                 _subAccount.SubAccountId,
-                action.RecId,
+                signal.RecId,
                 signalTimestamp))
             {
                 RMarketSignalCalc::calculate(
                     _subAccount,
-                    action,
+                    signal,
                     signalTimestamp);
 
                 calculated++;

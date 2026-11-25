@@ -33,18 +33,12 @@ public class RMarketSignalSetup extends common
     {
         RMarketSignalSetup other;
         
-        select other where other.Priority == this.Priority - 1;
+        select firstonly other 
+            order by Priority desc
+            where other.Priority < this.Priority;
 
-        if (other)
+        if (other.RecId)
             RMarketSignalSetup::signalSwapPriority(this, other);
-        else if (this.Priority <= 0)
-        {
-            ttsbegin;
-            this.Priority -= 1;
-            if (this.validateWrite())
-                this.update();
-            ttscommit;
-        }
     }
 
 ]]></Source>
@@ -56,18 +50,12 @@ public class RMarketSignalSetup extends common
     {
         RMarketSignalSetup other;
         
-        select other where other.Priority == this.Priority + 1;
-        
-        if (other)
+        select firstonly other
+            order by Priority 
+            where other.Priority > this.Priority;
+
+        if (other.RecId)
             RMarketSignalSetup::signalSwapPriority(this, other);
-        else
-        {
-            ttsbegin;
-            this.Priority += 1;
-            if (this.validateWrite())
-                this.update();
-            ttscommit;
-        }
     }
 
 ]]></Source>
@@ -110,7 +98,7 @@ public class RMarketSignalSetup extends common
         super();
 
         select maxof(Priority) from RMarketSignalSetup;
-        this.Priority = RMarketSignalSetup.Priority;
+        this.Priority = RMarketSignalSetup.Priority + 1;
     }
 
 ]]></Source>

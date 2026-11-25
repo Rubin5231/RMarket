@@ -32,13 +32,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSignalSetup</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -52,13 +45,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSignalSetup</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>
@@ -72,13 +58,6 @@
 					<ReturnType>
 						<TypeName></TypeName>
 					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketSignalSetup</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
 				</Method>
 			</Methods>
 		</Control>

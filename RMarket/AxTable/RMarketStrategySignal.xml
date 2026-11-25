@@ -6,6 +6,7 @@
 public class RMarketStrategySignal extends common
 {
 
+
 }
 ]]></Declaration>
 		<Methods>
@@ -90,8 +91,6 @@ public class RMarketStrategySignal extends common
     public void initValue()
     {
         super();
-
-        this.Type = RMarketSignalType::StopTrade;
     }
 
 ]]></Source>
@@ -206,9 +205,6 @@ public class RMarketStrategySignal extends common
 			<Label>Overview</Label>
 			<Fields>
 				<AxTableFieldGroupField>
-					<DataField>Num</DataField>
-				</AxTableFieldGroupField>
-				<AxTableFieldGroupField>
 					<DataField>Type</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
@@ -227,7 +223,6 @@ public class RMarketStrategySignal extends common
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
 			<Name>Num</Name>
-			<AllowEdit>No</AllowEdit>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
