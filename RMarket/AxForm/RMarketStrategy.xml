@@ -978,16 +978,11 @@ public class RMarketStrategy extends FormRun
         /// <param name = "_append"></param>
         public void create(boolean _append = false)
         {
-            RMarketStrategySignal strategySignal;
+            this.last();
 
-            super(_append);
+            super(true);
 
-            select maxof(Num) from strategySignal
-                where strategySignal.StrategyId == RMarketStrategy.StrategyId;
-
-            RMarketStrategySignal record = this.cursor();
-            //record.StrategyId = RMarketStrategy.StrategyId;
-            record.Num   = strategySignal.Num + 1;
+            this.forceWrite(true);
         }
 
 ]]></Source>
@@ -1129,7 +1124,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>StrategySignalNewButton</Name>
+				<Name>SignalNewButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1142,10 +1137,7 @@ public class RMarketStrategy extends FormRun
         {
             super();
             
-            if (RMarketStrategySignal_DS.leaveRecord())
-            {
-                RMarketStrategySignal_DS.create();
-            }
+            RMarketStrategySignal_DS.create(true);
         }
 
 ]]></Source>
@@ -1153,7 +1145,7 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>StrategySignalDeleteButton</Name>
+				<Name>SignalDeleteButton</Name>
 				<Type>Button</Type>
 				<Methods>
 					<Method>
@@ -1164,21 +1156,71 @@ public class RMarketStrategy extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketStrategySignal  action;
+            RMarketStrategySignal  record;
             super();
             
-            action = RMarketStrategySignal_DS.cursor();
-            if (action.RecId && action.validateDelete())
+            record = RMarketStrategySignal_DS.cursor();
+            if (record.RecId && record.validateDelete())
             {
                 try
                 {
-                    action.delete();
+                    record.delete();
                 }
                 catch
                 {
                     //continue with other records
                 }
             }
+            RMarketStrategySignal_DS.research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SignalUpButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketStrategySignal  record;
+            
+            super();
+    
+            record = RMarketStrategySignal_DS.cursor();
+            record.signalNumDecrease();
+            RMarketStrategySignal_DS.research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SignalDownButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketStrategySignal  record;
+            
+            super();
+    
+            record = RMarketStrategySignal_DS.cursor();
+            record.signalNumRaise();
             RMarketStrategySignal_DS.research();
         }
 
@@ -2626,14 +2668,14 @@ public class RMarketStrategy extends FormRun
 												<Controls>
 													<AxFormControl xmlns=""
 														i:type="AxFormButtonGroupControl">
-														<Name>StrategySignalButtonGroup</Name>
+														<Name>SignalButtonGroup</Name>
 														<Type>ButtonGroup</Type>
 														<FormControlExtension
 															i:nil="true" />
 														<Controls>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>StrategySignalNewButton</Name>
+																<Name>SignalNewButton</Name>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>Button</Type>
 																<FormControlExtension
@@ -2645,7 +2687,7 @@ public class RMarketStrategy extends FormRun
 															</AxFormControl>
 															<AxFormControl xmlns=""
 																i:type="AxFormButtonControl">
-																<Name>StrategySignalDeleteButton</Name>
+																<Name>SignalDeleteButton</Name>
 																<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
 																<Type>Button</Type>
 																<FormControlExtension
@@ -2655,6 +2697,26 @@ public class RMarketStrategy extends FormRun
 																<MultiSelect>No</MultiSelect>
 																<NormalImage>Delete</NormalImage>
 																<Text>@SYS21354</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>SignalUpButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Up</NormalImage>
+																<Text>Up</Text>
+															</AxFormControl>
+															<AxFormControl xmlns=""
+																i:type="AxFormButtonControl">
+																<Name>SignalDownButton</Name>
+																<Type>Button</Type>
+																<FormControlExtension
+																	i:nil="true" />
+																<ButtonDisplay>ImageOnly</ButtonDisplay>
+																<NormalImage>Down</NormalImage>
+																<Text>Down</Text>
 															</AxFormControl>
 														</Controls>
 														<DataSource>RMarketStrategySignal</DataSource>

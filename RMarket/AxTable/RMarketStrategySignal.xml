@@ -165,6 +165,65 @@ public class RMarketStrategySignal extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>signalNumDecrease</Name>
+				<Source><![CDATA[
+    public void signalNumDecrease()
+    {
+        RMarketStrategySignal other;
+        
+        select firstonly other
+            order by Num desc
+            where other.Num < this.Num;
+
+        if (other.RecId)
+            RMarketStrategySignal::signalSwapNum(this, other);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>signalNumRaise</Name>
+				<Source><![CDATA[
+    public void signalNumRaise()
+    {
+        RMarketStrategySignal other;
+        
+        select firstonly other
+            order by Num
+            where other.Num > this.Num;
+
+        if (other.RecId)
+            RMarketStrategySignal::signalSwapNum(this, other);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>signalSwapNum</Name>
+				<Source><![CDATA[
+    public static void signalSwapNum(RMarketStrategySignal _signal1, RMarketStrategySignal _signal2)
+    {
+        int num = _signal1.Num;
+
+        ttsbegin;
+        _signal1.Num = _signal2.Num;
+
+        _signal2.Num = maxInt();
+        if (_signal2.validateWrite())
+            _signal2.Update();
+        _signal2.Num = num;
+
+        if (_signal1.validateWrite())
+            _signal1.update();
+
+        if (_signal2.validateWrite())
+            _signal2.update();
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<SubscriberAccessLevel>

@@ -9,11 +9,37 @@
 [Form]
 public class RMarketSignalSetup extends FormRun 
 {
+
 }
 ]]></Source>
 			</Method>
 		</Methods>
-		<DataSources xmlns="" />
+		<DataSources xmlns="">
+			<DataSource>
+				<Name>RMarketSignalSetup</Name>
+				<Methods>
+					<Method>
+						<Name>create</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name = "_append"></param>
+        public void create(boolean _append = false)
+        {
+            this.last();
+
+            super(true);
+
+            this.forceWrite(true);
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+				<Fields />
+			</DataSource>
+		</DataSources>
 		<DataControls xmlns="">
 			<Control>
 				<Name>SignalNewButton</Name>
@@ -27,14 +53,9 @@ public class RMarketSignalSetup extends FormRun
         /// </summary>
         public void clicked()
         {
-            RMarketSignalSetup_DS.leaveRecord();
-
             super();
             
-            if (RMarketSignalSetup_DS.leaveRecord())
-            {
-                RMarketSignalSetup_DS.create();
-            }
+            RMarketSignalSetup_DS.create(true);
         }
 
 ]]></Source>

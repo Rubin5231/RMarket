@@ -7,7 +7,29 @@
 			<ReturnType />
 		</Method>
 	</Methods>
-	<DataSources />
+	<DataSources>
+		<DataSource>
+			<Name>RMarketSignalSetup</Name>
+			<Methods>
+				<Method>
+					<Name>create</Name>
+					<Visibility>Public</Visibility>
+					<Parameters>
+						<AxMethodParameter>
+							<Type>Enum</Type>
+							<TypeName>boolean</TypeName>
+							<DefaultValue>false</DefaultValue>
+							<Name>_append</Name>
+						</AxMethodParameter>
+					</Parameters>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+			<Fields />
+		</DataSource>
+	</DataSources>
 	<DataControls>
 		<Control>
 			<Name>SignalNewButton</Name>
