@@ -150,6 +150,11 @@
 					<Name>RMarketApiKey</Name>
 					<MenuItemName>RMarketApiKey</MenuItemName>
 				</AxMenuElement>
+				<AxMenuElement xmlns=""
+					i:type="AxMenuElementMenuItem">
+					<Name>RMarketSignalSetup</Name>
+					<MenuItemName>RMarketSignalSetup</MenuItemName>
+				</AxMenuElement>
 			</Elements>
 		</AxMenuElement>
 	</Elements>

@@ -1049,6 +1049,11 @@
       <Name>RMarketPosition</Name>
       <Link>Forms\RMarketPosition</Link>
     </Content>
+    <Content Include="AxForm\RMarketSignalSetup">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalSetup</Name>
+      <Link>Forms\RMarketSignalSetup</Link>
+    </Content>
     <Content Include="AxForm\RMarketStrategy">
       <SubType>Content</SubType>
       <Name>RMarketStrategy</Name>
@@ -1193,6 +1198,11 @@
       <SubType>Content</SubType>
       <Name>RMarketPosition</Name>
       <Link>Display Menu Items\RMarketPosition</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\RMarketSignalSetup">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalSetup</Name>
+      <Link>Display Menu Items\RMarketSignalSetup</Link>
     </Content>
     <Content Include="AxMenuItemDisplay\RMarketStrategy">
       <SubType>Content</SubType>
@@ -1339,6 +1349,16 @@
       <Name>RMarketPositionView</Name>
       <Link>Security Privileges\RMarketPositionView</Link>
     </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSignalSetupMaintain">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalSetupMaintain</Name>
+      <Link>Security Privileges\RMarketSignalSetupMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\RMarketSignalSetupView">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalSetupView</Name>
+      <Link>Security Privileges\RMarketSignalSetupView</Link>
+    </Content>
     <Content Include="AxSecurityPrivilege\RMarketStrategyMaintain">
       <SubType>Content</SubType>
       <Name>RMarketStrategyMaintain</Name>
@@ -1478,6 +1498,11 @@
       <SubType>Content</SubType>
       <Name>RMarketSignalLog</Name>
       <Link>Tables\RMarketSignalLog</Link>
+    </Content>
+    <Content Include="AxTable\RMarketSignalSetup">
+      <SubType>Content</SubType>
+      <Name>RMarketSignalSetup</Name>
+      <Link>Tables\RMarketSignalSetup</Link>
     </Content>
     <Content Include="AxTable\RMarketStrategy">
       <SubType>Content</SubType>
