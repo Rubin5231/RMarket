@@ -256,6 +256,18 @@ public class RMarketStrategySignal extends common
 				</AxTableRelationConstraint>
 			</Constraints>
 		</AxTableRelation>
+		<AxTableRelation>
+			<Name>RMarketSignalSetup</Name>
+			<RelatedTable>RMarketSignalSetup</RelatedTable>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>Type</Name>
+					<Field>Type</Field>
+					<RelatedField>SignalType</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
 	</Relations>
 	<StateMachines />
 </AxTable>

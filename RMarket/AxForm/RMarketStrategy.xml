@@ -2101,7 +2101,9 @@ public class RMarketStrategy extends FormRun
 			</Fields>
 			<ReferencedDataSources />
 			<JoinSource>RMarketStrategySignal</JoinSource>
+			<LinkType>OuterJoin</LinkType>
 			<AllowCreate>No</AllowCreate>
+			<AllowDelete>No</AllowDelete>
 			<AllowEdit>No</AllowEdit>
 			<Index>PriorityIdx</Index>
 			<DataSourceLinks />
