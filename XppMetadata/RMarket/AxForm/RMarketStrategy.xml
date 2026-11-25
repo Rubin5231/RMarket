@@ -866,46 +866,6 @@
 			</Methods>
 		</Control>
 		<Control>
-			<Name>StrategySignalUpButton</Name>
-			<Type>Button</Type>
-			<Methods>
-				<Method>
-					<Name>clicked</Name>
-					<Visibility>Public</Visibility>
-					<ReturnType>
-						<TypeName></TypeName>
-					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategySignal</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
-				</Method>
-			</Methods>
-		</Control>
-		<Control>
-			<Name>StrategySignalDownButton</Name>
-			<Type>Button</Type>
-			<Methods>
-				<Method>
-					<Name>clicked</Name>
-					<Visibility>Public</Visibility>
-					<ReturnType>
-						<TypeName></TypeName>
-					</ReturnType>
-					<Variables>
-						<AxMethodVariable>
-							<Type>Record</Type>
-							<TypeName>RMarketStrategySignal</TypeName>
-							<Name>record</Name>
-						</AxMethodVariable>
-					</Variables>
-				</Method>
-			</Methods>
-		</Control>
-		<Control>
 			<Name>OrdersTabPage</Name>
 			<Type>TabPage</Type>
 			<Methods>

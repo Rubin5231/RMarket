@@ -26,6 +26,95 @@ public class RMarketSignalSetup extends common
 
 ]]></Source>
 			</Method>
+			<Method>
+				<Name>signalPriorityDecrease</Name>
+				<Source><![CDATA[
+    public void signalPriorityDecrease()
+    {
+        RMarketSignalSetup other;
+        
+        select other where other.Priority == this.Priority - 1;
+
+        if (other)
+            RMarketSignalSetup::signalSwapPriority(this, other);
+        else if (this.Priority <= 0)
+        {
+            ttsbegin;
+            this.Priority -= 1;
+            if (this.validateWrite())
+                this.update();
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>signalPriorityRaise</Name>
+				<Source><![CDATA[
+    public void signalPriorityRaise()
+    {
+        RMarketSignalSetup other;
+        
+        select other where other.Priority == this.Priority + 1;
+        
+        if (other)
+            RMarketSignalSetup::signalSwapPriority(this, other);
+        else
+        {
+            ttsbegin;
+            this.Priority += 1;
+            if (this.validateWrite())
+                this.update();
+            ttscommit;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>signalSwapPriority</Name>
+				<Source><![CDATA[
+    public static void signalSwapPriority(RMarketSignalSetup _signal1, RMarketSignalSetup _signal2)
+    {
+        int num = _signal1.Priority;
+
+        ttsbegin;
+        _signal1.Priority = _signal2.Priority;
+
+        _signal2.Priority = maxInt();
+        if (_signal2.validateWrite())
+            _signal2.Update();
+        _signal2.Priority = num;
+
+        if (_signal1.validateWrite())
+            _signal1.update();
+
+        if (_signal2.validateWrite())
+            _signal2.update();
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initValue</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public void initValue()
+    {
+        RMarketSignalSetup  RMarketSignalSetup;
+
+        super();
+
+        select maxof(Priority) from RMarketSignalSetup;
+        this.Priority = RMarketSignalSetup.Priority;
+    }
+
+]]></Source>
+			</Method>
 		</Methods>
 	</SourceCode>
 	<Label>Signal setup</Label>
@@ -38,7 +127,7 @@ public class RMarketSignalSetup extends common
 	<CreatedDateTime>Yes</CreatedDateTime>
 	<ModifiedBy>Yes</ModifiedBy>
 	<ModifiedDateTime>Yes</ModifiedDateTime>
-	<PrimaryIndex>SignalTypeIdx</PrimaryIndex>
+	<PrimaryIndex>PriorityIdx</PrimaryIndex>
 	<ReplacementKey>SignalTypeIdx</ReplacementKey>
 	<DeleteActions />
 	<FieldGroups>
@@ -79,10 +168,10 @@ public class RMarketSignalSetup extends common
 			<Label>Overview</Label>
 			<Fields>
 				<AxTableFieldGroupField>
-					<DataField>SignalType</DataField>
+					<DataField>Priority</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
-					<DataField>Priority</DataField>
+					<DataField>SignalType</DataField>
 				</AxTableFieldGroupField>
 				<AxTableFieldGroupField>
 					<DataField>Emergency</DataField>
@@ -102,6 +191,9 @@ public class RMarketSignalSetup extends common
 		<AxTableField xmlns=""
 			i:type="AxTableFieldInt">
 			<Name>Priority</Name>
+			<AllowEdit>No</AllowEdit>
+			<AllowEditOnCreate>No</AllowEditOnCreate>
+			<Mandatory>Yes</Mandatory>
 		</AxTableField>
 		<AxTableField xmlns=""
 			i:type="AxTableFieldEnum">
@@ -122,6 +214,14 @@ public class RMarketSignalSetup extends common
 			<Fields>
 				<AxTableIndexField>
 					<DataField>SignalType</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+		<AxTableIndex>
+			<Name>PriorityIdx</Name>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>Priority</DataField>
 				</AxTableIndexField>
 			</Fields>
 		</AxTableIndex>

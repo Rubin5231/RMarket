@@ -125,45 +125,6 @@
 			</ReturnType>
 		</Method>
 		<Method>
-			<Name>signalNumDecrease</Name>
-			<Visibility>Public</Visibility>
-			<ReturnType>
-				<Tags></Tags>
-				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>signalNumRaise</Name>
-			<Visibility>Public</Visibility>
-			<ReturnType>
-				<Tags></Tags>
-				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
-			<Name>signalSwapNum</Name>
-			<IsStatic>true</IsStatic>
-			<Visibility>Public</Visibility>
-			<Parameters>
-				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>Record</Type>
-					<TypeName>RMarketStrategySignal</TypeName>
-					<Name>_signal1</Name>
-				</AxMethodParameter>
-				<AxMethodParameter>
-					<Tags></Tags>
-					<Type>Record</Type>
-					<TypeName>RMarketStrategySignal</TypeName>
-					<Name>_signal2</Name>
-				</AxMethodParameter>
-			</Parameters>
-			<ReturnType>
-				<Tags></Tags>
-				<TypeName></TypeName>
-			</ReturnType>
-		</Method>
-		<Method>
 			<Name>calcSignal</Name>
 			<Visibility>Public</Visibility>
 			<Parameters>

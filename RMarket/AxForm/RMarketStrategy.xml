@@ -1187,56 +1187,6 @@ public class RMarketStrategy extends FormRun
 				</Methods>
 			</Control>
 			<Control>
-				<Name>StrategySignalUpButton</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        /// <summary>
-        ///
-        /// </summary>
-        public void clicked()
-        {
-            RMarketStrategySignal  record;
-            
-            super();
-
-            record = RMarketStrategySignal_DS.cursor();
-            record.signalNumDecrease();
-            RMarketStrategySignal_DS.research();
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-			</Control>
-			<Control>
-				<Name>StrategySignalDownButton</Name>
-				<Type>Button</Type>
-				<Methods>
-					<Method>
-						<Name>clicked</Name>
-						<Source><![CDATA[
-        /// <summary>
-        ///
-        /// </summary>
-        public void clicked()
-        {
-            RMarketStrategySignal  record;
-            
-            super();
-
-            record = RMarketStrategySignal_DS.cursor();
-            record.signalNumRaise();
-            RMarketStrategySignal_DS.research();
-        }
-
-]]></Source>
-					</Method>
-				</Methods>
-			</Control>
-			<Control>
 				<Name>OrdersTabPage</Name>
 				<Type>TabPage</Type>
 				<Methods>
@@ -2705,26 +2655,6 @@ public class RMarketStrategy extends FormRun
 																<MultiSelect>No</MultiSelect>
 																<NormalImage>Delete</NormalImage>
 																<Text>@SYS21354</Text>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormButtonControl">
-																<Name>StrategySignalUpButton</Name>
-																<Type>Button</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<ButtonDisplay>ImageOnly</ButtonDisplay>
-																<NormalImage>Up</NormalImage>
-																<Text>Up</Text>
-															</AxFormControl>
-															<AxFormControl xmlns=""
-																i:type="AxFormButtonControl">
-																<Name>StrategySignalDownButton</Name>
-																<Type>Button</Type>
-																<FormControlExtension
-																	i:nil="true" />
-																<ButtonDisplay>ImageOnly</ButtonDisplay>
-																<NormalImage>Down</NormalImage>
-																<Text>Down</Text>
 															</AxFormControl>
 														</Controls>
 														<DataSource>RMarketStrategySignal</DataSource>

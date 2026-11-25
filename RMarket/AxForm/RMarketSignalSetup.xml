@@ -14,7 +14,116 @@ public class RMarketSignalSetup extends FormRun
 			</Method>
 		</Methods>
 		<DataSources xmlns="" />
-		<DataControls xmlns="" />
+		<DataControls xmlns="">
+			<Control>
+				<Name>SignalNewButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            super();
+            
+            if (RMarketSignalSetup_DS.leaveRecord())
+            {
+                RMarketSignalSetup_DS.create();
+            }
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SignalDeleteButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        /// Delete data project
+        /// </summary>
+        public void clicked()
+        {
+            RMarketSignalSetup  record;
+            super();
+            
+            record = RMarketSignalSetup_DS.cursor();
+            if (record.RecId && record.validateDelete())
+            {
+                try
+                {
+                    record.delete();
+                }
+                catch
+                {
+                    //continue with other records
+                }
+            }
+            RMarketSignalSetup_DS.research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SignalUpButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketSignalSetup  record;
+            
+            super();
+
+            record = RMarketSignalSetup_DS.cursor();
+            record.signalPriorityDecrease();
+            RMarketSignalSetup_DS.research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+			<Control>
+				<Name>SignalDownButton</Name>
+				<Type>Button</Type>
+				<Methods>
+					<Method>
+						<Name>clicked</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void clicked()
+        {
+            RMarketSignalSetup  record;
+            
+            super();
+
+            record = RMarketSignalSetup_DS.cursor();
+            record.signalPriorityRaise();
+            RMarketSignalSetup_DS.research();
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+			</Control>
+		</DataControls>
 		<Members xmlns="" />
 	</SourceCode>
 	<DataSources>
@@ -31,6 +140,9 @@ public class RMarketSignalSetup extends FormRun
 	<Design>
 		<Caption xmlns="">Signal setup</Caption>
 		<DataSource xmlns="">RMarketSignalSetup</DataSource>
+		<Pattern xmlns="">SimpleList</Pattern>
+		<PatternVersion xmlns="">1.1</PatternVersion>
+		<Style xmlns="">SimpleList</Style>
 		<TitleDataSource xmlns="">RMarketSignalSetup</TitleDataSource>
 		<Controls xmlns="">
 			<AxFormControl xmlns=""
@@ -39,11 +151,69 @@ public class RMarketSignalSetup extends FormRun
 				<Type>ActionPane</Type>
 				<FormControlExtension
 					i:nil="true" />
-				<Controls />
+				<Controls>
+					<AxFormControl xmlns=""
+						i:type="AxFormButtonGroupControl">
+						<Name>SignalButtonGroup</Name>
+						<Type>ButtonGroup</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<Controls>
+							<AxFormControl xmlns=""
+								i:type="AxFormButtonControl">
+								<Name>SignalNewButton</Name>
+								<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+								<Type>Button</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<AutoRefreshData>Yes</AutoRefreshData>
+								<ButtonDisplay>ImageOnly</ButtonDisplay>
+								<NormalImage>New</NormalImage>
+								<Text>New</Text>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormButtonControl">
+								<Name>SignalDeleteButton</Name>
+								<ExtendedStyle>button_inlineImageOnly</ExtendedStyle>
+								<Type>Button</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<AutoRefreshData>Yes</AutoRefreshData>
+								<ButtonDisplay>ImageOnly</ButtonDisplay>
+								<MultiSelect>No</MultiSelect>
+								<NormalImage>Delete</NormalImage>
+								<Text>@SYS21354</Text>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormButtonControl">
+								<Name>SignalUpButton</Name>
+								<Type>Button</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<ButtonDisplay>ImageOnly</ButtonDisplay>
+								<NormalImage>Up</NormalImage>
+								<Text>Up</Text>
+							</AxFormControl>
+							<AxFormControl xmlns=""
+								i:type="AxFormButtonControl">
+								<Name>SignalDownButton</Name>
+								<Type>Button</Type>
+								<FormControlExtension
+									i:nil="true" />
+								<ButtonDisplay>ImageOnly</ButtonDisplay>
+								<NormalImage>Down</NormalImage>
+								<Text>Down</Text>
+							</AxFormControl>
+						</Controls>
+						<DataSource>RMarketSignalSetup</DataSource>
+					</AxFormControl>
+				</Controls>
 			</AxFormControl>
 			<AxFormControl xmlns=""
 				i:type="AxFormGroupControl">
 				<Name>FilterGroup</Name>
+				<Pattern>CustomAndQuickFilters</Pattern>
+				<PatternVersion>1.1</PatternVersion>
 				<Type>Group</Type>
 				<WidthMode>SizeToAvailable</WidthMode>
 				<FormControlExtension
@@ -85,17 +255,46 @@ public class RMarketSignalSetup extends FormRun
 					i:nil="true" />
 				<Controls>
 					<AxFormControl xmlns=""
-						i:type="AxFormGroupControl">
-						<Name>Overview</Name>
-						<Type>Group</Type>
+						i:type="AxFormIntegerControl">
+						<Name>MainGrid_Priority</Name>
+						<Type>Integer</Type>
 						<FormControlExtension
 							i:nil="true" />
-						<Controls />
-						<DataGroup>Overview</DataGroup>
+						<DataField>Priority</DataField>
+						<DataSource>RMarketSignalSetup</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormComboBoxControl">
+						<Name>MainGrid_SignalType</Name>
+						<Type>ComboBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>SignalType</DataField>
+						<DataSource>RMarketSignalSetup</DataSource>
+						<Items />
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormCheckBoxControl">
+						<Name>MainGrid_Emergency</Name>
+						<Type>CheckBox</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>Emergency</DataField>
+						<DataSource>RMarketSignalSetup</DataSource>
+					</AxFormControl>
+					<AxFormControl xmlns=""
+						i:type="AxFormStringControl">
+						<Name>MainGrid_Description</Name>
+						<Type>String</Type>
+						<FormControlExtension
+							i:nil="true" />
+						<DataField>Description</DataField>
 						<DataSource>RMarketSignalSetup</DataSource>
 					</AxFormControl>
 				</Controls>
+				<DataGroup>Overview</DataGroup>
 				<DataSource>RMarketSignalSetup</DataSource>
+				<Style>Tabular</Style>
 			</AxFormControl>
 		</Controls>
 	</Design>
