@@ -56,9 +56,13 @@ public class RMarketMethod_Binance_Klines extends RMarketMethod implements RMark
     void initParameters(
         RMarketSymbolId _symbol,
         str _interval,
-        RMarketType _marketType,
+        RMarketCategory _category,
         int _limit = 1000)
     {
+        if (_category != RMarketCategory::Spot)
+        {
+            throw error(strFmt("Unsupported Binance Kline category: %1", enum2Str(_category)));
+        }
         symbol = _symbol;
         interval = _interval;
         limit = _limit;

@@ -85,8 +85,8 @@
 				<AxMethodParameter>
 					<Tags></Tags>
 					<Type>Enum</Type>
-					<TypeName>RMarketType</TypeName>
-					<Name>_marketType</Name>
+					<TypeName>RMarketCategory</TypeName>
+					<Name>_category</Name>
 				</AxMethodParameter>
 				<AxMethodParameter>
 					<Tags></Tags>

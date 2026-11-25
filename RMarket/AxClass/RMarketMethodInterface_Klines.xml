@@ -25,7 +25,7 @@ interface RMarketMethodInterface_Klines
     void initParameters(
         RMarketSymbolId _symbol, 
         str _interval, 
-        RMarketType _marketType, 
+        RMarketCategory _category,
         int _limit = 1000)
     {}
 

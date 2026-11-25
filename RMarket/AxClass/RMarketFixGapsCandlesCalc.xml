@@ -27,23 +27,37 @@ public class RMarketFixGapsCandlesCalc extends RMarketFixGaps
 				<Source><![CDATA[
     protected void calc_m1()
     {
-        RMarketDim dim = RMarketDim::findOrCreateDims(marketId, symbolId, interval);
+        RMarketCandleGapsView gapsView = callerRecord;
+        RMarketDim dim = RMarketDim::findRecId(gapsView.DimRecId);
+
+        if (!dim)
+        throw error(strFmt("Market dimension %1 not found.",
+            gapsView.DimRecId));
 
         RMarketTimestamp fromTS = RMarketUtil::dateTime2Timestamp(dtFrom);
         RMarketTimestamp toTS = RMarketUtil::dateTime2Timestamp(dtTo);
         RMarketTimestamp curTS;
 
-        RMarketCandleTable candlePrev = RMarketCandleTable::find(dim.RecId, fromTS - dim.Seconds);
+        RMarketCandleTable candlePrev =
+        RMarketCandleTable::find(dim.RecId, fromTS - dim.Seconds);
         RMarketCandleTable candle;
 
-        RecordInsertList list = new RecordInsertList(tableNum(RMarketCandleTable));
-        
+        RecordInsertList list =
+        new RecordInsertList(tableNum(RMarketCandleTable));
+
         for (curTS = fromTS; curTS < toTS; curTS += dim.Seconds)
         {
             candle.clear();
             candle.Timestamp = curTS;
             candle.DimRecId = dim.RecId;
-            candle.initFromKlineContainer([curTS, candlePrev.Close, candlePrev.Close, candlePrev.Close, candlePrev.Close, 0.0, 0.0]);
+            candle.initFromKlineContainer(
+            [curTS,
+             candlePrev.Close,
+             candlePrev.Close,
+             candlePrev.Close,
+             candlePrev.Close,
+             0.0,
+             0.0]);
             list.add(candle);
         }
 
@@ -57,11 +71,21 @@ public class RMarketFixGapsCandlesCalc extends RMarketFixGaps
 				<Source><![CDATA[
     protected void calcFrom_m1()
     {
-        RMarketDim dim   = RMarketDim::findOrCreateDims(marketId, symbolId, interval);
-        RMarketDim dim60 = RMarketDim::findOrCreateDims(marketId, symbolId, RMarketCandleInterval::m1);
+        RMarketCandleGapsView gapsView = callerRecord;
+        RMarketDim dim = RMarketDim::findRecId(gapsView.DimRecId);
+
+        if (!dim)
+            throw error(strFmt("Market dimension %1 not found.",
+                gapsView.DimRecId));
+
+        RMarketDim dim60 = RMarketDim::findOrCreateDims(
+            dim.MarketId,
+            dim.SymbolId,
+            dim.Category,
+            RMarketCandleInterval::m1);
 
         RMarketTimestamp fromTS = RMarketUtil::dateTime2Timestamp(dtFrom);
-        RMarketTimestamp toTS = RMarketUtil::dateTime2Timestamp(dtTo);
+        RMarketTimestamp toTS   = RMarketUtil::dateTime2Timestamp(dtTo);
         RMarketTimestamp curTS;
 
         RMarketCandleTable candleFull, candleOpen, candleClose;

@@ -33,6 +33,7 @@ internal final class RMarketJob_ApiMethods
         RMarketDim _marketDim = RMarketDim::findOrCreateDims(
             'Bybit',
             'BTCUSDT',
+            RMarketCategory::Linear,
             RMarketCandleInterval::h1
             );
         int64 currentEnd = RMarketUtil::dateTime2Timestamp(DateTimeUtil::utcNow());
@@ -44,7 +45,7 @@ internal final class RMarketJob_ApiMethods
         apiMethod.initParameters(
             _marketDim.SymbolId,                        // Торговый символ
             _marketDim.RMarketIntervals().IntervalStr,  // Интервал
-            _marketDim.RMarketTable().Type/*,
+            _marketDim.Category/*,
             1000*/);                                      // Лимит
         apiMethod.initPeriod(currentStart * 1000, currentEnd * 1000);
         apiMethod.execute();

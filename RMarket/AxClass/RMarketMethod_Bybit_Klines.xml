@@ -59,10 +59,17 @@ public class RMarketMethod_Bybit_Klines extends RMarketMethod implements RMarket
     void initParameters(
         RMarketSymbolId _symbol,
         str _interval,
-        RMarketType _marketType,
+        RMarketCategory _category,
         int _limit = 1000)
     {
-        category = RMarketUtil::enum2strBBT(_marketType);
+        //category = RMarketUtil::enum2strBBT(_marketType);
+        switch (_category)
+        {
+            case RMarketCategory::Spot:     category = 'spot';      break;
+            case RMarketCategory::Linear:   category = 'linear';    break;
+            case RMarketCategory::Inverse:  category = 'inverse';   break;
+            default:    throw error(strFmt("Unsupported Bybit Kline category: %1", enum2Str(_category)));
+        }
         symbol = strUpr(_symbol);
         interval = _interval;
         limit = _limit;

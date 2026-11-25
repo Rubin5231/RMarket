@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Diagnostics
-  GenerationTime="2026-11-26T00:52:55.2510926+03:00">
+  GenerationTime="2026-11-26T01:39:52.0056479+03:00">
   <Items>
     <Diagnostic>
       <DiagnosticType>ExternalReference</DiagnosticType>
@@ -22,6 +22,18 @@
       <Path>dynamics://Reference/Azure.Core</Path>
       <Moniker>AssemblyFileNotFound</Moniker>
       <Message>Assembly 'System.Memory.Data, Version=1.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Class/RMarketMethod_Binance_Klines/Method/new</Path>
+      <ElementType>Class Method</ElementType>
+      <Moniker>ConstructorMustCallSuper</Moniker>
+      <Line>23</Line>
+      <Column>5</Column>
+      <EndLine>23</EndLine>
+      <EndColumn>20</EndColumn>
+      <Message>Not all paths in the constructor call 'super()'.</Message>
     </Diagnostic>
   </Items>
   <Aliases />

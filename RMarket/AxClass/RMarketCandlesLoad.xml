@@ -358,7 +358,10 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
             intervals = queryRun.get(tableNum(RMarketIntervals));
             symbols = queryRun.get(tableNum(RMarketSymbolIntervals));
 
-            marketDim = RMarketDim::findOrCreateDims(intervals.MarketId, symbols.SymbolId, intervals.Interval);
+            marketDim = RMarketDim::findOrCreateDims(intervals.MarketId, 
+                                                     symbols.SymbolId, 
+                                                     symbols.Category, 
+                                                     intervals.Interval);
             
             // Get server time with caching
             serverTime = this.getCachedServerTime(marketDim);
@@ -370,7 +373,12 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
             dateTo = this.calculateDateTo(serverTime, marketDim.Interval);
             
             // Execute the loading task
-            setPrefix(strFmt("%1 %2 %3 %4: ", serverTime, marketDim.MarketId, marketDim.SymbolId, enum2Str(marketDim.Interval)));
+            setPrefix(strFmt("%1 %2 %3 %4 %5: ", 
+                serverTime, 
+                marketDim.MarketId, 
+                marketDim.SymbolId, 
+                enum2Str(marketDim.Category),
+                enum2Str(marketDim.Interval)));
             this.doTask(marketDim, dateFrom, dateTo);
         }
     }
@@ -393,7 +401,7 @@ public class RMarketCandlesLoad extends RunBaseBatch implements BatchRetryable
         apiMethod.initParameters(
             _marketDim.SymbolId,                        // Торговый символ
             _marketDim.RMarketIntervals().IntervalStr,  // Интервал
-            _marketDim.RMarketTable().Type/*,
+            _marketDim.Category/*,
             1000*/);                                      // Лимит
 
         int loadedCount = 0;

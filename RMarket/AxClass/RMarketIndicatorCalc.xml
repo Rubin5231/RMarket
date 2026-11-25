@@ -411,7 +411,11 @@ public class RMarketIndicatorCalc extends RunBaseBatch implements BatchRetryable
             intervals = queryRun.get(tableNum(RMarketIntervals));
             symbols = queryRun.get(tableNum(RMarketSymbolIntervals));
 
-            marketDim = RMarketDim::findOrCreateDims(intervals.MarketId, symbols.SymbolId, intervals.Interval);
+            marketDim = RMarketDim::findOrCreateDims(
+                intervals.MarketId,
+                symbols.SymbolId,
+                symbols.Category,
+                intervals.Interval);
             
             str prefix = strFmt("%1 %2 %3 %4, %5%6(%7): ", serverTime, marketDim.MarketId, marketDim.SymbolId, enum2Str(marketDim.Interval),
                 enum2Str(indicatorSetupTable.IndicatorType),
