@@ -270,6 +270,27 @@
 			<Fields />
 		</DataSource>
 		<DataSource>
+			<Name>RMarketSignalSetup</Name>
+			<Methods>
+				<Method>
+					<Name>validateWrite</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<Type>Enum</Type>
+						<TypeName>boolean</TypeName>
+					</ReturnType>
+				</Method>
+				<Method>
+					<Name>write</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+				</Method>
+			</Methods>
+			<Fields />
+		</DataSource>
+		<DataSource>
 			<Name>ActionConditionTable</Name>
 			<Methods>
 				<Method>

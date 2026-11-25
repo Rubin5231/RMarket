@@ -1011,6 +1011,39 @@ public class RMarketStrategy extends FormRun
 				<Fields />
 			</DataSource>
 			<DataSource>
+				<Name>RMarketSignalSetup</Name>
+				<Methods>
+					<Method>
+						<Name>validateWrite</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public boolean validateWrite()
+        {
+            return true;
+        }
+
+]]></Source>
+					</Method>
+					<Method>
+						<Name>write</Name>
+						<Source><![CDATA[
+        /// <summary>
+        ///
+        /// </summary>
+        public void write()
+        {
+
+        }
+
+]]></Source>
+					</Method>
+				</Methods>
+				<Fields />
+			</DataSource>
+			<DataSource>
 				<Name>ActionConditionTable</Name>
 				<Methods>
 					<Method>
@@ -2562,6 +2595,7 @@ public class RMarketStrategy extends FormRun
 											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
 												<Name>StrategyGrid</Name>
+												<HeightMode>Auto</HeightMode>
 												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
@@ -2706,6 +2740,7 @@ public class RMarketStrategy extends FormRun
 											<AxFormControl xmlns=""
 												i:type="AxFormGridControl">
 												<Name>StrategySignalGrid</Name>
+												<HeightMode>Auto</HeightMode>
 												<Type>Grid</Type>
 												<FormControlExtension
 													i:nil="true" />
