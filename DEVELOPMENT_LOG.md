@@ -242,6 +242,13 @@
 - Proposed recovery scope (pending user agreement): finish the in-flight Category migration and restore existing analytics before introducing RMarketCategories or a generalized account/wallet routing design. Existing per-market ApiUrl can route separate Binance market records; category-specific method paths and server-time/instrument routing still require actual implementation and verification. A child category URL directory is deferred, not rejected permanently. Do not claim Binance futures currently work.
 - Actual current code: RMarketMethod.initMarket uses the passed RMarketTable.ApiUrl; factories select implementation by ApiType; RMarketAccount and RMarketApiKey lookups are scoped by MarketId. Do not silently change this contract. User reports batches/tests are blocked by incomplete migration. No application code or data changed in this discussion.
 
+### 2026-11-26 — Correction: do not use separate Binance market records as a substitute for Category
+
+- User explicitly rejected the assistant's proposal to keep BinanceSpot and BinanceFutures as separate logical markets as the normal solution: this defeats the purpose of introducing Category. The immediately preceding "scope correction" recommendation to defer the category directory in favor of separate Binance market records is superseded.
+- Preserve the original R1.4 intent: one market per exchange/environment, multiple trading categories in that market. Distinct physical wallet balances within an exchange account are a separate operational accounting concern, not an additional MarketId. Do not assume a unified spendable balance on Binance.
+- Proposed implementation direction (not yet implemented): retain the Category dimension, resolve category-specific API routing through the child category configuration discussed above, propagate Category through all affected analytical paths including the subaccount context, and migrate historical data preserving DimRecId. Keep legacy fields until their consumers are migrated. Defer detailed wallet accounting design, not Category completion. Existing scheduled jobs remain blocked pending a coherent migration and regression tests.
+- No application code/data changes made by the assistant. Avoid further architectural reversals or scope expansion; next implementation block must follow source inspection and the agreed design.
+
 ## How to use
 
 - File path: `DEVELOPMENT_LOG.md` at repository root.
