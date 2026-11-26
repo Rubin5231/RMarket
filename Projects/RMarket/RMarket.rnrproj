@@ -1439,6 +1439,11 @@
       <Name>RMarketCandleTable</Name>
       <Link>Tables\RMarketCandleTable</Link>
     </Content>
+    <Content Include="AxTable\RMarketCategories">
+      <SubType>Content</SubType>
+      <Name>RMarketCategories</Name>
+      <Link>Tables\RMarketCategories</Link>
+    </Content>
     <Content Include="AxTable\RMarketConditionGroup">
       <SubType>Content</SubType>
       <Name>RMarketConditionGroup</Name>

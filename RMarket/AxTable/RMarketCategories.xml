@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>RMarketCategories</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class RMarketCategories extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>find</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    public static RMarketCategories find(
+        RMarketId       _marketId,
+        RMarketCategory _category,
+        boolean         _forUpdate = false)
+    {
+        RMarketCategories marketCategories;
+
+        if (_marketId)
+        {
+            marketCategories.selectForUpdate(_forUpdate);
+
+            select firstonly marketCategories
+                where marketCategories.MarketId == _marketId
+                   && marketCategories.Category == _category;
+        }
+
+        return marketCategories;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateDelete</Name>
+				<Source><![CDATA[
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public boolean validateDelete()
+    {
+        boolean ret = super();
+
+        RMarketDim dim;
+        RMarketSymbolIntervals symbolIntervals;
+        RMarketSymbolProperty symbolProperty;
+
+        if (ret)
+        {
+            select firstonly RecId from dim
+                where dim.MarketId == this.MarketId
+                   && dim.Category == this.Category;
+
+            select firstonly RecId from symbolIntervals
+                where symbolIntervals.MarketId == this.MarketId
+                   && symbolIntervals.Category == this.Category;
+
+            select firstonly RecId from symbolProperty
+                where symbolProperty.MarketId == this.MarketId
+                   && symbolProperty.Category == this.Category;
+
+            if (dim.RecId || symbolIntervals.RecId || symbolProperty.RecId)
+            {
+                ret = checkFailed(strFmt(
+                    "Category %1 is in use on market %2.",
+                    enum2Str(this.Category),
+                    this.MarketId));
+            }
+        }
+
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<Label>Market categories</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<TableGroup>Parameter</TableGroup>
+	<TitleField1>MarketId</TitleField1>
+	<TitleField2>Category</TitleField2>
+	<AllowRowVersionChangeTracking>Yes</AllowRowVersionChangeTracking>
+	<ClusteredIndex>MainIdx</ClusteredIndex>
+	<PrimaryIndex>MainIdx</PrimaryIndex>
+	<ReplacementKey>MainIdx</ReplacementKey>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>MarketId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>MarketId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>Overview</Name>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>Category</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>RMarketAPIMethodURL</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>MarketId</Name>
+			<AllowEdit>No</AllowEdit>
+			<ExtendedDataType>RMarketId</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Mandatory>Yes</Mandatory>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>Category</Name>
+			<AllowEdit>No</AllowEdit>
+			<EnumType>RMarketCategory</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>RMarketAPIMethodURL</Name>
+			<ExtendedDataType>RMarketAPIMethodURL</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+		</AxTableField>
+	</Fields>
+	<FullTextIndexes />
+	<Indexes>
+		<AxTableIndex>
+			<Name>MainIdx</Name>
+			<AlternateKey>Yes</AlternateKey>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>MarketId</DataField>
+				</AxTableIndexField>
+				<AxTableIndexField>
+					<DataField>Category</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+	</Indexes>
+	<Mappings />
+	<Relations>
+		<AxTableRelation>
+			<Name>RMarketTable</Name>
+			<Cardinality>ZeroMore</Cardinality>
+			<OnDelete>Restricted</OnDelete>
+			<RelatedTable>RMarketTable</RelatedTable>
+			<RelatedTableCardinality>ExactlyOne</RelatedTableCardinality>
+			<RelationshipType>Association</RelationshipType>
+			<Constraints>
+				<AxTableRelationConstraint xmlns=""
+					i:type="AxTableRelationConstraintField">
+					<Name>MarketId</Name>
+					<Field>MarketId</Field>
+					<RelatedField>MarketId</RelatedField>
+				</AxTableRelationConstraint>
+			</Constraints>
+		</AxTableRelation>
+	</Relations>
+	<StateMachines />
+</AxTable>
