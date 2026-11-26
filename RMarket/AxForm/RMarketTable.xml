@@ -1029,6 +1029,16 @@ public class RMarketTable extends FormRun
 												<DataField>SymbolId</DataField>
 												<DataSource>RMarketSymbolIntervals</DataSource>
 											</AxFormControl>
+											<AxFormControl xmlns=""
+												i:type="AxFormComboBoxControl">
+												<Name>SymbolIntervalsGrid_Category</Name>
+												<Type>ComboBox</Type>
+												<FormControlExtension
+													i:nil="true" />
+												<DataField>Category</DataField>
+												<DataSource>RMarketSymbolIntervals</DataSource>
+												<Items />
+											</AxFormControl>
 										</Controls>
 										<DataGroup>MarketIntervalOverview</DataGroup>
 										<DataSource>RMarketSymbolIntervals</DataSource>
